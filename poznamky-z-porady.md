@@ -1,0 +1,228 @@
+Jak převést poznámky z porady na data
+================
+
+Na schůzce s klientem jsem si do [Keepu](https://keep.google.com/) v
+telefonu poznamenal úkoly, které mám udělat. Ke každému úkolu jsem si
+napsal odhad náročnosti v hodinách a požadovaný termín. Vypadá to nějak
+takhle:
+
+    - Rychlá analýza UX a designu: 8 hodin, T 1.3.
+    - Klíčovka čeština: 16 hodin, T 15. 3.
+    - Klíčovka angličtina: 8 hodin, T 15. 3.
+    - Návrh obsahové strategie: 8 hodin, T 20.3.
+    - Příprava workshopu pro tým: 2 hodiny, T 1.4.
+
+Teď chci ocenit jednotlivé úkoly hodinovou sazbou a sečíst celkový čas i
+cenu. S tak malým seznamem to nejrychleji udělám ručně, ale kdyby byl
+delší, můžu si práci usnadnit spreadsheetem nebo R. Vybral jsem si R :-)
+
+## Které knihovny budu potřebovat
+
+``` r
+library(readr)
+library(tidyr)
+library(dplyr)
+library(lubridate)
+```
+
+## Načtení textu
+
+Text si načtu do proměnné `input` funkci `read_lines`, která vrátí
+znakový vektor jedotlivých řádků.
+
+``` r
+input <- read_lines("
+  - Rychlá analýza UX a designu: 8 hodin, T 1.3.
+  - Klíčovka čeština: 16 hodin, T 15. 3.
+  - Klíčovka angličtina: 8 hodin, T 15. 3.
+  - Návrh obsahové strategie: 8 hodin, T 20.3.
+  - Příprava workshopu pro tým: 2 hodiny, T 1.4.
+", skip = 1, locale = locale(encoding = "Windows-1250"))
+```
+
+Zkontroluju si, jestli se řádky podařilo správně načíst:
+
+``` r
+input
+```
+
+    ## [1] "  - Rychlá analýza UX a designu: 8 hodin, T 1.3."
+    ## [2] "  - Klíčovka čeština: 16 hodin, T 15. 3."        
+    ## [3] "  - Klíčovka angličtina: 8 hodin, T 15. 3."      
+    ## [4] "  - Návrh obsahové strategie: 8 hodin, T 20.3."  
+    ## [5] "  - Příprava workshopu pro tým: 2 hodiny, T 1.4."
+
+Podařilo, takže mohu vytvořit data frame.
+
+## Převod na data
+
+Vytvořím data frame a v něm řádky rozdělím na samostatné proměnné
+(sloupce). Pak přidám hodinovou sazbu a dopočítám cenu.
+
+``` r
+df <- 
+  data.frame(input) |>
+  extract(
+    col = 1,
+    into = c("task", "hours", "day", "month"),
+    regex = " - ([^:]+): ([0-9]+).+T ([0-9]+).+([0-9]+)",
+    convert = TRUE
+  ) |> 
+  mutate(
+    deadline = make_date(year(today()), month, day),
+    rate = 2500,
+    price = hours * rate
+  ) |> 
+  select(task, hours, price, deadline)
+```
+
+Povedlo se?
+
+``` r
+df
+```
+
+    ##                          task hours price   deadline
+    ## 1 Rychlá analýza UX a designu     8 20000 2022-03-01
+    ## 2            Klíčovka čeština    16 40000 2022-03-15
+    ## 3         Klíčovka angličtina     8 20000 2022-03-15
+    ## 4    Návrh obsahové strategie     8 20000 2022-03-20
+    ## 5  Příprava workshopu pro tým     2  5000 2022-04-01
+
+### Podrobný výklad postupu
+
+Pokud je vám až sem všechno jasné, tohle přeskočte. Pro ostatní popíšu
+postup vyvoření data framu podrobněji.
+
+Nejprve jsem vytvořil data frame s jedním sloupcem obsahujícím řádky
+původního vstupního textu. Posloužila mi funkce `data.frame` ze
+základního R.
+
+``` r
+data.frame(input)
+```
+
+    ##                                              input
+    ## 1   - Rychlá analýza UX a designu: 8 hodin, T 1.3.
+    ## 2           - Klíčovka čeština: 16 hodin, T 15. 3.
+    ## 3         - Klíčovka angličtina: 8 hodin, T 15. 3.
+    ## 4     - Návrh obsahové strategie: 8 hodin, T 20.3.
+    ## 5   - Příprava workshopu pro tým: 2 hodiny, T 1.4.
+
+Pomocí funkce `extract` z balíčku tidyr jsem jednotlivé řádky rozdělil
+na víc sloupců. Použil jsem k tomu tyto parametry:
+
+-   col: říká, který sloupec bude vstupní; zde jen pořadovým číslem, ale
+    jde i názvem či jinak.
+-   into: znakovým vektorem udává názvy nových sloupců, které funce
+    vytvoří.
+-   regex: regulární výraz, který určuje obsah nových sloupců pomocí
+    skupin v kulatých závorkách.
+-   convert: hodnota TRUE říká, že se mají číselné hodnoty převést z
+    řetězce na číslo.
+
+``` r
+data.frame(input) |>
+  extract(
+    col = 1,
+    into = c("task", "hours", "day", "month"),
+    regex = " - ([^:]+): ([0-9]+).+T ([0-9]+).+([0-9]+)",
+    convert = TRUE
+  )
+```
+
+    ##                          task hours day month
+    ## 1 Rychlá analýza UX a designu     8   1     3
+    ## 2            Klíčovka čeština    16  15     3
+    ## 3         Klíčovka angličtina     8  15     3
+    ## 4    Návrh obsahové strategie     8  20     3
+    ## 5  Příprava workshopu pro tým     2   1     4
+
+Pomocí funkce mutate z balíčku dplyr jsem přidal tři další vypočítané
+sloupce deadline, rate a price. Pro deadline jsem použil funkce
+ake\_date z baličku lubridate, která jako parametry chce rok (ten jsem
+vzal jako rok z dnešního data: `year(today())`), měsíc a den. Ostatní je
+asi jasné.
+
+``` r
+data.frame(input) |>
+  extract(
+    col = 1,
+    into = c("task", "hours", "day", "month"),
+    regex = " - ([^:]+): ([0-9]+).+T ([0-9]+).+([0-9]+)",
+    convert = TRUE
+  ) |> 
+  mutate(
+    deadline = make_date(year(today()), month, day),
+    rate = 2500,
+    price = hours * rate
+  )
+```
+
+    ##                          task hours day month   deadline rate price
+    ## 1 Rychlá analýza UX a designu     8   1     3 2022-03-01 2500 20000
+    ## 2            Klíčovka čeština    16  15     3 2022-03-15 2500 40000
+    ## 3         Klíčovka angličtina     8  15     3 2022-03-15 2500 20000
+    ## 4    Návrh obsahové strategie     8  20     3 2022-03-20 2500 20000
+    ## 5  Příprava workshopu pro tým     2   1     4 2022-04-01 2500  5000
+
+Funkcí select už jen vyberu sloupce, které chci skutečně zařadit do
+výsledného data framu.
+
+``` r
+data.frame(input) |>
+  extract(
+    col = 1,
+    into = c("task", "hours", "day", "month"),
+    regex = " - ([^:]+): ([0-9]+).+T ([0-9]+).+([0-9]+)",
+    convert = TRUE
+  ) |> 
+  mutate(
+    deadline = make_date(year(today()), month, day),
+    rate = 2500,
+    price = hours * rate
+  ) |> 
+  select(task, hours, price, deadline)
+```
+
+    ##                          task hours price   deadline
+    ## 1 Rychlá analýza UX a designu     8 20000 2022-03-01
+    ## 2            Klíčovka čeština    16 40000 2022-03-15
+    ## 3         Klíčovka angličtina     8 20000 2022-03-15
+    ## 4    Návrh obsahové strategie     8 20000 2022-03-20
+    ## 5  Příprava workshopu pro tým     2  5000 2022-04-01
+
+A nakonec celý výsledek na prvním řádku uložím do proměnné `df`.
+
+``` r
+df <- 
+  data.frame(input) |>
+  extract(
+    col = 1,
+    into = c("task", "hours", "day", "month"),
+    regex = " - ([^:]+): ([0-9]+).+T ([0-9]+).+([0-9]+)",
+    convert = TRUE
+  ) |> 
+  mutate(
+    deadline = make_date(year(today()), month, day),
+    rate = 2500,
+    price = hours * rate
+  ) |> 
+  select(task, hours, price, deadline)
+```
+
+## Součet hodin a ceny
+
+Povedlo, takže zbývá sečíst hodiny a cenu a hodiny přepočítat na
+člověkodny (sloupec md).
+
+``` r
+df |> 
+  summarise(
+    md = sum(hours) / 8,
+    price = sum(price)
+  )
+```
+
+    ##     md  price
+    ## 1 5.25 105000

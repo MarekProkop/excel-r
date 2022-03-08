@@ -1,0 +1,5 @@
+produkt,jednotka,cena,skladem
+Malý šroubek,100 g,10,TRUE
+Velký šroub,ks,5,TRUE
+Malá matička,100 g,8.5,FALSE
+Velká matka,ks,6,TRUE
