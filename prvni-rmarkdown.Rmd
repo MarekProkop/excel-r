@@ -1,0 +1,15 @@
+---
+title: "Můj první R Notebook"
+output: html_notebook
+---
+
+Toto je příklad [R Markdown](http://rmarkdown.rstudio.com) zápisníku (notebook). Začíná nahoře metadaty, které zde udávají jen titulek a formát výstupu. Metadata jsou ohraničena řádky tvořenými třemi pomlčkami. Pak následuje normální Markdown.
+
+Za tímto odstavcem je blok eRkového kódu, kterému se říká *chunk* a já mu budu říkat *blok*.
+
+```{r}
+cena <- round(rnorm(n = 100, mean = 1000, sd = 200), digits = 2)
+sum(cena)
+```
+
+Pokud blok spustíte zelenou šipečkou na jeho pravém horním okraji nebo klávesovou zkratkou Ctrl+Shift+Enter, provede se a zobrazí výstup přímo pod sebou.
