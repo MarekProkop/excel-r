@@ -1,11 +1,4 @@
----
-title: "Jak dostat data do R"
-output: github_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+# Jak dostat data do R
 
 Do Excelu nebo Google Sheets asi nejčastěji nějaká data přímo napíšete nebo odněkud zkopírujete a vložíte. Můžete je také importovat odjinud, třeba z CSV souborů, různých databází nebo API. To vše plus několik dalších způsobů můžete použít i v R.
 

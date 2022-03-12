@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Instalace a nastavení | Od Excelu k R</title>
+  <meta name="description" content="Rychlokurz R pro začátečníky, kteří zatím používali Excel nebo Google Sheets." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Instalace a nastavení | Od Excelu k R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Rychlokurz R pro začátečníky, kteří zatím používali Excel nebo Google Sheets." />
+  <meta name="github-repo" content="MarekProkop/excel-r" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Instalace a nastavení | Od Excelu k R" />
+  
+  <meta name="twitter:description" content="Rychlokurz R pro začátečníky, kteří zatím používali Excel nebo Google Sheets." />
+  
+
+<meta name="author" content="Marek Prokop" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="proc-r.html"/>
+<link rel="next" href="prvni-kroky.html"/>
+<script src="libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Od Excelu k R</a></li>
+<li class="divider"></li>
+<li><a href="index.html#o-knize">O knize<span></span></a>
+<ul>
+<li><a href="index.html#čeho-chci-spolu-s-vámi-dosáhnout">Čeho chci spolu s vámi dosáhnout<span></span></a></li>
+<li><a href="index.html#zpětná-vazba">Zpětná vazba<span></span></a></li>
+<li><a href="index.html#o-autorovi">O autorovi<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="proc-r.html"><a href="proc-r.html"><i class="fa fa-check"></i><b>1</b> Proč jsem vyměnil Excel za R<span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="proc-r.html"><a href="proc-r.html#co-je-r-a-rstudio"><i class="fa fa-check"></i><b>1.1</b> Co je R a RStudio<span></span></a></li>
+<li class="chapter" data-level="1.2" data-path="proc-r.html"><a href="proc-r.html#pro-koho-je-r-vhodné"><i class="fa fa-check"></i><b>1.2</b> Pro koho je R vhodné<span></span></a></li>
+<li class="chapter" data-level="1.3" data-path="proc-r.html"><a href="proc-r.html#kdo-by-se-do-r-rozhodně-neměl-pouštět"><i class="fa fa-check"></i><b>1.3</b> Kdo by se do R rozhodně neměl pouštět<span></span></a></li>
+<li class="chapter" data-level="1.4" data-path="proc-r.html"><a href="proc-r.html#co-vám-r-ve-srovnání-s-excelem-přinese"><i class="fa fa-check"></i><b>1.4</b> Co vám R ve srovnání s Excelem přinese<span></span></a></li>
+<li class="chapter" data-level="1.5" data-path="proc-r.html"><a href="proc-r.html#proč-zrovna-r-a-ne-třeba-python"><i class="fa fa-check"></i><b>1.5</b> Proč zrovna R a ne třeba Python<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html"><i class="fa fa-check"></i><b>2</b> Instalace a nastavení<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#cloud-nebo-instalace"><i class="fa fa-check"></i><b>2.1</b> Cloud nebo instalace<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-r"><i class="fa fa-check"></i><b>2.2</b> Instalace R<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-rstudia"><i class="fa fa-check"></i><b>2.3</b> Instalace RStudia<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#pokud-už-r-a-rstudio-máte-a-trochu-znáte"><i class="fa fa-check"></i><b>2.4</b> Pokud už R a RStudio máte (a trochu znáte)<span></span></a></li>
+<li class="chapter" data-level="2.5" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#založte-si-cvičný-projekt"><i class="fa fa-check"></i><b>2.5</b> Založte si cvičný projekt<span></span></a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#co-jsou-projekty"><i class="fa fa-check"></i><b>2.5.1</b> Co jsou projekty<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#nastavení-rstudia"><i class="fa fa-check"></i><b>2.6</b> Nastavení RStudia<span></span></a></li>
+<li class="chapter" data-level="2.7" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-balíčků"><i class="fa fa-check"></i><b>2.7</b> Instalace balíčků<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="prvni-kroky.html"><a href="prvni-kroky.html"><i class="fa fa-check"></i><b>3</b> Tři způsoby práce s R<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#interaktivní-práce-s-konsolí"><i class="fa fa-check"></i><b>3.1</b> Interaktivní práce s konsolí<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#objekty-proměnné"><i class="fa fa-check"></i><b>3.1.1</b> Objekty (proměnné)<span></span></a></li>
+<li class="chapter" data-level="3.1.2" data-path="prvni-kroky.html"><a href="prvni-kroky.html#funkce"><i class="fa fa-check"></i><b>3.1.2</b> Funkce<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="prvni-kroky.html"><a href="prvni-kroky.html#práce-se-skripty"><i class="fa fa-check"></i><b>3.2</b> Práce se skripty<span></span></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#úprava-skriptu"><i class="fa fa-check"></i><b>3.2.1</b> Úprava skriptu<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="prvni-kroky.html"><a href="prvni-kroky.html#r-markdown"><i class="fa fa-check"></i><b>3.3</b> R Markdown<span></span></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#co-je-r-markdown"><i class="fa fa-check"></i><b>3.3.1</b> Co je R Markdown<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="prvni-kroky.html"><a href="prvni-kroky.html#co-jste-se-naučili"><i class="fa fa-check"></i><b>3.4</b> Co jste se naučili<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html"><i class="fa fa-check"></i><b>4</b> Jak dostat data do R<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#co-myslím-daty"><i class="fa fa-check"></i><b>4.1</b> Co myslím daty<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#data-frame"><i class="fa fa-check"></i><b>4.1.1</b> Data frame<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#ruční-vstup-dat"><i class="fa fa-check"></i><b>4.2</b> Ruční vstup dat<span></span></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funnkce-data.frame"><i class="fa fa-check"></i><b>4.2.1</b> Funnkce data.frame<span></span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-tibble"><i class="fa fa-check"></i><b>4.2.2</b> Funkce tibble<span></span></a></li>
+<li class="chapter" data-level="4.2.3" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-tribble"><i class="fa fa-check"></i><b>4.2.3</b> Funkce tribble<span></span></a></li>
+<li class="chapter" data-level="4.2.4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#co-když-chci-něco-opravit"><i class="fa fa-check"></i><b>4.2.4</b> Co když chci něco opravit?<span></span></a></li>
+<li class="chapter" data-level="4.2.5" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-edit"><i class="fa fa-check"></i><b>4.2.5</b> Funkce edit<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#chci-si-jen-rychle-něco-vyzkoušet"><i class="fa fa-check"></i><b>4.3</b> Chci si jen rychle něco vyzkoušet<span></span></a></li>
+<li class="chapter" data-level="4.4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#práce-s-csv-soubory"><i class="fa fa-check"></i><b>4.4</b> Práce s CSV soubory<span></span></a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-write_csv"><i class="fa fa-check"></i><b>4.4.1</b> Funkce write_csv<span></span></a></li>
+<li class="chapter" data-level="4.4.2" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-read_csv"><i class="fa fa-check"></i><b>4.4.2</b> Funkce read_csv<span></span></a></li>
+<li class="chapter" data-level="4.4.3" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#interaktivní-import-dat-v-rstudiu"><i class="fa fa-check"></i><b>4.4.3</b> Interaktivní import dat v Rstudiu<span></span></a></li>
+<li class="chapter" data-level="4.4.4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#načtení-csv-z-webu"><i class="fa fa-check"></i><b>4.4.4</b> Načtení CSV z webu<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#data-na-webové-stránce"><i class="fa fa-check"></i><b>4.5</b> Data na webové stránce<span></span></a></li>
+<li class="chapter" data-level="4.6" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#data-z-jiných-zdrojů"><i class="fa fa-check"></i><b>4.6</b> Data z jiných zdrojů<span></span></a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Od Excelu k R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="instalace-a-nastavení" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Instalace a nastavení<a href="instalace-a-nastaveni.html#instalace-a-nastavení" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Potřebujete dvě věci: samotné R, které je hodně spartánské a pracuje se v něm blbě, a RStudio, které je naopak super komfortní a když ho máte, do základního R už nikdy nevlezete.</p>
+<div id="cloud-nebo-instalace" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Cloud nebo instalace<a href="instalace-a-nastaveni.html#cloud-nebo-instalace" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Dobrá zpráva: pokud nechcete, nic si instalovat nemusíte. Pro první pokusy i pro vážnější práci můžete použít <a href="https://rstudio.cloud/">RStudio.cloud</a>, které běží v prohlížeči.</p>
+<p>Život s ním budete mít o dost jednodušší, ale peněženku o něco prázdnější. RStudio.cloud sice má variantu zdarma, ale v té můžete pracovat maximálně 15 hodin měsíčně (za 5 USD 50 hodin měsíčně) a dostanete jen 1 GB RAM a 1 CPU, což není mnoho. Použitelná verze vás pak bude stát od 25 USD (small business) a dostanete 160 hodin měsíčně, až 8 GB RAM a až 4 CPU. Hodiny se ale násobí počtem CPU a velikostí RAM.</p>
+<p>Jestli v cloudu pracovat nechcete, musíte nainstalovat jednak R a jednak RStudio. Obojí je snadné a zdarma. Pro vážnější práci budete časem potřebovat ještě Git. Ten je taky zdarma, ale rozchodit ho nemusí být úplně triviální.</p>
+<p><strong>Moje doporučení:</strong> jestli chcete R jen nezávazně vyzkoušet, zvlote cloud. Instalovat můžete kdykoli později.</p>
+</div>
+<div id="instalace-r" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Instalace R<a href="instalace-a-nastaveni.html#instalace-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Stáhněte a nainstalujte si zkompilovanou verzi R pro svůj operační sytém z <a href="https://cloud.r-project.org/" class="uri">https://cloud.r-project.org/</a>. Žádná past by tam být neměla, postupujte podle instrukcí na webu a v instalátoru.</p>
+<p>Když po instalaci R spustíte, mělo by vypadat nějak takhle:</p>
+<div class="figure">
+<img src="img/r-01.png" alt="" />
+<p class="caption">Základní R po spuštění</p>
+</div>
+<p>Okno zavřete a to je všechno. Odtěď můžete na základní R zapomenout.</p>
+</div>
+<div id="instalace-rstudia" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Instalace RStudia<a href="instalace-a-nastaveni.html#instalace-rstudia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Stáhněte a nainstalujte si RStudio Desktop z <a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a>. I to by mělo jít bez problémů a spuštěné RStudio pak bude vypadat nějak takto:</p>
+<div class="figure">
+<img src="img/rstudio-01.png" alt="" />
+<p class="caption">RStudio po prvním spuštění</p>
+</div>
+</div>
+<div id="pokud-už-r-a-rstudio-máte-a-trochu-znáte" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Pokud už R a RStudio máte (a trochu znáte)<a href="instalace-a-nastaveni.html#pokud-už-r-a-rstudio-máte-a-trochu-znáte" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Pro jistotu si zkontrolujte verzi RStudia i R. Verzi R vám řekne konsole při spuštění a kdykoli později ji zjistíte příkazem:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="instalace-a-nastaveni.html#cb1-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span></code></pre></div>
+<pre><code>## [1] &quot;R version 4.1.2 (2021-11-01)&quot;</code></pre>
+<p>Poslední verze (zjistíte <a href="https://www.r-project.org/">na webu R</a>) je nejlepší, ale když budete o pár desetinek pozadu, nic vážného se nestane. On je upgrade R malinko opruz, takže ho nechcete dělat zbytečně. Rozhodně si ale aktualizujte nainstalované balíčky, protože to jde snadno příkazem:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="instalace-a-nastaveni.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>, <span class="at">checkBuilt =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Pokud byste měli starou verzi RStudia, jde ho normálně přeinstalovat.</p>
+</div>
+<div id="založte-si-cvičný-projekt" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Založte si cvičný projekt<a href="instalace-a-nastaveni.html#založte-si-cvičný-projekt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Tohle fakt hned teď udělejte. Je to důležité.</p>
+<p>Po spuštění RStudia zvolte příkaz <em>New Project…</em> z menu <em>File</em>, nebo z roletky projektů vpravo nahoře. Na další obrazovce zvolte <em>New Directory</em>.</p>
+<div class="figure">
+<img src="img/rstudio-project-01.png" alt="" />
+<p class="caption">Dialog Create Project</p>
+</div>
+<p>Na další <em>New Project</em>.</p>
+<div class="figure">
+<img src="img/rstudio-project-02.png" alt="" />
+<p class="caption">Volba typu projektu</p>
+</div>
+<p>A nakonec zadejte název složky, ve které se má projekt vytvořit. Může to být výchozí (domovská) složka pro R (~/R) nebo jakákoli jiná, kterou si vytvoříte jako nadřízenou složku pro podložky eRkových projektů. Třeba u mě to je <code>c:/dev/R</code> (pro moje projekty), nebo <code>c:/dev/R/clients</code> (pro klientské projekty).</p>
+<div class="figure">
+<img src="img/rstudio-project-03.png" alt="" />
+<p class="caption">Volba složky projektu</p>
+</div>
+<div id="co-jsou-projekty" class="section level3 hasAnchor" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Co jsou projekty<a href="instalace-a-nastaveni.html#co-jsou-projekty" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>V RStudiu se nejčastěji pracuje v tzv. projektech. Jde to sice i bez nich, ale projekty jsou praktické, protože si pamatují různá nastavení, poslední otevřené soubory, historii příkazů apod. Na vašem počítači jeden projekt vždy odpovídá jedné složce (s případnými podsložkami), do které si RStudio uloží projektový soubor <code>nazev-projektu.Rproj</code>. Tímto souborem jde pak projekt otevřít např. z Průzkumníka Windows.</p>
+<p>K projektům ještě pár doporučení a vysvětlení:</p>
+<ul>
+<li>V některých situacích vám zjednoduší život, když budete projekty pojmenovávat podobně jako webová URL, tj. jen písmeny malé anglické abecedy, čísly, pomlčkami a tečkami. Nutné to ale není.</li>
+<li>Po standardní instalaci vám na Windows (jinde to může být jiné) ve složce Dokumenty vznikne podsložka R, kterou pak RStudio (i samotné R) označuje aliasem ~/R. Projekty ale můžete zakládat i jinde.</li>
+<li>Ať už si projekt založíte kdekoli, doporučuji si pro všechny projekty zvolit jedinou zastřešující složku, protože v různých kontextech se vám pak zobrazí jen název projektu, a pokud byste na více místech měli stejně pojmenované projekty, pletlo by vás to.</li>
+<li>Pokud máte nebo až budete mít zprovozněný Git, objeví se vám při volbě složky i volba <em>Create a git repository</em>. Vždycky ji zapínejte. Pro první pokusy ale Git nepotřebujete.</li>
+</ul>
+</div>
+</div>
+<div id="nastavení-rstudia" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Nastavení RStudia<a href="instalace-a-nastaveni.html#nastavení-rstudia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R i RStudio je ve výchozím stavu nastaveno v zásadě dobře. Změňte prosím jen dvě věci.</p>
+<p>Z menu <em>Tools</em> vyberte příkaz <em>Global Options…</em> (úplně na konci) a v následujícím dialogu vypněte volbu <em>Restore .RData into workspace at startup</em> a volbu <em>Save workspace to .RData on exit</em> nastavte na <em>Never</em>.</p>
+<div class="figure">
+<img src="img/rstudio-options-01.png" alt="" />
+<p class="caption">RStudio: Options - General</p>
+</div>
+<p>A pak na panelu <em>Code</em> zapněte volbu <em>Use native pipe operator</em>. To sice není nutné, ale vše se pak bude chovat stejně, jako v mých ukázkách.</p>
+<div class="figure">
+<img src="img/rstudio-options-02.png" alt="" />
+<p class="caption">RStudio: Options - Code</p>
+</div>
+</div>
+<div id="instalace-balíčků" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Instalace balíčků<a href="instalace-a-nastaveni.html#instalace-balíčků" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Základní R je jenom jazykové jádro s nezbytnými příkazy a funkcemi. Jeho funkčnost rozšiřují tzv. balíčky (packages), kterým se v jiných jazycích často říká knihovny. Balíčky je potřeba jednak nainstalovat (jednorázově) a jednak připojit před konkrétní prací, ke které je potřebujete (vysvětlím později).</p>
+<p>V RStudiu Desktop už jsou některé balíčky předinstalované a ještě víc jich je v cloudovém RStudio, ale pro jistotu vám ukážu, jak nainstalujete ty, které budete potřebovat pro celý tenhle seriál.</p>
+<p>Z menu <em>Tools</em> zvolte příkaz <em>Install Packages…</em>. Objeví se tento dialog:</p>
+<div class="figure">
+<img src="img/install-packages-01.png" alt="" />
+<p class="caption">Dialog Install Packages</p>
+</div>
+<p>Nechte v něm předvyplněné volby a do prázdného políčka vložte tento seznam balíčků:</p>
+<pre><code>janitor, knitr, lubridate, rmarkdown, readxl, rvest, tidyverse</code></pre>
+<p>Alternativně jde balíčky instalovat funkcí <code>install.packages()</code>, kterou zavoláte třeba z konsole (vysvětlím za chvíli). To pak vypadá takhle:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="instalace-a-nastaveni.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;janitor&quot;</span>, <span class="st">&quot;knitr&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;rmarkdown&quot;</span>, <span class="st">&quot;readxl&quot;</span>, <span class="st">&quot;rvest&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>))</span></code></pre></div>
+<p>Oba způsoby balíčky zároveň aktualizují, což se občas hodí.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="proc-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="prvni-kroky.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

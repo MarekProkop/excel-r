@@ -1,17 +1,8 @@
----
-title: "Od Excelu (nebo Google Sheets) k R"
-output: github_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+# Proč jsem vyměnil Excel za R
 
 Spreadsheety používám od konce 80. let prakticky denně. Multiplan, Supercalc, Quatro, Lotus, Excel, Google Sheets. Jsou báječné, miluju je, ale několik posledních let po nich sahám už jen párkrát do měsíce. Většinu času totiž používám [R](https://cs.wikipedia.org/wiki/R_(programovac%C3%AD_jazyk)) a [RStudio](https://www.rstudio.com/products/rstudio/).
 
 Je to dáno nároky mé práce, vyšší efektivitou a taky tím, že mě R víc baví. Možná jste na tom podobně jako já a R pro vás bude taky vhodnější. A možná nebude. Máte mu dát šanci? Zlepší váš pracovní život, nebo to bude ztracený čas? Zkusím vám pomoci, abyste se rozhodli správně.
-
-Tohle je úvodní článek série, která provede běžné, středně pokročilé až pokročilejší uživatele Excelu a podobných nástrojů na cestě k R. A v tomto prvním článku se soustředím na jedinou věc: zda má vůbec smysl, abyste se zrovna vy na tu cestu vydali.
 
 ## Co je R a RStudio
 
@@ -66,11 +57,3 @@ Stručně řečeno, jsou mezi nimi tyto rozdíly:
 -   R je naopak o něco lepší na interaktivní práci nebo ad hoc úlohy, ve kterých předem úplně nevíte, čeho přesně chcete dosáhnout.
 -   Python je univerzální jazyk a můžete si v něm naprogramovat třeba e-shop. To by v R asi nešlo, byť základní obsahové weby zvládne taky.
 -   R má (zatím) rozvinutější ekosystém knihoven. Google Analytics, Search Console, Google Drive nebo Google Sheets -- nic není problém, to vše už je v R dávno vyřešené. Když jsem tohle psal (březen 2022), evidoval oficiální repozitář CRAN [18 910 eRkových balíčků snad na úplně všechno](https://cran.r-project.org/web/packages/available_packages_by_name.html).
-
-## Jak bude vypadat zbytek série
-
-Na tento článek naváže několik dalších, které vás provedou cestou od Excelu k R. Jen to a nic jiného. Možná jsem vás namlsal obsahovou analýzou tweetů nebo modelováním zákaznického chování podle počasí, ale to vás v téhle sérii nenaučím. Místo toho vás naučím úplné základy, bez kterých se dál nedostanete.
-
-Ukážu vám věci, které asi běžně děláte v Excelu a v R jdou udělat hodně podobně. A naučím vás i věci, které taky děláte v Excelu, ale v R jdou udělat o dost lépe. Už tím na tom vyděláte, pokud se do toho se mnou pustíte. A někdy později, až tahle série skončí a vy budete mít základy v malíčku, vám třeba ukážu i to, co dělám v R jako markeťák a Excel by mi na to rozhodně nestačil.
-
-Těším se, že se na té cestě ještě potkáme.

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Jak dostat data do R | Od Excelu k R</title>
+  <meta name="description" content="Rychlokurz R pro začátečníky, kteří zatím používali Excel nebo Google Sheets." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Jak dostat data do R | Od Excelu k R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Rychlokurz R pro začátečníky, kteří zatím používali Excel nebo Google Sheets." />
+  <meta name="github-repo" content="MarekProkop/excel-r" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Jak dostat data do R | Od Excelu k R" />
+  
+  <meta name="twitter:description" content="Rychlokurz R pro začátečníky, kteří zatím používali Excel nebo Google Sheets." />
+  
+
+<meta name="author" content="Marek Prokop" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="prvni-kroky.html"/>
+
+<script src="libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Od Excelu k R</a></li>
+<li class="divider"></li>
+<li><a href="index.html#o-knize">O knize<span></span></a>
+<ul>
+<li><a href="index.html#čeho-chci-spolu-s-vámi-dosáhnout">Čeho chci spolu s vámi dosáhnout<span></span></a></li>
+<li><a href="index.html#zpětná-vazba">Zpětná vazba<span></span></a></li>
+<li><a href="index.html#o-autorovi">O autorovi<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="proc-r.html"><a href="proc-r.html"><i class="fa fa-check"></i><b>1</b> Proč jsem vyměnil Excel za R<span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="proc-r.html"><a href="proc-r.html#co-je-r-a-rstudio"><i class="fa fa-check"></i><b>1.1</b> Co je R a RStudio<span></span></a></li>
+<li class="chapter" data-level="1.2" data-path="proc-r.html"><a href="proc-r.html#pro-koho-je-r-vhodné"><i class="fa fa-check"></i><b>1.2</b> Pro koho je R vhodné<span></span></a></li>
+<li class="chapter" data-level="1.3" data-path="proc-r.html"><a href="proc-r.html#kdo-by-se-do-r-rozhodně-neměl-pouštět"><i class="fa fa-check"></i><b>1.3</b> Kdo by se do R rozhodně neměl pouštět<span></span></a></li>
+<li class="chapter" data-level="1.4" data-path="proc-r.html"><a href="proc-r.html#co-vám-r-ve-srovnání-s-excelem-přinese"><i class="fa fa-check"></i><b>1.4</b> Co vám R ve srovnání s Excelem přinese<span></span></a></li>
+<li class="chapter" data-level="1.5" data-path="proc-r.html"><a href="proc-r.html#proč-zrovna-r-a-ne-třeba-python"><i class="fa fa-check"></i><b>1.5</b> Proč zrovna R a ne třeba Python<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html"><i class="fa fa-check"></i><b>2</b> Instalace a nastavení<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#cloud-nebo-instalace"><i class="fa fa-check"></i><b>2.1</b> Cloud nebo instalace<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-r"><i class="fa fa-check"></i><b>2.2</b> Instalace R<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-rstudia"><i class="fa fa-check"></i><b>2.3</b> Instalace RStudia<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#pokud-už-r-a-rstudio-máte-a-trochu-znáte"><i class="fa fa-check"></i><b>2.4</b> Pokud už R a RStudio máte (a trochu znáte)<span></span></a></li>
+<li class="chapter" data-level="2.5" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#založte-si-cvičný-projekt"><i class="fa fa-check"></i><b>2.5</b> Založte si cvičný projekt<span></span></a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#co-jsou-projekty"><i class="fa fa-check"></i><b>2.5.1</b> Co jsou projekty<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#nastavení-rstudia"><i class="fa fa-check"></i><b>2.6</b> Nastavení RStudia<span></span></a></li>
+<li class="chapter" data-level="2.7" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-balíčků"><i class="fa fa-check"></i><b>2.7</b> Instalace balíčků<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="prvni-kroky.html"><a href="prvni-kroky.html"><i class="fa fa-check"></i><b>3</b> Tři způsoby práce s R<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#interaktivní-práce-s-konsolí"><i class="fa fa-check"></i><b>3.1</b> Interaktivní práce s konsolí<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#objekty-proměnné"><i class="fa fa-check"></i><b>3.1.1</b> Objekty (proměnné)<span></span></a></li>
+<li class="chapter" data-level="3.1.2" data-path="prvni-kroky.html"><a href="prvni-kroky.html#funkce"><i class="fa fa-check"></i><b>3.1.2</b> Funkce<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="prvni-kroky.html"><a href="prvni-kroky.html#práce-se-skripty"><i class="fa fa-check"></i><b>3.2</b> Práce se skripty<span></span></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#úprava-skriptu"><i class="fa fa-check"></i><b>3.2.1</b> Úprava skriptu<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="prvni-kroky.html"><a href="prvni-kroky.html#r-markdown"><i class="fa fa-check"></i><b>3.3</b> R Markdown<span></span></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#co-je-r-markdown"><i class="fa fa-check"></i><b>3.3.1</b> Co je R Markdown<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="prvni-kroky.html"><a href="prvni-kroky.html#co-jste-se-naučili"><i class="fa fa-check"></i><b>3.4</b> Co jste se naučili<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html"><i class="fa fa-check"></i><b>4</b> Jak dostat data do R<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#co-myslím-daty"><i class="fa fa-check"></i><b>4.1</b> Co myslím daty<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#data-frame"><i class="fa fa-check"></i><b>4.1.1</b> Data frame<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#ruční-vstup-dat"><i class="fa fa-check"></i><b>4.2</b> Ruční vstup dat<span></span></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funnkce-data.frame"><i class="fa fa-check"></i><b>4.2.1</b> Funnkce data.frame<span></span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-tibble"><i class="fa fa-check"></i><b>4.2.2</b> Funkce tibble<span></span></a></li>
+<li class="chapter" data-level="4.2.3" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-tribble"><i class="fa fa-check"></i><b>4.2.3</b> Funkce tribble<span></span></a></li>
+<li class="chapter" data-level="4.2.4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#co-když-chci-něco-opravit"><i class="fa fa-check"></i><b>4.2.4</b> Co když chci něco opravit?<span></span></a></li>
+<li class="chapter" data-level="4.2.5" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-edit"><i class="fa fa-check"></i><b>4.2.5</b> Funkce edit<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#chci-si-jen-rychle-něco-vyzkoušet"><i class="fa fa-check"></i><b>4.3</b> Chci si jen rychle něco vyzkoušet<span></span></a></li>
+<li class="chapter" data-level="4.4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#práce-s-csv-soubory"><i class="fa fa-check"></i><b>4.4</b> Práce s CSV soubory<span></span></a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-write_csv"><i class="fa fa-check"></i><b>4.4.1</b> Funkce write_csv<span></span></a></li>
+<li class="chapter" data-level="4.4.2" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-read_csv"><i class="fa fa-check"></i><b>4.4.2</b> Funkce read_csv<span></span></a></li>
+<li class="chapter" data-level="4.4.3" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#interaktivní-import-dat-v-rstudiu"><i class="fa fa-check"></i><b>4.4.3</b> Interaktivní import dat v Rstudiu<span></span></a></li>
+<li class="chapter" data-level="4.4.4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#načtení-csv-z-webu"><i class="fa fa-check"></i><b>4.4.4</b> Načtení CSV z webu<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#data-na-webové-stránce"><i class="fa fa-check"></i><b>4.5</b> Data na webové stránce<span></span></a></li>
+<li class="chapter" data-level="4.6" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#data-z-jiných-zdrojů"><i class="fa fa-check"></i><b>4.6</b> Data z jiných zdrojů<span></span></a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Od Excelu k R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="jak-dostat-data-do-r" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Jak dostat data do R<a href="jak-dostat-data-do-r.html#jak-dostat-data-do-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Do Excelu nebo Google Sheets asi nejčastěji nějaká data přímo napíšete nebo odněkud zkopírujete a vložíte. Můžete je také importovat odjinud, třeba z CSV souborů, různých databází nebo API. To vše plus několik dalších způsobů můžete použít i v R.</p>
+<div id="co-myslím-daty" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Co myslím daty<a href="jak-dostat-data-do-r.html#co-myslím-daty" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Spreadsheet je datově velmi jednoduchý. Má jen listy, ty se skládají z buněk a každá buňka může (i nemusí) obsahovat hodnotu. Hodnoty moho být jen pár typů: číslo, text, logická hodnota (TRUE/FALSE).</p>
+<p>R to má trochu složitější. Pro dočasné ukládání dat používá pojmenované objekty (někdy se jim říká proměnné prostředí), které mohou být mnoha typů, jak primitivních (číslo, text apod.), tak složitějších (kterým se většinou říká třída neboli class).</p>
+<div id="data-frame" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Data frame<a href="jak-dostat-data-do-r.html#data-frame" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Jednomu listu spreadsheetu se nejvíc podobá eRková třída <em>data frame</em>. Je to vlastně klasická datová tabulka s řádky a sloupci. Různé sloupce mohou obsahovat různé typy dat – některé čísla, jiné text – ale v jednom sloupci mohou být data jen jednoho typu. Ukázkovou tabulkou je třeba ceník:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">produkt</th>
+<th align="left">jednotka</th>
+<th align="right">cena</th>
+<th align="left">skladem</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Malý šroubek</td>
+<td align="left">100 g</td>
+<td align="right">10.0</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td align="left">Velký šroub</td>
+<td align="left">ks</td>
+<td align="right">5.0</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td align="left">Malá matička</td>
+<td align="left">100 g</td>
+<td align="right">8.5</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="even">
+<td align="left">Velká matka</td>
+<td align="left">ks</td>
+<td align="right">6.0</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+<p>První dva sloupce obsahují text, třetí sloupec čísla a poslední sloupec logické hodnoty (někdy označované jako boolean): TRUE je pravda, FALSE je nepravda.</p>
+<p>Teď už tedy víte, co je data frame, a v dalším textu vám ukážu, jak ho vytvořit a dostat do něj data.</p>
+</div>
+</div>
+<div id="ruční-vstup-dat" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Ruční vstup dat<a href="jak-dostat-data-do-r.html#ruční-vstup-dat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>V Excelu data ručně vkládáte rovnou do buněk listu. To sice jde v R také (ukážu později), ale většinou se to nedělá. Místo toho se napíše příkaz (nebo krátký skript čili posloupnost příkazů), který vytvoří data frame, naplní ho daty a výsledek uloží do objektu, se kterým můžete dál pracovat.</p>
+<div id="funnkce-data.frame" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Funnkce data.frame<a href="jak-dostat-data-do-r.html#funnkce-data.frame" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Konkrétně ceník výše jsem vytvořil tímto příkazem:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="jak-dostat-data-do-r.html#cb32-1" aria-hidden="true" tabindex="-1"></a>sample_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb32-2"><a href="jak-dostat-data-do-r.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">produkt =</span> <span class="fu">c</span>(<span class="st">&quot;Malý šroubek&quot;</span>, <span class="st">&quot;Velký šroub&quot;</span>, <span class="st">&quot;Malá matička&quot;</span>, <span class="st">&quot;Velká matka&quot;</span>),</span>
+<span id="cb32-3"><a href="jak-dostat-data-do-r.html#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">jednotka =</span> <span class="fu">c</span>(<span class="st">&quot;100 g&quot;</span>, <span class="st">&quot;ks&quot;</span>, <span class="st">&quot;100 g&quot;</span>, <span class="st">&quot;ks&quot;</span>),</span>
+<span id="cb32-4"><a href="jak-dostat-data-do-r.html#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cena =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="fl">8.5</span>, <span class="dv">6</span>),</span>
+<span id="cb32-5"><a href="jak-dostat-data-do-r.html#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">skladem =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb32-6"><a href="jak-dostat-data-do-r.html#cb32-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Vysvětlím podrobněji:</p>
+<ol style="list-style-type: decimal">
+<li>Do objektu <code>sample_df</code> přiřadím (neboli uložím) výsledek funkce <code>data.frame</code>. To jde zjednodušeně napsat jako <code>sample_df &lt;- data.frame(...)</code>, kde tři tečky reprezentují tzv. argumenty (nebo též parametry) funkce <code>data.frame</code>. Znaky <code>&lt;-</code> se v R používají k přiřazení (uložení) hodnoty do objektu a v RStudiu je můžete zadat klávesou zkratkou <kbd>Alt</kbd>+<kbd>-</kbd> (Alt pomlčka).</li>
+<li>Argumenty funkce <code>data.frame</code> jsou jednotlivé sloupce, které má data frame mít. Zde to je <em>produkt</em>, <em>jednotka</em>, <em>cena</em> a <em>skladem</em>. Vzájemně jsou odděleny čárkou, na rozdělení do řádků nezáleží.</li>
+<li>Sloupce se definují jako <code>název_sloupce = vektor</code>, příčemž <code>vektor</code> musí určovat hodnoty všech řádků data framu.</li>
+<li>V příkladu vektory zadávám jako výsledek funkce <code>c</code>. Ta vezme všechny své argumenty (oddělené čárkou) a vytvoří z nich vektor. Všimněte si, že textové hodnoty se píší do uvozovek, kdežto číselné a logické ne.</li>
+</ol>
+<p>Jakmile máte data frame vytvořený a uložený do objektu <code>sample_df</code>, můžete s ním dál pracovat, např. vypsat jeho obsah:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="jak-dostat-data-do-r.html#cb33-1" aria-hidden="true" tabindex="-1"></a>sample_df</span></code></pre></div>
+<pre><code>##        produkt jednotka cena skladem
+## 1 Malý šroubek    100 g 10.0    TRUE
+## 2  Velký šroub       ks  5.0    TRUE
+## 3 Malá matička    100 g  8.5   FALSE
+## 4  Velká matka       ks  6.0    TRUE</code></pre>
+</div>
+<div id="funkce-tibble" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Funkce tibble<a href="jak-dostat-data-do-r.html#funkce-tibble" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Já raději používám funkce z ekosystému <em>tidyverse</em>, ve kterém funkci <em>data.frame</em> nahrazuje funkce <em>tibble</em>. Používá se úplně stejně, ale místo objektu třídy <em>data frame</em> vytvoří objekt třídy <em>tibble</em>, který je s data framem plně kompatibilní, ale o něco hezčeji se vypisuje na konsoli.</p>
+<p>Příkaz s touto funkcí pak vypadá takto:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="jak-dostat-data-do-r.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb35-2"><a href="jak-dostat-data-do-r.html#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="jak-dostat-data-do-r.html#cb35-3" aria-hidden="true" tabindex="-1"></a>sample_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb35-4"><a href="jak-dostat-data-do-r.html#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">produkt =</span> <span class="fu">c</span>(<span class="st">&quot;Malý šroubek&quot;</span>, <span class="st">&quot;Velký šroub&quot;</span>, <span class="st">&quot;Malá matička&quot;</span>, <span class="st">&quot;Velká matka&quot;</span>),</span>
+<span id="cb35-5"><a href="jak-dostat-data-do-r.html#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">jednotka =</span> <span class="fu">c</span>(<span class="st">&quot;100 g&quot;</span>, <span class="st">&quot;ks&quot;</span>, <span class="st">&quot;100 g&quot;</span>, <span class="st">&quot;ks&quot;</span>),</span>
+<span id="cb35-6"><a href="jak-dostat-data-do-r.html#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">cena =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">5</span>, <span class="fl">8.5</span>, <span class="dv">6</span>),</span>
+<span id="cb35-7"><a href="jak-dostat-data-do-r.html#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">skladem =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb35-8"><a href="jak-dostat-data-do-r.html#cb35-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Povšimněte si, že abych mohl funkci <em>tibble</em> použít, musím nejdřív načíst balíček <em>tidyverse</em> funkcí <em>library</em>.</p>
+</div>
+<div id="funkce-tribble" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Funkce tribble<a href="jak-dostat-data-do-r.html#funkce-tribble" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Oba výše popsané zpsoby zadávání dat do data framu mají jednu nevýhodu: data zapisujete po sloupcích, ačkoli je většinou přirozenější je psát po řádcích. Tuto nevýhodu řeší funkce <em>tribble</em>, které je taktéž součástí ekosystému <em>tidyverse</em>.</p>
+<p>Používá se takto:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="jak-dostat-data-do-r.html#cb36-1" aria-hidden="true" tabindex="-1"></a>sample_df <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb36-2"><a href="jak-dostat-data-do-r.html#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>produkt, <span class="sc">~</span>jednotka, <span class="sc">~</span>cena, <span class="sc">~</span>skladem,</span>
+<span id="cb36-3"><a href="jak-dostat-data-do-r.html#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Malý šroubek&quot;</span>, <span class="st">&quot;100 g&quot;</span>, <span class="dv">10</span>, <span class="cn">TRUE</span>,</span>
+<span id="cb36-4"><a href="jak-dostat-data-do-r.html#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Velký šroub&quot;</span>, <span class="st">&quot;ks&quot;</span>, <span class="dv">5</span>, <span class="cn">TRUE</span>,</span>
+<span id="cb36-5"><a href="jak-dostat-data-do-r.html#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Malá matička&quot;</span>, <span class="st">&quot;100 g&quot;</span>, <span class="fl">8.5</span>, <span class="cn">FALSE</span>,</span>
+<span id="cb36-6"><a href="jak-dostat-data-do-r.html#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Velká matka&quot;</span>, <span class="st">&quot;ks&quot;</span>, <span class="dv">6</span>, <span class="cn">TRUE</span></span>
+<span id="cb36-7"><a href="jak-dostat-data-do-r.html#cb36-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Názvy sloupců jsou v prvním řádku a každý začíná znakem <code>~</code>. Pak následují jednotlivé řádky se hodnotami. Vče je navzájem odděleno čárkou.</p>
+<p>Pokud chcete mít funkci <em>tribble</em> v nějakém skriptu úhledně upravenou a dobře čitelnou, můžete přidat i mezery, např. takto:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="jak-dostat-data-do-r.html#cb37-1" aria-hidden="true" tabindex="-1"></a>sample_df <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb37-2"><a href="jak-dostat-data-do-r.html#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>produkt,       <span class="sc">~</span>jednotka, <span class="sc">~</span>cena, <span class="sc">~</span>skladem,</span>
+<span id="cb37-3"><a href="jak-dostat-data-do-r.html#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Malý šroubek&quot;</span>, <span class="st">&quot;100 g&quot;</span>,   <span class="dv">10</span>,    <span class="cn">TRUE</span>,</span>
+<span id="cb37-4"><a href="jak-dostat-data-do-r.html#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Velký šroub&quot;</span>,  <span class="st">&quot;ks&quot;</span>,       <span class="dv">5</span>,    <span class="cn">TRUE</span>,</span>
+<span id="cb37-5"><a href="jak-dostat-data-do-r.html#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Malá matička&quot;</span>, <span class="st">&quot;100 g&quot;</span>,    <span class="fl">8.5</span>,  <span class="cn">FALSE</span>,</span>
+<span id="cb37-6"><a href="jak-dostat-data-do-r.html#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Velká matka&quot;</span>,  <span class="st">&quot;ks&quot;</span>,       <span class="dv">6</span>,    <span class="cn">TRUE</span></span>
+<span id="cb37-7"><a href="jak-dostat-data-do-r.html#cb37-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="co-když-chci-něco-opravit" class="section level3 hasAnchor" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Co když chci něco opravit?<a href="jak-dostat-data-do-r.html#co-když-chci-něco-opravit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To je všechno moc hezké, říkáte si, ale v Excelu mohu nejen ručně zadat data, ale i kdykoli cokoli dodatečně opravit. Jak to udělám v R?</p>
+<p>Inu, skoro stejně. V Excelu něco píšete, pak máte už hotový výsledek a ten opravíte. V R nepíšete rovnou výsledek, nýbrž postup, jak výsledek vytvořit. Opravíte tedy postup, znovu ho spustíte a získáte opravený výsledek. Vypadá to o trochu složitěji, ale ve skutečnosti je to o dost lepší, protože informace o postupu zůstane zaznamenaná.</p>
+<ol style="list-style-type: decimal">
+<li>Pokud máte postup uložený ve skriptu, opravíte ho a znovu pusíte skript.</li>
+<li>Pokud máte postup v souboru <em>rmarkdown</em> (.Rmd), opravíte ho a znovu spustíte jen opravený blok.</li>
+<li>Pokud jste postup napsali jen do konzole, vrátité se k němu v historii (v konsoli šipka nahoru, případně panel <em>History</em> v RStudiu), opravíte a znovu provedete.</li>
+</ol>
+</div>
+<div id="funkce-edit" class="section level3 hasAnchor" number="4.2.5">
+<h3><span class="header-section-number">4.2.5</span> Funkce edit<a href="jak-dostat-data-do-r.html#funkce-edit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ve skutečnosti můžete i v R opravaovat data skoro stejně, jako v Excelu. Slouží k tomu funkce <em>edit</em>, která otveře jednoduchý tabulkový editor, do něj načte data frame uvedený v jejím arguentu, a když v editoru cokoli změníte a pak ho zavřete, vrátí zpátky opravená data.</p>
+<p>V následujícím příkladu vyvolám editor pro objekt <em>sample_df</em> a výsledek zapíšu zpět do stejného objektu, takže pak bude obsahovat již opravená data. Tímto způsobem se ale ztratí postup vzniku dat, a proto se v R skoro nepoužívá.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="jak-dostat-data-do-r.html#cb38-1" aria-hidden="true" tabindex="-1"></a>sample_df <span class="ot">&lt;-</span> <span class="fu">edit</span>(sample_df)</span></code></pre></div>
+</div>
+</div>
+<div id="chci-si-jen-rychle-něco-vyzkoušet" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Chci si jen rychle něco vyzkoušet<a href="jak-dostat-data-do-r.html#chci-si-jen-rychle-něco-vyzkoušet" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>V základním R i v některých balíčcích je docela dost vzrových data setů již zabudovaných. Slouží jako příklady pro demonstraci některých postupů a můžete si s nimi zkusit hrát. Často se třeba něco ukazuje na data setu <em>iris</em>, který obsahuje vlastnosti několika druhů kosatců.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="jak-dostat-data-do-r.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>A v <em>tidyverse</em> ze zabudovaný i krásný data set postav ze Star Wars.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="jak-dostat-data-do-r.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(starwars)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 14
+##   name     height  mass hair_color  skin_color eye_color birth_year sex   gender
+##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+## 1 Luke Sk~    172    77 blond       fair       blue            19   male  mascu~
+## 2 C-3PO       167    75 &lt;NA&gt;        gold       yellow         112   none  mascu~
+## 3 R2-D2        96    32 &lt;NA&gt;        white, bl~ red             33   none  mascu~
+## 4 Darth V~    202   136 none        white      yellow          41.9 male  mascu~
+## 5 Leia Or~    150    49 brown       light      brown           19   fema~ femin~
+## 6 Owen La~    178   120 brown, grey light      blue            52   male  mascu~
+## # ... with 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+<p>Mimochodem, funkce <code>head</code> vrátí z data frame jen několik prvních řádků (zde 10, ale počet jde ovlivnit parametrem <code>n</code>).</p>
+</div>
+<div id="práce-s-csv-soubory" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Práce s CSV soubory<a href="jak-dostat-data-do-r.html#práce-s-csv-soubory" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>V reálné praxi se data do R nejčastějí načítají z CSV souborů. Abyste si mohli hned vyzkoušet i v případě, že zrovna nemáte žádný CSV po ruce, nejdřív vám ukážu, jak do CSV zapisovat.</p>
+<div id="funkce-write_csv" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Funkce write_csv<a href="jak-dostat-data-do-r.html#funkce-write_csv" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>CSV soubor pro další pokusy vytvořím z data framu <code>sample_df</code>. S funcí <em>write_csv</em> z balíčku <em>readr</em> (součást <em>tidyverse</em>) Je to takhle jednoduché:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="jak-dostat-data-do-r.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(sample_df, <span class="st">&quot;sample_df.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="funkce-read_csv" class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Funkce read_csv<a href="jak-dostat-data-do-r.html#funkce-read_csv" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Obdobně lze data z CSV souboru načíst funkcí <em>read_csv</em>:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="jak-dostat-data-do-r.html#cb44-1" aria-hidden="true" tabindex="-1"></a>sample_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;sample_df.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 4 Columns: 4
+## -- Column specification --------------------------------------------------------
+## Delimiter: &quot;,&quot;
+## chr (2): produkt, jednotka
+## dbl (1): cena
+## lgl (1): skladem
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<p>Všiněte si, že funkce vypsala specifikaci sloupců a jejich datových typů. Datové typy odhaduje z obsahu souboru a ne vždy je trefí správně, takže někdy může být potřeba je určit ručně, ať už v parametrech funkce <em>read_csv</em>, nebo v dodatečné úpravě získaného data framu.</p>
+</div>
+<div id="interaktivní-import-dat-v-rstudiu" class="section level3 hasAnchor" number="4.4.3">
+<h3><span class="header-section-number">4.4.3</span> Interaktivní import dat v Rstudiu<a href="jak-dostat-data-do-r.html#interaktivní-import-dat-v-rstudiu" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Pokud nevíte přesně, jak importovaný soubor vypadá, je v RStudiu nejjednoduší zvolit příkaz <em>Import Dataset</em> z menu <em>File</em>. Tam si pak můžete na živém náhledu dat vybrat, co přesně chcete importovat, které sloupce jsou kterého typu apod.</p>
+<p>Podstatné je, že se vám současně generuje i skript, který si můžete zkopírovat pro opakované použití se stejným souborem.</p>
+</div>
+<div id="načtení-csv-z-webu" class="section level3 hasAnchor" number="4.4.4">
+<h3><span class="header-section-number">4.4.4</span> Načtení CSV z webu<a href="jak-dostat-data-do-r.html#načtení-csv-z-webu" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Funkcí <em>read_csv</em> a dalšími funkcemi z balíčku <em>readr</em> (součást <em>tidyverse</em>) můžete načítat i vzdálené soubory z internetu. Místo cesty a názvu lokálního souboru pak zadáte jeho URL.</p>
+<p>Ukážu trochu komplexnější příklad, který načte data z veřejného datasetu zvířat k adopci pražské ZOO.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="jak-dostat-data-do-r.html#cb46-1" aria-hidden="true" tabindex="-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(</span>
+<span id="cb46-2"><a href="jak-dostat-data-do-r.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;https://opendata.praha.eu/dataset/9e9ec749-db30-4f0d-bb02-5b48cf090888/resource/f4432746-002d-45dd-bb09-d1719acf35fb/download/959c0e6f-5afb-489f-95ef-c9c2982963de-adopcezvirata.csv&quot;</span>, </span>
+<span id="cb46-3"><a href="jak-dostat-data-do-r.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">delim =</span> <span class="st">&quot;;&quot;</span>, </span>
+<span id="cb46-4"><a href="jak-dostat-data-do-r.html#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">col_types =</span> <span class="fu">cols</span>(</span>
+<span id="cb46-5"><a href="jak-dostat-data-do-r.html#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">id =</span> <span class="fu">col_skip</span>(), </span>
+<span id="cb46-6"><a href="jak-dostat-data-do-r.html#cb46-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">nazev_en =</span> <span class="fu">col_skip</span>(), </span>
+<span id="cb46-7"><a href="jak-dostat-data-do-r.html#cb46-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">k_prohlidce =</span> <span class="fu">col_logical</span>(), </span>
+<span id="cb46-8"><a href="jak-dostat-data-do-r.html#cb46-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">...7 =</span> <span class="fu">col_skip</span>()</span>
+<span id="cb46-9"><a href="jak-dostat-data-do-r.html#cb46-9" aria-hidden="true" tabindex="-1"></a>  ), </span>
+<span id="cb46-10"><a href="jak-dostat-data-do-r.html#cb46-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">trim_ws =</span> <span class="cn">TRUE</span></span>
+<span id="cb46-11"><a href="jak-dostat-data-do-r.html#cb46-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## New names:
+## * `` -&gt; ...7</code></pre>
+<pre><code>## Warning: One or more parsing issues, see `problems()` for details</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="jak-dostat-data-do-r.html#cb49-1" aria-hidden="true" tabindex="-1"></a>animals</span></code></pre></div>
+<pre><code>## # A tibble: 514 x 4
+##    nazev_cz                   trida_cz    cena k_prohlidce
+##    &lt;chr&gt;                      &lt;chr&gt;      &lt;dbl&gt; &lt;lgl&gt;      
+##  1 Šváb syčivý                Bezobratlí  1000 TRUE       
+##  2 Pakobylka okřídlená        Bezobratlí  1000 TRUE       
+##  3 Tayra                      Savci       5000 TRUE       
+##  4 Kajmanka supí              Plazi       2000 TRUE       
+##  5 Želva žlutočelá            Plazi       1000 TRUE       
+##  6 Želva stepní (= čtyřprstá) Plazi       1500 TRUE       
+##  7 Želva sloní                Plazi       5000 TRUE       
+##  8 Želva obrovská             Plazi       5000 TRUE       
+##  9 Želva skalní               Plazi       1000 TRUE       
+## 10 Leguán kubánský            Plazi       3000 TRUE       
+## # ... with 504 more rows</code></pre>
+<p>Co přesně jsem udělal?</p>
+<ul>
+<li>Protože dataset odděluje sloupce středníky a ne čárkami, použil jsem místo funkce <em>read_csv</em> obecnější funkci <em>read_delim</em>, která umožňuje oddělovač nastavit parametrem <code>delim</code>.</li>
+<li>V parametru <code>col_types</code> jsem funkcí <em>cols</em> určil, které sloupce nechci importovat (<code>col_skip</code>) a sloupci k_prohlídce jsem nastavil logický typ (v původních datech je hodnota 0 a 1).</li>
+<li>Parametrem <code>trim_ws</code> jsem určil, že se mají odstranit nevýznamné mezery na začátku a konci hodnot.</li>
+</ul>
+</div>
+</div>
+<div id="data-na-webové-stránce" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Data na webové stránce<a href="jak-dostat-data-do-r.html#data-na-webové-stránce" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Nakonec vám ukáž, jak snadno můžete načítat data z webových stránek. Ukážu to na tabulce v HTML, se kterou se pracuje nejsnáz, ale jde to i se stránkami, kde jsou data uspořádaná jinak.</p>
+<p>Ideální tabulka je např. na stránce <a href="https://cs.wikipedia.org/wiki/Seznam_hlavn%C3%ADch_m%C4%9Bst_st%C3%A1t%C5%AF_sv%C4%9Bta">Seznam hlavních měst států světa</a> ve Wikipedii. Načtu ji skriptem, který:</p>
+<ol style="list-style-type: decimal">
+<li>Připojí balíček <em>rvest</em> pro stahování informací z webu.</li>
+<li>Do objektu <em>hlavni_mesta</em> přiřadí výsledek funkce <em>html_table</em>. Ta vrátí všechny HTML tabulky, které na stránce jsou.</li>
+<li>Jako parametr funkce <em>html_table</em> zavolá funkci <em>read_html</em>, která načte webovou stránku ze zadaného URL.</li>
+<li>Indexem [[1]] z vráceného seznamu tabulek vybere tu první.</li>
+<li>Zobrazím, co se do objektu <em>hlavni_mesta</em> uložilo.</li>
+</ol>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="jak-dostat-data-do-r.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;rvest&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     guess_encoding</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="jak-dostat-data-do-r.html#cb54-1" aria-hidden="true" tabindex="-1"></a>hlavni_mesta <span class="ot">&lt;-</span> <span class="fu">html_table</span>(</span>
+<span id="cb54-2"><a href="jak-dostat-data-do-r.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read_html</span>(</span>
+<span id="cb54-3"><a href="jak-dostat-data-do-r.html#cb54-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;https://cs.wikipedia.org/wiki/Seznam_hlavn%C3%ADch_m%C4%9Bst_st%C3%A1t%C5%AF_sv%C4%9Bta&quot;</span></span>
+<span id="cb54-4"><a href="jak-dostat-data-do-r.html#cb54-4" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb54-5"><a href="jak-dostat-data-do-r.html#cb54-5" aria-hidden="true" tabindex="-1"></a>)[[<span class="dv">1</span>]]</span>
+<span id="cb54-6"><a href="jak-dostat-data-do-r.html#cb54-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-7"><a href="jak-dostat-data-do-r.html#cb54-7" aria-hidden="true" tabindex="-1"></a>hlavni_mesta</span></code></pre></div>
+<pre><code>## # A tibble: 197 x 4
+##    Stát                                `Hlavní město`   Světadíl        Obyvatel
+##    &lt;chr&gt;                               &lt;chr&gt;            &lt;chr&gt;           &lt;chr&gt;   
+##  1 Afghánistán Afghánistán             Kábul            Asie            3 042 4~
+##  2 Albánie Albánie                     Tirana           Evropa          600 339 
+##  3 Alžírsko Alžírsko                   Alžír            Afrika          2 072 9~
+##  4 Andorra Andorra                     Andorra la Vella Evropa          22 884  
+##  5 Angola Angola                       Luanda           Afrika          2 776 1~
+##  6 Antigua a Barbuda Antigua a Barbuda Saint John&#39;s     Amerika         25 150  
+##  7 Argentina Argentina                 Buenos Aires     Amerika         2 891 0~
+##  8 Arménie Arménie                     Jerevan          Asie            1 093 4~
+##  9 Austrálie Austrálie                 Canberra         Austrálie a Oc~ 332 798 
+## 10 Ázerbájdžán Ázerbájdžán             Baku             Asie            2 100 0~
+## # ... with 187 more rows</code></pre>
+<p>Asi jste si všimli, že získaná data nejsou perfektní. Ve sloupci stát je název každá země dvakrát. Je to proto, že ve zdrojové tabulce jsou před názvem země vlajky, které název obsahují v atributu <em>alt</em>. Navíc je počet obyvatel typu text, protože si funkce neporadí s českými mezerami mezi řády.</p>
+<p>Obojí jde snadno napravit. Ukážu vám jak, ale už to zatím nebudu podrobně vysvětlovat. To si necháme na jindy.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="jak-dostat-data-do-r.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
+<span id="cb56-2"><a href="jak-dostat-data-do-r.html#cb56-2" aria-hidden="true" tabindex="-1"></a>  hlavni_mesta,</span>
+<span id="cb56-3"><a href="jak-dostat-data-do-r.html#cb56-3" aria-hidden="true" tabindex="-1"></a>  Stát <span class="ot">=</span> <span class="fu">str_sub</span>(Stát, <span class="dv">1</span>, <span class="fu">nchar</span>(Stát) <span class="sc">/</span> <span class="dv">2</span>),</span>
+<span id="cb56-4"><a href="jak-dostat-data-do-r.html#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Obyvatel =</span> <span class="fu">as.double</span>(<span class="fu">str_remove_all</span>(Obyvatel, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">s&quot;</span>))</span>
+<span id="cb56-5"><a href="jak-dostat-data-do-r.html#cb56-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## # A tibble: 197 x 4
+##    Stát              `Hlavní město`   Světadíl            Obyvatel
+##    &lt;chr&gt;             &lt;chr&gt;            &lt;chr&gt;                  &lt;dbl&gt;
+##  1 Afghánistán       Kábul            Asie                 3042430
+##  2 Albánie           Tirana           Evropa                600339
+##  3 Alžírsko          Alžír            Afrika               2072993
+##  4 Andorra           Andorra la Vella Evropa                 22884
+##  5 Angola            Luanda           Afrika               2776125
+##  6 Antigua a Barbuda Saint John&#39;s     Amerika                25150
+##  7 Argentina         Buenos Aires     Amerika              2891082
+##  8 Arménie           Jerevan          Asie                 1093499
+##  9 Austrálie         Canberra         Austrálie a Oceánie   332798
+## 10 Ázerbájdžán       Baku             Asie                 2100000
+## # ... with 187 more rows</code></pre>
+</div>
+<div id="data-z-jiných-zdrojů" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Data z jiných zdrojů<a href="jak-dostat-data-do-r.html#data-z-jiných-zdrojů" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Pomocí různých balíčků jde načítat data i z jich typů zdrojů. Já třeba nečastěji pracuji s daty Google Search Console nebo Google Analytics, která načítám přes API (aplikační rozhraní) resp. prostřednictvím specializovaných balíčků, které toto API zpřístupňují. Pracovat jde i s daty ve všech běžných SQL i NoSQL databázích. Tyto metody jsou už ale nad rámec tohoto článku.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="prvni-kroky.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

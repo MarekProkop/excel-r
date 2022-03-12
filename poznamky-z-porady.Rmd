@@ -1,11 +1,4 @@
----
-title: "Jak převést poznámky z porady na data"
-output: github_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+# Jak převést poznámky z porady na data
 
 Na schůzce s klientem jsem si do [Keepu](https://keep.google.com/) v telefonu poznamenal úkoly, které mám udělat. Ke každému úkolu jsem si napsal odhad náročnosti v hodinách a požadovaný termín. Vypadá to nějak takhle:
 

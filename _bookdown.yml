@@ -1,0 +1,6 @@
+rmd_files:
+  - "index.Rmd"
+  - "proc-r.Rmd"
+  - "instalace-a-nastaveni.Rmd"
+  - "prvni-kroky.Rmd"
+  - "jak-dostat-data-do-r.Rmd"

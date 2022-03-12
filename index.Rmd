@@ -1,0 +1,40 @@
+--- 
+title: "Od Excelu k R"
+description: Rychlokurz R pro začátečníky, kteří zatím používali Excel nebo Google Sheets.
+author: "Marek Prokop"
+date: "`r format(Sys.Date(), '%x')`"
+site: bookdown::bookdown_site
+documentclass: book
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+link-citations: yes
+github-repo: MarekProkop/excel-r
+---
+
+# O knize{-}
+
+Tuto knihu či spíše sérii článků a návodů jsem napsal především pro své klienty, které učím využívat R v marketingu. Pokud k nim patříte, mám radost, že jste knížku otevřeli a chcete se pustit do studia. Až spolu budeme analyzovat klíčová slova, výsledky SEO nebo chování vašich zákazníků, využijete vše, co se zde naučíte.
+
+Ale třeba mými klienty nejste. Nevadí. Když už jsem knihu napsal, byla by škoda, kdyby nesloužila i vám. Základy, které zde vykládám, se vám budou hodit skoro v každém oboru, na který se R chystáte aplikovat.
+
+Ukážu vám věci, které asi běžně děláte v Excelu a v R jdou udělat hodně podobně. A naučím vás i věci, které taky děláte v Excelu, ale v R jdou udělat o dost lépe. Už tím na tom vyděláte, pokud se do toho se mnou pustíte. A někdy později, až tahle série skončí a vy budete mít základy v malíčku, vám třeba ukážu i to, co dělám v R jako markeťák a Excel by mi na to rozhodně nestačil.
+
+## Čeho chci spolu s vámi dosáhnout {-}
+
+Mám velmi jednoduchý cíl: předpokládám, že umíte docela slušně Excel nebo jiný spreadsheet, třeba Google Sheets. Nepředpokládám, že umíte cokoli jiného, např. programovat. Z toho jsem při psaní vycházel a snažím se toho důsledně držet. Výklad by tedy měl být srozumitelný i neajťákům a programátoři nebo kodéři se u něj mohou nudit.
+
+Na druhou stranu od váš čekách určitou zvídavost a chuť se učit. Nedělejte jen to, co vám řeknu. Experimentujte, dohledávejte si další informace na webu, studujte R z více zdrojů součaně. Na důležité zdroje vás budu průběžně odkazovat.
+
+Na kapitoly pohlížejte jako na navazující lekce. Procházejte je jednu za druhou a ihned si zkoušejte všechny příklady.
+
+## Zpětná vazba {-}
+
+Budu moc rád, když mě upozorníte na chyby a nedostatky. Něco vám nefunguje, nebo jste něco nepochopili a šlo by to vysvatlit lépe? Napište mi prosím. Ideálně jako [issue na Githubu](https://github.com/MarekProkop/excel-r/issues), nebo e-mailem na [mprokop@prokopsw.cz](mailto:mprokop@prokopsw.cz). Děkuju!
+
+## O autorovi {-}
+
+Aby nedošlo k mýlce, nejsem expert na R. Začal jsem se ho učit asi před pěti lety a pořád ho moc neumím. Tím spíš mám ale ještě v hlavě, co mi v začátcích nejvíc chybělo a co jsem se učil z pohledu praxe zbytečně brzo.
+
+Ať se vám studium daří!
+
+Marek Prokop, Praha, březen 2022

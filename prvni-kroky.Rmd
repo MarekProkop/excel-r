@@ -1,125 +1,4 @@
----
-title: "Instalace, nastavení a první krůčky v R"
-author: "Marek Prokop"
-date: "`r Sys.Date()`"
-output: github_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## Instalace R a RStudia
-
-Potřebujete dvě věci: samotné R, které je hodně spartánské a pracuje se v něm blbě, a RStudio, které je naopak super komfortní a když ho máte, do základního R už nikdy nevlezete.
-
-### Cloud nebo instalace
-
-Dobrá zpráva: pokud nechcete, nic si instalovat nemusíte. Pro první pokusy i pro vážnější práci můžete použít [RStudio.cloud](https://rstudio.cloud/), které běží v prohlížeči.
-
-Život s ním budete mít o dost jednodušší, ale peněženku o něco prázdnější. RStudio.cloud sice má variantu zdarma, ale v té můžete pracovat maximálně 15 hodin měsíčně (za 5 USD 50 hodin měsíčně) a dostanete jen 1 GB RAM a 1 CPU, což není mnoho. Použitelná verze vás pak bude stát od 25 USD (small business) a dostanete 160 hodin měsíčně, až 8 GB RAM a až 4 CPU. Hodiny se ale násobí počtem CPU a velikostí RAM.
-
-Jestli v cloudu pracovat nechcete, musíte nainstalovat jednak R a jednak RStudio. Obojí je snadné a zdarma. Pro vážnější práci budete časem potřebovat ještě Git. Ten je taky zdarma, ale rozchodit ho nemusí být úplně triviální.
-
-**Moje doporučení:** jestli chcete R jen nezávazně vyzkoušet, zvlote cloud. Instalovat můžete kdykoli později.
-
-### Instalace R
-
-Stáhněte a nainstalujte si zkompilovanou verzi R pro svůj operační sytém z <https://cloud.r-project.org/>. Žádná past by tam být neměla, postupujte podle instrukcí na webu a v instalátoru.
-
-Když po instalaci R spustíte, mělo by vypadat nějak takhle:
-
-![Základní R po spuštění](img/r-01.png)
-
-Okno zavřete a to je všechno. Odtěď můžete na základní R zapomenout.
-
-### Instalace RStudia
-
-Stáhněte a nainstalujte si RStudio Desktop z <https://www.rstudio.com/products/rstudio/download/>. I to by mělo jít bez problémů a spuštěné RStudio pak bude vypadat nějak takto:
-
-![RStudio po prvním spuštění](img/rstudio-01.png)
-
-### Pokud už R a RStudio máte (a trochu znáte)
-
-Pro jistotu si zkontrolujte verzi RStudia i R. Verzi R vám řekne konsole při spuštění a kdykoli později ji zjistíte příkazem:
-
-```{r}
-R.version.string
-```
-
-Poslední verze (zjistíte [na webu R](https://www.r-project.org/)) je nejlepší, ale když budete o pár desetinek pozadu, nic vážného se nestane. On je upgrade R malinko opruz, takže ho nechcete dělat zbytečně. Rozhodně si ale aktualizujte nainstalované balíčky, protože to jde snadno příkazem:
-
-```{r eval=FALSE}
-update.packages(ask = FALSE, checkBuilt = TRUE)
-```
-
-Pokud byste měli starou verzi RStudia, jde ho normálně přeinstalovat.
-
-## Založte si cvičný projekt
-
-Tohle fakt hned teď udělejte. Je to důležité.
-
-Po spuštění RStudia zvolte příkaz *New Project…* z menu *File*, nebo z roletky projektů vpravo nahoře. Na další obrazovce zvolte *New Directory*.
-
-![Dialog Create Project](img/rstudio-project-01.png)
-
-Na další *New Project*.
-
-![Volba typu projektu](img/rstudio-project-02.png)
-
-A nakonec zadejte název složky, ve které se má projekt vytvořit. Může to být výchozí (domovská) složka pro R (~/R) nebo jakákoli jiná, kterou si vytvoříte jako nadřízenou složku pro podložky eRkových projektů. Třeba u mě to je `c:/dev/R` (pro moje projekty), nebo `c:/dev/R/clients` (pro klientské projekty).
-
-![Volba složky projektu](img/rstudio-project-03.png)
-
-### Co jsou projekty
-
-V RStudiu se nejčastěji pracuje v tzv. projektech. Jde to sice i bez nich, ale projekty jsou praktické, protože si pamatují různá nastavení, poslední otevřené soubory, historii příkazů apod. Na vašem počítači jeden projekt vždy odpovídá jedné složce (s případnými podsložkami), do které si RStudio uloží projektový soubor `nazev-projektu.Rproj`. Tímto souborem jde pak projekt otevřít např. z Průzkumníka Windows.
-
-K projektům ještě pár doporučení a vysvětlení:
-
-- V některých situacích vám zjednoduší život, když budete projekty pojmenovávat podobně jako webová URL, tj. jen písmeny malé anglické abecedy, čísly, pomlčkami a tečkami. Nutné to ale není.
-- Po standardní instalaci vám na Windows (jinde to může být jiné) ve složce Dokumenty vznikne podsložka R, kterou pak RStudio (i samotné R) označuje aliasem ~/R. Projekty ale můžete zakládat i jinde.
-- Ať už si projekt založíte kdekoli, doporučuji si pro všechny projekty zvolit jedinou zastřešující složku, protože v různých kontextech se vám pak zobrazí jen název projektu, a pokud byste na více místech měli stejně pojmenované projekty, pletlo by vás to.
-- Pokud máte nebo až budete mít zprovozněný Git, objeví se vám při volbě složky i volba *Create a git repository*. Vždycky ji zapínejte. Pro první pokusy ale Git nepotřebujete.
-
-## Nastavení RStudia
-
-R i RStudio je ve výchozím stavu nastaveno v zásadě dobře. Změňte prosím jen dvě věci.
-
-Z menu *Tools* vyberte příkaz *Global Options…* (úplně na konci) a v následujícím dialogu vypněte volbu *Restore .RData into workspace at startup* a volbu *Save workspace to .RData on exit* nastavte na *Never*.
-
-![RStudio: Options - General](img/rstudio-options-01.png)
-
-A pak na panelu *Code* zapněte volbu *Use native pipe operator*. To sice není nutné, ale vše se pak bude chovat stejně, jako v mých ukázkách.
-
-![RStudio: Options - Code](img/rstudio-options-02.png)
-
-## Instalace balíčků
-
-Základní R je jenom jazykové jádro s nezbytnými příkazy a funkcemi. Jeho funkčnost rozšiřují tzv. balíčky (packages), kterým se v jiných jazycích často říká knihovny. Balíčky je potřeba jednak nainstalovat (jednorázově) a jednak připojit před konkrétní prací, ke které je potřebujete (vysvětlím později).
-
-V RStudiu Desktop už jsou některé balíčky předinstalované a ještě víc jich je v cloudovém RStudio, ale pro jistotu vám ukážu, jak nainstalujete ty, které budete potřebovat pro celý tenhle seriál.
-
-Z menu *Tools* zvolte příkaz *Install Packages…*. Objeví se tento dialog:
-
-![Dialog Install Packages](img/install-packages-01.png)
-
-Nechte v něm předvyplněné volby a do prázdného políčka vložte tento seznam balíčků:
-
-```
-janitor, knitr, lubridate, rmarkdown, readxl, rvest, tidyverse
-```
-
-Alternativně jde balíčky instalovat funkcí `install.packages()`, kterou zavoláte třeba z konsole (vysvětlím za chvíli). To pak vypadá takhle:
-
-```{r eval=FALSE}
-install.packages(c("janitor", "knitr", "lubridate", "rmarkdown", "readxl", "rvest", "tidyverse"))
-```
-
-Oba způsoby balíčky zároveň aktualizují, což se občas hodí.
-
-
-## Tři způsoby práce s R
+# Tři způsoby práce s R
 
 S R jde pracovat mnoha různými způsoby. Já nejčastěji používám tři:
 
@@ -129,7 +8,7 @@ S R jde pracovat mnoha různými způsoby. Já nejčastěji používám tři:
 
 Všechny tři ukážu na jednoduchém příkladu: představte si, že jste dnes ve svém obchodě vydali 100 účtenek. Teď se chcete rychle dozvědět, kolik dělá celková tržba a jaká byla typická útrata jednoho zákazníka.
 
-### Interaktivní práce s konsolí
+## Interaktivní práce s konsolí
 
 Vaše RStudio vypadá nějak takhle a konsole je ta velká plocha vlevo. Psát budete za zobáček úplně vlevo (jinam ani nejde umístit kursor), každý řádek vždy odentrujete a konsole vám většinou nějak odpoví.
 
@@ -157,7 +36,7 @@ což pak na konsoli vypadá nějak takhle:
 
 Teď vám to ale musím vysvětlit trochu podrobněji.
 
-#### Objekty (proměnné)
+### Objekty (proměnné)
 
 Objekt jazyka R se chová podobně jako proměnná v jiných programovacích jazycích. Je to vlastně takový šuplík, do kterého si můžete ukládat nejrůznější hodnoty: čísla, textové řetězce, logické hodnoty (TRUE a FALSE čili pravda a nepravda) apod.
 
@@ -169,7 +48,7 @@ Oproti jiným programovacím jazykům je tu pár zvláštností:
 
 Kde se nám tam těch sto čísel vzalo? Získali jsme je funkcemi rnorm a round.
 
-#### Funkce
+### Funkce
 
 Poučka praví, že když to existuje, je to objekt, a když to něco dělá, je to funkce. Můžete to brát i tak, že funkce je všechno, co má za svým jménem kulaté závorky. V závorkách mohou být tzv. parametry (někdy se jim říká argumenty; je to totéž), čili vstupní data, která chcete funkci předat. Funkce tyto parametry nějak zpracuje a vrátí výsledek. Vlastně úplně stejně, jako funkce v Excelu.
 
@@ -247,7 +126,7 @@ Zobrazí se vám na panelu *Plot* vpravo (váš bude vypadat trochu jinak).
 
 Tím jste poznali další dvě funkce (`sum` a `hist`). Teď vám ukážu, jak totéž udělat skriptem a v R Markdown.
 
-### Práce se skripty
+## Práce se skripty
 
 Práce v konsoli je sice flexibilní, ale na víc než pár příkazů dost nepraktická. Když uděláte chybu, můžete se sice šipkami nahoru a dolů pohybovat po historii příkazů a opravovat je, ale není to ono. Chyby se mnohem lépe opravují ve skriptech.
 
@@ -263,7 +142,7 @@ Když nyní na kterémkoli řádku stisknete <kbd>Ctrl</kbd>+<kbd>Enter</kbd>, c
 
 Nezapomeňte si ale celý skript uložit pod nějakým vhodným jménem (třeba `prvni-skript`). Měl by se vám uložit do složky projektu a ke jménu se automaticky připojí přípona R.
 
-#### Úprava skriptu
+### Úprava skriptu
 
 Hlavní výhoda skriptu spočívá v tom, že jde snadno upravit a pak celý znovu spustit. Vyzkoušejte si to. Hned v prvním řádku změňte `rnorm` za `runif` a odstraňte této funkci parametry `mean` a `sd`, takže zbude jen `n`.
 
@@ -281,7 +160,7 @@ Ano, změnil se histogram.
 
 Funkce `rnorm` totiž vybírá náhodná čísla z normálního rozložení (**r**andom **norm**al distribution) a histogram má proto tvar známe gaussovy křivky -- čísla blíže průměru se vyskytnou pravděpodobněji než čísla dál od průměru. Funkce `runif` (**r**andom **unif**orm distribution) naproti tomu vybírá náhodná čísla z rovnoměrného rozdělení, takže pravděpodobnost zastoupení všech čísel mezi nulou a jednou je stejná.
 
-### R Markdown
+## R Markdown
 
 Skripty jsou praktické, ale mají dvě nevýhody: 
 
@@ -290,9 +169,9 @@ Skripty jsou praktické, ale mají dvě nevýhody:
 
 Obě tyto nevýhody odstraňuje R Markdown.
 
-#### Co je R Markdown
+### Co je R Markdown
 
-##### Základní Markdown
+#### Základní Markdown
 
 Samotný [Markdown](https://cs.wikipedia.org/wiki/Markdown) možná znáte. Je to jednoduchý značkovací jazyk, kterým jdou v čistě textovém formátu vyznačit základní strukturání a formátovací prvky -- nadpisy, odstavce, odrážky, odkazy, tučný text apod. Z toho pak jde vygenerovat výstupy v různých formátech: nejčastěji v HTML, ale klidně i PDF, Word atd.
 
@@ -322,7 +201,7 @@ Jak vidíte, docela dobře se píše a dobře se i čte, i když není převeden
 
 ![Příklad převedeného Mardownu](img/markdown-01.png)
 
-##### R Markdown
+#### R Markdown
 
 R Mardown je Markdown, do kterého jsou zamíchané kusy eRkového kódu. Vypadá nějak takhle:
 

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Tři způsoby práce s R | Od Excelu k R</title>
+  <meta name="description" content="Rychlokurz R pro začátečníky, kteří zatím používali Excel nebo Google Sheets." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Tři způsoby práce s R | Od Excelu k R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Rychlokurz R pro začátečníky, kteří zatím používali Excel nebo Google Sheets." />
+  <meta name="github-repo" content="MarekProkop/excel-r" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Tři způsoby práce s R | Od Excelu k R" />
+  
+  <meta name="twitter:description" content="Rychlokurz R pro začátečníky, kteří zatím používali Excel nebo Google Sheets." />
+  
+
+<meta name="author" content="Marek Prokop" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="instalace-a-nastaveni.html"/>
+<link rel="next" href="jak-dostat-data-do-r.html"/>
+<script src="libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Od Excelu k R</a></li>
+<li class="divider"></li>
+<li><a href="index.html#o-knize">O knize<span></span></a>
+<ul>
+<li><a href="index.html#čeho-chci-spolu-s-vámi-dosáhnout">Čeho chci spolu s vámi dosáhnout<span></span></a></li>
+<li><a href="index.html#zpětná-vazba">Zpětná vazba<span></span></a></li>
+<li><a href="index.html#o-autorovi">O autorovi<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="proc-r.html"><a href="proc-r.html"><i class="fa fa-check"></i><b>1</b> Proč jsem vyměnil Excel za R<span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="proc-r.html"><a href="proc-r.html#co-je-r-a-rstudio"><i class="fa fa-check"></i><b>1.1</b> Co je R a RStudio<span></span></a></li>
+<li class="chapter" data-level="1.2" data-path="proc-r.html"><a href="proc-r.html#pro-koho-je-r-vhodné"><i class="fa fa-check"></i><b>1.2</b> Pro koho je R vhodné<span></span></a></li>
+<li class="chapter" data-level="1.3" data-path="proc-r.html"><a href="proc-r.html#kdo-by-se-do-r-rozhodně-neměl-pouštět"><i class="fa fa-check"></i><b>1.3</b> Kdo by se do R rozhodně neměl pouštět<span></span></a></li>
+<li class="chapter" data-level="1.4" data-path="proc-r.html"><a href="proc-r.html#co-vám-r-ve-srovnání-s-excelem-přinese"><i class="fa fa-check"></i><b>1.4</b> Co vám R ve srovnání s Excelem přinese<span></span></a></li>
+<li class="chapter" data-level="1.5" data-path="proc-r.html"><a href="proc-r.html#proč-zrovna-r-a-ne-třeba-python"><i class="fa fa-check"></i><b>1.5</b> Proč zrovna R a ne třeba Python<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html"><i class="fa fa-check"></i><b>2</b> Instalace a nastavení<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#cloud-nebo-instalace"><i class="fa fa-check"></i><b>2.1</b> Cloud nebo instalace<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-r"><i class="fa fa-check"></i><b>2.2</b> Instalace R<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-rstudia"><i class="fa fa-check"></i><b>2.3</b> Instalace RStudia<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#pokud-už-r-a-rstudio-máte-a-trochu-znáte"><i class="fa fa-check"></i><b>2.4</b> Pokud už R a RStudio máte (a trochu znáte)<span></span></a></li>
+<li class="chapter" data-level="2.5" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#založte-si-cvičný-projekt"><i class="fa fa-check"></i><b>2.5</b> Založte si cvičný projekt<span></span></a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#co-jsou-projekty"><i class="fa fa-check"></i><b>2.5.1</b> Co jsou projekty<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#nastavení-rstudia"><i class="fa fa-check"></i><b>2.6</b> Nastavení RStudia<span></span></a></li>
+<li class="chapter" data-level="2.7" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-balíčků"><i class="fa fa-check"></i><b>2.7</b> Instalace balíčků<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="prvni-kroky.html"><a href="prvni-kroky.html"><i class="fa fa-check"></i><b>3</b> Tři způsoby práce s R<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#interaktivní-práce-s-konsolí"><i class="fa fa-check"></i><b>3.1</b> Interaktivní práce s konsolí<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#objekty-proměnné"><i class="fa fa-check"></i><b>3.1.1</b> Objekty (proměnné)<span></span></a></li>
+<li class="chapter" data-level="3.1.2" data-path="prvni-kroky.html"><a href="prvni-kroky.html#funkce"><i class="fa fa-check"></i><b>3.1.2</b> Funkce<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="prvni-kroky.html"><a href="prvni-kroky.html#práce-se-skripty"><i class="fa fa-check"></i><b>3.2</b> Práce se skripty<span></span></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#úprava-skriptu"><i class="fa fa-check"></i><b>3.2.1</b> Úprava skriptu<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="prvni-kroky.html"><a href="prvni-kroky.html#r-markdown"><i class="fa fa-check"></i><b>3.3</b> R Markdown<span></span></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#co-je-r-markdown"><i class="fa fa-check"></i><b>3.3.1</b> Co je R Markdown<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="prvni-kroky.html"><a href="prvni-kroky.html#co-jste-se-naučili"><i class="fa fa-check"></i><b>3.4</b> Co jste se naučili<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html"><i class="fa fa-check"></i><b>4</b> Jak dostat data do R<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#co-myslím-daty"><i class="fa fa-check"></i><b>4.1</b> Co myslím daty<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#data-frame"><i class="fa fa-check"></i><b>4.1.1</b> Data frame<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#ruční-vstup-dat"><i class="fa fa-check"></i><b>4.2</b> Ruční vstup dat<span></span></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funnkce-data.frame"><i class="fa fa-check"></i><b>4.2.1</b> Funnkce data.frame<span></span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-tibble"><i class="fa fa-check"></i><b>4.2.2</b> Funkce tibble<span></span></a></li>
+<li class="chapter" data-level="4.2.3" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-tribble"><i class="fa fa-check"></i><b>4.2.3</b> Funkce tribble<span></span></a></li>
+<li class="chapter" data-level="4.2.4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#co-když-chci-něco-opravit"><i class="fa fa-check"></i><b>4.2.4</b> Co když chci něco opravit?<span></span></a></li>
+<li class="chapter" data-level="4.2.5" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-edit"><i class="fa fa-check"></i><b>4.2.5</b> Funkce edit<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#chci-si-jen-rychle-něco-vyzkoušet"><i class="fa fa-check"></i><b>4.3</b> Chci si jen rychle něco vyzkoušet<span></span></a></li>
+<li class="chapter" data-level="4.4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#práce-s-csv-soubory"><i class="fa fa-check"></i><b>4.4</b> Práce s CSV soubory<span></span></a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-write_csv"><i class="fa fa-check"></i><b>4.4.1</b> Funkce write_csv<span></span></a></li>
+<li class="chapter" data-level="4.4.2" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-read_csv"><i class="fa fa-check"></i><b>4.4.2</b> Funkce read_csv<span></span></a></li>
+<li class="chapter" data-level="4.4.3" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#interaktivní-import-dat-v-rstudiu"><i class="fa fa-check"></i><b>4.4.3</b> Interaktivní import dat v Rstudiu<span></span></a></li>
+<li class="chapter" data-level="4.4.4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#načtení-csv-z-webu"><i class="fa fa-check"></i><b>4.4.4</b> Načtení CSV z webu<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#data-na-webové-stránce"><i class="fa fa-check"></i><b>4.5</b> Data na webové stránce<span></span></a></li>
+<li class="chapter" data-level="4.6" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#data-z-jiných-zdrojů"><i class="fa fa-check"></i><b>4.6</b> Data z jiných zdrojů<span></span></a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Od Excelu k R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tři-způsoby-práce-s-r" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Tři způsoby práce s R<a href="prvni-kroky.html#tři-způsoby-práce-s-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>S R jde pracovat mnoha různými způsoby. Já nejčastěji používám tři:</p>
+<ol style="list-style-type: decimal">
+<li>Interaktivní práce v konsoli.</li>
+<li>Polointeraktivní práce se skriptem.</li>
+<li>Interaktivní, poloautomatická či zcela automatická tvorba dokumentu v R Markdownu.</li>
+</ol>
+<p>Všechny tři ukážu na jednoduchém příkladu: představte si, že jste dnes ve svém obchodě vydali 100 účtenek. Teď se chcete rychle dozvědět, kolik dělá celková tržba a jaká byla typická útrata jednoho zákazníka.</p>
+<div id="interaktivní-práce-s-konsolí" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Interaktivní práce s konsolí<a href="prvni-kroky.html#interaktivní-práce-s-konsolí" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Vaše RStudio vypadá nějak takhle a konsole je ta velká plocha vlevo. Psát budete za zobáček úplně vlevo (jinam ani nejde umístit kursor), každý řádek vždy odentrujete a konsole vám většinou nějak odpoví.</p>
+<div class="figure">
+<img src="img/rstudio-console-01.png" alt="" />
+<p class="caption">RStudio: Console</p>
+</div>
+<p>Nejprve si vygenerujte účtenky. Budou sice trochu falešné, ale to nevadí. Do konsole napište:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="prvni-kroky.html#cb6-1" aria-hidden="true" tabindex="-1"></a>cena <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">1000</span>, <span class="at">sd =</span> <span class="dv">200</span>), <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p>Odentrujte a nic se nestane. Vlastně stane. Pokud se podíváte doprava na záložku <em>Environment</em>, uvidíte tam tohle:</p>
+<div class="figure">
+<img src="img/rstudio-console-02.png" alt="" />
+<p class="caption">RStudio: Výsledek přiřazení</p>
+</div>
+<p>Příkazem jste totiž vytvořili v prostředí R (environment) nový objekt <code>cena</code> a uložili jste do něj sto (skoro) náhodných čísel. Na všechny se můžete podívat příkazem:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="prvni-kroky.html#cb7-1" aria-hidden="true" tabindex="-1"></a>cena</span></code></pre></div>
+<pre><code>##   [1]  868.05  929.15  813.77  988.45 1032.67  893.96  972.29  855.88  733.51
+##  [10] 1202.37 1315.93 1335.10 1092.80  995.44  940.36  959.88 1210.88  916.96
+##  [19] 1287.09 1267.69 1100.12  846.61  948.00 1323.87  791.88 1138.24  698.41
+##  [28]  936.80 1360.95  845.72 1170.60  924.56  855.17  865.68 1092.69  943.58
+##  [37]  869.88  736.93  718.30 1124.23 1509.35 1431.65  923.52 1326.72  981.54
+##  [46]  862.86  885.77  876.49  997.27  974.58  829.24  710.05  963.91  858.30
+##  [55]  950.49  921.79 1086.70 1561.30 1008.86  953.37  928.49  620.33 1050.46
+##  [64]  845.24  819.26 1023.72 1294.52  772.33  803.59  941.56 1182.63  860.06
+##  [73] 1294.39  982.71 1165.24  921.28  673.37  945.11 1140.99 1071.00 1083.42
+##  [82] 1583.47  900.52 1023.05 1242.06  861.83 1074.45 1111.51 1028.38  720.99
+##  [91]  831.53 1118.97 1051.47 1041.20  991.38  786.71 1126.02 1160.19  858.30
+## [100] 1116.03</code></pre>
+<p>což pak na konsoli vypadá nějak takhle:</p>
+<div class="figure">
+<img src="img/rstudio-console-03.png" alt="" />
+<p class="caption">Výsledek příkazu cena</p>
+</div>
+<p>Teď vám to ale musím vysvětlit trochu podrobněji.</p>
+<div id="objekty-proměnné" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Objekty (proměnné)<a href="prvni-kroky.html#objekty-proměnné" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Objekt jazyka R se chová podobně jako proměnná v jiných programovacích jazycích. Je to vlastně takový šuplík, do kterého si můžete ukládat nejrůznější hodnoty: čísla, textové řetězce, logické hodnoty (TRUE a FALSE čili pravda a nepravda) apod.</p>
+<p>Oproti jiným programovacím jazykům je tu pár zvláštností:</p>
+<ul>
+<li>Do objektů se přiřazuje znaky <code>&lt;-</code> ale můžete si to zjednodušit klávesovou zkratkou <kbd>Alt</kbd>+<kbd>-</kbd> (Alt pomlčka).</li>
+<li>Běžné objekty R jsou ve skutečnosti vektory. V jiných programovacích jazycích tomu obvykle odpovídá jednorozměrné pole. V praxi to znamená, že v číselném objektu nemusí být jen jedno číslo, ale může jich tam být moc. V našem příkladu jich je sto.</li>
+<li>R s vektory automaticky i počítá. K vektoru pěti čísel tedy můžete přičíst jedno číslo (ve skutečnosti vektor s jedním číslem) a ono se automaticky přičte ke všem pěti.</li>
+</ul>
+<p>Kde se nám tam těch sto čísel vzalo? Získali jsme je funkcemi rnorm a round.</p>
+</div>
+<div id="funkce" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Funkce<a href="prvni-kroky.html#funkce" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Poučka praví, že když to existuje, je to objekt, a když to něco dělá, je to funkce. Můžete to brát i tak, že funkce je všechno, co má za svým jménem kulaté závorky. V závorkách mohou být tzv. parametry (někdy se jim říká argumenty; je to totéž), čili vstupní data, která chcete funkci předat. Funkce tyto parametry nějak zpracuje a vrátí výsledek. Vlastně úplně stejně, jako funkce v Excelu.</p>
+<p>U názvů objektů i funkcí záleží na velikosti písmen. <code>Cena</code> je něco jiného než <code>cena</code>, tak pozor na to.</p>
+<p><code>rnorm</code> je funkce, která vrací (skoro) náhodná čísla. Skoro jsem dal do závorky, protože vrácená čísla jsou náhodná v rámci normálního rozdělení (to je ta slavná Gaussova křivka), jehož podobu určíte parametry <code>mean</code> (průměr) a <code>sd</code> (směrodatná odchylka neboli standard deviation). Parametrem <code>n</code> navíc musíte určit, kolik těch čísel vlastně chcete.</p>
+<p>Následující příkaz tedy vrátí vektor sta náhodných čísel z normální rozdělení s průměrem 1000 a směrodatnou odchylkou 200.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="prvni-kroky.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">1000</span>, <span class="at">sd =</span> <span class="dv">200</span>)</span></code></pre></div>
+<pre><code>##   [1] 1178.8134 1000.5132 1021.5872 1400.2095  773.6256 1185.3053 1283.8323
+##   [8] 1005.6147 1224.8179  905.9382 1122.8887 1146.4159  638.9022  838.6984
+##  [15] 1168.8034 1012.4726 1275.2288 1122.9759  925.9779  965.7015 1432.6268
+##  [22] 1227.3953  873.6599  966.1117 1095.6435 1040.1959  998.9767 1047.7525
+##  [29] 1051.2787 1073.6895 1670.1276 1082.5982  609.0586 1237.7140 1094.3813
+##  [36]  696.4576  720.4842  721.2387 1110.9815 1045.2032 1252.3606 1070.5080
+##  [43] 1288.6464 1071.8572 1057.7002 1051.7658  840.2520  756.9536 1049.1141
+##  [50] 1107.7562  977.5726 1043.3245 1397.6961  724.0560 1011.4996 1012.2926
+##  [57]  588.8346 1165.0770  449.6452  895.5722  921.6453 1197.7989 1053.2826
+##  [64] 1378.0282 1097.5575 1260.3314  869.7287 1128.4572 1363.6432  779.6426
+##  [71]  967.2984 1122.2246 1190.4175  861.2255  933.1247  978.6374 1175.7704
+##  [78] 1365.1174  928.1607  963.9771 1115.0499  872.4594  906.2612  675.7889
+##  [85] 1152.1091  533.1210  859.1885  953.1770  758.1595 1342.1044  838.5939
+##  [92]  845.5607 1045.3363  970.8696  900.9419  953.0212  940.8282 1160.9651
+##  [99] 1028.6784 1029.1528</code></pre>
+<p>Klidně si ho zadejte párkrát do konzole s různými parametry, abyste viděli, jak se mění výsledek.</p>
+<p>`round`` je funkce, která zaokrouhluje. První parametr je číselný vektor, který se má zaokrouhlit, a druhý parametr digits určuje, na kolik desetinných míst se má zaokrouhlit. Následující příkaz tedy zaokrouhlí číslo 1.145 na dvě desetinná místa:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="prvni-kroky.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">1.145</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1.15</code></pre>
+<p>První parametr funkce <code>round</code> se jmenuje <code>x</code>, ale první parametr funkce se často píše bez jména, protože jeho pořadí nejde poplést. Každopádně ale může napsat volání funkce i takto a výsledk bude stejný:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="prvni-kroky.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="at">x =</span> <span class="fl">1.145</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1.15</code></pre>
+<p>A teď už asi chápete – funkce <code>rnorm</code> vrátí sto čísel s hodně desetinnými čísly, a proto jste její výsledek ještě poslali funkci <code>round</code>, která celý vektor (tj. všech sto čísel) zaokrouhlila na dvě desetinná místa. V jiném programovacím jazyce byste na to potřebovali dost složité výpočty v cyklech, v R stačí tohle:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="prvni-kroky.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">1000</span>, <span class="at">sd =</span> <span class="dv">200</span>), <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>##   [1]  971.28  734.10  837.15  630.48 1307.13 1170.30 1014.81 1068.87  950.41
+##  [10] 1038.88  976.76  845.66 1327.97 1129.99  901.87  820.86 1259.37 1023.23
+##  [19]  917.57 1131.20  960.04 1190.65  698.43  782.08  706.70  922.28 1360.04
+##  [28]  907.95  936.91  775.52  680.32  833.01 1071.17 1183.36  620.13 1363.98
+##  [37]  650.87 1067.22  977.32 1147.56  799.58 1074.57 1177.83  655.72 1114.90
+##  [46]  830.24 1290.76  796.40 1037.13  988.75 1338.40 1589.69  537.38  727.99
+##  [55]  932.74 1041.90  875.08  894.66 1096.21  909.06  899.80 1215.78  910.08
+##  [64]  729.84  856.64  896.38 1525.58 1046.41 1085.71 1124.75  744.83 1340.89
+##  [73]  772.76  771.85  783.22 1294.23  780.86  788.23 1306.91 1106.85  999.02
+##  [82]  904.16 1347.30  993.24  605.97 1560.65 1405.12 1579.53  992.04  930.41
+##  [91]  926.28 1235.35 1072.56 1279.50  869.44  878.66  679.53 1018.93  936.27
+## [100] 1029.30</code></pre>
+<p>Mimochodem, všimli jste si v předešlých příkladech těch čísel v hranatých závorkách? Protože se v příkladech vypisují jako výsledky vektory (všechny základní, tzv. atomické typy jsou v R vektory), R vám těmi čísly v hranatých závorkách říká, na jaké pozici ve vektoru daná hodnota je.</p>
+<p>A hranaté závorky jdou i použít pro adresování konkrétního prvku vektoru. Třeba tohle zobrazí z vytvořeného vektoru <code>cena</code> jenom pátý prvek:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="prvni-kroky.html#cb17-1" aria-hidden="true" tabindex="-1"></a>cena[<span class="dv">5</span>]</span></code></pre></div>
+<pre><code>## [1] 1032.67</code></pre>
+<p>a tohle pátý až desátý:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="prvni-kroky.html#cb19-1" aria-hidden="true" tabindex="-1"></a>cena[<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
+<pre><code>## [1] 1032.67  893.96  972.29  855.88  733.51 1202.37</code></pre>
+<p>Chtěli jsme ještě účtenky sečíst, že? Je to hračka:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="prvni-kroky.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(cena)</span></code></pre></div>
+<pre><code>## [1] 100566</code></pre>
+<p>Zajímá vás, kolik dělá celková tržba bez DPH?</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="prvni-kroky.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(cena <span class="sc">/</span> <span class="dv">121</span> <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
+<pre><code>## [1] 83112.37</code></pre>
+<p>případně:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="prvni-kroky.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(cena) <span class="sc">/</span> <span class="dv">121</span> <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div>
+<pre><code>## [1] 83112.37</code></pre>
+<p>Obojí by vám mělo dát stejný výsledek. V prvním případě se ale nejprve vydělí každý jednotlivý prvek vektoru a pak se celý vektor sečte, kdežto v druhém případě se celý vektor nejprve sečte a pak teprve vydělí.</p>
+<p>Zajímá vás rozložení ceny zobrazené v histogramu?</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="prvni-kroky.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(cena)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Zobrazí se vám na panelu <em>Plot</em> vpravo (váš bude vypadat trochu jinak).</p>
+<p>Tím jste poznali další dvě funkce (<code>sum</code> a <code>hist</code>). Teď vám ukážu, jak totéž udělat skriptem a v R Markdown.</p>
+</div>
+</div>
+<div id="práce-se-skripty" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Práce se skripty<a href="prvni-kroky.html#práce-se-skripty" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Práce v konsoli je sice flexibilní, ale na víc než pár příkazů dost nepraktická. Když uděláte chybu, můžete se sice šipkami nahoru a dolů pohybovat po historii příkazů a opravovat je, ale není to ono. Chyby se mnohem lépe opravují ve skriptech.</p>
+<p>Z menu <em>File → New File</em> vyberte <em>R Script</em> a vlevo nahoře se vám otevře editor skriptů. Do něj si vložte všechny příkazy, které jste předtím zadali postupně do konsole. Nemusíte to ale dělat ručně – podívejte se vpravo na záložku History a vida, jsou tam, že? Vyberte ty správné a tlačítkem To Source je přesuňte do skriptu. Okno RStudia by pam mělo vypadat nějak takto:</p>
+<div class="figure">
+<img src="img/rstudio-script-01.png" alt="" />
+<p class="caption">Skript v RStudiu</p>
+</div>
+<p>Když nyní na kterémkoli řádku stisknete <kbd>Ctrl</kbd>+<kbd>Enter</kbd>, celý řádek se vykoná stejně, jako kdybyste ho zadali na konzoli. Můžete i klávesou Shift vybrat víc řádků a pak se po <kbd>Ctrl</kbd>+<kbd>Enter</kbd> vykonají všechny. A konečně můžete tlačítkem <em>Source</em> nad editorem vykonat celý skript. Po vykonání celého skriptu by mělo okno RStudia vypadat nějak takto:</p>
+<div class="figure">
+<img src="img/rstudio-script-02.png" alt="" />
+<p class="caption">RStudio po vykonání celého skriptu</p>
+</div>
+<p>Nezapomeňte si ale celý skript uložit pod nějakým vhodným jménem (třeba <code>prvni-skript</code>). Měl by se vám uložit do složky projektu a ke jménu se automaticky připojí přípona R.</p>
+<div id="úprava-skriptu" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Úprava skriptu<a href="prvni-kroky.html#úprava-skriptu" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Hlavní výhoda skriptu spočívá v tom, že jde snadno upravit a pak celý znovu spustit. Vyzkoušejte si to. Hned v prvním řádku změňte <code>rnorm</code> za <code>runif</code> a odstraňte této funkci parametry <code>mean</code> a <code>sd</code>, takže zbude jen <code>n</code>.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="prvni-kroky.html#cb28-1" aria-hidden="true" tabindex="-1"></a>cena <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="at">n =</span> <span class="dv">100</span>), <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p>Když teď celý skript znovu sputíte příkazem <em>Source</em> (nebo klávesovou zkratkou <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>), poznáte, co se změnilo?</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="prvni-kroky.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(cena)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>Ano, změnil se histogram.</p>
+<p>Funkce <code>rnorm</code> totiž vybírá náhodná čísla z normálního rozložení (<strong>r</strong>andom <strong>norm</strong>al distribution) a histogram má proto tvar známe gaussovy křivky – čísla blíže průměru se vyskytnou pravděpodobněji než čísla dál od průměru. Funkce <code>runif</code> (<strong>r</strong>andom <strong>unif</strong>orm distribution) naproti tomu vybírá náhodná čísla z rovnoměrného rozdělení, takže pravděpodobnost zastoupení všech čísel mezi nulou a jednou je stejná.</p>
+</div>
+</div>
+<div id="r-markdown" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> R Markdown<a href="prvni-kroky.html#r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Skripty jsou praktické, ale mají dvě nevýhody:</p>
+<ul>
+<li>Když nechcete provést celý skript najednou, špatně se v nich hledá část, kterou chcete spustit.</li>
+<li>Výstup není moc přehledný. Textový výstup se ne moc hezky zobrazí v konzoli, grafy na panelu <em>Plots</em>.</li>
+</ul>
+<p>Obě tyto nevýhody odstraňuje R Markdown.</p>
+<div id="co-je-r-markdown" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Co je R Markdown<a href="prvni-kroky.html#co-je-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="základní-markdown" class="section level4 hasAnchor" number="3.3.1.1">
+<h4><span class="header-section-number">3.3.1.1</span> Základní Markdown<a href="prvni-kroky.html#základní-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Samotný <a href="https://cs.wikipedia.org/wiki/Markdown">Markdown</a> možná znáte. Je to jednoduchý značkovací jazyk, kterým jdou v čistě textovém formátu vyznačit základní strukturání a formátovací prvky – nadpisy, odstavce, odrážky, odkazy, tučný text apod. Z toho pak jde vygenerovat výstupy v různých formátech: nejčastěji v HTML, ale klidně i PDF, Word atd.</p>
+<p>Text v Markdownu vypadá např. takto:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb30-1"><a href="prvni-kroky.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Tohle je nadpis 1. úrovně</span></span>
+<span id="cb30-2"><a href="prvni-kroky.html#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="prvni-kroky.html#cb30-3" aria-hidden="true" tabindex="-1"></a>Tohle je běžný odstavec. Víc odstavců je od sebe odděleno dvěma Entry čili prázdným řádkem.</span>
+<span id="cb30-4"><a href="prvni-kroky.html#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="prvni-kroky.html#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tohle je nadpis 2. úrovně</span></span>
+<span id="cb30-6"><a href="prvni-kroky.html#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="prvni-kroky.html#cb30-7" aria-hidden="true" tabindex="-1"></a>Tohle je příklad <span class="co">[</span><span class="ot">odkazu v textu</span><span class="co">](https://example.com)</span>. A tohle je příklad odrážek:</span>
+<span id="cb30-8"><a href="prvni-kroky.html#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="prvni-kroky.html#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>první odražka,</span>
+<span id="cb30-10"><a href="prvni-kroky.html#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>druhé odrážka,</span>
+<span id="cb30-11"><a href="prvni-kroky.html#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>třetí odrážka.</span>
+<span id="cb30-12"><a href="prvni-kroky.html#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-13"><a href="prvni-kroky.html#cb30-13" aria-hidden="true" tabindex="-1"></a>Jdou udělat i číslované body, které se automaticky očíslují podle pořadí:</span>
+<span id="cb30-14"><a href="prvni-kroky.html#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-15"><a href="prvni-kroky.html#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>První bod.</span>
+<span id="cb30-16"><a href="prvni-kroky.html#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Druhý bod.</span>
+<span id="cb30-17"><a href="prvni-kroky.html#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Poslední bod.</span></code></pre></div>
+<p>Jak vidíte, docela dobře se píše a dobře se i čte, i když není převedený (vyrenderovaný) do HTML. Ale když se převede, je to výsledek docela hezký:</p>
+<div class="figure">
+<img src="img/markdown-01.png" alt="" />
+<p class="caption">Příklad převedeného Mardownu</p>
+</div>
+</div>
+<div id="r-markdown-1" class="section level4 hasAnchor" number="3.3.1.2">
+<h4><span class="header-section-number">3.3.1.2</span> R Markdown<a href="prvni-kroky.html#r-markdown-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>R Mardown je Markdown, do kterého jsou zamíchané kusy eRkového kódu. Vypadá nějak takhle:</p>
+<div class="figure">
+<img src="img/rmarkdown-01.png" alt="" />
+<p class="caption">Příklad R Markdownu</p>
+</div>
+<p>Vyzkoušejte si nyní R Markdown sami. Nejprve si založte nový soubor: Z menu <em>File → New File</em> vyberte <em>R Notebook</em>. Objeví se vám editor s předvyplněným vzorovým obsahem. Ten celý zrušte (Ctrl+A, Del) a zkopírujte do něj tohle:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb31-1"><a href="prvni-kroky.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb31-2"><a href="prvni-kroky.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Můj první R Notebook&quot;</span></span>
+<span id="cb31-3"><a href="prvni-kroky.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="an">output:</span><span class="co"> html_notebook</span></span>
+<span id="cb31-4"><a href="prvni-kroky.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb31-5"><a href="prvni-kroky.html#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="prvni-kroky.html#cb31-6" aria-hidden="true" tabindex="-1"></a>Toto je příklad <span class="co">[</span><span class="ot">R Markdown</span><span class="co">](http://rmarkdown.rstudio.com)</span> zápisníku (notebook). Začíná nahoře metadaty, které zde udávají jen titulek a formát výstupu. Metadata jsou ohraničena řádky tvořenými třemi pomlčkami. Pak následuje normální Markdown.</span>
+<span id="cb31-7"><a href="prvni-kroky.html#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="prvni-kroky.html#cb31-8" aria-hidden="true" tabindex="-1"></a>Za tímto odstavcem je blok eRkového kódu, kterému se říká *chunk* a já mu budu říkat *blok*.</span>
+<span id="cb31-9"><a href="prvni-kroky.html#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="prvni-kroky.html#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb31-11"><a href="prvni-kroky.html#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="in">cena &lt;- round(rnorm(n = 100, mean = 1000, sd = 200), digits = 2)</span></span>
+<span id="cb31-12"><a href="prvni-kroky.html#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="in">sum(cena)</span></span>
+<span id="cb31-13"><a href="prvni-kroky.html#cb31-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb31-14"><a href="prvni-kroky.html#cb31-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-15"><a href="prvni-kroky.html#cb31-15" aria-hidden="true" tabindex="-1"></a>Pokud blok spustíte zelenou šipečkou na jeho pravém horním okraji nebo klávesovou zkratkou Ctrl+Shift+Enter, provede se a zobrazí výstup přímo pod sebou.</span></code></pre></div>
+<p>Výsledek bude vypadt jako na předešlém obrázku. Nyní můžete podle instrukcí vykonat jediný blok kódu, který tam zatím máte, a pod blkoem se vám zobrazí součet ceny.</p>
+<p>A můžete i celý soubor převést do HTML a prohládnout si ho v celé kráse. Uděláte to příkazem <em>Preview</em> z toolbaru nad editorem, ale před tím ještě musíte soubor uložit, třeba pod jménem <code>prvni-notebook</code>. Ke jménu se automaticky připojí přípona Rmd.</p>
+<p>Celý výsledek se zobrazí v panelu <em>Viewer</em> vpravo:</p>
+<div class="figure">
+<img src="img/rmarkdown-02.png" alt="" />
+<p class="caption">Náhled vykresleného R Mardownu</p>
+</div>
+<p>Už jste pochopili, v čem jsem napsal tenhle článek? Ano, v RStudiu v R Markdownu :-)</p>
+<p>Ze všech tří způsobů používání R (konzole, skripty, R Markdown) používám R Markdown pro běžné analýzy nejčastěji. Píšu si v něm postup, eRkový kód i poučení z výsledků. Když se pak později k analýze vrátím, třeba proto, že chci pro jiného klienta udělat nějakou podobnou, krásně vidím, jak jsem postupoval a co a proč jsem udělal. Už tohle je pro mě obrovská výhoda oproti excelové tabulce, ve které se už po pár týdnech nevyznám a musím znovu pracně zkoumat, co tam je, proč to tam a jak to vlastně funguje.</p>
+<p>A totéž doporučuji i vám: klidně pro teď zapoměňte, že nějaká konzole a skripty vůbec existují a používejte na všechno R Markdown.</p>
+</div>
+</div>
+</div>
+<div id="co-jste-se-naučili" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Co jste se naučili<a href="prvni-kroky.html#co-jste-se-naučili" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="instalace-a-nastaveni.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="jak-dostat-data-do-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

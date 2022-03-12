@@ -1,0 +1,9 @@
+bookdown::gitbook:
+  split_by: rmd
+  config:
+    toc:
+      before: <li><a href="./">Od Excelu k R</a></li>
+    sharing:
+      facebook: yes
+      twitter: yes
+      github: yes
