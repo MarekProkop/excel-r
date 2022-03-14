@@ -1,0 +1,9 @@
+kbd {
+  border-radius: 3px;
+  padding: 1px 5px;
+  display: inline-block;
+  font-size: small;
+  background: #eee;
+  color: #555;
+  font-weight: 600;
+}
