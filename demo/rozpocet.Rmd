@@ -1,0 +1,145 @@
+---
+title: "Příklad rozpočtu"
+output: html_notebook
+---
+
+```{r setup}
+library(tidyverse)
+library(lubridate)
+library(glue)
+library(priceR)
+```
+
+Protože budu v kalkulaci nákladů pracovat se zahraničními měnami, stáhnu si nejprve aktuální kurzy CZK.
+
+```{r exchange_rates, message=FALSE}
+exchange_rates <- exchange_rate_latest("CZK")
+```
+
+Všechny náklady si sepíšu do přehledné tabulky s těmito sloupci:
+
+- *name* -- název položky,
+- *cost* -- částka bez DPH,
+- *cur* -- měna,
+- *vatr* -- sazba DPH,
+- *period* -- období, ke kterému se náklad vztahuje; může být 'month' (měsíc), 'quarter' (čtvrtletí), 'year' (rok),
+- *month* -- číslo měsíce v roce, ve kterém náklad poprvé naběhne,
+- *day* -- číslo dne v měsíci, ve kterém náklad naběhne,
+- *pay_month* -- počet měsíců po (kladné číslo), nebo před (záporné číslo), kdy je třeba zaplatit,
+- *pay_day* -- počet dní po (kladné číslo), nebo před (záporné číslo), kdy je třeba zaplatit.
+
+```{r costs}
+costs <- tribble(
+  ~name,              ~cost,  ~cur, ~vatr, ~period,  ~month, ~day, ~pay_month, ~pay_day,
+  "Mzdy",      70000 * 1.35, "CZK",     0, "month",       1,    1,          1,       15,
+  "Účetnictví",     9300.00, "CZK",     0, "quarter",     1,   25,          0,        0,
+  "O2",             1650.31, "CZK",    21, "month",       1,    1,          0,       10,
+  "T-Mobile",        948.35, "CZK",    21, "month",       1,   10,          0,       10,
+  "Toggl",            10.00, "USD",     0, "month",       1,    6,          0,        0,
+  "Adobe",             9.99, "EUR",     0, "month",       1,    2,          0,        0,
+  "Fakturoid",      5280.00, "CZK",    21, "year",        3,    1,          0,        7,
+  "Google Cloud",     76.69, "USD",     0, "month",       1,    1,          0,        0,
+  "Basecamp",         12.00, "USD",     0, "month",       1,   19,          0,        0,
+  "Blueboard",      4000.00, "CZK",    21, "year",        1,    1,          0,       10,
+  "Screaming Frog",  149.00, "GBP",     0, "year",        1,   20,          0,        0,
+  "MindMeister",      50.00, "USD",     0, "year",        1,    5,          0,        0
+)
+costs
+```
+
+Z tabulky *costs* si nyný vygeneruji tabulku *cost_by_date*, která bude v daném roce obsahovat jedlivé nákladové položky v každém  dni, kdy naběhnou. Ve výsledné tabulce nechám jen ty sloupce, které budu potřebovat pro výpočet měsíčních nákladů a pro výpočet cash flow.
+
+```{r costs_by_date}
+year <- 2022
+
+costs_by_date <- costs |> 
+  left_join(exchange_rates, by = c("cur" = "currency")) |> 
+  rename(ex_rate = last_col()) |> 
+  mutate(
+    cost_czk = round(cost / ex_rate, 2),
+    vat = round(cost_czk * (vatr / 100), 2)
+  ) |> 
+  rowwise() |> 
+  mutate(
+    date = list(seq(make_date(year, month, day), make_date(year, 12, 31), by = period))
+  ) |> 
+  ungroup() |> 
+  unnest_longer(date) |> 
+  select(date, cost_czk, vat, pay_month, pay_day)
+
+costs_by_date
+```
+
+Nyní si vytvořím tabulku odhadovaných výnosů *revenue_by_date*. Bude se jednat o výnosy za měsíc, naběhnou v poslední den každého měsíce a splatné budou o 15 dní později. Vypočítají se s odhadu fakturovaných hodin vynásobených hodinovou saznou. Počet fakturovaných hodin bude náhodně fluktuovat +/- 5 hodin okolo průměru. DPH je 21 %.
+
+```{r revenue_by_date}
+average_hours <- 45
+hourly_rate <- 2500
+
+revenue_by_date <- tibble(
+  date = seq(make_date(year, 2, 1), length = 12, by = "month") - 1,
+  revenue = round(runif(12, average_hours - 5, average_hours + 5)) * hourly_rate,
+  vat =  revenue * 0.21,
+  pay_month = 0,
+  pay_day = 15
+)
+
+revenue_by_date
+```
+Tabulky *costs_by_date* a *revenue_by_date* spojím a areguji podle měsíce (prvního dne v měsíci). Pak  vypočítám zisk jako rozdíl výnosů a nákladů a výsledek zobrazím v grafu měsíčního a kumulovaného zisku.
+
+```{r}
+profit_by_month <- costs_by_date |> 
+  bind_rows(revenue_by_date) |> 
+  group_by(month = floor_date(date, unit = "month")) |> 
+  summarise(
+    cost = sum(cost_czk, na.rm = TRUE),
+    revenue = sum(revenue, na.rm = TRUE),
+    profit = round(revenue - cost)
+  )
+
+profit_by_month |> 
+  ggplot(aes(x = month, y = profit)) +
+  geom_col() +
+  geom_line(aes(y = cumsum(profit))) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(title = glue("Monthly profit (total profit: {round(sum(profit_by_month$profit))} Kč)"))
+```
+
+```{r}
+hours_for_profit <- function(annual_profit, hourly_rate, costs) {
+  r <- uniroot(
+    function(x) {
+      x * hourly_rate - (sum(costs$cost_m) * 12) - annual_profit
+    },
+    c(12, 200 * 12)
+  )
+  r$root / 12
+}
+```
+
+```{r}
+hours_for_profit(100000, 2500, costs)
+```
+
+```{r}
+profit_in_year <- function(average_hours, hourly_rate) {
+  monthly <- tibble(
+    month = seq(ymd("2022-01-01"), ymd("2022-12-31"), by = "month"),
+    costs = sum(costs$cost_m),
+    hours = round(runif(12, average_hours - 5, average_hours + 5)),
+    hourly_rate = hourly_rate,
+    revenue = hours * hourly_rate,
+    profit = round(revenue - costs)
+  )
+  monthly |> 
+    ggplot(aes(x = month, y = profit)) +
+    geom_col() +
+    labs(title = glue("Monthly profit (total profit: {sum(monthly$profit)} Kč)"))
+}
+```
+
+```{r}
+profit_in_year(45, 2500)
+```
+
