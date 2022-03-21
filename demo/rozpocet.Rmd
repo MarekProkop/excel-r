@@ -106,6 +106,45 @@ profit_by_month |>
   labs(title = glue("Monthly profit (total profit: {round(sum(profit_by_month$profit))} Kč)"))
 ```
 
+Zbývá spočítat cash flow.
+
+```{r}
+costs_by_date |> 
+  transmute(
+    date = add_with_rollback(date, months(pay_month)),
+    date = date + pay_day,
+    cash_flow = -(cost_czk + vat)
+  ) |> 
+  bind_rows(
+    revenue_by_date |> 
+      transmute(
+        date = add_with_rollback(date, months(pay_month)),
+        date = date + pay_day,
+        cash_flow = revenue + vat
+      )
+  ) |> 
+  bind_rows(
+    costs_by_date |> 
+      group_by(date = quarter(date, type = "date_last") + 25) |> 
+      summarise(cash_flow = sum(vat))
+  ) |> 
+  bind_rows(
+    revenue_by_date |> 
+      group_by(date = quarter(date, type = "date_last") + 25) |> 
+      summarise(cash_flow = -sum(vat))
+  ) |> 
+  group_by(date) |> 
+  summarise(cash_flow = sum(cash_flow)) |> 
+  ggplot(aes(x = date, y = cumsum(cash_flow))) + 
+  geom_line() +
+  scale_y_continuous(labels = scales::comma) +
+  scale_x_date(date_breaks = "month", date_labels = "%b")
+```
+
+
+
+
+
 ```{r}
 hours_for_profit <- function(annual_profit, hourly_rate, costs) {
   r <- uniroot(
