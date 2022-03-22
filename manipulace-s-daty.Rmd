@@ -27,7 +27,7 @@ Nejprve si asi data frame zobrazíte, což můžete udělat několika způsoby. 
 starwars
 ```
 
-Lešpí tedy asi bude funkce `View`, která otevře tabulkové zobrazení. Vyzkoušejte si to.
+Lepší tedy asi bude funkce `View`, která otevře tabulkové zobrazení. Vyzkoušejte si to.
 
 ```{r eval=FALSE}
 View(starwars)
@@ -91,7 +91,7 @@ nebo nahradit nějakou jinou hodnotou.
 
 ## Výběr sloupců
 
-Už jsem ukázal, že výběr sloupců provedete funkcí `select`. Ta má jako první parametr dataframe a za ním nasleduje seznam sloupců, který můžete napsat několika způsoby. Většinou je nejjednodušší sloupce vyjmenovat a oddělit čárkou:
+Už jsem ukázal, že výběr sloupců provedete funkcí `select`. Ta má jako první parametr dataframe a za ním následuje seznam sloupců, který můžete napsat několika způsoby. Většinou je nejjednodušší sloupce vyjmenovat a oddělit čárkou:
 
 ```{r}
 select(my_starwars, name, hair_color, eye_color)
@@ -253,7 +253,7 @@ my_starwars |>
 
 ## Odvozování nových sloupců
 
-Funkcí `mutate` jde vypočítat hodnoty sloupců, ať už nových, nebo stávajících. V příkladu spočítám BMI z váhy dělené výškou v metrech na druhou a před jméno doplním slovo „tlouštík“, pokud má daná postava nadvahu.
+Funkcí `mutate` jde vypočítat hodnoty sloupců, ať už nových, nebo stávajících. V příkladu spočítám BMI z váhy dělené výškou v metrech na druhou a před jméno doplním slovo „tlouštík“, pokud má daná postava nadváhu.
 
 ```{r}
 my_starwars |> 
@@ -357,12 +357,12 @@ my_starwars |>
 
 Funkce `group_by` nemusí sloužit jen k agregaci. Respektive k agregaci slouží skoro vždycky, ale ta nemusí být hlavním cílem.
 
-O něco výš jsem vám ukázal, jak pomocí funkcí `filter` a `mean` vybrat ppostavy, které jsou nadprůměrně vysoké:
+O něco výš jsem vám ukázal, jak pomocí funkcí `filter` a `mean` vybrat postavy, které jsou nadprůměrně vysoké:
 
 ```{r ref.label='filter-mean'}
 ```
 
-Co kdych ale chtěl vybrat jen ty postavy, které jsou nadprůměrně vysoké jen v rámci svého druhu? Použiju `group_by` a pro přehlednost výsledek ještě setřídím.
+Co kdybych ale chtěl vybrat jen ty postavy, které jsou nadprůměrně vysoké jen v rámci svého druhu? Použiju `group_by` a pro přehlednost výsledek ještě setřídím.
 
 ```{r}
 my_starwars |> 
@@ -380,7 +380,7 @@ my_starwars |>
   slice_max(height) |> 
   select(species, name, height)
 ```
-A konečně jde `group_by` kombinovat i s `mutate` -- do předešléhho výstupu doplním, z kolika zástupců svého druhu je daný exemplár nejvyšší:
+A konečně jde `group_by` kombinovat i s `mutate` -- do předešlého výstupu doplním, z kolika zástupců svého druhu je daný exemplár nejvyšší:
 
 ```{r}
 my_starwars |> 
@@ -390,9 +390,9 @@ my_starwars |>
   select(species, name, tallest = height, out_of)
 ```
 
-Všiměte si, že jsem musel dát `mutate` ještě před `slice_max`, protože po něm by funkce `n()` vracela už jen 1. A ukázal jsem vám také, jak pomocí funkce `select` přejmenovat sloupec (což jde i samostatnou funkcí `rename`, ale tady je to jednodušší takhle).
+Všimněte si, že jsem musel dát `mutate` ještě před `slice_max`, protože po něm by funkce `n()` vracela už jen 1. A ukázal jsem vám také, jak pomocí funkce `select` přejmenovat sloupec (což jde i samostatnou funkcí `rename`, ale tady je to jednodušší takhle).
 
 
-## Takák s dalšími funkcemi
+## Tahák s dalšími funkcemi
 
-Vzal jsem to všechno jen z rychlíku, ve skutečnosti je těch možností mnohem víc. Pefektní tahák najdete v RStudiu v menu *Help* -> *Cheat Sheets* -> *Data Transformation with dplyr*, případně zde je [on-line verze](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).
+Vzal jsem to všechno jen z rychlíku, ve skutečnosti je těch možností mnohem víc. Perfektní tahák najdete v RStudiu v menu *Help* -> *Cheat Sheets* -> *Data Transformation with dplyr*, případně zde je [on-line verze](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).

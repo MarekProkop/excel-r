@@ -16,7 +16,7 @@ Podstatné je, že R (i RStudio) vymýšleli a pořád ještě vymýšlejí sta
 
 Už jsem říkal, že R tradičně používají lékaři, biologové a jiní vědci, např. k tomu, aby na základě experimentů vyhodnotili, který lék je jak účinný, nebo co ovlivňuje vznik rakoviny. Všiml jsem si také, že je R docela populární ve financích, např. pro výpočty investic nebo pojistných rizik. Já ale vědec, lékař ani bankéř nejsem, takže budu mluvit spíš o svém oboru, což je marketing.
 
-V marketingu se R velmi dobře hodí např. k vyhodnocování A/B testů, pro zákaznickou analytiku (proč někteří zákaznici nakupují víc a jiní míň), analýzy prodeje, návštěvnosti, nebo třeba PPC (pay per click reklama) a SEO (optimalizace pro vyhldavače). Je to i brána do světa strojového učení, které jde aplikovat např. na analýzu on-line obsahu nebo vazeb v sociálních sítích.
+V marketingu se R velmi dobře hodí např. k vyhodnocování A/B testů, pro zákaznickou analytiku (proč někteří zákaznici nakupují víc a jiní míň), analýzy prodeje, návštěvnosti, nebo třeba PPC (pay per click reklama) a SEO (optimalizace pro vyhledavače). Je to i brána do světa strojového učení, které jde aplikovat např. na analýzu on-line obsahu nebo vazeb v sociálních sítích.
 
 Jiná otázka je, pro koho je R vhodné z pohledu profesních a osobnostních předpokladů. Když to posuzuju podle sebe a dalších, které jsem v téhle souvislosti potkal, R sedne:
 
@@ -36,15 +36,15 @@ Do R se raději nepouštějte ani v případě, že neumíte alespoň pasivně 
 
 ## Co vám R ve srovnání s Excelem přinese
 
-Stručně: ryhlost, efektivitu, více možností, eleganci. A zároveň trochu trápení při studiu.
+Stručně: rychlost, efektivitu, více možností, eleganci. A zároveň trochu trápení při studiu.
 
 Jde to říct i konkrétněji:
 
 -   Na velmi jednoduché ad hoc (neopakované) úlohy nepřinese R nic. Když si chci udělat rychlý rozpočet narozeninové oslavy, vezmu si na to Google Sheets a ne R.
 -   Pokud budu chtít z firemní databáze vytáhnout, které zboží se nejvíc prodává např. podle roční doby, mohu to udělat v Excelu i v R. Vyberu si ale R, protože to udělám rychleji, elegantněji a postup půjde snáz kdykoli zopakovat s čerstvými daty.
--   Na obsahovou analýzu tweetů konkurence si vězmu určitě R, protože to by Excel vůbec nezvládl.
+-   Na obsahovou analýzu tweetů konkurence si vezmu určitě R, protože to by Excel vůbec nezvládl.
 
-Speciálními výhodami R pak je [R Markdown](https://rmarkdown.rstudio.com/) a [Shiny](https://shiny.rstudio.com/). Tím prvním jdou dělat znovupoužitélné, automatické, moc hezky vypadající reporty, které ocení každý, kdo pracuje pro klienty nebo pro náročného šéfa. Ostatně i tato kniha je napsaná v R Markdownu. To druhé slouží k tvorbě interaktivních webových aplikací, které zpracují nejrůznější data a úhledně zobrazí výsledek.
+Speciálními výhodami R pak je [R Markdown](https://rmarkdown.rstudio.com/) a [Shiny](https://shiny.rstudio.com/). Tím prvním jdou dělat znovupoužitelné, automatické, moc hezky vypadající reporty, které ocení každý, kdo pracuje pro klienty nebo pro náročného šéfa. Ostatně i tato kniha je napsaná v R Markdownu. To druhé slouží k tvorbě interaktivních webových aplikací, které zpracují nejrůznější data a úhledně zobrazí výsledek.
 
 ## Proč zrovna R a ne třeba Python
 

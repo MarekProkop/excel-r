@@ -23,7 +23,7 @@ Ukážu vám věci, které asi běžně děláte v Excelu a v R jdou udělat 
 
 Mám jednoduchý cíl: předpokládám, že umíte docela slušně Excel nebo jiný spreadsheet, třeba Google Sheets. Nepředpokládám, že umíte cokoli jiného, např. programovat. Z toho jsem při psaní vycházel a snažím se toho důsledně držet. Výklad by tedy měl být srozumitelný i neajťákům a programátoři nebo kodéři se u něj mohou nudit.
 
-Na druhou stranu od váš čekám zvídavost a chuť se učit. Nedělejte jen to, co vám řeknu. Experimentujte, dohledávejte si další informace na webu, studujte R z více zdrojů součaně. Na důležité zdroje vás budu průběžně odkazovat.
+Na druhou stranu od vás čekám zvídavost a chuť se učit. Nedělejte jen to, co vám řeknu. Experimentujte, dohledávejte si další informace na webu, studujte R z více zdrojů současně. Na důležité zdroje vás budu průběžně odkazovat.
 
 Na kapitoly pohlížejte jako na navazující lekce. Procházejte je jednu za druhou a ihned si zkoušejte všechny příklady.
 

@@ -10,7 +10,7 @@ Dobrá zpráva: pokud nechcete, nic si instalovat nemusíte. Pro první pokusy i
 
 Jestli v cloudu pracovat nechcete, musíte nainstalovat jednak R a jednak RStudio. Obojí je snadné a zdarma. Pro vážnější práci budete časem potřebovat ještě Git. Ten je taky zdarma, ale rozchodit ho nemusí být úplně triviální.
 
-**Moje doporučení:** jestli chcete R jen nezávazně vyzkoušet, zvlote cloud. Instalovat můžete kdykoli později.
+**Moje doporučení:** jestli chcete R jen nezávazně vyzkoušet, zvolte cloud. Instalovat můžete kdykoli později.
 
 ## Instalace R
 

@@ -197,7 +197,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#ruční-vstup-dat"><i class="fa fa-check"></i><b>4.2</b> Ruční vstup dat<span></span></a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funnkce-data.frame"><i class="fa fa-check"></i><b>4.2.1</b> Funnkce data.frame<span></span></a></li>
+<li class="chapter" data-level="4.2.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-data.frame"><i class="fa fa-check"></i><b>4.2.1</b> Funkce data.frame<span></span></a></li>
 <li class="chapter" data-level="4.2.2" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-tibble"><i class="fa fa-check"></i><b>4.2.2</b> Funkce tibble<span></span></a></li>
 <li class="chapter" data-level="4.2.3" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-tribble"><i class="fa fa-check"></i><b>4.2.3</b> Funkce tribble<span></span></a></li>
 <li class="chapter" data-level="4.2.4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#co-když-chci-něco-opravit"><i class="fa fa-check"></i><b>4.2.4</b> Co když chci něco opravit?<span></span></a></li>
@@ -239,7 +239,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.6.3" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#funkce-count"><i class="fa fa-check"></i><b>5.6.3</b> Funkce <code>count</code><span></span></a></li>
 <li class="chapter" data-level="5.6.4" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#kombinace-group_by-s-dalšími-funkcemi-pro-manipulaci-dat"><i class="fa fa-check"></i><b>5.6.4</b> Kombinace <code>group_by</code> s dalšími funkcemi pro manipulaci dat<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#takák-s-dalšími-funkcemi"><i class="fa fa-check"></i><b>5.7</b> Takák s dalšími funkcemi<span></span></a></li>
+<li class="chapter" data-level="5.7" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#tahák-s-dalšími-funkcemi"><i class="fa fa-check"></i><b>5.7</b> Tahák s dalšími funkcemi<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="grafy.html"><a href="grafy.html"><i class="fa fa-check"></i><b>6</b> Grafy a vizualizace<span></span></a>
 <ul>
@@ -321,8 +321,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="ruční-vstup-dat" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Ruční vstup dat<a href="jak-dostat-data-do-r.html#ruční-vstup-dat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>V Excelu data ručně vkládáte rovnou do buněk listu. To sice jde v R také, ale většinou se to nedělá. Místo toho se napíše příkaz (nebo krátký skript čili posloupnost příkazů), který vytvoří data frame, naplní ho daty a výsledek uloží do objektu, se kterým můžete dál pracovat.</p>
-<div id="funnkce-data.frame" class="section level3 hasAnchor" number="4.2.1">
-<h3><span class="header-section-number">4.2.1</span> Funnkce data.frame<a href="jak-dostat-data-do-r.html#funnkce-data.frame" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="funkce-data.frame" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Funkce data.frame<a href="jak-dostat-data-do-r.html#funkce-data.frame" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Konkrétně ceník výše jsem vytvořil tímto příkazem:</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="jak-dostat-data-do-r.html#cb48-1" aria-hidden="true" tabindex="-1"></a>sample_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb48-2"><a href="jak-dostat-data-do-r.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">produkt =</span> <span class="fu">c</span>(<span class="st">&quot;Malý šroubek&quot;</span>, <span class="st">&quot;Velký šroub&quot;</span>, <span class="st">&quot;Malá matička&quot;</span>, <span class="st">&quot;Velká matka&quot;</span>),</span>
@@ -334,7 +334,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Do objektu <code>sample_df</code> přiřadím (neboli uložím) výsledek funkce <code>data.frame</code>. To jde zjednodušeně napsat jako <code>sample_df &lt;- data.frame(...)</code>, kde tři tečky reprezentují tzv. argumenty (nebo též parametry) funkce <code>data.frame</code>. Znaky <code>&lt;-</code> se v R používají k přiřazení (uložení) hodnoty do objektu a v RStudiu je můžete zadat klávesou zkratkou <kbd>Alt</kbd>+<kbd>-</kbd> (Alt pomlčka).</li>
 <li>Argumenty funkce <code>data.frame</code> jsou jednotlivé sloupce, které má data frame mít. Zde to je <em>produkt</em>, <em>jednotka</em>, <em>cena</em> a <em>skladem</em>. Vzájemně jsou odděleny čárkou, na rozdělení do řádků nezáleží.</li>
-<li>Sloupce se definují jako <code>název_sloupce = vektor</code>, příčemž <code>vektor</code> musí určovat hodnoty všech řádků data framu.</li>
+<li>Sloupce se definují jako <code>název_sloupce = vektor</code>, přičemž <code>vektor</code> musí určovat hodnoty všech řádků data framu.</li>
 <li>V příkladu vektory zadávám jako výsledek funkce <code>c</code>. Ta vezme všechny své argumenty (oddělené čárkou) a vytvoří z nich vektor. Všimněte si, že textové hodnoty se píší do uvozovek, kdežto číselné a logické ne.</li>
 </ol>
 <p>Jakmile máte data frame vytvořený a uložený do objektu <code>sample_df</code>, můžete s ním dál pracovat, např. vypsat jeho obsah:</p>
@@ -361,7 +361,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="funkce-tribble" class="section level3 hasAnchor" number="4.2.3">
 <h3><span class="header-section-number">4.2.3</span> Funkce tribble<a href="jak-dostat-data-do-r.html#funkce-tribble" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Oba výše popsané zpsoby zadávání dat do data framu mají jednu nevýhodu: data zapisujete po sloupcích, ačkoli je většinou přirozenější je psát po řádcích. Tuto nevýhodu řeší funkce <em>tribble</em>, které je taktéž součástí ekosystému <em>tidyverse</em>.</p>
+<p>Oba výše popsané způsoby zadávání dat do data framu mají jednu nevýhodu: data zapisujete po sloupcích, ačkoli je většinou přirozenější je psát po řádcích. Tuto nevýhodu řeší funkce <em>tribble</em>, které je taktéž součástí ekosystému <em>tidyverse</em>.</p>
 <p>Používá se takto:</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="jak-dostat-data-do-r.html#cb51-1" aria-hidden="true" tabindex="-1"></a>sample_df <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
 <span id="cb51-2"><a href="jak-dostat-data-do-r.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>produkt, <span class="sc">~</span>jednotka, <span class="sc">~</span>cena, <span class="sc">~</span>skladem,</span>
@@ -392,14 +392,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="funkce-edit" class="section level3 hasAnchor" number="4.2.5">
 <h3><span class="header-section-number">4.2.5</span> Funkce edit<a href="jak-dostat-data-do-r.html#funkce-edit" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Ve skutečnosti můžete i v R opravaovat data skoro stejně, jako v Excelu. Slouží k tomu funkce <em>edit</em>, která otveře jednoduchý tabulkový editor, do něj načte data frame uvedený v jejím arguentu, a když v editoru cokoli změníte a pak ho zavřete, vrátí zpátky opravená data.</p>
+<p>Ve skutečnosti můžete i v R opravovat data skoro stejně, jako v Excelu. Slouží k tomu funkce <em>edit</em>, která otevře jednoduchý tabulkový editor, do něj načte data frame uvedený v jejím argumentu, a když v editoru cokoli změníte a pak ho zavřete, vrátí zpátky opravená data.</p>
 <p>V následujícím příkladu vyvolám editor pro objekt <em>sample_df</em> a výsledek zapíšu zpět do stejného objektu, takže pak bude obsahovat již opravená data. Tímto způsobem se ale ztratí postup vzniku dat, a proto se v R skoro nepoužívá.</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="jak-dostat-data-do-r.html#cb53-1" aria-hidden="true" tabindex="-1"></a>sample_df <span class="ot">&lt;-</span> <span class="fu">edit</span>(sample_df)</span></code></pre></div>
 </div>
 </div>
 <div id="chci-si-jen-rychle-něco-vyzkoušet" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Chci si jen rychle něco vyzkoušet<a href="jak-dostat-data-do-r.html#chci-si-jen-rychle-něco-vyzkoušet" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>V základním R i v některých balíčcích je docela dost vzrových data setů již zabudovaných. Slouží jako příklady pro demonstraci některých postupů a můžete si s nimi zkusit hrát. Často se třeba něco ukazuje na data setu <em>iris</em>, který obsahuje vlastnosti několika druhů kosatců.</p>
+<p>V základním R i v některých balíčcích je docela dost vzorových data setů již zabudovaných. Slouží jako příklady pro demonstraci některých postupů a můžete si s nimi zkusit hrát. Často se třeba něco ukazuje na data setu <em>iris</em>, který obsahuje vlastnosti několika druhů kosatců.</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="jak-dostat-data-do-r.html#cb54-1" aria-hidden="true" tabindex="-1"></a>iris</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
@@ -416,7 +416,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="práce-s-csv-soubory" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> Práce s CSV soubory<a href="jak-dostat-data-do-r.html#práce-s-csv-soubory" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>V reálné praxi se data do R nejčastějí načítají z CSV souborů. Abyste si to mohli hned vyzkoušet i v případě, že zrovna nemáte žádný CSV po ruce, nejdřív vám ukážu, jak do CSV zapisovat.</p>
+<p>V reálné praxi se data do R nejčastěji načítají z CSV souborů. Abyste si to mohli hned vyzkoušet i v případě, že zrovna nemáte žádný CSV po ruce, nejdřív vám ukážu, jak do CSV zapisovat.</p>
 <div id="funkce-write_csv" class="section level3 hasAnchor" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> Funkce write_csv<a href="jak-dostat-data-do-r.html#funkce-write_csv" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>CSV soubor pro další pokusy vytvořím z data framu <code>sample_df</code>. S funcí <em>write_csv</em> z balíčku <em>readr</em> (součást <em>tidyverse</em>) Je to takhle jednoduché:</p>
@@ -435,11 +435,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## i Use `spec()` to retrieve the full column specification for this data.
 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<p>Všiněte si, že funkce vypsala specifikaci sloupců a jejich datových typů. Datové typy odhaduje z obsahu souboru a ne vždy je trefí správně, takže někdy může být potřeba je určit ručně, ať už v parametrech funkce <em>read_csv</em>, nebo v dodatečné úpravě získaného data framu.</p>
+<p>Všimněte si, že funkce vypsala specifikaci sloupců a jejich datových typů. Datové typy odhaduje z obsahu souboru a ne vždy je trefí správně, takže někdy může být potřeba je určit ručně, ať už v parametrech funkce <em>read_csv</em>, nebo v dodatečné úpravě získaného data framu.</p>
 </div>
 <div id="interaktivní-import-dat-v-rstudiu" class="section level3 hasAnchor" number="4.4.3">
 <h3><span class="header-section-number">4.4.3</span> Interaktivní import dat v Rstudiu<a href="jak-dostat-data-do-r.html#interaktivní-import-dat-v-rstudiu" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Pokud nevíte přesně, jak importovaný soubor vypadá, je v RStudiu nejjednoduší zvolit příkaz <em>Import Dataset</em> z menu <em>File</em>. Tam si pak můžete na živém náhledu dat vybrat, co přesně chcete importovat, které sloupce jsou kterého typu apod.</p>
+<p>Pokud nevíte přesně, jak importovaný soubor vypadá, je v RStudiu nejjednodušší zvolit příkaz <em>Import Dataset</em> z menu <em>File</em>. Tam si pak můžete na živém náhledu dat vybrat, co přesně chcete importovat, které sloupce jsou kterého typu apod.</p>
 <p>Podstatné je, že se vám současně generuje i skript, který si můžete zkopírovat pro opakované použití se stejným souborem.</p>
 </div>
 <div id="načtení-csv-z-webu" class="section level3 hasAnchor" number="4.4.4">
@@ -476,7 +476,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="data-na-webové-stránce" class="section level2 hasAnchor" number="4.5">
 <h2><span class="header-section-number">4.5</span> Data na webové stránce<a href="jak-dostat-data-do-r.html#data-na-webové-stránce" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Nakonec vám ukáž, jak snadno můžete načítat data z webových stránek. Ukážu to na tabulce v HTML, se kterou se pracuje nejsnáz, ale jde to i se stránkami, kde jsou data uspořádaná jinak.</p>
+<p>Nakonec vám ukážu, jak snadno můžete načítat data z webových stránek. Ukážu to na tabulce v HTML, se kterou se pracuje nejsnáz, ale jde to i se stránkami, kde jsou data uspořádaná jinak.</p>
 <p>Ideální tabulka je např. na stránce <a href="https://cs.wikipedia.org/wiki/Seznam_hlavn%C3%ADch_m%C4%9Bst_st%C3%A1t%C5%AF_sv%C4%9Bta">Seznam hlavních měst států světa</a> ve Wikipedii. Načtu ji skriptem, který:</p>
 <ol style="list-style-type: decimal">
 <li>Připojí balíček <em>rvest</em> pro stahování informací z webu.</li>
@@ -518,7 +518,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="data-z-jiných-zdrojů" class="section level2 hasAnchor" number="4.6">
 <h2><span class="header-section-number">4.6</span> Data z jiných zdrojů<a href="jak-dostat-data-do-r.html#data-z-jiných-zdrojů" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Pomocí různých balíčků jde načítat data i z jich typů zdrojů. Já třeba nečastěji pracuji s daty Google Search Console nebo Google Analytics, která načítám přes API (aplikační rozhraní) resp. prostřednictvím specializovaných balíčků, které toto API zpřístupňují. Pracovat jde i s daty ve všech běžných SQL i NoSQL databázích. Tyto metody jsou už ale nad rámec tohoto článku.</p>
+<p>Pomocí různých balíčků jde načítat data i z jich typů zdrojů. Já třeba nejčastěji pracuji s daty Google Search Console nebo Google Analytics, která načítám přes API (aplikační rozhraní) resp. prostřednictvím specializovaných balíčků, které toto API zpřístupňují. Pracovat jde i s daty ve všech běžných SQL i NoSQL databázích. Tyto metody jsou už ale nad rámec tohoto článku.</p>
 
 </div>
 </div>

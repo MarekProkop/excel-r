@@ -1,6 +1,6 @@
 # První kroky v R a RStudiu
 
-Nebudu vám tajit, že se způsob práce v R se od Excelu na první pohled dost liší. Excel vám naservíruje připravený rastr buněk, do kterých můžete rovnou psát hodnoty a vzorce. V R naopak začínáte s prázdnou plochou, a co si sami neuděláte, to nemáte.
+Nebudu vám tajit, že se způsob práce v R od Excelu na první pohled dost liší. Excel vám naservíruje připravený rastr buněk, do kterých můžete rovnou psát hodnoty a vzorce. V R naopak začínáte s prázdnou plochou, a co si sami neuděláte, to nemáte.
 
 ## Excel vs. R
 
@@ -80,7 +80,7 @@ Objekt jazyka R se chová podobně jako proměnná v jiných programovacích ja
 
 Oproti jiným programovacím jazykům je tu pár zvláštností:
 
--   Do objektů se přiřazuje znaky `<-` ale můžete si to zjednodušit klávesovou zkratkou <kbd>Alt</kbd>+<kbd>-</kbd> (Alt pomlčka).
+-   Do objektů se hodnoty přiřazují operátorem `<-`. Ten můžete vložit i klávesovou zkratkou <kbd>Alt</kbd>+<kbd>-</kbd> (Alt pomlčka).
 -   Běžné objekty R jsou ve skutečnosti vektory. V jiných programovacích jazycích tomu obvykle odpovídá jednorozměrné pole. V praxi to znamená, že v číselném objektu nemusí být jen jedno číslo, ale může jich tam být moc. V našem příkladu jich je sto.
 -   R s vektory automaticky i počítá. K vektoru pěti čísel tedy můžete přičíst jedno číslo (ve skutečnosti vektor s jedním číslem) a ono se automaticky přičte ke všem pěti.
 
@@ -186,7 +186,7 @@ Při práci s R tedy nemusíte skoro googlit. Stačí si pamatovat alespoň př
 
 Práce v konsoli je sice flexibilní, ale na víc než pár příkazů dost nepraktická. Když uděláte chybu, můžete se sice šipkami nahoru a dolů pohybovat po historii příkazů a opravovat je, ale není to ono. Chyby se mnohem lépe opravují ve skriptech.
 
-Z menu *File → New File* vyberte *R Script* a vlevo nahoře se vám otevře editor skriptů. Do něj si vložte všechny příkazy, které jste předtím zadali postupně do konsole. Nemusíte to ale dělat ručně -- podívejte se vpravo na záložku History a vida, jsou tam, že? Vyberte ty správné a tlačítkem To Source je přesuňte do skriptu. Okno RStudia by pam mělo vypadat nějak takto:
+Z menu *File → New File* vyberte *R Script* a vlevo nahoře se vám otevře editor skriptů. Do něj si vložte všechny příkazy, které jste předtím zadali postupně do konsole. Nemusíte to ale dělat ručně -- podívejte se vpravo na záložku History a vida, jsou tam, že? Vyberte ty správné a tlačítkem To Source je přesuňte do skriptu. Okno RStudia by pak mělo vypadat nějak takto:
 
 ![Skript v RStudiu](img/rstudio-script-01.png)
 
@@ -204,7 +204,7 @@ Hlavní výhoda skriptu spočívá v tom, že jde snadno upravit a pak celý z
 cena <- round(runif(n = 100), digits = 2)
 ```
 
-Když teď celý skript znovu sputíte příkazem *Source* (nebo klávesovou zkratkou <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>), poznáte, co se změnilo?
+Když teď celý skript znovu spustíte příkazem *Source* (nebo klávesovou zkratkou <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>), poznáte, co se změnilo?
 
 ```{r}
 hist(cena)
@@ -227,7 +227,7 @@ Obě tyto nevýhody odstraňuje R Markdown.
 
 #### Základní Markdown
 
-Samotný [Markdown](https://cs.wikipedia.org/wiki/Markdown) možná znáte. Je to jednoduchý značkovací jazyk, kterým jdou v čistě textovém formátu vyznačit základní strukturání a formátovací prvky -- nadpisy, odstavce, odrážky, odkazy, tučný text apod. Z toho pak jde vygenerovat výstupy v různých formátech: nejčastěji v HTML, ale klidně i PDF, Word atd.
+Samotný [Markdown](https://cs.wikipedia.org/wiki/Markdown) možná znáte. Je to jednoduchý značkovací jazyk, kterým jdou v čistě textovém formátu vyznačit základní strukturální a formátovací prvky -- nadpisy, odstavce, odrážky, odkazy, tučný text apod. Z toho pak jde vygenerovat výstupy v různých formátech: nejčastěji v HTML, ale klidně i PDF, Word atd.
 
 Text v Markdownu vypadá např. takto:
 
@@ -240,8 +240,8 @@ Tohle je běžný odstavec. Víc odstavců je od sebe odděleno dvěma Entry či
 
 Tohle je příklad [odkazu v textu](https://example.com). A tohle je příklad odrážek:
 
-- první odražka,
-- druhé odrážka,
+- první odrážka,
+- druhá odrážka,
 - třetí odrážka.
 
 Jdou udělat i číslované body, které se automaticky očíslují podle pořadí:
@@ -281,9 +281,9 @@ sum(cena)
 Pokud blok spustíte zelenou šipečkou na jeho pravém horním okraji nebo klávesovou zkratkou Ctrl+Shift+Enter, provede se a zobrazí výstup přímo pod sebou.
 ````
 
-Výsledek bude vypadt jako na předešlém obrázku. Nyní můžete podle instrukcí vykonat jediný blok kódu, který tam zatím máte, a pod blokem se vám zobrazí součet ceny.
+Výsledek bude vypadat jako na předešlém obrázku. Nyní můžete podle instrukcí vykonat jediný blok kódu, který tam zatím máte, a pod blokem se vám zobrazí součet ceny.
 
-A můžete i celý soubor převést do HTML a prohládnout si ho v celé kráse. Uděláte to příkazem *Preview* z toolbaru nad editorem, ale před tím ještě musíte soubor uložit, třeba pod jménem `prvni-notebook`. Ke jménu se automaticky připojí přípona Rmd.
+A můžete i celý soubor převést do HTML a prohlédnout si ho v celé kráse. Uděláte to příkazem *Preview* z toolbaru nad editorem, ale před tím ještě musíte soubor uložit, třeba pod jménem `prvni-notebook`. Ke jménu se automaticky připojí přípona Rmd.
 
 Celý výsledek se zobrazí v panelu *Viewer* vpravo:
 
@@ -293,7 +293,7 @@ Už jste pochopili, v čem jsem napsal tuhle knížku? Ano, v RStudiu v R Mar
 
 Ze všech tří způsobů používání R (konzole, skripty, R Markdown) používám R Markdown pro běžné analýzy nejčastěji. Píšu si v něm postup, eRkový kód i poučení z výsledků. Když se pak později k analýze vrátím, třeba proto, že chci pro jiného klienta udělat podobnou, krásně vidím, jak jsem postupoval a co a proč jsem udělal. Už tohle je pro mě obrovská výhoda oproti excelové tabulce, ve které se už po pár týdnech nevyznám a musím znovu pracně zkoumat, co tam je, proč to tam a jak to vlastně funguje.
 
-A totéž doporučuji i vám: klidně pro teď zapoměňte, že nějaká konzole a skripty vůbec existují a používejte na všechno R Markdown.
+A totéž doporučuji i vám: klidně pro teď zapomeňte, že konzole a skripty vůbec existují, a používejte na všechno R Markdown.
 
 ## Z téhle kapitoly si pamatujte
 
@@ -301,7 +301,7 @@ A totéž doporučuji i vám: klidně pro teď zapoměňte, že nějaká konzol
 
 Zvykněte si na R Markdown jako základní způsob práce s R. Konzole se hodí pro pár pomocných příkazů, nebo abyste si vyzkoušeli, jak která funkce funguje. Skripty se hodí pro dávkové zpracování bez interaktivity, když přesně víte, co a jak chcete udělat. Také se jimi definují nové funkce a píšou balíčky. Pro všechno ostatní je tu R Markdown. Když si budete cokoli z této knihy zkoušet, založte si na to R Notebook nebo R Markdown Document -- ono je to skoro totéž.
 
-Bude se vám hodit pár klávesovýc zkratek:
+Bude se vám hodit pár klávesových zkratek:
 
 ```{r shortcuts, echo = FALSE, results='asis'}
 tibble::tribble(
@@ -331,7 +331,7 @@ Pokud si je nechcete pamatovat, všechny mají i své tlačítko buď na toolba
 
 Zatímco v Excelu máte v jedné buňce jedno číslo (nebo jeden text, jedno datum apod.), objekt základního typu (číslo, text, logická hodnota) v R je vždy vektor. To znamená, že obsahuje uspořádanou řadu hodnot daného typu. Vektor může mít délku 1, pak obsahuje jen jednu hodnotu, ale taky třeba milion, a pak obsahuje milion hodnot.
 
-S vektory počítají i běžné operace. Když k vektoru s deseti čísly přičtete jiný vektor s deseti čísly, bude výsledek opět vektor s deseti čísly, ve kterém se sečte první s prvním, druhé s druhým atd. Pokud ale k vektoru s deseti čísly přičtete vektor s jedním číslem, dojde k tzv. recyklaci druhého vektoru, což znamená, že se číslo z druhého vektoru postupně přičte ke všem číslům prvního wektoru.
+S vektory počítají i běžné operace. Když k vektoru s deseti čísly přičtete jiný vektor s deseti čísly, bude výsledek opět vektor s deseti čísly, ve kterém se sečte první s prvním, druhé s druhým atd. Pokud ale k vektoru s deseti čísly přičtete vektor s jedním číslem, dojde k tzv. recyklaci druhého vektoru, což znamená, že se číslo z druhého vektoru postupně přičte ke všem číslům prvního vektoru.
 
 Ukážu to raději na příkladu (funkce `c` tvoří vektory):
 
@@ -357,8 +357,8 @@ Zde na chybu neupozorní, protože se druhý vektor zrecykluje přesně dvakrát
 
 ### Funkce
 
-Funkce fungují úplně stejně jako v Excelu. Nějak se jmenují a v závorce mají parametry. I když žádné parametry nemají, musí za nimi být prázdná závorka. Funkce stejně jako v Excelu vrátí nějakou hodnotu a nikdy nezmění hodnotu parametrů. Pár rozdílů tu ale přeci jenom je:
+Funkce fungují úplně stejně jako v Excelu. Nějak se jmenují a v závorce mají parametry. Když žádné parametry nemají, musí za nimi být prázdná závorka. Funkce stejně jako v Excelu vrátí nějakou hodnotu a nikdy nezmění hodnotu parametrů. Pár rozdílů tu ale přeci jenom je:
 
 -   V názvech funkcí záleží na velikosti písmen. `View` a `view` jsou dvě různé funkce.
 -   Parametry jsou pojmenované, takže jdou zapisovat způsobem `round(x = 1.145, digits = 2)`. Pokud ale dodržím závazné pořadí parametrů, mohu napsat i `round(1.145, 2)` a dostanu stejný výsledek.
--   Funkce umí pracovat s vektory. To znamená, že např. funkce `round` umí zakrouhoit mnoho různých čísel naráz.
+-   Funkce umí pracovat s vektory. To znamená, že např. funkce `round` umí zaokrouhlit mnoho různých čísel naráz.

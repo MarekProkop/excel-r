@@ -34,7 +34,7 @@ Teď už tedy víte, co je data frame, a v dalším textu vám ukážu, jak ho
 
 V Excelu data ručně vkládáte rovnou do buněk listu. To sice jde v R také, ale většinou se to nedělá. Místo toho se napíše příkaz (nebo krátký skript čili posloupnost příkazů), který vytvoří data frame, naplní ho daty a výsledek uloží do objektu, se kterým můžete dál pracovat.
 
-### Funnkce data.frame
+### Funkce data.frame
 
 Konkrétně ceník výše jsem vytvořil tímto příkazem:
 
@@ -45,7 +45,7 @@ Vysvětlím podrobněji:
 
 1. Do objektu `sample_df` přiřadím (neboli uložím) výsledek funkce `data.frame`. To jde zjednodušeně napsat jako `sample_df <- data.frame(...)`, kde tři tečky reprezentují tzv. argumenty (nebo též parametry) funkce `data.frame`. Znaky `<-` se v R používají k přiřazení (uložení) hodnoty do objektu a v RStudiu je můžete zadat klávesou zkratkou <kbd>Alt</kbd>+<kbd>-</kbd> (Alt pomlčka).
 2. Argumenty funkce `data.frame` jsou jednotlivé sloupce, které má data frame mít. Zde to je _produkt_, _jednotka_, _cena_ a _skladem_. Vzájemně jsou odděleny čárkou, na rozdělení do řádků nezáleží.
-3. Sloupce se definují jako `název_sloupce = vektor`, příčemž `vektor` musí určovat hodnoty všech řádků data framu.
+3. Sloupce se definují jako `název_sloupce = vektor`, přičemž `vektor` musí určovat hodnoty všech řádků data framu.
 4. V příkladu vektory zadávám jako výsledek funkce `c`. Ta vezme všechny své argumenty (oddělené čárkou) a vytvoří z nich vektor. Všimněte si, že textové hodnoty se píší do uvozovek, kdežto číselné a logické ne.
 
 Jakmile máte data frame vytvořený a uložený do objektu `sample_df`, můžete s ním dál pracovat, např. vypsat jeho obsah:
@@ -75,7 +75,7 @@ Povšimněte si, že abych mohl funkci _tibble_ použít, musím nejdřív nač�
 
 ### Funkce tribble
 
-Oba výše popsané zpsoby zadávání dat do data framu mají jednu nevýhodu: data zapisujete po sloupcích, ačkoli je většinou přirozenější je psát po řádcích. Tuto nevýhodu řeší funkce _tribble_, které je taktéž součástí ekosystému _tidyverse_.
+Oba výše popsané způsoby zadávání dat do data framu mají jednu nevýhodu: data zapisujete po sloupcích, ačkoli je většinou přirozenější je psát po řádcích. Tuto nevýhodu řeší funkce _tribble_, které je taktéž součástí ekosystému _tidyverse_.
 
 Používá se takto:
 
@@ -115,7 +115,7 @@ Inu, skoro stejně. V Excelu něco píšete, pak máte už hotový výsledek a�
 
 ### Funkce edit
 
-Ve skutečnosti můžete i v R opravaovat data skoro stejně, jako v Excelu. Slouží k tomu funkce _edit_, která otveře jednoduchý tabulkový editor, do něj načte data frame uvedený v jejím arguentu, a když v editoru cokoli změníte a pak ho zavřete, vrátí zpátky opravená data.
+Ve skutečnosti můžete i v R opravovat data skoro stejně, jako v Excelu. Slouží k tomu funkce _edit_, která otevře jednoduchý tabulkový editor, do něj načte data frame uvedený v jejím argumentu, a když v editoru cokoli změníte a pak ho zavřete, vrátí zpátky opravená data.
 
 V následujícím příkladu vyvolám editor pro objekt _sample_df_ a výsledek zapíšu zpět do stejného objektu, takže pak bude obsahovat již opravená data. Tímto způsobem se ale ztratí postup vzniku dat, a proto se v R skoro nepoužívá.
 
@@ -125,7 +125,7 @@ sample_df <- edit(sample_df)
 
 ## Chci si jen rychle něco vyzkoušet
 
-V základním R i v některých balíčcích je docela dost vzrových data setů již zabudovaných. Slouží jako příklady pro demonstraci některých postupů a můžete si s nimi zkusit hrát. Často se třeba něco ukazuje na data setu _iris_, který obsahuje vlastnosti několika druhů kosatců.
+V základním R i v některých balíčcích je docela dost vzorových data setů již zabudovaných. Slouží jako příklady pro demonstraci některých postupů a můžete si s nimi zkusit hrát. Často se třeba něco ukazuje na data setu _iris_, který obsahuje vlastnosti několika druhů kosatců.
 
 ```{r}
 iris
@@ -139,7 +139,7 @@ starwars
 
 ## Práce s CSV soubory
 
-V reálné praxi se data do R nejčastějí načítají z CSV souborů. Abyste si to mohli hned vyzkoušet i v případě, že zrovna nemáte žádný CSV po ruce, nejdřív vám ukážu, jak do CSV zapisovat.
+V reálné praxi se data do R nejčastěji načítají z CSV souborů. Abyste si to mohli hned vyzkoušet i v případě, že zrovna nemáte žádný CSV po ruce, nejdřív vám ukážu, jak do CSV zapisovat.
 
 ### Funkce write_csv
 
@@ -157,11 +157,11 @@ Obdobně lze data z CSV souboru načíst funkcí _read_csv_:
 sample_df <- read_csv("sample_df.csv")
 ```
 
-Všiněte si, že funkce vypsala specifikaci sloupců a jejich datových typů. Datové typy odhaduje z obsahu souboru a ne vždy je trefí správně, takže někdy může být potřeba je určit ručně, ať už v parametrech funkce _read_csv_, nebo v dodatečné úpravě získaného data framu.
+Všimněte si, že funkce vypsala specifikaci sloupců a jejich datových typů. Datové typy odhaduje z obsahu souboru a ne vždy je trefí správně, takže někdy může být potřeba je určit ručně, ať už v parametrech funkce _read_csv_, nebo v dodatečné úpravě získaného data framu.
 
 ### Interaktivní import dat v Rstudiu
 
-Pokud nevíte přesně, jak importovaný soubor vypadá, je v RStudiu nejjednoduší zvolit příkaz _Import Dataset_ z menu _File_. Tam si pak můžete na živém náhledu dat vybrat, co přesně chcete importovat, které sloupce jsou kterého typu apod.
+Pokud nevíte přesně, jak importovaný soubor vypadá, je v RStudiu nejjednodušší zvolit příkaz _Import Dataset_ z menu _File_. Tam si pak můžete na živém náhledu dat vybrat, co přesně chcete importovat, které sloupce jsou kterého typu apod.
 
 Podstatné je, že se vám současně generuje i skript, který si můžete zkopírovat pro opakované použití se stejným souborem.
 
@@ -194,7 +194,7 @@ Co přesně jsem udělal?
 
 ## Data na webové stránce
 
-Nakonec vám ukáž, jak snadno můžete načítat data z webových stránek. Ukážu to na tabulce v HTML, se kterou se pracuje nejsnáz, ale jde to i se stránkami, kde jsou data uspořádaná jinak.
+Nakonec vám ukážu, jak snadno můžete načítat data z webových stránek. Ukážu to na tabulce v HTML, se kterou se pracuje nejsnáz, ale jde to i se stránkami, kde jsou data uspořádaná jinak.
 
 Ideální tabulka je např. na stránce [Seznam hlavních měst států světa](https://cs.wikipedia.org/wiki/Seznam_hlavn%C3%ADch_m%C4%9Bst_st%C3%A1t%C5%AF_sv%C4%9Bta) ve Wikipedii. Načtu ji skriptem, který:
 
@@ -230,4 +230,4 @@ mutate(
 
 ## Data z jiných zdrojů
 
-Pomocí různých balíčků jde načítat data i z jich typů zdrojů. Já třeba nečastěji pracuji s daty Google Search Console nebo Google Analytics, která načítám přes API (aplikační rozhraní) resp. prostřednictvím specializovaných balíčků, které toto API zpřístupňují. Pracovat jde i s daty ve všech běžných SQL i NoSQL databázích. Tyto metody jsou už ale nad rámec tohoto článku.
+Pomocí různých balíčků jde načítat data i z jich typů zdrojů. Já třeba nejčastěji pracuji s daty Google Search Console nebo Google Analytics, která načítám přes API (aplikační rozhraní) resp. prostřednictvím specializovaných balíčků, které toto API zpřístupňují. Pracovat jde i s daty ve všech běžných SQL i NoSQL databázích. Tyto metody jsou už ale nad rámec tohoto článku.

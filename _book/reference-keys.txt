@@ -34,7 +34,7 @@ jak-dostat-data-do-r
 co-myslím-daty
 data-frame
 ruční-vstup-dat
-funnkce-data.frame
+funkce-data.frame
 funkce-tibble
 funkce-tribble
 co-když-chci-něco-opravit
@@ -64,7 +64,7 @@ funkce-sumarise
 funkce-group_by
 funkce-count
 kombinace-group_by-s-dalšími-funkcemi-pro-manipulaci-dat
-takák-s-dalšími-funkcemi
+tahák-s-dalšími-funkcemi
 grafy-a-vizualizace
 histogram
 scatter-plot-neboli-bodový-graf
