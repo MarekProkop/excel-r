@@ -44,16 +44,16 @@ Jde to říct i konkrétněji:
 -   Pokud budu chtít z firemní databáze vytáhnout, které zboží se nejvíc prodává např. podle roční doby, mohu to udělat v Excelu i v R. Vyberu si ale R, protože to udělám rychleji, elegantněji a postup půjde snáz kdykoli zopakovat s čerstvými daty.
 -   Na obsahovou analýzu tweetů konkurence si vězmu určitě R, protože to by Excel vůbec nezvládl.
 
-Speciálními výhodami R pak je [R Markdown](https://rmarkdown.rstudio.com/) a [Shiny](https://shiny.rstudio.com/). Tím prvním jdou dělat znovupoužitélné, automatické, moc hezky vypadající reporty, které ocení každý, kdo pracuje pro klienty nebo pro náročného šéfa. To druhé slouží k tvorbě interaktivních webových aplikací, které zpracují nejrůznější data a úhledně zobrazí výsledek.
+Speciálními výhodami R pak je [R Markdown](https://rmarkdown.rstudio.com/) a [Shiny](https://shiny.rstudio.com/). Tím prvním jdou dělat znovupoužitélné, automatické, moc hezky vypadající reporty, které ocení každý, kdo pracuje pro klienty nebo pro náročného šéfa. Ostatně i tato kniha je napsaná v R Markdownu. To druhé slouží k tvorbě interaktivních webových aplikací, které zpracují nejrůznější data a úhledně zobrazí výsledek.
 
 ## Proč zrovna R a ne třeba Python
 
-Když se chcete pustit do datové analytiky a uděláte si rychlou rešerši, co byste se měli naučit, vypadne na vás R, nebo [Python](https://www.python.org/) (nebo obojí). Tyhle dva jazyky se na data používají nejvíc a už dlouho spolu v popularitě soupeří.
+Když se chcete pustit do datové analytiky a uděláte si rychlou rešerši, co byste se měli naučit, vypadne na vás R nebo [Python](https://www.python.org/). Tyhle dva jazyky se na data používají nejvíc a už dlouho spolu v popularitě soupeří.
 
 Stručně řečeno, jsou mezi nimi tyto rozdíly:
 
--   Python je z programátorského hlediska „hezčí" jazyk a programátorům sedne lépe. R je naopak vhodnější pro neprogramátory.
--   Python je o něco lépe vybaven pro strojové učení, NLP (zpracování přirozeného jazyka), automatizaci a software v běžné produkci.
+-   Python je z programátorského hlediska hezčí jazyk a programátorům sedne lépe. R je naopak vhodnější pro neprogramátory.
+-   Python je o něco lépe vybavený pro strojové učení, NLP (zpracování přirozeného jazyka), automatizaci a software v běžné produkci.
 -   R je naopak o něco lepší na interaktivní práci nebo ad hoc úlohy, ve kterých předem úplně nevíte, čeho přesně chcete dosáhnout.
 -   Python je univerzální jazyk a můžete si v něm naprogramovat třeba e-shop. To by v R asi nešlo, byť základní obsahové weby zvládne taky.
 -   R má (zatím) rozvinutější ekosystém knihoven. Google Analytics, Search Console, Google Drive nebo Google Sheets -- nic není problém, to vše už je v R dávno vyřešené. Když jsem tohle psal (březen 2022), evidoval oficiální repozitář CRAN [18 910 eRkových balíčků snad na úplně všechno](https://cran.r-project.org/web/packages/available_packages_by_name.html).

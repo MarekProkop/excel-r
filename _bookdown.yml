@@ -4,3 +4,5 @@ rmd_files:
   - "instalace-a-nastaveni.Rmd"
   - "prvni-kroky.Rmd"
   - "jak-dostat-data-do-r.Rmd"
+  - "manipulace-s-daty.Rmd"
+  - "grafy.Rmd"

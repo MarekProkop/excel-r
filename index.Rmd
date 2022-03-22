@@ -17,19 +17,19 @@ Tuto knihu či spíše sérii článků a návodů jsem napsal především pro
 
 Ale třeba mými klienty nejste. Nevadí. Když už jsem knihu napsal, byla by škoda, kdyby nesloužila i vám. Základy, které zde vykládám, se vám budou hodit skoro v každém oboru, na který se R chystáte aplikovat.
 
-Ukážu vám věci, které asi běžně děláte v Excelu a v R jdou udělat hodně podobně. A naučím vás i věci, které taky děláte v Excelu, ale v R jdou udělat o dost lépe. Už tím na tom vyděláte, pokud se do toho se mnou pustíte. A někdy později, až tahle série skončí a vy budete mít základy v malíčku, vám třeba ukážu i to, co dělám v R jako markeťák a Excel by mi na to rozhodně nestačil.
+Ukážu vám věci, které asi běžně děláte v Excelu a v R jdou udělat hodně podobně. A naučím vás i věci, které taky děláte v Excelu, ale v R jdou udělat o dost lépe. Už tím na tom vyděláte, pokud se do toho se mnou pustíte. A někdy později, až budete mít základy v malíčku, vám třeba ukážu i to, co dělám v R jako markeťák a Excel by mi na to rozhodně nestačil.
 
 ## Čeho chci spolu s vámi dosáhnout {-}
 
-Mám velmi jednoduchý cíl: předpokládám, že umíte docela slušně Excel nebo jiný spreadsheet, třeba Google Sheets. Nepředpokládám, že umíte cokoli jiného, např. programovat. Z toho jsem při psaní vycházel a snažím se toho důsledně držet. Výklad by tedy měl být srozumitelný i neajťákům a programátoři nebo kodéři se u něj mohou nudit.
+Mám jednoduchý cíl: předpokládám, že umíte docela slušně Excel nebo jiný spreadsheet, třeba Google Sheets. Nepředpokládám, že umíte cokoli jiného, např. programovat. Z toho jsem při psaní vycházel a snažím se toho důsledně držet. Výklad by tedy měl být srozumitelný i neajťákům a programátoři nebo kodéři se u něj mohou nudit.
 
-Na druhou stranu od váš čekách určitou zvídavost a chuť se učit. Nedělejte jen to, co vám řeknu. Experimentujte, dohledávejte si další informace na webu, studujte R z více zdrojů součaně. Na důležité zdroje vás budu průběžně odkazovat.
+Na druhou stranu od váš čekám zvídavost a chuť se učit. Nedělejte jen to, co vám řeknu. Experimentujte, dohledávejte si další informace na webu, studujte R z více zdrojů součaně. Na důležité zdroje vás budu průběžně odkazovat.
 
 Na kapitoly pohlížejte jako na navazující lekce. Procházejte je jednu za druhou a ihned si zkoušejte všechny příklady.
 
 ## Zpětná vazba {-}
 
-Budu moc rád, když mě upozorníte na chyby a nedostatky. Něco vám nefunguje, nebo jste něco nepochopili a šlo by to vysvatlit lépe? Napište mi prosím. Ideálně jako [issue na Githubu](https://github.com/MarekProkop/excel-r/issues), nebo e-mailem na [mprokop@prokopsw.cz](mailto:mprokop@prokopsw.cz). Děkuju!
+Budu moc rád, když mě upozorníte na chyby a nedostatky. Něco vám nefunguje, nebo jste něco nepochopili a šlo by to vysvětlit lépe? Napište mi prosím. Ideálně jako [issue na Githubu](https://github.com/MarekProkop/excel-r/issues), nebo e-mailem na [mprokop@prokopsw.cz](mailto:mprokop@prokopsw.cz). Děkuju!
 
 ## O autorovi {-}
 

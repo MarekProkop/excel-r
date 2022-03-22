@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 Manipulace s daty | Od Excelu k R</title>
+  <meta name="description" content="Rychlokurz R pro začátečníky, kteří zatím používali Excel nebo Google Sheets." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 Manipulace s daty | Od Excelu k R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Rychlokurz R pro začátečníky, kteří zatím používali Excel nebo Google Sheets." />
+  <meta name="github-repo" content="MarekProkop/excel-r" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 Manipulace s daty | Od Excelu k R" />
+  
+  <meta name="twitter:description" content="Rychlokurz R pro začátečníky, kteří zatím používali Excel nebo Google Sheets." />
+  
+
+<meta name="author" content="Marek Prokop" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="jak-dostat-data-do-r.html"/>
+<link rel="next" href="grafy.html"/>
+<script src="libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Od Excelu k R</a></li>
+<li class="divider"></li>
+<li><a href="index.html#o-knize">O knize<span></span></a>
+<ul>
+<li><a href="index.html#čeho-chci-spolu-s-vámi-dosáhnout">Čeho chci spolu s vámi dosáhnout<span></span></a></li>
+<li><a href="index.html#zpětná-vazba">Zpětná vazba<span></span></a></li>
+<li><a href="index.html#o-autorovi">O autorovi<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="proc-r.html"><a href="proc-r.html"><i class="fa fa-check"></i><b>1</b> Proč jsem vyměnil Excel za R<span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="proc-r.html"><a href="proc-r.html#co-je-r-a-rstudio"><i class="fa fa-check"></i><b>1.1</b> Co je R a RStudio<span></span></a></li>
+<li class="chapter" data-level="1.2" data-path="proc-r.html"><a href="proc-r.html#pro-koho-je-r-vhodné"><i class="fa fa-check"></i><b>1.2</b> Pro koho je R vhodné<span></span></a></li>
+<li class="chapter" data-level="1.3" data-path="proc-r.html"><a href="proc-r.html#kdo-by-se-do-r-rozhodně-neměl-pouštět"><i class="fa fa-check"></i><b>1.3</b> Kdo by se do R rozhodně neměl pouštět<span></span></a></li>
+<li class="chapter" data-level="1.4" data-path="proc-r.html"><a href="proc-r.html#co-vám-r-ve-srovnání-s-excelem-přinese"><i class="fa fa-check"></i><b>1.4</b> Co vám R ve srovnání s Excelem přinese<span></span></a></li>
+<li class="chapter" data-level="1.5" data-path="proc-r.html"><a href="proc-r.html#proč-zrovna-r-a-ne-třeba-python"><i class="fa fa-check"></i><b>1.5</b> Proč zrovna R a ne třeba Python<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html"><i class="fa fa-check"></i><b>2</b> Instalace a nastavení<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#cloud-nebo-instalace"><i class="fa fa-check"></i><b>2.1</b> Cloud nebo instalace<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-r"><i class="fa fa-check"></i><b>2.2</b> Instalace R<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-rstudia"><i class="fa fa-check"></i><b>2.3</b> Instalace RStudia<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#pokud-už-r-a-rstudio-máte-a-trochu-znáte"><i class="fa fa-check"></i><b>2.4</b> Pokud už R a RStudio máte (a trochu znáte)<span></span></a></li>
+<li class="chapter" data-level="2.5" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#založte-si-cvičný-projekt"><i class="fa fa-check"></i><b>2.5</b> Založte si cvičný projekt<span></span></a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#co-jsou-projekty"><i class="fa fa-check"></i><b>2.5.1</b> Co jsou projekty<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#nastavení-rstudia"><i class="fa fa-check"></i><b>2.6</b> Nastavení RStudia<span></span></a></li>
+<li class="chapter" data-level="2.7" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-balíčků"><i class="fa fa-check"></i><b>2.7</b> Instalace balíčků<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="prvni-kroky.html"><a href="prvni-kroky.html"><i class="fa fa-check"></i><b>3</b> První kroky v R a RStudiu<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#excel-vs.-r"><i class="fa fa-check"></i><b>3.1</b> Excel vs. R<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="prvni-kroky.html"><a href="prvni-kroky.html#tři-způsoby-práce-s-r"><i class="fa fa-check"></i><b>3.2</b> Tři způsoby práce s R<span></span></a></li>
+<li class="chapter" data-level="3.3" data-path="prvni-kroky.html"><a href="prvni-kroky.html#interaktivní-práce-s-konsolí"><i class="fa fa-check"></i><b>3.3</b> Interaktivní práce s konsolí<span></span></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#objekty-proměnné"><i class="fa fa-check"></i><b>3.3.1</b> Objekty (proměnné)<span></span></a></li>
+<li class="chapter" data-level="3.3.2" data-path="prvni-kroky.html"><a href="prvni-kroky.html#funkce"><i class="fa fa-check"></i><b>3.3.2</b> Funkce<span></span></a></li>
+<li class="chapter" data-level="3.3.3" data-path="prvni-kroky.html"><a href="prvni-kroky.html#integrovaná-nápověda"><i class="fa fa-check"></i><b>3.3.3</b> Integrovaná nápověda<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="prvni-kroky.html"><a href="prvni-kroky.html#práce-se-skripty"><i class="fa fa-check"></i><b>3.4</b> Práce se skripty<span></span></a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#úprava-skriptu"><i class="fa fa-check"></i><b>3.4.1</b> Úprava skriptu<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="prvni-kroky.html"><a href="prvni-kroky.html#r-markdown"><i class="fa fa-check"></i><b>3.5</b> R Markdown<span></span></a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#co-je-r-markdown"><i class="fa fa-check"></i><b>3.5.1</b> Co je R Markdown<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="prvni-kroky.html"><a href="prvni-kroky.html#z-téhle-kapitoly-si-pamatujte"><i class="fa fa-check"></i><b>3.6</b> Z téhle kapitoly si pamatujte<span></span></a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#r-markdown-2"><i class="fa fa-check"></i><b>3.6.1</b> R Markdown<span></span></a></li>
+<li class="chapter" data-level="3.6.2" data-path="prvni-kroky.html"><a href="prvni-kroky.html#vektory"><i class="fa fa-check"></i><b>3.6.2</b> Vektory<span></span></a></li>
+<li class="chapter" data-level="3.6.3" data-path="prvni-kroky.html"><a href="prvni-kroky.html#funkce-1"><i class="fa fa-check"></i><b>3.6.3</b> Funkce<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html"><i class="fa fa-check"></i><b>4</b> Jak dostat data do R<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#co-myslím-daty"><i class="fa fa-check"></i><b>4.1</b> Co myslím daty<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#data-frame"><i class="fa fa-check"></i><b>4.1.1</b> Data frame<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#ruční-vstup-dat"><i class="fa fa-check"></i><b>4.2</b> Ruční vstup dat<span></span></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funnkce-data.frame"><i class="fa fa-check"></i><b>4.2.1</b> Funnkce data.frame<span></span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-tibble"><i class="fa fa-check"></i><b>4.2.2</b> Funkce tibble<span></span></a></li>
+<li class="chapter" data-level="4.2.3" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-tribble"><i class="fa fa-check"></i><b>4.2.3</b> Funkce tribble<span></span></a></li>
+<li class="chapter" data-level="4.2.4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#co-když-chci-něco-opravit"><i class="fa fa-check"></i><b>4.2.4</b> Co když chci něco opravit?<span></span></a></li>
+<li class="chapter" data-level="4.2.5" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-edit"><i class="fa fa-check"></i><b>4.2.5</b> Funkce edit<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#chci-si-jen-rychle-něco-vyzkoušet"><i class="fa fa-check"></i><b>4.3</b> Chci si jen rychle něco vyzkoušet<span></span></a></li>
+<li class="chapter" data-level="4.4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#práce-s-csv-soubory"><i class="fa fa-check"></i><b>4.4</b> Práce s CSV soubory<span></span></a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-write_csv"><i class="fa fa-check"></i><b>4.4.1</b> Funkce write_csv<span></span></a></li>
+<li class="chapter" data-level="4.4.2" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-read_csv"><i class="fa fa-check"></i><b>4.4.2</b> Funkce read_csv<span></span></a></li>
+<li class="chapter" data-level="4.4.3" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#interaktivní-import-dat-v-rstudiu"><i class="fa fa-check"></i><b>4.4.3</b> Interaktivní import dat v Rstudiu<span></span></a></li>
+<li class="chapter" data-level="4.4.4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#načtení-csv-z-webu"><i class="fa fa-check"></i><b>4.4.4</b> Načtení CSV z webu<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#data-na-webové-stránce"><i class="fa fa-check"></i><b>4.5</b> Data na webové stránce<span></span></a></li>
+<li class="chapter" data-level="4.6" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#data-z-jiných-zdrojů"><i class="fa fa-check"></i><b>4.6</b> Data z jiných zdrojů<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html"><i class="fa fa-check"></i><b>5</b> Manipulace s daty<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#průzkum-dat-a-výběr-sloupců"><i class="fa fa-check"></i><b>5.1</b> Průzkum dat a výběr sloupců<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#prázdné-hodnoty"><i class="fa fa-check"></i><b>5.1.1</b> Prázdné hodnoty<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#výběr-sloupců"><i class="fa fa-check"></i><b>5.2</b> Výběr sloupců<span></span></a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#funkcionální-princip"><i class="fa fa-check"></i><b>5.2.1</b> Funkcionální princip<span></span></a></li>
+<li class="chapter" data-level="5.2.2" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#pipes-trubky-fajfky"><i class="fa fa-check"></i><b>5.2.2</b> Pipes (trubky, fajfky)<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#filtrování-neboli-výběr-řádků"><i class="fa fa-check"></i><b>5.3</b> Filtrování neboli výběr řádků<span></span></a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#funkce-filter"><i class="fa fa-check"></i><b>5.3.1</b> Funkce <code>filter</code><span></span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#další-funkce-pro-výběr-řádků"><i class="fa fa-check"></i><b>5.3.2</b> Další funkce pro výběr řádků<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#řazení-řádků"><i class="fa fa-check"></i><b>5.4</b> Řazení řádků<span></span></a></li>
+<li class="chapter" data-level="5.5" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#odvozování-nových-sloupců"><i class="fa fa-check"></i><b>5.5</b> Odvozování nových sloupců<span></span></a></li>
+<li class="chapter" data-level="5.6" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#seskupování-řádků-a-agregace"><i class="fa fa-check"></i><b>5.6</b> Seskupování řádků a agregace<span></span></a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#funkce-sumarise"><i class="fa fa-check"></i><b>5.6.1</b> funkce <code>sumarise</code><span></span></a></li>
+<li class="chapter" data-level="5.6.2" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#funkce-group_by"><i class="fa fa-check"></i><b>5.6.2</b> Funkce <code>group_by</code><span></span></a></li>
+<li class="chapter" data-level="5.6.3" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#funkce-count"><i class="fa fa-check"></i><b>5.6.3</b> Funkce <code>count</code><span></span></a></li>
+<li class="chapter" data-level="5.6.4" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#kombinace-group_by-s-dalšími-funkcemi-pro-manipulaci-dat"><i class="fa fa-check"></i><b>5.6.4</b> Kombinace <code>group_by</code> s dalšími funkcemi pro manipulaci dat<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#takák-s-dalšími-funkcemi"><i class="fa fa-check"></i><b>5.7</b> Takák s dalšími funkcemi<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="grafy.html"><a href="grafy.html"><i class="fa fa-check"></i><b>6</b> Grafy a vizualizace<span></span></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="grafy.html"><a href="grafy.html#histogram"><i class="fa fa-check"></i><b>6.1</b> Histogram<span></span></a></li>
+<li class="chapter" data-level="6.2" data-path="grafy.html"><a href="grafy.html#scatter-plot-neboli-bodový-graf"><i class="fa fa-check"></i><b>6.2</b> Scatter plot neboli bodový graf<span></span></a></li>
+<li class="chapter" data-level="6.3" data-path="grafy.html"><a href="grafy.html#sloupečky"><i class="fa fa-check"></i><b>6.3</b> Sloupečky<span></span></a></li>
+<li class="chapter" data-level="6.4" data-path="grafy.html"><a href="grafy.html#čarový-graf-a-timeline"><i class="fa fa-check"></i><b>6.4</b> Čarový graf a timeline<span></span></a></li>
+<li class="chapter" data-level="6.5" data-path="grafy.html"><a href="grafy.html#boxplot"><i class="fa fa-check"></i><b>6.5</b> Boxplot<span></span></a></li>
+<li class="chapter" data-level="6.6" data-path="grafy.html"><a href="grafy.html#koláčový-graf"><i class="fa fa-check"></i><b>6.6</b> Koláčový graf<span></span></a></li>
+<li class="chapter" data-level="6.7" data-path="grafy.html"><a href="grafy.html#tahák"><i class="fa fa-check"></i><b>6.7</b> Tahák<span></span></a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Od Excelu k R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="manipulace-s-daty" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> Manipulace s daty<a href="manipulace-s-daty.html#manipulace-s-daty" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>V této kapitole vám ukážu, jak jde s daty v R manipulovat. Daty myslím jednu či více tabulek uložených v objektech třídy <em>data frame</em> a manipulací myslím zejména:</p>
+<ul>
+<li>výběr sloupců,</li>
+<li>filtrování neboli výběr řádků,</li>
+<li>řazení řádků,</li>
+<li>odvozování nových sloupců,</li>
+<li>seskupování řádků a agregaci,</li>
+<li>spojování více tabulek.</li>
+</ul>
+<p>K tomu všemu používám zásadně balíčky z ekosystému <em>tidyverse</em>, konkrétně <em>dplyr</em> a <em>tidyr</em>. Vy si ale konkrétní balíčky nemusíte pamatovat, protože stačí, když na začátku deklarujete celou <em>tidyverse</em>.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="manipulace-s-daty.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<p>Balík <em>tidyverse</em> mj. obsahuje i vzorový dataset <em>starwars</em>, na kterém většinu postupů ukážu. Nemusíte tedy nikde shánět a importovat jiná data. Pokud si vše vyzkoušíte i na nějakých vlastních datech, bude to jedině dobře.</p>
+<div id="průzkum-dat-a-výběr-sloupců" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Průzkum dat a výběr sloupců<a href="manipulace-s-daty.html#průzkum-dat-a-výběr-sloupců" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Před dalším zpracováním je dobré si data pořádně prohlédnout a ujasnit si, co přesně popisují, jaké datové typy mají jednotlivé sloupce, zda jsou konzistentní, nejsou v nich chyby, něco nechybí atd.</p>
+<p>Nejprve si asi data frame zobrazíte, což můžete udělat několika způsoby. V R Markdownu ho většinou stačí vypsat názvem a tabulkou lze pak interaktivně listovat. To ale nefunguje na konzoli a ani výstup do finálního dokumentu není nejlepší.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="manipulace-s-daty.html#cb69-1" aria-hidden="true" tabindex="-1"></a>starwars</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["height"],"name":[2],"type":["int"],"align":["right"]},{"label":["mass"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hair_color"],"name":[4],"type":["chr"],"align":["left"]},{"label":["skin_color"],"name":[5],"type":["chr"],"align":["left"]},{"label":["eye_color"],"name":[6],"type":["chr"],"align":["left"]},{"label":["birth_year"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["sex"],"name":[8],"type":["chr"],"align":["left"]},{"label":["gender"],"name":[9],"type":["chr"],"align":["left"]},{"label":["homeworld"],"name":[10],"type":["chr"],"align":["left"]},{"label":["species"],"name":[11],"type":["chr"],"align":["left"]},{"label":["films"],"name":[12],"type":["list"],"align":["right"]},{"label":["vehicles"],"name":[13],"type":["list"],"align":["right"]},{"label":["starships"],"name":[14],"type":["list"],"align":["right"]}],"data":[{"1":"Luke Skywalker","2":"172","3":"77.0","4":"blond","5":"fair","6":"blue","7":"19.0","8":"male","9":"masculine","10":"Tatooine","11":"Human","12":"<chr [5]>","13":"<chr [2]>","14":"<chr [2]>"},{"1":"C-3PO","2":"167","3":"75.0","4":"NA","5":"gold","6":"yellow","7":"112.0","8":"none","9":"masculine","10":"Tatooine","11":"Droid","12":"<chr [6]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"R2-D2","2":"96","3":"32.0","4":"NA","5":"white, blue","6":"red","7":"33.0","8":"none","9":"masculine","10":"Naboo","11":"Droid","12":"<chr [7]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Darth Vader","2":"202","3":"136.0","4":"none","5":"white","6":"yellow","7":"41.9","8":"male","9":"masculine","10":"Tatooine","11":"Human","12":"<chr [4]>","13":"<chr [0]>","14":"<chr [1]>"},{"1":"Leia Organa","2":"150","3":"49.0","4":"brown","5":"light","6":"brown","7":"19.0","8":"female","9":"feminine","10":"Alderaan","11":"Human","12":"<chr [5]>","13":"<chr [1]>","14":"<chr [0]>"},{"1":"Owen Lars","2":"178","3":"120.0","4":"brown, grey","5":"light","6":"blue","7":"52.0","8":"male","9":"masculine","10":"Tatooine","11":"Human","12":"<chr [3]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Beru Whitesun lars","2":"165","3":"75.0","4":"brown","5":"light","6":"blue","7":"47.0","8":"female","9":"feminine","10":"Tatooine","11":"Human","12":"<chr [3]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"R5-D4","2":"97","3":"32.0","4":"NA","5":"white, red","6":"red","7":"NA","8":"none","9":"masculine","10":"Tatooine","11":"Droid","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Biggs Darklighter","2":"183","3":"84.0","4":"black","5":"light","6":"brown","7":"24.0","8":"male","9":"masculine","10":"Tatooine","11":"Human","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [1]>"},{"1":"Obi-Wan Kenobi","2":"182","3":"77.0","4":"auburn, white","5":"fair","6":"blue-gray","7":"57.0","8":"male","9":"masculine","10":"Stewjon","11":"Human","12":"<chr [6]>","13":"<chr [1]>","14":"<chr [5]>"},{"1":"Anakin Skywalker","2":"188","3":"84.0","4":"blond","5":"fair","6":"blue","7":"41.9","8":"male","9":"masculine","10":"Tatooine","11":"Human","12":"<chr [3]>","13":"<chr [2]>","14":"<chr [3]>"},{"1":"Wilhuff Tarkin","2":"180","3":"NA","4":"auburn, grey","5":"fair","6":"blue","7":"64.0","8":"male","9":"masculine","10":"Eriadu","11":"Human","12":"<chr [2]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Chewbacca","2":"228","3":"112.0","4":"brown","5":"unknown","6":"blue","7":"200.0","8":"male","9":"masculine","10":"Kashyyyk","11":"Wookiee","12":"<chr [5]>","13":"<chr [1]>","14":"<chr [2]>"},{"1":"Han Solo","2":"180","3":"80.0","4":"brown","5":"fair","6":"brown","7":"29.0","8":"male","9":"masculine","10":"Corellia","11":"Human","12":"<chr [4]>","13":"<chr [0]>","14":"<chr [2]>"},{"1":"Greedo","2":"173","3":"74.0","4":"NA","5":"green","6":"black","7":"44.0","8":"male","9":"masculine","10":"Rodia","11":"Rodian","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Jabba Desilijic Tiure","2":"175","3":"1358.0","4":"NA","5":"green-tan, brown","6":"orange","7":"600.0","8":"hermaphroditic","9":"masculine","10":"Nal Hutta","11":"Hutt","12":"<chr [3]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Wedge Antilles","2":"170","3":"77.0","4":"brown","5":"fair","6":"hazel","7":"21.0","8":"male","9":"masculine","10":"Corellia","11":"Human","12":"<chr [3]>","13":"<chr [1]>","14":"<chr [1]>"},{"1":"Jek Tono Porkins","2":"180","3":"110.0","4":"brown","5":"fair","6":"blue","7":"NA","8":"male","9":"masculine","10":"Bestine IV","11":"Human","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [1]>"},{"1":"Yoda","2":"66","3":"17.0","4":"white","5":"green","6":"brown","7":"896.0","8":"male","9":"masculine","10":"NA","11":"Yoda's species","12":"<chr [5]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Palpatine","2":"170","3":"75.0","4":"grey","5":"pale","6":"yellow","7":"82.0","8":"male","9":"masculine","10":"Naboo","11":"Human","12":"<chr [5]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Boba Fett","2":"183","3":"78.2","4":"black","5":"fair","6":"brown","7":"31.5","8":"male","9":"masculine","10":"Kamino","11":"Human","12":"<chr [3]>","13":"<chr [0]>","14":"<chr [1]>"},{"1":"IG-88","2":"200","3":"140.0","4":"none","5":"metal","6":"red","7":"15.0","8":"none","9":"masculine","10":"NA","11":"Droid","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Bossk","2":"190","3":"113.0","4":"none","5":"green","6":"red","7":"53.0","8":"male","9":"masculine","10":"Trandosha","11":"Trandoshan","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Lando Calrissian","2":"177","3":"79.0","4":"black","5":"dark","6":"brown","7":"31.0","8":"male","9":"masculine","10":"Socorro","11":"Human","12":"<chr [2]>","13":"<chr [0]>","14":"<chr [1]>"},{"1":"Lobot","2":"175","3":"79.0","4":"none","5":"light","6":"blue","7":"37.0","8":"male","9":"masculine","10":"Bespin","11":"Human","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Ackbar","2":"180","3":"83.0","4":"none","5":"brown mottle","6":"orange","7":"41.0","8":"male","9":"masculine","10":"Mon Cala","11":"Mon Calamari","12":"<chr [2]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Mon Mothma","2":"150","3":"NA","4":"auburn","5":"fair","6":"blue","7":"48.0","8":"female","9":"feminine","10":"Chandrila","11":"Human","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Arvel Crynyd","2":"NA","3":"NA","4":"brown","5":"fair","6":"brown","7":"NA","8":"male","9":"masculine","10":"NA","11":"Human","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [1]>"},{"1":"Wicket Systri Warrick","2":"88","3":"20.0","4":"brown","5":"brown","6":"brown","7":"8.0","8":"male","9":"masculine","10":"Endor","11":"Ewok","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Nien Nunb","2":"160","3":"68.0","4":"none","5":"grey","6":"black","7":"NA","8":"male","9":"masculine","10":"Sullust","11":"Sullustan","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [1]>"},{"1":"Qui-Gon Jinn","2":"193","3":"89.0","4":"brown","5":"fair","6":"blue","7":"92.0","8":"male","9":"masculine","10":"NA","11":"Human","12":"<chr [1]>","13":"<chr [1]>","14":"<chr [0]>"},{"1":"Nute Gunray","2":"191","3":"90.0","4":"none","5":"mottled green","6":"red","7":"NA","8":"male","9":"masculine","10":"Cato Neimoidia","11":"Neimodian","12":"<chr [3]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Finis Valorum","2":"170","3":"NA","4":"blond","5":"fair","6":"blue","7":"91.0","8":"male","9":"masculine","10":"Coruscant","11":"Human","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Jar Jar Binks","2":"196","3":"66.0","4":"none","5":"orange","6":"orange","7":"52.0","8":"male","9":"masculine","10":"Naboo","11":"Gungan","12":"<chr [2]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Roos Tarpals","2":"224","3":"82.0","4":"none","5":"grey","6":"orange","7":"NA","8":"male","9":"masculine","10":"Naboo","11":"Gungan","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Rugor Nass","2":"206","3":"NA","4":"none","5":"green","6":"orange","7":"NA","8":"male","9":"masculine","10":"Naboo","11":"Gungan","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Ric Olié","2":"183","3":"NA","4":"brown","5":"fair","6":"blue","7":"NA","8":"NA","9":"NA","10":"Naboo","11":"NA","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [1]>"},{"1":"Watto","2":"137","3":"NA","4":"black","5":"blue, grey","6":"yellow","7":"NA","8":"male","9":"masculine","10":"Toydaria","11":"Toydarian","12":"<chr [2]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Sebulba","2":"112","3":"40.0","4":"none","5":"grey, red","6":"orange","7":"NA","8":"male","9":"masculine","10":"Malastare","11":"Dug","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Quarsh Panaka","2":"183","3":"NA","4":"black","5":"dark","6":"brown","7":"62.0","8":"NA","9":"NA","10":"Naboo","11":"NA","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Shmi Skywalker","2":"163","3":"NA","4":"black","5":"fair","6":"brown","7":"72.0","8":"female","9":"feminine","10":"Tatooine","11":"Human","12":"<chr [2]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Darth Maul","2":"175","3":"80.0","4":"none","5":"red","6":"yellow","7":"54.0","8":"male","9":"masculine","10":"Dathomir","11":"Zabrak","12":"<chr [1]>","13":"<chr [1]>","14":"<chr [1]>"},{"1":"Bib Fortuna","2":"180","3":"NA","4":"none","5":"pale","6":"pink","7":"NA","8":"male","9":"masculine","10":"Ryloth","11":"Twi'lek","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Ayla Secura","2":"178","3":"55.0","4":"none","5":"blue","6":"hazel","7":"48.0","8":"female","9":"feminine","10":"Ryloth","11":"Twi'lek","12":"<chr [3]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Dud Bolt","2":"94","3":"45.0","4":"none","5":"blue, grey","6":"yellow","7":"NA","8":"male","9":"masculine","10":"Vulpter","11":"Vulptereen","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Gasgano","2":"122","3":"NA","4":"none","5":"white, blue","6":"black","7":"NA","8":"male","9":"masculine","10":"Troiken","11":"Xexto","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Ben Quadinaros","2":"163","3":"65.0","4":"none","5":"grey, green, yellow","6":"orange","7":"NA","8":"male","9":"masculine","10":"Tund","11":"Toong","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Mace Windu","2":"188","3":"84.0","4":"none","5":"dark","6":"brown","7":"72.0","8":"male","9":"masculine","10":"Haruun Kal","11":"Human","12":"<chr [3]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Ki-Adi-Mundi","2":"198","3":"82.0","4":"white","5":"pale","6":"yellow","7":"92.0","8":"male","9":"masculine","10":"Cerea","11":"Cerean","12":"<chr [3]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Kit Fisto","2":"196","3":"87.0","4":"none","5":"green","6":"black","7":"NA","8":"male","9":"masculine","10":"Glee Anselm","11":"Nautolan","12":"<chr [3]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Eeth Koth","2":"171","3":"NA","4":"black","5":"brown","6":"brown","7":"NA","8":"male","9":"masculine","10":"Iridonia","11":"Zabrak","12":"<chr [2]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Adi Gallia","2":"184","3":"50.0","4":"none","5":"dark","6":"blue","7":"NA","8":"female","9":"feminine","10":"Coruscant","11":"Tholothian","12":"<chr [2]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Saesee Tiin","2":"188","3":"NA","4":"none","5":"pale","6":"orange","7":"NA","8":"male","9":"masculine","10":"Iktotch","11":"Iktotchi","12":"<chr [2]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Yarael Poof","2":"264","3":"NA","4":"none","5":"white","6":"yellow","7":"NA","8":"male","9":"masculine","10":"Quermia","11":"Quermian","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Plo Koon","2":"188","3":"80.0","4":"none","5":"orange","6":"black","7":"22.0","8":"male","9":"masculine","10":"Dorin","11":"Kel Dor","12":"<chr [3]>","13":"<chr [0]>","14":"<chr [1]>"},{"1":"Mas Amedda","2":"196","3":"NA","4":"none","5":"blue","6":"blue","7":"NA","8":"male","9":"masculine","10":"Champala","11":"Chagrian","12":"<chr [2]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Gregar Typho","2":"185","3":"85.0","4":"black","5":"dark","6":"brown","7":"NA","8":"male","9":"masculine","10":"Naboo","11":"Human","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [1]>"},{"1":"Cordé","2":"157","3":"NA","4":"brown","5":"light","6":"brown","7":"NA","8":"female","9":"feminine","10":"Naboo","11":"Human","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Cliegg Lars","2":"183","3":"NA","4":"brown","5":"fair","6":"blue","7":"82.0","8":"male","9":"masculine","10":"Tatooine","11":"Human","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Poggle the Lesser","2":"183","3":"80.0","4":"none","5":"green","6":"yellow","7":"NA","8":"male","9":"masculine","10":"Geonosis","11":"Geonosian","12":"<chr [2]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Luminara Unduli","2":"170","3":"56.2","4":"black","5":"yellow","6":"blue","7":"58.0","8":"female","9":"feminine","10":"Mirial","11":"Mirialan","12":"<chr [2]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Barriss Offee","2":"166","3":"50.0","4":"black","5":"yellow","6":"blue","7":"40.0","8":"female","9":"feminine","10":"Mirial","11":"Mirialan","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Dormé","2":"165","3":"NA","4":"brown","5":"light","6":"brown","7":"NA","8":"female","9":"feminine","10":"Naboo","11":"Human","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Dooku","2":"193","3":"80.0","4":"white","5":"fair","6":"brown","7":"102.0","8":"male","9":"masculine","10":"Serenno","11":"Human","12":"<chr [2]>","13":"<chr [1]>","14":"<chr [0]>"},{"1":"Bail Prestor Organa","2":"191","3":"NA","4":"black","5":"tan","6":"brown","7":"67.0","8":"male","9":"masculine","10":"Alderaan","11":"Human","12":"<chr [2]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Jango Fett","2":"183","3":"79.0","4":"black","5":"tan","6":"brown","7":"66.0","8":"male","9":"masculine","10":"Concord Dawn","11":"Human","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Zam Wesell","2":"168","3":"55.0","4":"blonde","5":"fair, green, yellow","6":"yellow","7":"NA","8":"female","9":"feminine","10":"Zolan","11":"Clawdite","12":"<chr [1]>","13":"<chr [1]>","14":"<chr [0]>"},{"1":"Dexter Jettster","2":"198","3":"102.0","4":"none","5":"brown","6":"yellow","7":"NA","8":"male","9":"masculine","10":"Ojom","11":"Besalisk","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Lama Su","2":"229","3":"88.0","4":"none","5":"grey","6":"black","7":"NA","8":"male","9":"masculine","10":"Kamino","11":"Kaminoan","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Taun We","2":"213","3":"NA","4":"none","5":"grey","6":"black","7":"NA","8":"female","9":"feminine","10":"Kamino","11":"Kaminoan","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Jocasta Nu","2":"167","3":"NA","4":"white","5":"fair","6":"blue","7":"NA","8":"female","9":"feminine","10":"Coruscant","11":"Human","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Ratts Tyerell","2":"79","3":"15.0","4":"none","5":"grey, blue","6":"unknown","7":"NA","8":"male","9":"masculine","10":"Aleen Minor","11":"Aleena","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"R4-P17","2":"96","3":"NA","4":"none","5":"silver, red","6":"red, blue","7":"NA","8":"none","9":"feminine","10":"NA","11":"Droid","12":"<chr [2]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Wat Tambor","2":"193","3":"48.0","4":"none","5":"green, grey","6":"unknown","7":"NA","8":"male","9":"masculine","10":"Skako","11":"Skakoan","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"San Hill","2":"191","3":"NA","4":"none","5":"grey","6":"gold","7":"NA","8":"male","9":"masculine","10":"Muunilinst","11":"Muun","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Shaak Ti","2":"178","3":"57.0","4":"none","5":"red, blue, white","6":"black","7":"NA","8":"female","9":"feminine","10":"Shili","11":"Togruta","12":"<chr [2]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Grievous","2":"216","3":"159.0","4":"none","5":"brown, white","6":"green, yellow","7":"NA","8":"male","9":"masculine","10":"Kalee","11":"Kaleesh","12":"<chr [1]>","13":"<chr [1]>","14":"<chr [1]>"},{"1":"Tarfful","2":"234","3":"136.0","4":"brown","5":"brown","6":"blue","7":"NA","8":"male","9":"masculine","10":"Kashyyyk","11":"Wookiee","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Raymus Antilles","2":"188","3":"79.0","4":"brown","5":"light","6":"brown","7":"NA","8":"male","9":"masculine","10":"Alderaan","11":"Human","12":"<chr [2]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Sly Moore","2":"178","3":"48.0","4":"none","5":"pale","6":"white","7":"NA","8":"NA","9":"NA","10":"Umbara","11":"NA","12":"<chr [2]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Tion Medon","2":"206","3":"80.0","4":"none","5":"grey","6":"black","7":"NA","8":"male","9":"masculine","10":"Utapau","11":"Pau'an","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Finn","2":"NA","3":"NA","4":"black","5":"dark","6":"dark","7":"NA","8":"male","9":"masculine","10":"NA","11":"Human","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Rey","2":"NA","3":"NA","4":"brown","5":"light","6":"hazel","7":"NA","8":"female","9":"feminine","10":"NA","11":"Human","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Poe Dameron","2":"NA","3":"NA","4":"brown","5":"light","6":"brown","7":"NA","8":"male","9":"masculine","10":"NA","11":"Human","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [1]>"},{"1":"BB8","2":"NA","3":"NA","4":"none","5":"none","6":"black","7":"NA","8":"none","9":"masculine","10":"NA","11":"Droid","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Captain Phasma","2":"NA","3":"NA","4":"unknown","5":"unknown","6":"unknown","7":"NA","8":"NA","9":"NA","10":"NA","11":"NA","12":"<chr [1]>","13":"<chr [0]>","14":"<chr [0]>"},{"1":"Padmé Amidala","2":"165","3":"45.0","4":"brown","5":"light","6":"brown","7":"46.0","8":"female","9":"feminine","10":"Naboo","11":"Human","12":"<chr [3]>","13":"<chr [0]>","14":"<chr [3]>"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Lešpí tedy asi bude funkce <code>View</code>, která otevře tabulkové zobrazení. Vyzkoušejte si to.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="manipulace-s-daty.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(starwars)</span></code></pre></div>
+<p>Kromě prostého zobrazení tabulky, můžete zkusit pár dalších funkcí, které vám toho o datech řeknou víc nebo přehledněji. Já mám rád funkci <code>glimpse</code>, protože hezky ukazuje názvy všech sloupců, jejich datové typy (třídy) a náhled několika prvních hodnot.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="manipulace-s-daty.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(starwars)</span></code></pre></div>
+<pre><code>## Rows: 87
+## Columns: 14
+## $ name       &lt;chr&gt; &quot;Luke Skywalker&quot;, &quot;C-3PO&quot;, &quot;R2-D2&quot;, &quot;Darth Vader&quot;, &quot;Leia Or~
+## $ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2~
+## $ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.~
+## $ hair_color &lt;chr&gt; &quot;blond&quot;, NA, NA, &quot;none&quot;, &quot;brown&quot;, &quot;brown, grey&quot;, &quot;brown&quot;, N~
+## $ skin_color &lt;chr&gt; &quot;fair&quot;, &quot;gold&quot;, &quot;white, blue&quot;, &quot;white&quot;, &quot;light&quot;, &quot;light&quot;, &quot;~
+## $ eye_color  &lt;chr&gt; &quot;blue&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;yellow&quot;, &quot;brown&quot;, &quot;blue&quot;, &quot;blue&quot;,~
+## $ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, ~
+## $ sex        &lt;chr&gt; &quot;male&quot;, &quot;none&quot;, &quot;none&quot;, &quot;male&quot;, &quot;female&quot;, &quot;male&quot;, &quot;female&quot;,~
+## $ gender     &lt;chr&gt; &quot;masculine&quot;, &quot;masculine&quot;, &quot;masculine&quot;, &quot;masculine&quot;, &quot;femini~
+## $ homeworld  &lt;chr&gt; &quot;Tatooine&quot;, &quot;Tatooine&quot;, &quot;Naboo&quot;, &quot;Tatooine&quot;, &quot;Alderaan&quot;, &quot;T~
+## $ species    &lt;chr&gt; &quot;Human&quot;, &quot;Droid&quot;, &quot;Droid&quot;, &quot;Human&quot;, &quot;Human&quot;, &quot;Human&quot;, &quot;Huma~
+## $ films      &lt;list&gt; &lt;&quot;The Empire Strikes Back&quot;, &quot;Revenge of the Sith&quot;, &quot;Return~
+## $ vehicles   &lt;list&gt; &lt;&quot;Snowspeeder&quot;, &quot;Imperial Speeder Bike&quot;&gt;, &lt;&gt;, &lt;&gt;, &lt;&gt;, &quot;Imp~
+## $ starships  &lt;list&gt; &lt;&quot;X-wing&quot;, &quot;Imperial shuttle&quot;&gt;, &lt;&gt;, &lt;&gt;, &quot;TIE Advanced x1&quot;,~</code></pre>
+<p>Všimněte si, že poslední tři sloupce jsou třídy <em>list</em>. To znamená, že v každé buňce je uložen celý seznam více hodnot. Moc dobře se s tím nepracuje, v praxi na to asi hned tak nenarazíte, tak raději tyhle sloupce odstraníme.</p>
+<p>Jak? Tím, že vybereme všechny ostatní funkcí <code>select</code> a výsledek uložíme do vlastního objektu.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="manipulace-s-daty.html#cb73-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="ot">&lt;-</span> <span class="fu">select</span>(starwars, name<span class="sc">:</span>species)</span></code></pre></div>
+<p>K funkci <code>select</code> se ještě za chvíli vrátím. Teď zkuste znovu <code>glimps</code> a všimněte si, že tři poslední sloupce zmizely.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="manipulace-s-daty.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(my_starwars)</span></code></pre></div>
+<pre><code>## Rows: 87
+## Columns: 11
+## $ name       &lt;chr&gt; &quot;Luke Skywalker&quot;, &quot;C-3PO&quot;, &quot;R2-D2&quot;, &quot;Darth Vader&quot;, &quot;Leia Or~
+## $ height     &lt;int&gt; 172, 167, 96, 202, 150, 178, 165, 97, 183, 182, 188, 180, 2~
+## $ mass       &lt;dbl&gt; 77.0, 75.0, 32.0, 136.0, 49.0, 120.0, 75.0, 32.0, 84.0, 77.~
+## $ hair_color &lt;chr&gt; &quot;blond&quot;, NA, NA, &quot;none&quot;, &quot;brown&quot;, &quot;brown, grey&quot;, &quot;brown&quot;, N~
+## $ skin_color &lt;chr&gt; &quot;fair&quot;, &quot;gold&quot;, &quot;white, blue&quot;, &quot;white&quot;, &quot;light&quot;, &quot;light&quot;, &quot;~
+## $ eye_color  &lt;chr&gt; &quot;blue&quot;, &quot;yellow&quot;, &quot;red&quot;, &quot;yellow&quot;, &quot;brown&quot;, &quot;blue&quot;, &quot;blue&quot;,~
+## $ birth_year &lt;dbl&gt; 19.0, 112.0, 33.0, 41.9, 19.0, 52.0, 47.0, NA, 24.0, 57.0, ~
+## $ sex        &lt;chr&gt; &quot;male&quot;, &quot;none&quot;, &quot;none&quot;, &quot;male&quot;, &quot;female&quot;, &quot;male&quot;, &quot;female&quot;,~
+## $ gender     &lt;chr&gt; &quot;masculine&quot;, &quot;masculine&quot;, &quot;masculine&quot;, &quot;masculine&quot;, &quot;femini~
+## $ homeworld  &lt;chr&gt; &quot;Tatooine&quot;, &quot;Tatooine&quot;, &quot;Naboo&quot;, &quot;Tatooine&quot;, &quot;Alderaan&quot;, &quot;T~
+## $ species    &lt;chr&gt; &quot;Human&quot;, &quot;Droid&quot;, &quot;Droid&quot;, &quot;Human&quot;, &quot;Human&quot;, &quot;Human&quot;, &quot;Huma~</code></pre>
+<p>Občas ještě používám funkci <code>summary</code>, která u číselných sloupců (resp. obecně vektorů) ukáže jednoduchou statistiku – minimum, první kvartil, median, průměr, třetí kvartil, maximum a počet prázdných hodnot.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="manipulace-s-daty.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(my_starwars)</span></code></pre></div>
+<pre><code>##      name               height           mass          hair_color       
+##  Length:87          Min.   : 66.0   Min.   :  15.00   Length:87         
+##  Class :character   1st Qu.:167.0   1st Qu.:  55.60   Class :character  
+##  Mode  :character   Median :180.0   Median :  79.00   Mode  :character  
+##                     Mean   :174.4   Mean   :  97.31                     
+##                     3rd Qu.:191.0   3rd Qu.:  84.50                     
+##                     Max.   :264.0   Max.   :1358.00                     
+##                     NA&#39;s   :6       NA&#39;s   :28                          
+##   skin_color         eye_color           birth_year         sex           
+##  Length:87          Length:87          Min.   :  8.00   Length:87         
+##  Class :character   Class :character   1st Qu.: 35.00   Class :character  
+##  Mode  :character   Mode  :character   Median : 52.00   Mode  :character  
+##                                        Mean   : 87.57                     
+##                                        3rd Qu.: 72.00                     
+##                                        Max.   :896.00                     
+##                                        NA&#39;s   :44                         
+##     gender           homeworld           species         
+##  Length:87          Length:87          Length:87         
+##  Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character  
+##                                                          
+##                                                          
+##                                                          
+## </code></pre>
+<div id="prázdné-hodnoty" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Prázdné hodnoty<a href="manipulace-s-daty.html#prázdné-hodnoty" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R rozlišuje prázdné (nedefinované, neznámé) hodnoty a označuje je hodnotou <code>NA</code>. Pozor, <code>NA</code> není ani nula, ani prázdný řetězec. Je to indikátor, že danou hodnotu neznáme, nebo neexistuje. Proto s <code>NA</code> nejde počítat.</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="manipulace-s-daty.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="cn">NA</span> <span class="sc">+</span> <span class="dv">10</span></span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="manipulace-s-daty.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="cn">NA</span>, <span class="dv">30</span>))</span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<p>Všechny tyto a podobné operace vrací NA. A protože to je někdy dost nepraktické, jde to v určitých situacích obejít. Např. součet nebo průměr můžete vypočítat takto:</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="manipulace-s-daty.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="cn">NA</span>, <span class="dv">30</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 60</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="manipulace-s-daty.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="cn">NA</span>, <span class="dv">30</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 20</code></pre>
+<p>Existují i funkce, kterými můžete řádky s <code>NA</code> z dataframu úplně odstranit</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="manipulace-s-daty.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">drop_na</span>(my_starwars)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["height"],"name":[2],"type":["int"],"align":["right"]},{"label":["mass"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hair_color"],"name":[4],"type":["chr"],"align":["left"]},{"label":["skin_color"],"name":[5],"type":["chr"],"align":["left"]},{"label":["eye_color"],"name":[6],"type":["chr"],"align":["left"]},{"label":["birth_year"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["sex"],"name":[8],"type":["chr"],"align":["left"]},{"label":["gender"],"name":[9],"type":["chr"],"align":["left"]},{"label":["homeworld"],"name":[10],"type":["chr"],"align":["left"]},{"label":["species"],"name":[11],"type":["chr"],"align":["left"]}],"data":[{"1":"Luke Skywalker","2":"172","3":"77.0","4":"blond","5":"fair","6":"blue","7":"19.0","8":"male","9":"masculine","10":"Tatooine","11":"Human"},{"1":"Darth Vader","2":"202","3":"136.0","4":"none","5":"white","6":"yellow","7":"41.9","8":"male","9":"masculine","10":"Tatooine","11":"Human"},{"1":"Leia Organa","2":"150","3":"49.0","4":"brown","5":"light","6":"brown","7":"19.0","8":"female","9":"feminine","10":"Alderaan","11":"Human"},{"1":"Owen Lars","2":"178","3":"120.0","4":"brown, grey","5":"light","6":"blue","7":"52.0","8":"male","9":"masculine","10":"Tatooine","11":"Human"},{"1":"Beru Whitesun lars","2":"165","3":"75.0","4":"brown","5":"light","6":"blue","7":"47.0","8":"female","9":"feminine","10":"Tatooine","11":"Human"},{"1":"Biggs Darklighter","2":"183","3":"84.0","4":"black","5":"light","6":"brown","7":"24.0","8":"male","9":"masculine","10":"Tatooine","11":"Human"},{"1":"Obi-Wan Kenobi","2":"182","3":"77.0","4":"auburn, white","5":"fair","6":"blue-gray","7":"57.0","8":"male","9":"masculine","10":"Stewjon","11":"Human"},{"1":"Anakin Skywalker","2":"188","3":"84.0","4":"blond","5":"fair","6":"blue","7":"41.9","8":"male","9":"masculine","10":"Tatooine","11":"Human"},{"1":"Chewbacca","2":"228","3":"112.0","4":"brown","5":"unknown","6":"blue","7":"200.0","8":"male","9":"masculine","10":"Kashyyyk","11":"Wookiee"},{"1":"Han Solo","2":"180","3":"80.0","4":"brown","5":"fair","6":"brown","7":"29.0","8":"male","9":"masculine","10":"Corellia","11":"Human"},{"1":"Wedge Antilles","2":"170","3":"77.0","4":"brown","5":"fair","6":"hazel","7":"21.0","8":"male","9":"masculine","10":"Corellia","11":"Human"},{"1":"Palpatine","2":"170","3":"75.0","4":"grey","5":"pale","6":"yellow","7":"82.0","8":"male","9":"masculine","10":"Naboo","11":"Human"},{"1":"Boba Fett","2":"183","3":"78.2","4":"black","5":"fair","6":"brown","7":"31.5","8":"male","9":"masculine","10":"Kamino","11":"Human"},{"1":"Bossk","2":"190","3":"113.0","4":"none","5":"green","6":"red","7":"53.0","8":"male","9":"masculine","10":"Trandosha","11":"Trandoshan"},{"1":"Lando Calrissian","2":"177","3":"79.0","4":"black","5":"dark","6":"brown","7":"31.0","8":"male","9":"masculine","10":"Socorro","11":"Human"},{"1":"Lobot","2":"175","3":"79.0","4":"none","5":"light","6":"blue","7":"37.0","8":"male","9":"masculine","10":"Bespin","11":"Human"},{"1":"Ackbar","2":"180","3":"83.0","4":"none","5":"brown mottle","6":"orange","7":"41.0","8":"male","9":"masculine","10":"Mon Cala","11":"Mon Calamari"},{"1":"Wicket Systri Warrick","2":"88","3":"20.0","4":"brown","5":"brown","6":"brown","7":"8.0","8":"male","9":"masculine","10":"Endor","11":"Ewok"},{"1":"Jar Jar Binks","2":"196","3":"66.0","4":"none","5":"orange","6":"orange","7":"52.0","8":"male","9":"masculine","10":"Naboo","11":"Gungan"},{"1":"Darth Maul","2":"175","3":"80.0","4":"none","5":"red","6":"yellow","7":"54.0","8":"male","9":"masculine","10":"Dathomir","11":"Zabrak"},{"1":"Ayla Secura","2":"178","3":"55.0","4":"none","5":"blue","6":"hazel","7":"48.0","8":"female","9":"feminine","10":"Ryloth","11":"Twi'lek"},{"1":"Mace Windu","2":"188","3":"84.0","4":"none","5":"dark","6":"brown","7":"72.0","8":"male","9":"masculine","10":"Haruun Kal","11":"Human"},{"1":"Ki-Adi-Mundi","2":"198","3":"82.0","4":"white","5":"pale","6":"yellow","7":"92.0","8":"male","9":"masculine","10":"Cerea","11":"Cerean"},{"1":"Plo Koon","2":"188","3":"80.0","4":"none","5":"orange","6":"black","7":"22.0","8":"male","9":"masculine","10":"Dorin","11":"Kel Dor"},{"1":"Luminara Unduli","2":"170","3":"56.2","4":"black","5":"yellow","6":"blue","7":"58.0","8":"female","9":"feminine","10":"Mirial","11":"Mirialan"},{"1":"Barriss Offee","2":"166","3":"50.0","4":"black","5":"yellow","6":"blue","7":"40.0","8":"female","9":"feminine","10":"Mirial","11":"Mirialan"},{"1":"Dooku","2":"193","3":"80.0","4":"white","5":"fair","6":"brown","7":"102.0","8":"male","9":"masculine","10":"Serenno","11":"Human"},{"1":"Jango Fett","2":"183","3":"79.0","4":"black","5":"tan","6":"brown","7":"66.0","8":"male","9":"masculine","10":"Concord Dawn","11":"Human"},{"1":"Padmé Amidala","2":"165","3":"45.0","4":"brown","5":"light","6":"brown","7":"46.0","8":"female","9":"feminine","10":"Naboo","11":"Human"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>nebo nahradit nějakou jinou hodnotou.</p>
+</div>
+</div>
+<div id="výběr-sloupců" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Výběr sloupců<a href="manipulace-s-daty.html#výběr-sloupců" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Už jsem ukázal, že výběr sloupců provedete funkcí <code>select</code>. Ta má jako první parametr dataframe a za ním nasleduje seznam sloupců, který můžete napsat několika způsoby. Většinou je nejjednodušší sloupce vyjmenovat a oddělit čárkou:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="manipulace-s-daty.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(my_starwars, name, hair_color, eye_color)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["hair_color"],"name":[2],"type":["chr"],"align":["left"]},{"label":["eye_color"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Luke Skywalker","2":"blond","3":"blue"},{"1":"C-3PO","2":"NA","3":"yellow"},{"1":"R2-D2","2":"NA","3":"red"},{"1":"Darth Vader","2":"none","3":"yellow"},{"1":"Leia Organa","2":"brown","3":"brown"},{"1":"Owen Lars","2":"brown, grey","3":"blue"},{"1":"Beru Whitesun lars","2":"brown","3":"blue"},{"1":"R5-D4","2":"NA","3":"red"},{"1":"Biggs Darklighter","2":"black","3":"brown"},{"1":"Obi-Wan Kenobi","2":"auburn, white","3":"blue-gray"},{"1":"Anakin Skywalker","2":"blond","3":"blue"},{"1":"Wilhuff Tarkin","2":"auburn, grey","3":"blue"},{"1":"Chewbacca","2":"brown","3":"blue"},{"1":"Han Solo","2":"brown","3":"brown"},{"1":"Greedo","2":"NA","3":"black"},{"1":"Jabba Desilijic Tiure","2":"NA","3":"orange"},{"1":"Wedge Antilles","2":"brown","3":"hazel"},{"1":"Jek Tono Porkins","2":"brown","3":"blue"},{"1":"Yoda","2":"white","3":"brown"},{"1":"Palpatine","2":"grey","3":"yellow"},{"1":"Boba Fett","2":"black","3":"brown"},{"1":"IG-88","2":"none","3":"red"},{"1":"Bossk","2":"none","3":"red"},{"1":"Lando Calrissian","2":"black","3":"brown"},{"1":"Lobot","2":"none","3":"blue"},{"1":"Ackbar","2":"none","3":"orange"},{"1":"Mon Mothma","2":"auburn","3":"blue"},{"1":"Arvel Crynyd","2":"brown","3":"brown"},{"1":"Wicket Systri Warrick","2":"brown","3":"brown"},{"1":"Nien Nunb","2":"none","3":"black"},{"1":"Qui-Gon Jinn","2":"brown","3":"blue"},{"1":"Nute Gunray","2":"none","3":"red"},{"1":"Finis Valorum","2":"blond","3":"blue"},{"1":"Jar Jar Binks","2":"none","3":"orange"},{"1":"Roos Tarpals","2":"none","3":"orange"},{"1":"Rugor Nass","2":"none","3":"orange"},{"1":"Ric Olié","2":"brown","3":"blue"},{"1":"Watto","2":"black","3":"yellow"},{"1":"Sebulba","2":"none","3":"orange"},{"1":"Quarsh Panaka","2":"black","3":"brown"},{"1":"Shmi Skywalker","2":"black","3":"brown"},{"1":"Darth Maul","2":"none","3":"yellow"},{"1":"Bib Fortuna","2":"none","3":"pink"},{"1":"Ayla Secura","2":"none","3":"hazel"},{"1":"Dud Bolt","2":"none","3":"yellow"},{"1":"Gasgano","2":"none","3":"black"},{"1":"Ben Quadinaros","2":"none","3":"orange"},{"1":"Mace Windu","2":"none","3":"brown"},{"1":"Ki-Adi-Mundi","2":"white","3":"yellow"},{"1":"Kit Fisto","2":"none","3":"black"},{"1":"Eeth Koth","2":"black","3":"brown"},{"1":"Adi Gallia","2":"none","3":"blue"},{"1":"Saesee Tiin","2":"none","3":"orange"},{"1":"Yarael Poof","2":"none","3":"yellow"},{"1":"Plo Koon","2":"none","3":"black"},{"1":"Mas Amedda","2":"none","3":"blue"},{"1":"Gregar Typho","2":"black","3":"brown"},{"1":"Cordé","2":"brown","3":"brown"},{"1":"Cliegg Lars","2":"brown","3":"blue"},{"1":"Poggle the Lesser","2":"none","3":"yellow"},{"1":"Luminara Unduli","2":"black","3":"blue"},{"1":"Barriss Offee","2":"black","3":"blue"},{"1":"Dormé","2":"brown","3":"brown"},{"1":"Dooku","2":"white","3":"brown"},{"1":"Bail Prestor Organa","2":"black","3":"brown"},{"1":"Jango Fett","2":"black","3":"brown"},{"1":"Zam Wesell","2":"blonde","3":"yellow"},{"1":"Dexter Jettster","2":"none","3":"yellow"},{"1":"Lama Su","2":"none","3":"black"},{"1":"Taun We","2":"none","3":"black"},{"1":"Jocasta Nu","2":"white","3":"blue"},{"1":"Ratts Tyerell","2":"none","3":"unknown"},{"1":"R4-P17","2":"none","3":"red, blue"},{"1":"Wat Tambor","2":"none","3":"unknown"},{"1":"San Hill","2":"none","3":"gold"},{"1":"Shaak Ti","2":"none","3":"black"},{"1":"Grievous","2":"none","3":"green, yellow"},{"1":"Tarfful","2":"brown","3":"blue"},{"1":"Raymus Antilles","2":"brown","3":"brown"},{"1":"Sly Moore","2":"none","3":"white"},{"1":"Tion Medon","2":"none","3":"black"},{"1":"Finn","2":"black","3":"dark"},{"1":"Rey","2":"brown","3":"hazel"},{"1":"Poe Dameron","2":"brown","3":"brown"},{"1":"BB8","2":"none","3":"black"},{"1":"Captain Phasma","2":"unknown","3":"unknown"},{"1":"Padmé Amidala","2":"brown","3":"brown"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Můžete použít i souvislý rozsah sloupců oddělený dvojtečkou:</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="manipulace-s-daty.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(my_starwars, hair_color<span class="sc">:</span>eye_color)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["hair_color"],"name":[1],"type":["chr"],"align":["left"]},{"label":["skin_color"],"name":[2],"type":["chr"],"align":["left"]},{"label":["eye_color"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"blond","2":"fair","3":"blue"},{"1":"NA","2":"gold","3":"yellow"},{"1":"NA","2":"white, blue","3":"red"},{"1":"none","2":"white","3":"yellow"},{"1":"brown","2":"light","3":"brown"},{"1":"brown, grey","2":"light","3":"blue"},{"1":"brown","2":"light","3":"blue"},{"1":"NA","2":"white, red","3":"red"},{"1":"black","2":"light","3":"brown"},{"1":"auburn, white","2":"fair","3":"blue-gray"},{"1":"blond","2":"fair","3":"blue"},{"1":"auburn, grey","2":"fair","3":"blue"},{"1":"brown","2":"unknown","3":"blue"},{"1":"brown","2":"fair","3":"brown"},{"1":"NA","2":"green","3":"black"},{"1":"NA","2":"green-tan, brown","3":"orange"},{"1":"brown","2":"fair","3":"hazel"},{"1":"brown","2":"fair","3":"blue"},{"1":"white","2":"green","3":"brown"},{"1":"grey","2":"pale","3":"yellow"},{"1":"black","2":"fair","3":"brown"},{"1":"none","2":"metal","3":"red"},{"1":"none","2":"green","3":"red"},{"1":"black","2":"dark","3":"brown"},{"1":"none","2":"light","3":"blue"},{"1":"none","2":"brown mottle","3":"orange"},{"1":"auburn","2":"fair","3":"blue"},{"1":"brown","2":"fair","3":"brown"},{"1":"brown","2":"brown","3":"brown"},{"1":"none","2":"grey","3":"black"},{"1":"brown","2":"fair","3":"blue"},{"1":"none","2":"mottled green","3":"red"},{"1":"blond","2":"fair","3":"blue"},{"1":"none","2":"orange","3":"orange"},{"1":"none","2":"grey","3":"orange"},{"1":"none","2":"green","3":"orange"},{"1":"brown","2":"fair","3":"blue"},{"1":"black","2":"blue, grey","3":"yellow"},{"1":"none","2":"grey, red","3":"orange"},{"1":"black","2":"dark","3":"brown"},{"1":"black","2":"fair","3":"brown"},{"1":"none","2":"red","3":"yellow"},{"1":"none","2":"pale","3":"pink"},{"1":"none","2":"blue","3":"hazel"},{"1":"none","2":"blue, grey","3":"yellow"},{"1":"none","2":"white, blue","3":"black"},{"1":"none","2":"grey, green, yellow","3":"orange"},{"1":"none","2":"dark","3":"brown"},{"1":"white","2":"pale","3":"yellow"},{"1":"none","2":"green","3":"black"},{"1":"black","2":"brown","3":"brown"},{"1":"none","2":"dark","3":"blue"},{"1":"none","2":"pale","3":"orange"},{"1":"none","2":"white","3":"yellow"},{"1":"none","2":"orange","3":"black"},{"1":"none","2":"blue","3":"blue"},{"1":"black","2":"dark","3":"brown"},{"1":"brown","2":"light","3":"brown"},{"1":"brown","2":"fair","3":"blue"},{"1":"none","2":"green","3":"yellow"},{"1":"black","2":"yellow","3":"blue"},{"1":"black","2":"yellow","3":"blue"},{"1":"brown","2":"light","3":"brown"},{"1":"white","2":"fair","3":"brown"},{"1":"black","2":"tan","3":"brown"},{"1":"black","2":"tan","3":"brown"},{"1":"blonde","2":"fair, green, yellow","3":"yellow"},{"1":"none","2":"brown","3":"yellow"},{"1":"none","2":"grey","3":"black"},{"1":"none","2":"grey","3":"black"},{"1":"white","2":"fair","3":"blue"},{"1":"none","2":"grey, blue","3":"unknown"},{"1":"none","2":"silver, red","3":"red, blue"},{"1":"none","2":"green, grey","3":"unknown"},{"1":"none","2":"grey","3":"gold"},{"1":"none","2":"red, blue, white","3":"black"},{"1":"none","2":"brown, white","3":"green, yellow"},{"1":"brown","2":"brown","3":"blue"},{"1":"brown","2":"light","3":"brown"},{"1":"none","2":"pale","3":"white"},{"1":"none","2":"grey","3":"black"},{"1":"black","2":"dark","3":"dark"},{"1":"brown","2":"light","3":"hazel"},{"1":"brown","2":"light","3":"brown"},{"1":"none","2":"none","3":"black"},{"1":"unknown","2":"unknown","3":"unknown"},{"1":"brown","2":"light","3":"brown"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Případně oba způsoby zkombinovat:</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="manipulace-s-daty.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(my_starwars, name, hair_color<span class="sc">:</span>eye_color)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["hair_color"],"name":[2],"type":["chr"],"align":["left"]},{"label":["skin_color"],"name":[3],"type":["chr"],"align":["left"]},{"label":["eye_color"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"Luke Skywalker","2":"blond","3":"fair","4":"blue"},{"1":"C-3PO","2":"NA","3":"gold","4":"yellow"},{"1":"R2-D2","2":"NA","3":"white, blue","4":"red"},{"1":"Darth Vader","2":"none","3":"white","4":"yellow"},{"1":"Leia Organa","2":"brown","3":"light","4":"brown"},{"1":"Owen Lars","2":"brown, grey","3":"light","4":"blue"},{"1":"Beru Whitesun lars","2":"brown","3":"light","4":"blue"},{"1":"R5-D4","2":"NA","3":"white, red","4":"red"},{"1":"Biggs Darklighter","2":"black","3":"light","4":"brown"},{"1":"Obi-Wan Kenobi","2":"auburn, white","3":"fair","4":"blue-gray"},{"1":"Anakin Skywalker","2":"blond","3":"fair","4":"blue"},{"1":"Wilhuff Tarkin","2":"auburn, grey","3":"fair","4":"blue"},{"1":"Chewbacca","2":"brown","3":"unknown","4":"blue"},{"1":"Han Solo","2":"brown","3":"fair","4":"brown"},{"1":"Greedo","2":"NA","3":"green","4":"black"},{"1":"Jabba Desilijic Tiure","2":"NA","3":"green-tan, brown","4":"orange"},{"1":"Wedge Antilles","2":"brown","3":"fair","4":"hazel"},{"1":"Jek Tono Porkins","2":"brown","3":"fair","4":"blue"},{"1":"Yoda","2":"white","3":"green","4":"brown"},{"1":"Palpatine","2":"grey","3":"pale","4":"yellow"},{"1":"Boba Fett","2":"black","3":"fair","4":"brown"},{"1":"IG-88","2":"none","3":"metal","4":"red"},{"1":"Bossk","2":"none","3":"green","4":"red"},{"1":"Lando Calrissian","2":"black","3":"dark","4":"brown"},{"1":"Lobot","2":"none","3":"light","4":"blue"},{"1":"Ackbar","2":"none","3":"brown mottle","4":"orange"},{"1":"Mon Mothma","2":"auburn","3":"fair","4":"blue"},{"1":"Arvel Crynyd","2":"brown","3":"fair","4":"brown"},{"1":"Wicket Systri Warrick","2":"brown","3":"brown","4":"brown"},{"1":"Nien Nunb","2":"none","3":"grey","4":"black"},{"1":"Qui-Gon Jinn","2":"brown","3":"fair","4":"blue"},{"1":"Nute Gunray","2":"none","3":"mottled green","4":"red"},{"1":"Finis Valorum","2":"blond","3":"fair","4":"blue"},{"1":"Jar Jar Binks","2":"none","3":"orange","4":"orange"},{"1":"Roos Tarpals","2":"none","3":"grey","4":"orange"},{"1":"Rugor Nass","2":"none","3":"green","4":"orange"},{"1":"Ric Olié","2":"brown","3":"fair","4":"blue"},{"1":"Watto","2":"black","3":"blue, grey","4":"yellow"},{"1":"Sebulba","2":"none","3":"grey, red","4":"orange"},{"1":"Quarsh Panaka","2":"black","3":"dark","4":"brown"},{"1":"Shmi Skywalker","2":"black","3":"fair","4":"brown"},{"1":"Darth Maul","2":"none","3":"red","4":"yellow"},{"1":"Bib Fortuna","2":"none","3":"pale","4":"pink"},{"1":"Ayla Secura","2":"none","3":"blue","4":"hazel"},{"1":"Dud Bolt","2":"none","3":"blue, grey","4":"yellow"},{"1":"Gasgano","2":"none","3":"white, blue","4":"black"},{"1":"Ben Quadinaros","2":"none","3":"grey, green, yellow","4":"orange"},{"1":"Mace Windu","2":"none","3":"dark","4":"brown"},{"1":"Ki-Adi-Mundi","2":"white","3":"pale","4":"yellow"},{"1":"Kit Fisto","2":"none","3":"green","4":"black"},{"1":"Eeth Koth","2":"black","3":"brown","4":"brown"},{"1":"Adi Gallia","2":"none","3":"dark","4":"blue"},{"1":"Saesee Tiin","2":"none","3":"pale","4":"orange"},{"1":"Yarael Poof","2":"none","3":"white","4":"yellow"},{"1":"Plo Koon","2":"none","3":"orange","4":"black"},{"1":"Mas Amedda","2":"none","3":"blue","4":"blue"},{"1":"Gregar Typho","2":"black","3":"dark","4":"brown"},{"1":"Cordé","2":"brown","3":"light","4":"brown"},{"1":"Cliegg Lars","2":"brown","3":"fair","4":"blue"},{"1":"Poggle the Lesser","2":"none","3":"green","4":"yellow"},{"1":"Luminara Unduli","2":"black","3":"yellow","4":"blue"},{"1":"Barriss Offee","2":"black","3":"yellow","4":"blue"},{"1":"Dormé","2":"brown","3":"light","4":"brown"},{"1":"Dooku","2":"white","3":"fair","4":"brown"},{"1":"Bail Prestor Organa","2":"black","3":"tan","4":"brown"},{"1":"Jango Fett","2":"black","3":"tan","4":"brown"},{"1":"Zam Wesell","2":"blonde","3":"fair, green, yellow","4":"yellow"},{"1":"Dexter Jettster","2":"none","3":"brown","4":"yellow"},{"1":"Lama Su","2":"none","3":"grey","4":"black"},{"1":"Taun We","2":"none","3":"grey","4":"black"},{"1":"Jocasta Nu","2":"white","3":"fair","4":"blue"},{"1":"Ratts Tyerell","2":"none","3":"grey, blue","4":"unknown"},{"1":"R4-P17","2":"none","3":"silver, red","4":"red, blue"},{"1":"Wat Tambor","2":"none","3":"green, grey","4":"unknown"},{"1":"San Hill","2":"none","3":"grey","4":"gold"},{"1":"Shaak Ti","2":"none","3":"red, blue, white","4":"black"},{"1":"Grievous","2":"none","3":"brown, white","4":"green, yellow"},{"1":"Tarfful","2":"brown","3":"brown","4":"blue"},{"1":"Raymus Antilles","2":"brown","3":"light","4":"brown"},{"1":"Sly Moore","2":"none","3":"pale","4":"white"},{"1":"Tion Medon","2":"none","3":"grey","4":"black"},{"1":"Finn","2":"black","3":"dark","4":"dark"},{"1":"Rey","2":"brown","3":"light","4":"hazel"},{"1":"Poe Dameron","2":"brown","3":"light","4":"brown"},{"1":"BB8","2":"none","3":"none","4":"black"},{"1":"Captain Phasma","2":"unknown","3":"unknown","4":"unknown"},{"1":"Padmé Amidala","2":"brown","3":"light","4":"brown"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Těch způsobů je ale mnohem víc a všechny je najdete v nápovědě:</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="manipulace-s-daty.html#cb90-1" aria-hidden="true" tabindex="-1"></a>?dplyr_tidy_select</span></code></pre></div>
+<div id="funkcionální-princip" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Funkcionální princip<a href="manipulace-s-daty.html#funkcionální-princip" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Podstatné je, že funkce <code>select</code> ani žádná jiná nikdy nemění objekt, se kterým pracuje (zde dataframe <em>my_starwars</em>). R je tzv. funkcionální jazyk, což znamená, že všechny funkce nějak zpracují parametry, vrátí výsledek jako nový objekt (který si můžete i nemusíte uložit), ale parametry nikdy nezmění.</p>
+<p>Mimochodem, jazyk vzorců Excelu je taky funkcionální – funkce v něm taky něco vrátí, ale parametry nezmění.</p>
+</div>
+<div id="pipes-trubky-fajfky" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Pipes (trubky, fajfky)<a href="manipulace-s-daty.html#pipes-trubky-fajfky" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Představte si, že chcete na objekt (zde dataframe) aplikovat nějakou funkci, a na výsledek, který dostanete, chcete aplikovat další funkci. Stejně jako v Excelu to jde udělat vnořováním funkcí:</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="manipulace-s-daty.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(<span class="fu">select</span>(my_starwars, name, hair_color))</span></code></pre></div>
+<pre><code>## Rows: 87
+## Columns: 2
+## $ name       &lt;chr&gt; &quot;Luke Skywalker&quot;, &quot;C-3PO&quot;, &quot;R2-D2&quot;, &quot;Darth Vader&quot;, &quot;Leia Or~
+## $ hair_color &lt;chr&gt; &quot;blond&quot;, NA, NA, &quot;none&quot;, &quot;brown&quot;, &quot;brown, grey&quot;, &quot;brown&quot;, N~</code></pre>
+<p>Jenže vnořování mnoha funkcí do sebe v Excelu všichni nenávidíme. Jde tím sice udělat úžasné věci, ale je to příšerně nepřehledné a náchylné k chybám. Zápis totiž začíná tím, co se má udělat jako poslední, a to, co se má udělat jako první, je utopené někde uprostřed. Peklo.</p>
+<p>Proto má R operátor <em>pipe</em>, se kterým předešlý výraz přepíšu takhle:</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="manipulace-s-daty.html#cb93-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> <span class="fu">select</span>(name, hair_color) <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code></pre></div>
+<pre><code>## Rows: 87
+## Columns: 2
+## $ name       &lt;chr&gt; &quot;Luke Skywalker&quot;, &quot;C-3PO&quot;, &quot;R2-D2&quot;, &quot;Darth Vader&quot;, &quot;Leia Or~
+## $ hair_color &lt;chr&gt; &quot;blond&quot;, NA, NA, &quot;none&quot;, &quot;brown&quot;, &quot;brown, grey&quot;, &quot;brown&quot;, N~</code></pre>
+<p>případně ještě přehledněji:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="manipulace-s-daty.html#cb95-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb95-2"><a href="manipulace-s-daty.html#cb95-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, hair_color) <span class="sc">|&gt;</span> </span>
+<span id="cb95-3"><a href="manipulace-s-daty.html#cb95-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code></pre></div>
+<pre><code>## Rows: 87
+## Columns: 2
+## $ name       &lt;chr&gt; &quot;Luke Skywalker&quot;, &quot;C-3PO&quot;, &quot;R2-D2&quot;, &quot;Darth Vader&quot;, &quot;Leia Or~
+## $ hair_color &lt;chr&gt; &quot;blond&quot;, NA, NA, &quot;none&quot;, &quot;brown&quot;, &quot;brown, grey&quot;, &quot;brown&quot;, N~</code></pre>
+<p>Operátor <em>pipe</em> (<code>|&gt;</code>) vždy vezme výsledek výrazu vlevo a použije ho jako první parametr funkce vpravo. Celé se to tedy píše i čte přesně v pořadí zpracování: vezmu objekt <code>my_starwars</code> na něj aplikuji funkci <code>select</code> a na výsledek aplikuji funkci <code>glimpse</code>.</p>
+<div id="starší-pipe" class="section level4 hasAnchor" number="5.2.2.1">
+<h4><span class="header-section-number">5.2.2.1</span> Starší pipe<a href="manipulace-s-daty.html#starší-pipe" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Skoro ve všech návodech a dokumentaci k R najdete jiný operátor <em>pipe</em>: <code>%&gt;%</code>. Dřív totiž R operátor <em>pipe</em> nemělo a nahrazoval se operátorem z knihovny <em>magrittr</em>. Teď už ale R má nativní operátor <code>|&gt;</code> a já ho mám radši. Pro vás je důležité, že <code>%&gt;%</code> a <code>|&gt;</code> je v principu totéž a skoro vždy se to chová stejně.</p>
+</div>
+</div>
+</div>
+<div id="filtrování-neboli-výběr-řádků" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Filtrování neboli výběr řádků<a href="manipulace-s-daty.html#filtrování-neboli-výběr-řádků" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="funkce-filter" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Funkce <code>filter</code><a href="manipulace-s-daty.html#funkce-filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Pokud nechcete zobrazit či dále zpracovat všechny řádky dataframu, vyberete si jen některé. Nějčastěji se na to používá funkce <code>filter</code>. Tohle je její nejjednodušší podoba:</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="manipulace-s-daty.html#cb97-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb97-2"><a href="manipulace-s-daty.html#cb97-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(hair_color <span class="sc">==</span> <span class="st">&quot;blond&quot;</span>)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["height"],"name":[2],"type":["int"],"align":["right"]},{"label":["mass"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["hair_color"],"name":[4],"type":["chr"],"align":["left"]},{"label":["skin_color"],"name":[5],"type":["chr"],"align":["left"]},{"label":["eye_color"],"name":[6],"type":["chr"],"align":["left"]},{"label":["birth_year"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["sex"],"name":[8],"type":["chr"],"align":["left"]},{"label":["gender"],"name":[9],"type":["chr"],"align":["left"]},{"label":["homeworld"],"name":[10],"type":["chr"],"align":["left"]},{"label":["species"],"name":[11],"type":["chr"],"align":["left"]}],"data":[{"1":"Luke Skywalker","2":"172","3":"77","4":"blond","5":"fair","6":"blue","7":"19.0","8":"male","9":"masculine","10":"Tatooine","11":"Human"},{"1":"Anakin Skywalker","2":"188","3":"84","4":"blond","5":"fair","6":"blue","7":"41.9","8":"male","9":"masculine","10":"Tatooine","11":"Human"},{"1":"Finis Valorum","2":"170","3":"NA","4":"blond","5":"fair","6":"blue","7":"91.0","8":"male","9":"masculine","10":"Coruscant","11":"Human"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Jako parametr jsem napsal logickou podmínkou, že se hodnota ve sloupci <code>hair_color</code> musí rovnat <code>blond</code>. Podmínky ale mohu i kombinovat, a pak musí být oddělené čárkou.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="manipulace-s-daty.html#cb98-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb98-2"><a href="manipulace-s-daty.html#cb98-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb98-3"><a href="manipulace-s-daty.html#cb98-3" aria-hidden="true" tabindex="-1"></a>    hair_color <span class="sc">==</span> <span class="st">&quot;brown&quot;</span>,</span>
+<span id="cb98-4"><a href="manipulace-s-daty.html#cb98-4" aria-hidden="true" tabindex="-1"></a>    eye_color <span class="sc">==</span> <span class="st">&quot;blue&quot;</span></span>
+<span id="cb98-5"><a href="manipulace-s-daty.html#cb98-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb98-6"><a href="manipulace-s-daty.html#cb98-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, hair_color, eye_color)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["hair_color"],"name":[2],"type":["chr"],"align":["left"]},{"label":["eye_color"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Beru Whitesun lars","2":"brown","3":"blue"},{"1":"Chewbacca","2":"brown","3":"blue"},{"1":"Jek Tono Porkins","2":"brown","3":"blue"},{"1":"Qui-Gon Jinn","2":"brown","3":"blue"},{"1":"Ric Olié","2":"brown","3":"blue"},{"1":"Cliegg Lars","2":"brown","3":"blue"},{"1":"Tarfful","2":"brown","3":"blue"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Na čísla fungují běžné srovnávací operátory <code>&gt;</code> (větší), <code>&gt;=</code> (větší nebo rovno), <code>&lt;</code> (menší), <code>&lt;=</code> (menší nebo rovno).</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="manipulace-s-daty.html#cb99-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb99-2"><a href="manipulace-s-daty.html#cb99-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">220</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb99-3"><a href="manipulace-s-daty.html#cb99-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, height)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["height"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"Chewbacca","2":"228"},{"1":"Roos Tarpals","2":"224"},{"1":"Yarael Poof","2":"264"},{"1":"Lama Su","2":"229"},{"1":"Tarfful","2":"234"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>V podmínkách ale můžete používat i různé funkce. Chcete třeba najít všechny postavy, které jsou vyšší než průměr?</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="manipulace-s-daty.html#cb100-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb100-2"><a href="manipulace-s-daty.html#cb100-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb100-3"><a href="manipulace-s-daty.html#cb100-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, height)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["height"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"Darth Vader","2":"202"},{"1":"Owen Lars","2":"178"},{"1":"Biggs Darklighter","2":"183"},{"1":"Obi-Wan Kenobi","2":"182"},{"1":"Anakin Skywalker","2":"188"},{"1":"Wilhuff Tarkin","2":"180"},{"1":"Chewbacca","2":"228"},{"1":"Han Solo","2":"180"},{"1":"Jabba Desilijic Tiure","2":"175"},{"1":"Jek Tono Porkins","2":"180"},{"1":"Boba Fett","2":"183"},{"1":"IG-88","2":"200"},{"1":"Bossk","2":"190"},{"1":"Lando Calrissian","2":"177"},{"1":"Lobot","2":"175"},{"1":"Ackbar","2":"180"},{"1":"Qui-Gon Jinn","2":"193"},{"1":"Nute Gunray","2":"191"},{"1":"Jar Jar Binks","2":"196"},{"1":"Roos Tarpals","2":"224"},{"1":"Rugor Nass","2":"206"},{"1":"Ric Olié","2":"183"},{"1":"Quarsh Panaka","2":"183"},{"1":"Darth Maul","2":"175"},{"1":"Bib Fortuna","2":"180"},{"1":"Ayla Secura","2":"178"},{"1":"Mace Windu","2":"188"},{"1":"Ki-Adi-Mundi","2":"198"},{"1":"Kit Fisto","2":"196"},{"1":"Adi Gallia","2":"184"},{"1":"Saesee Tiin","2":"188"},{"1":"Yarael Poof","2":"264"},{"1":"Plo Koon","2":"188"},{"1":"Mas Amedda","2":"196"},{"1":"Gregar Typho","2":"185"},{"1":"Cliegg Lars","2":"183"},{"1":"Poggle the Lesser","2":"183"},{"1":"Dooku","2":"193"},{"1":"Bail Prestor Organa","2":"191"},{"1":"Jango Fett","2":"183"},{"1":"Dexter Jettster","2":"198"},{"1":"Lama Su","2":"229"},{"1":"Taun We","2":"213"},{"1":"Wat Tambor","2":"193"},{"1":"San Hill","2":"191"},{"1":"Shaak Ti","2":"178"},{"1":"Grievous","2":"216"},{"1":"Tarfful","2":"234"},{"1":"Raymus Antilles","2":"188"},{"1":"Sly Moore","2":"178"},{"1":"Tion Medon","2":"206"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Nebo všechny, jejichž výška je neznámá?</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="manipulace-s-daty.html#cb101-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb101-2"><a href="manipulace-s-daty.html#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(height)) <span class="sc">|&gt;</span> </span>
+<span id="cb101-3"><a href="manipulace-s-daty.html#cb101-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, height)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["height"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"Arvel Crynyd","2":"NA"},{"1":"Finn","2":"NA"},{"1":"Rey","2":"NA"},{"1":"Poe Dameron","2":"NA"},{"1":"BB8","2":"NA"},{"1":"Captain Phasma","2":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="další-funkce-pro-výběr-řádků" class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Další funkce pro výběr řádků<a href="manipulace-s-daty.html#další-funkce-pro-výběr-řádků" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Někdy chcete omezit počet řádků jinak než logickou podmínkou. Např. chcete vrátit jen prvních pět:</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="manipulace-s-daty.html#cb102-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb102-2"><a href="manipulace-s-daty.html#cb102-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb102-3"><a href="manipulace-s-daty.html#cb102-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"Luke Skywalker"},{"1":"C-3PO"},{"1":"R2-D2"},{"1":"Darth Vader"},{"1":"Leia Organa"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>nebo poslední 3:</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="manipulace-s-daty.html#cb103-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb103-2"><a href="manipulace-s-daty.html#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_tail</span>(<span class="at">n =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb103-3"><a href="manipulace-s-daty.html#cb103-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"BB8"},{"1":"Captain Phasma"},{"1":"Padmé Amidala"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>nebo 3 nejvyšší:</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="manipulace-s-daty.html#cb104-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb104-2"><a href="manipulace-s-daty.html#cb104-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> height, <span class="at">n =</span> <span class="dv">3</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb104-3"><a href="manipulace-s-daty.html#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, height)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["height"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"Yarael Poof","2":"264"},{"1":"Tarfful","2":"234"},{"1":"Lama Su","2":"229"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>nebo 5 % nejvyšších:</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="manipulace-s-daty.html#cb105-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb105-2"><a href="manipulace-s-daty.html#cb105-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> height, <span class="at">prop =</span> <span class="fl">0.05</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb105-3"><a href="manipulace-s-daty.html#cb105-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, height)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["height"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"Yarael Poof","2":"264"},{"1":"Tarfful","2":"234"},{"1":"Lama Su","2":"229"},{"1":"Chewbacca","2":"228"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="řazení-řádků" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Řazení řádků<a href="manipulace-s-daty.html#řazení-řádků" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Řádky se řadí funkcí <code>arrange</code>, ve které se jako parametry uvedou sloupce, podle kterých se má řadit, oddělené čárkou.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="manipulace-s-daty.html#cb106-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb106-2"><a href="manipulace-s-daty.html#cb106-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(species, name) <span class="sc">|&gt;</span> </span>
+<span id="cb106-3"><a href="manipulace-s-daty.html#cb106-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, name)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["species"],"name":[1],"type":["chr"],"align":["left"]},{"label":["name"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"Aleena","2":"Ratts Tyerell"},{"1":"Besalisk","2":"Dexter Jettster"},{"1":"Cerean","2":"Ki-Adi-Mundi"},{"1":"Clawdite","2":"Zam Wesell"},{"1":"Droid","2":"BB8"},{"1":"Droid","2":"C-3PO"},{"1":"Droid","2":"IG-88"},{"1":"Droid","2":"R2-D2"},{"1":"Droid","2":"R4-P17"},{"1":"Droid","2":"R5-D4"},{"1":"Dug","2":"Sebulba"},{"1":"Ewok","2":"Wicket Systri Warrick"},{"1":"Geonosian","2":"Poggle the Lesser"},{"1":"Gungan","2":"Jar Jar Binks"},{"1":"Gungan","2":"Roos Tarpals"},{"1":"Gungan","2":"Rugor Nass"},{"1":"Human","2":"Anakin Skywalker"},{"1":"Human","2":"Arvel Crynyd"},{"1":"Human","2":"Bail Prestor Organa"},{"1":"Human","2":"Beru Whitesun lars"},{"1":"Human","2":"Biggs Darklighter"},{"1":"Human","2":"Boba Fett"},{"1":"Human","2":"Cliegg Lars"},{"1":"Human","2":"Cordé"},{"1":"Human","2":"Darth Vader"},{"1":"Human","2":"Dooku"},{"1":"Human","2":"Dormé"},{"1":"Human","2":"Finis Valorum"},{"1":"Human","2":"Finn"},{"1":"Human","2":"Gregar Typho"},{"1":"Human","2":"Han Solo"},{"1":"Human","2":"Jango Fett"},{"1":"Human","2":"Jek Tono Porkins"},{"1":"Human","2":"Jocasta Nu"},{"1":"Human","2":"Lando Calrissian"},{"1":"Human","2":"Leia Organa"},{"1":"Human","2":"Lobot"},{"1":"Human","2":"Luke Skywalker"},{"1":"Human","2":"Mace Windu"},{"1":"Human","2":"Mon Mothma"},{"1":"Human","2":"Obi-Wan Kenobi"},{"1":"Human","2":"Owen Lars"},{"1":"Human","2":"Padmé Amidala"},{"1":"Human","2":"Palpatine"},{"1":"Human","2":"Poe Dameron"},{"1":"Human","2":"Qui-Gon Jinn"},{"1":"Human","2":"Raymus Antilles"},{"1":"Human","2":"Rey"},{"1":"Human","2":"Shmi Skywalker"},{"1":"Human","2":"Wedge Antilles"},{"1":"Human","2":"Wilhuff Tarkin"},{"1":"Hutt","2":"Jabba Desilijic Tiure"},{"1":"Chagrian","2":"Mas Amedda"},{"1":"Iktotchi","2":"Saesee Tiin"},{"1":"Kaleesh","2":"Grievous"},{"1":"Kaminoan","2":"Lama Su"},{"1":"Kaminoan","2":"Taun We"},{"1":"Kel Dor","2":"Plo Koon"},{"1":"Mirialan","2":"Barriss Offee"},{"1":"Mirialan","2":"Luminara Unduli"},{"1":"Mon Calamari","2":"Ackbar"},{"1":"Muun","2":"San Hill"},{"1":"Nautolan","2":"Kit Fisto"},{"1":"Neimodian","2":"Nute Gunray"},{"1":"Pau'an","2":"Tion Medon"},{"1":"Quermian","2":"Yarael Poof"},{"1":"Rodian","2":"Greedo"},{"1":"Skakoan","2":"Wat Tambor"},{"1":"Sullustan","2":"Nien Nunb"},{"1":"Tholothian","2":"Adi Gallia"},{"1":"Togruta","2":"Shaak Ti"},{"1":"Toong","2":"Ben Quadinaros"},{"1":"Toydarian","2":"Watto"},{"1":"Trandoshan","2":"Bossk"},{"1":"Twi'lek","2":"Ayla Secura"},{"1":"Twi'lek","2":"Bib Fortuna"},{"1":"Vulptereen","2":"Dud Bolt"},{"1":"Wookiee","2":"Chewbacca"},{"1":"Wookiee","2":"Tarfful"},{"1":"Xexto","2":"Gasgano"},{"1":"Yoda's species","2":"Yoda"},{"1":"Zabrak","2":"Darth Maul"},{"1":"Zabrak","2":"Eeth Koth"},{"1":"NA","2":"Captain Phasma"},{"1":"NA","2":"Quarsh Panaka"},{"1":"NA","2":"Ric Olié"},{"1":"NA","2":"Sly Moore"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Jde řadit i sestupně pomocí funkce <code>desc</code>.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="manipulace-s-daty.html#cb107-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb107-2"><a href="manipulace-s-daty.html#cb107-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(species, <span class="fu">desc</span>(height)) <span class="sc">|&gt;</span> </span>
+<span id="cb107-3"><a href="manipulace-s-daty.html#cb107-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, name, height)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["species"],"name":[1],"type":["chr"],"align":["left"]},{"label":["name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["height"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"Aleena","2":"Ratts Tyerell","3":"79"},{"1":"Besalisk","2":"Dexter Jettster","3":"198"},{"1":"Cerean","2":"Ki-Adi-Mundi","3":"198"},{"1":"Clawdite","2":"Zam Wesell","3":"168"},{"1":"Droid","2":"IG-88","3":"200"},{"1":"Droid","2":"C-3PO","3":"167"},{"1":"Droid","2":"R5-D4","3":"97"},{"1":"Droid","2":"R2-D2","3":"96"},{"1":"Droid","2":"R4-P17","3":"96"},{"1":"Droid","2":"BB8","3":"NA"},{"1":"Dug","2":"Sebulba","3":"112"},{"1":"Ewok","2":"Wicket Systri Warrick","3":"88"},{"1":"Geonosian","2":"Poggle the Lesser","3":"183"},{"1":"Gungan","2":"Roos Tarpals","3":"224"},{"1":"Gungan","2":"Rugor Nass","3":"206"},{"1":"Gungan","2":"Jar Jar Binks","3":"196"},{"1":"Human","2":"Darth Vader","3":"202"},{"1":"Human","2":"Qui-Gon Jinn","3":"193"},{"1":"Human","2":"Dooku","3":"193"},{"1":"Human","2":"Bail Prestor Organa","3":"191"},{"1":"Human","2":"Anakin Skywalker","3":"188"},{"1":"Human","2":"Mace Windu","3":"188"},{"1":"Human","2":"Raymus Antilles","3":"188"},{"1":"Human","2":"Gregar Typho","3":"185"},{"1":"Human","2":"Biggs Darklighter","3":"183"},{"1":"Human","2":"Boba Fett","3":"183"},{"1":"Human","2":"Cliegg Lars","3":"183"},{"1":"Human","2":"Jango Fett","3":"183"},{"1":"Human","2":"Obi-Wan Kenobi","3":"182"},{"1":"Human","2":"Wilhuff Tarkin","3":"180"},{"1":"Human","2":"Han Solo","3":"180"},{"1":"Human","2":"Jek Tono Porkins","3":"180"},{"1":"Human","2":"Owen Lars","3":"178"},{"1":"Human","2":"Lando Calrissian","3":"177"},{"1":"Human","2":"Lobot","3":"175"},{"1":"Human","2":"Luke Skywalker","3":"172"},{"1":"Human","2":"Wedge Antilles","3":"170"},{"1":"Human","2":"Palpatine","3":"170"},{"1":"Human","2":"Finis Valorum","3":"170"},{"1":"Human","2":"Jocasta Nu","3":"167"},{"1":"Human","2":"Beru Whitesun lars","3":"165"},{"1":"Human","2":"Dormé","3":"165"},{"1":"Human","2":"Padmé Amidala","3":"165"},{"1":"Human","2":"Shmi Skywalker","3":"163"},{"1":"Human","2":"Cordé","3":"157"},{"1":"Human","2":"Leia Organa","3":"150"},{"1":"Human","2":"Mon Mothma","3":"150"},{"1":"Human","2":"Arvel Crynyd","3":"NA"},{"1":"Human","2":"Finn","3":"NA"},{"1":"Human","2":"Rey","3":"NA"},{"1":"Human","2":"Poe Dameron","3":"NA"},{"1":"Hutt","2":"Jabba Desilijic Tiure","3":"175"},{"1":"Chagrian","2":"Mas Amedda","3":"196"},{"1":"Iktotchi","2":"Saesee Tiin","3":"188"},{"1":"Kaleesh","2":"Grievous","3":"216"},{"1":"Kaminoan","2":"Lama Su","3":"229"},{"1":"Kaminoan","2":"Taun We","3":"213"},{"1":"Kel Dor","2":"Plo Koon","3":"188"},{"1":"Mirialan","2":"Luminara Unduli","3":"170"},{"1":"Mirialan","2":"Barriss Offee","3":"166"},{"1":"Mon Calamari","2":"Ackbar","3":"180"},{"1":"Muun","2":"San Hill","3":"191"},{"1":"Nautolan","2":"Kit Fisto","3":"196"},{"1":"Neimodian","2":"Nute Gunray","3":"191"},{"1":"Pau'an","2":"Tion Medon","3":"206"},{"1":"Quermian","2":"Yarael Poof","3":"264"},{"1":"Rodian","2":"Greedo","3":"173"},{"1":"Skakoan","2":"Wat Tambor","3":"193"},{"1":"Sullustan","2":"Nien Nunb","3":"160"},{"1":"Tholothian","2":"Adi Gallia","3":"184"},{"1":"Togruta","2":"Shaak Ti","3":"178"},{"1":"Toong","2":"Ben Quadinaros","3":"163"},{"1":"Toydarian","2":"Watto","3":"137"},{"1":"Trandoshan","2":"Bossk","3":"190"},{"1":"Twi'lek","2":"Bib Fortuna","3":"180"},{"1":"Twi'lek","2":"Ayla Secura","3":"178"},{"1":"Vulptereen","2":"Dud Bolt","3":"94"},{"1":"Wookiee","2":"Tarfful","3":"234"},{"1":"Wookiee","2":"Chewbacca","3":"228"},{"1":"Xexto","2":"Gasgano","3":"122"},{"1":"Yoda's species","2":"Yoda","3":"66"},{"1":"Zabrak","2":"Darth Maul","3":"175"},{"1":"Zabrak","2":"Eeth Koth","3":"171"},{"1":"NA","2":"Ric Olié","3":"183"},{"1":"NA","2":"Quarsh Panaka","3":"183"},{"1":"NA","2":"Sly Moore","3":"178"},{"1":"NA","2":"Captain Phasma","3":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="odvozování-nových-sloupců" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Odvozování nových sloupců<a href="manipulace-s-daty.html#odvozování-nových-sloupců" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Funkcí <code>mutate</code> jde vypočítat hodnoty sloupců, ať už nových, nebo stávajících. V příkladu spočítám BMI z váhy dělené výškou v metrech na druhou a před jméno doplním slovo „tlouštík“, pokud má daná postava nadvahu.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="manipulace-s-daty.html#cb108-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb108-2"><a href="manipulace-s-daty.html#cb108-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name<span class="sc">:</span>mass) <span class="sc">|&gt;</span> </span>
+<span id="cb108-3"><a href="manipulace-s-daty.html#cb108-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb108-4"><a href="manipulace-s-daty.html#cb108-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">bmi =</span> mass <span class="sc">/</span> (height <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">**</span> <span class="dv">2</span>,</span>
+<span id="cb108-5"><a href="manipulace-s-daty.html#cb108-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">paste0</span>(<span class="fu">if_else</span>(bmi <span class="sc">&gt;</span> <span class="dv">30</span>, <span class="st">&quot;tlouštík &quot;</span>, <span class="st">&quot;&quot;</span>), name)</span>
+<span id="cb108-6"><a href="manipulace-s-daty.html#cb108-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["height"],"name":[2],"type":["int"],"align":["right"]},{"label":["mass"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["bmi"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Luke Skywalker","2":"172","3":"77.0","4":"26.02758"},{"1":"C-3PO","2":"167","3":"75.0","4":"26.89232"},{"1":"tlouštík R2-D2","2":"96","3":"32.0","4":"34.72222"},{"1":"tlouštík Darth Vader","2":"202","3":"136.0","4":"33.33007"},{"1":"Leia Organa","2":"150","3":"49.0","4":"21.77778"},{"1":"tlouštík Owen Lars","2":"178","3":"120.0","4":"37.87401"},{"1":"Beru Whitesun lars","2":"165","3":"75.0","4":"27.54821"},{"1":"tlouštík R5-D4","2":"97","3":"32.0","4":"34.00999"},{"1":"Biggs Darklighter","2":"183","3":"84.0","4":"25.08286"},{"1":"Obi-Wan Kenobi","2":"182","3":"77.0","4":"23.24598"},{"1":"Anakin Skywalker","2":"188","3":"84.0","4":"23.76641"},{"1":"NAWilhuff Tarkin","2":"180","3":"NA","4":"NA"},{"1":"Chewbacca","2":"228","3":"112.0","4":"21.54509"},{"1":"Han Solo","2":"180","3":"80.0","4":"24.69136"},{"1":"Greedo","2":"173","3":"74.0","4":"24.72518"},{"1":"tlouštík Jabba Desilijic Tiure","2":"175","3":"1358.0","4":"443.42857"},{"1":"Wedge Antilles","2":"170","3":"77.0","4":"26.64360"},{"1":"tlouštík Jek Tono Porkins","2":"180","3":"110.0","4":"33.95062"},{"1":"tlouštík Yoda","2":"66","3":"17.0","4":"39.02663"},{"1":"Palpatine","2":"170","3":"75.0","4":"25.95156"},{"1":"Boba Fett","2":"183","3":"78.2","4":"23.35095"},{"1":"tlouštík IG-88","2":"200","3":"140.0","4":"35.00000"},{"1":"tlouštík Bossk","2":"190","3":"113.0","4":"31.30194"},{"1":"Lando Calrissian","2":"177","3":"79.0","4":"25.21625"},{"1":"Lobot","2":"175","3":"79.0","4":"25.79592"},{"1":"Ackbar","2":"180","3":"83.0","4":"25.61728"},{"1":"NAMon Mothma","2":"150","3":"NA","4":"NA"},{"1":"NAArvel Crynyd","2":"NA","3":"NA","4":"NA"},{"1":"Wicket Systri Warrick","2":"88","3":"20.0","4":"25.82645"},{"1":"Nien Nunb","2":"160","3":"68.0","4":"26.56250"},{"1":"Qui-Gon Jinn","2":"193","3":"89.0","4":"23.89326"},{"1":"Nute Gunray","2":"191","3":"90.0","4":"24.67038"},{"1":"NAFinis Valorum","2":"170","3":"NA","4":"NA"},{"1":"Jar Jar Binks","2":"196","3":"66.0","4":"17.18034"},{"1":"Roos Tarpals","2":"224","3":"82.0","4":"16.34247"},{"1":"NARugor Nass","2":"206","3":"NA","4":"NA"},{"1":"NARic Olié","2":"183","3":"NA","4":"NA"},{"1":"NAWatto","2":"137","3":"NA","4":"NA"},{"1":"tlouštík Sebulba","2":"112","3":"40.0","4":"31.88776"},{"1":"NAQuarsh Panaka","2":"183","3":"NA","4":"NA"},{"1":"NAShmi Skywalker","2":"163","3":"NA","4":"NA"},{"1":"Darth Maul","2":"175","3":"80.0","4":"26.12245"},{"1":"NABib Fortuna","2":"180","3":"NA","4":"NA"},{"1":"Ayla Secura","2":"178","3":"55.0","4":"17.35892"},{"1":"tlouštík Dud Bolt","2":"94","3":"45.0","4":"50.92802"},{"1":"NAGasgano","2":"122","3":"NA","4":"NA"},{"1":"Ben Quadinaros","2":"163","3":"65.0","4":"24.46460"},{"1":"Mace Windu","2":"188","3":"84.0","4":"23.76641"},{"1":"Ki-Adi-Mundi","2":"198","3":"82.0","4":"20.91623"},{"1":"Kit Fisto","2":"196","3":"87.0","4":"22.64681"},{"1":"NAEeth Koth","2":"171","3":"NA","4":"NA"},{"1":"Adi Gallia","2":"184","3":"50.0","4":"14.76843"},{"1":"NASaesee Tiin","2":"188","3":"NA","4":"NA"},{"1":"NAYarael Poof","2":"264","3":"NA","4":"NA"},{"1":"Plo Koon","2":"188","3":"80.0","4":"22.63468"},{"1":"NAMas Amedda","2":"196","3":"NA","4":"NA"},{"1":"Gregar Typho","2":"185","3":"85.0","4":"24.83565"},{"1":"NACordé","2":"157","3":"NA","4":"NA"},{"1":"NACliegg Lars","2":"183","3":"NA","4":"NA"},{"1":"Poggle the Lesser","2":"183","3":"80.0","4":"23.88844"},{"1":"Luminara Unduli","2":"170","3":"56.2","4":"19.44637"},{"1":"Barriss Offee","2":"166","3":"50.0","4":"18.14487"},{"1":"NADormé","2":"165","3":"NA","4":"NA"},{"1":"Dooku","2":"193","3":"80.0","4":"21.47709"},{"1":"NABail Prestor Organa","2":"191","3":"NA","4":"NA"},{"1":"Jango Fett","2":"183","3":"79.0","4":"23.58984"},{"1":"Zam Wesell","2":"168","3":"55.0","4":"19.48696"},{"1":"Dexter Jettster","2":"198","3":"102.0","4":"26.01775"},{"1":"Lama Su","2":"229","3":"88.0","4":"16.78076"},{"1":"NATaun We","2":"213","3":"NA","4":"NA"},{"1":"NAJocasta Nu","2":"167","3":"NA","4":"NA"},{"1":"Ratts Tyerell","2":"79","3":"15.0","4":"24.03461"},{"1":"NAR4-P17","2":"96","3":"NA","4":"NA"},{"1":"Wat Tambor","2":"193","3":"48.0","4":"12.88625"},{"1":"NASan Hill","2":"191","3":"NA","4":"NA"},{"1":"Shaak Ti","2":"178","3":"57.0","4":"17.99015"},{"1":"tlouštík Grievous","2":"216","3":"159.0","4":"34.07922"},{"1":"Tarfful","2":"234","3":"136.0","4":"24.83746"},{"1":"Raymus Antilles","2":"188","3":"79.0","4":"22.35174"},{"1":"Sly Moore","2":"178","3":"48.0","4":"15.14960"},{"1":"Tion Medon","2":"206","3":"80.0","4":"18.85192"},{"1":"NAFinn","2":"NA","3":"NA","4":"NA"},{"1":"NARey","2":"NA","3":"NA","4":"NA"},{"1":"NAPoe Dameron","2":"NA","3":"NA","4":"NA"},{"1":"NABB8","2":"NA","3":"NA","4":"NA"},{"1":"NACaptain Phasma","2":"NA","3":"NA","4":"NA"},{"1":"Padmé Amidala","2":"165","3":"45.0","4":"16.52893"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>K tomu pár vysvětlení:</p>
+<ul>
+<li>Operátor <code>**</code> umocňuje.</li>
+<li>Funkce <code>paste0</code> spojuje víc textových řetězců do jednoho. Bez 0 na konci mezi ně dá mezeru případně jiný oddělovač dle parametru.</li>
+<li>funkce <code>if_else</code> funguje stejně jako <code>IF</code> v Excelu – podle podmínky v první parametru vrátí buď druhý, nebo třetí parametr.</li>
+<li>Zvykněte si, že data frame je vlastně seznam vektorů, které odpovídají sloupcům. Výraz <code>height / 100</code> tedy vydělí celý vektor, tj. postupně jednotlivé jeho hodnoty, číslem 100. Výpočet tedy neprobíhá po řádcích, nýbrž po sloupcích.</li>
+</ul>
+<p>Potřebujete-li složitější větvení, jde funkce <code>if_else</code> vnořovat do sebe, ale není to moc přehledné. Lepší je funkce <code>case_when</code>, která se používá takhle:</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="manipulace-s-daty.html#cb109-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb109-2"><a href="manipulace-s-daty.html#cb109-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name<span class="sc">:</span>mass) <span class="sc">|&gt;</span> </span>
+<span id="cb109-3"><a href="manipulace-s-daty.html#cb109-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb109-4"><a href="manipulace-s-daty.html#cb109-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">bmi =</span> <span class="fu">round</span>(mass <span class="sc">/</span> (height <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">**</span> <span class="dv">2</span>),</span>
+<span id="cb109-5"><a href="manipulace-s-daty.html#cb109-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">postava =</span> <span class="fu">case_when</span>(</span>
+<span id="cb109-6"><a href="manipulace-s-daty.html#cb109-6" aria-hidden="true" tabindex="-1"></a>      bmi <span class="sc">&lt;</span> <span class="dv">25</span> <span class="sc">~</span> <span class="st">&quot;hubeňour&quot;</span>,</span>
+<span id="cb109-7"><a href="manipulace-s-daty.html#cb109-7" aria-hidden="true" tabindex="-1"></a>      bmi <span class="sc">&gt;=</span> <span class="dv">25</span> <span class="sc">&amp;</span> bmi <span class="sc">&lt;=</span> <span class="dv">30</span> <span class="sc">~</span> <span class="st">&quot;akorát&quot;</span>,</span>
+<span id="cb109-8"><a href="manipulace-s-daty.html#cb109-8" aria-hidden="true" tabindex="-1"></a>      bmi <span class="sc">&gt;</span> <span class="dv">30</span> <span class="sc">~</span> <span class="st">&quot;tlouštík&quot;</span></span>
+<span id="cb109-9"><a href="manipulace-s-daty.html#cb109-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb109-10"><a href="manipulace-s-daty.html#cb109-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["height"],"name":[2],"type":["int"],"align":["right"]},{"label":["mass"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["bmi"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["postava"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"Luke Skywalker","2":"172","3":"77.0","4":"26","5":"akorát"},{"1":"C-3PO","2":"167","3":"75.0","4":"27","5":"akorát"},{"1":"R2-D2","2":"96","3":"32.0","4":"35","5":"tlouštík"},{"1":"Darth Vader","2":"202","3":"136.0","4":"33","5":"tlouštík"},{"1":"Leia Organa","2":"150","3":"49.0","4":"22","5":"hubeňour"},{"1":"Owen Lars","2":"178","3":"120.0","4":"38","5":"tlouštík"},{"1":"Beru Whitesun lars","2":"165","3":"75.0","4":"28","5":"akorát"},{"1":"R5-D4","2":"97","3":"32.0","4":"34","5":"tlouštík"},{"1":"Biggs Darklighter","2":"183","3":"84.0","4":"25","5":"akorát"},{"1":"Obi-Wan Kenobi","2":"182","3":"77.0","4":"23","5":"hubeňour"},{"1":"Anakin Skywalker","2":"188","3":"84.0","4":"24","5":"hubeňour"},{"1":"Wilhuff Tarkin","2":"180","3":"NA","4":"NA","5":"NA"},{"1":"Chewbacca","2":"228","3":"112.0","4":"22","5":"hubeňour"},{"1":"Han Solo","2":"180","3":"80.0","4":"25","5":"akorát"},{"1":"Greedo","2":"173","3":"74.0","4":"25","5":"akorát"},{"1":"Jabba Desilijic Tiure","2":"175","3":"1358.0","4":"443","5":"tlouštík"},{"1":"Wedge Antilles","2":"170","3":"77.0","4":"27","5":"akorát"},{"1":"Jek Tono Porkins","2":"180","3":"110.0","4":"34","5":"tlouštík"},{"1":"Yoda","2":"66","3":"17.0","4":"39","5":"tlouštík"},{"1":"Palpatine","2":"170","3":"75.0","4":"26","5":"akorát"},{"1":"Boba Fett","2":"183","3":"78.2","4":"23","5":"hubeňour"},{"1":"IG-88","2":"200","3":"140.0","4":"35","5":"tlouštík"},{"1":"Bossk","2":"190","3":"113.0","4":"31","5":"tlouštík"},{"1":"Lando Calrissian","2":"177","3":"79.0","4":"25","5":"akorát"},{"1":"Lobot","2":"175","3":"79.0","4":"26","5":"akorát"},{"1":"Ackbar","2":"180","3":"83.0","4":"26","5":"akorát"},{"1":"Mon Mothma","2":"150","3":"NA","4":"NA","5":"NA"},{"1":"Arvel Crynyd","2":"NA","3":"NA","4":"NA","5":"NA"},{"1":"Wicket Systri Warrick","2":"88","3":"20.0","4":"26","5":"akorát"},{"1":"Nien Nunb","2":"160","3":"68.0","4":"27","5":"akorát"},{"1":"Qui-Gon Jinn","2":"193","3":"89.0","4":"24","5":"hubeňour"},{"1":"Nute Gunray","2":"191","3":"90.0","4":"25","5":"akorát"},{"1":"Finis Valorum","2":"170","3":"NA","4":"NA","5":"NA"},{"1":"Jar Jar Binks","2":"196","3":"66.0","4":"17","5":"hubeňour"},{"1":"Roos Tarpals","2":"224","3":"82.0","4":"16","5":"hubeňour"},{"1":"Rugor Nass","2":"206","3":"NA","4":"NA","5":"NA"},{"1":"Ric Olié","2":"183","3":"NA","4":"NA","5":"NA"},{"1":"Watto","2":"137","3":"NA","4":"NA","5":"NA"},{"1":"Sebulba","2":"112","3":"40.0","4":"32","5":"tlouštík"},{"1":"Quarsh Panaka","2":"183","3":"NA","4":"NA","5":"NA"},{"1":"Shmi Skywalker","2":"163","3":"NA","4":"NA","5":"NA"},{"1":"Darth Maul","2":"175","3":"80.0","4":"26","5":"akorát"},{"1":"Bib Fortuna","2":"180","3":"NA","4":"NA","5":"NA"},{"1":"Ayla Secura","2":"178","3":"55.0","4":"17","5":"hubeňour"},{"1":"Dud Bolt","2":"94","3":"45.0","4":"51","5":"tlouštík"},{"1":"Gasgano","2":"122","3":"NA","4":"NA","5":"NA"},{"1":"Ben Quadinaros","2":"163","3":"65.0","4":"24","5":"hubeňour"},{"1":"Mace Windu","2":"188","3":"84.0","4":"24","5":"hubeňour"},{"1":"Ki-Adi-Mundi","2":"198","3":"82.0","4":"21","5":"hubeňour"},{"1":"Kit Fisto","2":"196","3":"87.0","4":"23","5":"hubeňour"},{"1":"Eeth Koth","2":"171","3":"NA","4":"NA","5":"NA"},{"1":"Adi Gallia","2":"184","3":"50.0","4":"15","5":"hubeňour"},{"1":"Saesee Tiin","2":"188","3":"NA","4":"NA","5":"NA"},{"1":"Yarael Poof","2":"264","3":"NA","4":"NA","5":"NA"},{"1":"Plo Koon","2":"188","3":"80.0","4":"23","5":"hubeňour"},{"1":"Mas Amedda","2":"196","3":"NA","4":"NA","5":"NA"},{"1":"Gregar Typho","2":"185","3":"85.0","4":"25","5":"akorát"},{"1":"Cordé","2":"157","3":"NA","4":"NA","5":"NA"},{"1":"Cliegg Lars","2":"183","3":"NA","4":"NA","5":"NA"},{"1":"Poggle the Lesser","2":"183","3":"80.0","4":"24","5":"hubeňour"},{"1":"Luminara Unduli","2":"170","3":"56.2","4":"19","5":"hubeňour"},{"1":"Barriss Offee","2":"166","3":"50.0","4":"18","5":"hubeňour"},{"1":"Dormé","2":"165","3":"NA","4":"NA","5":"NA"},{"1":"Dooku","2":"193","3":"80.0","4":"21","5":"hubeňour"},{"1":"Bail Prestor Organa","2":"191","3":"NA","4":"NA","5":"NA"},{"1":"Jango Fett","2":"183","3":"79.0","4":"24","5":"hubeňour"},{"1":"Zam Wesell","2":"168","3":"55.0","4":"19","5":"hubeňour"},{"1":"Dexter Jettster","2":"198","3":"102.0","4":"26","5":"akorát"},{"1":"Lama Su","2":"229","3":"88.0","4":"17","5":"hubeňour"},{"1":"Taun We","2":"213","3":"NA","4":"NA","5":"NA"},{"1":"Jocasta Nu","2":"167","3":"NA","4":"NA","5":"NA"},{"1":"Ratts Tyerell","2":"79","3":"15.0","4":"24","5":"hubeňour"},{"1":"R4-P17","2":"96","3":"NA","4":"NA","5":"NA"},{"1":"Wat Tambor","2":"193","3":"48.0","4":"13","5":"hubeňour"},{"1":"San Hill","2":"191","3":"NA","4":"NA","5":"NA"},{"1":"Shaak Ti","2":"178","3":"57.0","4":"18","5":"hubeňour"},{"1":"Grievous","2":"216","3":"159.0","4":"34","5":"tlouštík"},{"1":"Tarfful","2":"234","3":"136.0","4":"25","5":"akorát"},{"1":"Raymus Antilles","2":"188","3":"79.0","4":"22","5":"hubeňour"},{"1":"Sly Moore","2":"178","3":"48.0","4":"15","5":"hubeňour"},{"1":"Tion Medon","2":"206","3":"80.0","4":"19","5":"hubeňour"},{"1":"Finn","2":"NA","3":"NA","4":"NA","5":"NA"},{"1":"Rey","2":"NA","3":"NA","4":"NA","5":"NA"},{"1":"Poe Dameron","2":"NA","3":"NA","4":"NA","5":"NA"},{"1":"BB8","2":"NA","3":"NA","4":"NA","5":"NA"},{"1":"Captain Phasma","2":"NA","3":"NA","4":"NA","5":"NA"},{"1":"Padmé Amidala","2":"165","3":"45.0","4":"17","5":"hubeňour"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="seskupování-řádků-a-agregace" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Seskupování řádků a agregace<a href="manipulace-s-daty.html#seskupování-řádků-a-agregace" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="funkce-sumarise" class="section level3 hasAnchor" number="5.6.1">
+<h3><span class="header-section-number">5.6.1</span> funkce <code>sumarise</code><a href="manipulace-s-daty.html#funkce-sumarise" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Začnu prostou agregací. Slouží k ní funkce <code>summarise</code> a používá se skoro stejně, jako funkce <code>mutate</code>. Jen je určená pro agregační funkce (počet, součet, průměr apod.) a z výsledku vynechá všechny sloupce, které se neagregují nebo neslouží jako seskupovací klíče (viz dále).</p>
+<p>Řekněme, že chci vědět, kolik postav v datasetu je a jakou mají průměrnou výšku.</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="manipulace-s-daty.html#cb110-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb110-2"><a href="manipulace-s-daty.html#cb110-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb110-3"><a href="manipulace-s-daty.html#cb110-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb110-4"><a href="manipulace-s-daty.html#cb110-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb110-5"><a href="manipulace-s-daty.html#cb110-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["n"],"name":[1],"type":["int"],"align":["right"]},{"label":["height"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"87","2":"174.358"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Všimněte si, že funkce <code>n()</code> vrátí počet řádků dataframu. Šlo by s ní spočítat třeba počet planet? Nešlo. Na to slouží funkce <code>n_distinct</code>, která spočítá počet unikátních hodnot vektoru.</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="manipulace-s-daty.html#cb111-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb111-2"><a href="manipulace-s-daty.html#cb111-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb111-3"><a href="manipulace-s-daty.html#cb111-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_homes =</span> <span class="fu">n_distinct</span>(homeworld),</span>
+<span id="cb111-4"><a href="manipulace-s-daty.html#cb111-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_species =</span> <span class="fu">n_distinct</span>(species)</span>
+<span id="cb111-5"><a href="manipulace-s-daty.html#cb111-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["n_homes"],"name":[1],"type":["int"],"align":["right"]},{"label":["n_species"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"49","2":"38"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="funkce-group_by" class="section level3 hasAnchor" number="5.6.2">
+<h3><span class="header-section-number">5.6.2</span> Funkce <code>group_by</code><a href="manipulace-s-daty.html#funkce-group_by" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>V reálné praxi potřebujete agregovat celý dataset do jednoho řádku málokdy. Častější jsou agregace podle nějakých skupin. K seskupení slouží funkce <code>group_by</code> a vypadá takhle:</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="manipulace-s-daty.html#cb112-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb112-2"><a href="manipulace-s-daty.html#cb112-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
+<span id="cb112-3"><a href="manipulace-s-daty.html#cb112-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb112-4"><a href="manipulace-s-daty.html#cb112-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb112-5"><a href="manipulace-s-daty.html#cb112-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb112-6"><a href="manipulace-s-daty.html#cb112-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["species"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]},{"label":["height"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Aleena","2":"1","3":"79.0000"},{"1":"Besalisk","2":"1","3":"198.0000"},{"1":"Cerean","2":"1","3":"198.0000"},{"1":"Clawdite","2":"1","3":"168.0000"},{"1":"Droid","2":"6","3":"131.2000"},{"1":"Dug","2":"1","3":"112.0000"},{"1":"Ewok","2":"1","3":"88.0000"},{"1":"Geonosian","2":"1","3":"183.0000"},{"1":"Gungan","2":"3","3":"208.6667"},{"1":"Human","2":"35","3":"176.6452"},{"1":"Hutt","2":"1","3":"175.0000"},{"1":"Chagrian","2":"1","3":"196.0000"},{"1":"Iktotchi","2":"1","3":"188.0000"},{"1":"Kaleesh","2":"1","3":"216.0000"},{"1":"Kaminoan","2":"2","3":"221.0000"},{"1":"Kel Dor","2":"1","3":"188.0000"},{"1":"Mirialan","2":"2","3":"168.0000"},{"1":"Mon Calamari","2":"1","3":"180.0000"},{"1":"Muun","2":"1","3":"191.0000"},{"1":"Nautolan","2":"1","3":"196.0000"},{"1":"Neimodian","2":"1","3":"191.0000"},{"1":"Pau'an","2":"1","3":"206.0000"},{"1":"Quermian","2":"1","3":"264.0000"},{"1":"Rodian","2":"1","3":"173.0000"},{"1":"Skakoan","2":"1","3":"193.0000"},{"1":"Sullustan","2":"1","3":"160.0000"},{"1":"Tholothian","2":"1","3":"184.0000"},{"1":"Togruta","2":"1","3":"178.0000"},{"1":"Toong","2":"1","3":"163.0000"},{"1":"Toydarian","2":"1","3":"137.0000"},{"1":"Trandoshan","2":"1","3":"190.0000"},{"1":"Twi'lek","2":"2","3":"179.0000"},{"1":"Vulptereen","2":"1","3":"94.0000"},{"1":"Wookiee","2":"2","3":"231.0000"},{"1":"Xexto","2":"1","3":"122.0000"},{"1":"Yoda's species","2":"1","3":"66.0000"},{"1":"Zabrak","2":"2","3":"173.0000"},{"1":"NA","2":"4","3":"181.3333"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>jde kombinovat i víc seskupovacích klíčů:</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="manipulace-s-daty.html#cb113-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb113-2"><a href="manipulace-s-daty.html#cb113-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species, homeworld) <span class="sc">|&gt;</span> </span>
+<span id="cb113-3"><a href="manipulace-s-daty.html#cb113-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb113-4"><a href="manipulace-s-daty.html#cb113-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="fu">n</span>(),</span>
+<span id="cb113-5"><a href="manipulace-s-daty.html#cb113-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb113-6"><a href="manipulace-s-daty.html#cb113-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;species&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["species"],"name":[1],"type":["chr"],"align":["left"]},{"label":["homeworld"],"name":[2],"type":["chr"],"align":["left"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]},{"label":["height"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Aleena","2":"Aleen Minor","3":"1","4":"79.0000"},{"1":"Besalisk","2":"Ojom","3":"1","4":"198.0000"},{"1":"Cerean","2":"Cerea","3":"1","4":"198.0000"},{"1":"Clawdite","2":"Zolan","3":"1","4":"168.0000"},{"1":"Droid","2":"Naboo","3":"1","4":"96.0000"},{"1":"Droid","2":"Tatooine","3":"2","4":"132.0000"},{"1":"Droid","2":"NA","3":"3","4":"148.0000"},{"1":"Dug","2":"Malastare","3":"1","4":"112.0000"},{"1":"Ewok","2":"Endor","3":"1","4":"88.0000"},{"1":"Geonosian","2":"Geonosis","3":"1","4":"183.0000"},{"1":"Gungan","2":"Naboo","3":"3","4":"208.6667"},{"1":"Human","2":"Alderaan","3":"3","4":"176.3333"},{"1":"Human","2":"Bespin","3":"1","4":"175.0000"},{"1":"Human","2":"Bestine IV","3":"1","4":"180.0000"},{"1":"Human","2":"Concord Dawn","3":"1","4":"183.0000"},{"1":"Human","2":"Corellia","3":"2","4":"175.0000"},{"1":"Human","2":"Coruscant","3":"2","4":"168.5000"},{"1":"Human","2":"Eriadu","3":"1","4":"180.0000"},{"1":"Human","2":"Haruun Kal","3":"1","4":"188.0000"},{"1":"Human","2":"Chandrila","3":"1","4":"150.0000"},{"1":"Human","2":"Kamino","3":"1","4":"183.0000"},{"1":"Human","2":"Naboo","3":"5","4":"168.4000"},{"1":"Human","2":"Serenno","3":"1","4":"193.0000"},{"1":"Human","2":"Socorro","3":"1","4":"177.0000"},{"1":"Human","2":"Stewjon","3":"1","4":"182.0000"},{"1":"Human","2":"Tatooine","3":"8","4":"179.2500"},{"1":"Human","2":"NA","3":"5","4":"193.0000"},{"1":"Hutt","2":"Nal Hutta","3":"1","4":"175.0000"},{"1":"Chagrian","2":"Champala","3":"1","4":"196.0000"},{"1":"Iktotchi","2":"Iktotch","3":"1","4":"188.0000"},{"1":"Kaleesh","2":"Kalee","3":"1","4":"216.0000"},{"1":"Kaminoan","2":"Kamino","3":"2","4":"221.0000"},{"1":"Kel Dor","2":"Dorin","3":"1","4":"188.0000"},{"1":"Mirialan","2":"Mirial","3":"2","4":"168.0000"},{"1":"Mon Calamari","2":"Mon Cala","3":"1","4":"180.0000"},{"1":"Muun","2":"Muunilinst","3":"1","4":"191.0000"},{"1":"Nautolan","2":"Glee Anselm","3":"1","4":"196.0000"},{"1":"Neimodian","2":"Cato Neimoidia","3":"1","4":"191.0000"},{"1":"Pau'an","2":"Utapau","3":"1","4":"206.0000"},{"1":"Quermian","2":"Quermia","3":"1","4":"264.0000"},{"1":"Rodian","2":"Rodia","3":"1","4":"173.0000"},{"1":"Skakoan","2":"Skako","3":"1","4":"193.0000"},{"1":"Sullustan","2":"Sullust","3":"1","4":"160.0000"},{"1":"Tholothian","2":"Coruscant","3":"1","4":"184.0000"},{"1":"Togruta","2":"Shili","3":"1","4":"178.0000"},{"1":"Toong","2":"Tund","3":"1","4":"163.0000"},{"1":"Toydarian","2":"Toydaria","3":"1","4":"137.0000"},{"1":"Trandoshan","2":"Trandosha","3":"1","4":"190.0000"},{"1":"Twi'lek","2":"Ryloth","3":"2","4":"179.0000"},{"1":"Vulptereen","2":"Vulpter","3":"1","4":"94.0000"},{"1":"Wookiee","2":"Kashyyyk","3":"2","4":"231.0000"},{"1":"Xexto","2":"Troiken","3":"1","4":"122.0000"},{"1":"Yoda's species","2":"NA","3":"1","4":"66.0000"},{"1":"Zabrak","2":"Dathomir","3":"1","4":"175.0000"},{"1":"Zabrak","2":"Iridonia","3":"1","4":"171.0000"},{"1":"NA","2":"Naboo","3":"2","4":"183.0000"},{"1":"NA","2":"Umbara","3":"1","4":"178.0000"},{"1":"NA","2":"NA","3":"1","4":"NaN"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="funkce-count" class="section level3 hasAnchor" number="5.6.3">
+<h3><span class="header-section-number">5.6.3</span> Funkce <code>count</code><a href="manipulace-s-daty.html#funkce-count" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Protože se položky podle nějakého klíče počítají velmi často, existuje zkratka. Místo toho, abyste psali:</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="manipulace-s-daty.html#cb115-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb115-2"><a href="manipulace-s-daty.html#cb115-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
+<span id="cb115-3"><a href="manipulace-s-daty.html#cb115-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["species"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"Aleena","2":"1"},{"1":"Besalisk","2":"1"},{"1":"Cerean","2":"1"},{"1":"Clawdite","2":"1"},{"1":"Droid","2":"6"},{"1":"Dug","2":"1"},{"1":"Ewok","2":"1"},{"1":"Geonosian","2":"1"},{"1":"Gungan","2":"3"},{"1":"Human","2":"35"},{"1":"Hutt","2":"1"},{"1":"Chagrian","2":"1"},{"1":"Iktotchi","2":"1"},{"1":"Kaleesh","2":"1"},{"1":"Kaminoan","2":"2"},{"1":"Kel Dor","2":"1"},{"1":"Mirialan","2":"2"},{"1":"Mon Calamari","2":"1"},{"1":"Muun","2":"1"},{"1":"Nautolan","2":"1"},{"1":"Neimodian","2":"1"},{"1":"Pau'an","2":"1"},{"1":"Quermian","2":"1"},{"1":"Rodian","2":"1"},{"1":"Skakoan","2":"1"},{"1":"Sullustan","2":"1"},{"1":"Tholothian","2":"1"},{"1":"Togruta","2":"1"},{"1":"Toong","2":"1"},{"1":"Toydarian","2":"1"},{"1":"Trandoshan","2":"1"},{"1":"Twi'lek","2":"2"},{"1":"Vulptereen","2":"1"},{"1":"Wookiee","2":"2"},{"1":"Xexto","2":"1"},{"1":"Yoda's species","2":"1"},{"1":"Zabrak","2":"2"},{"1":"NA","2":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>můžete zvolit kratší zápis a výsledek rovnou sestupně setřídit:</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="manipulace-s-daty.html#cb116-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb116-2"><a href="manipulace-s-daty.html#cb116-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species, <span class="at">sort =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["species"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"Human","2":"35"},{"1":"Droid","2":"6"},{"1":"NA","2":"4"},{"1":"Gungan","2":"3"},{"1":"Kaminoan","2":"2"},{"1":"Mirialan","2":"2"},{"1":"Twi'lek","2":"2"},{"1":"Wookiee","2":"2"},{"1":"Zabrak","2":"2"},{"1":"Aleena","2":"1"},{"1":"Besalisk","2":"1"},{"1":"Cerean","2":"1"},{"1":"Clawdite","2":"1"},{"1":"Dug","2":"1"},{"1":"Ewok","2":"1"},{"1":"Geonosian","2":"1"},{"1":"Hutt","2":"1"},{"1":"Chagrian","2":"1"},{"1":"Iktotchi","2":"1"},{"1":"Kaleesh","2":"1"},{"1":"Kel Dor","2":"1"},{"1":"Mon Calamari","2":"1"},{"1":"Muun","2":"1"},{"1":"Nautolan","2":"1"},{"1":"Neimodian","2":"1"},{"1":"Pau'an","2":"1"},{"1":"Quermian","2":"1"},{"1":"Rodian","2":"1"},{"1":"Skakoan","2":"1"},{"1":"Sullustan","2":"1"},{"1":"Tholothian","2":"1"},{"1":"Togruta","2":"1"},{"1":"Toong","2":"1"},{"1":"Toydarian","2":"1"},{"1":"Trandoshan","2":"1"},{"1":"Vulptereen","2":"1"},{"1":"Xexto","2":"1"},{"1":"Yoda's species","2":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="kombinace-group_by-s-dalšími-funkcemi-pro-manipulaci-dat" class="section level3 hasAnchor" number="5.6.4">
+<h3><span class="header-section-number">5.6.4</span> Kombinace <code>group_by</code> s dalšími funkcemi pro manipulaci dat<a href="manipulace-s-daty.html#kombinace-group_by-s-dalšími-funkcemi-pro-manipulaci-dat" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Funkce <code>group_by</code> nemusí sloužit jen k agregaci. Respektive k agregaci slouží skoro vždycky, ale ta nemusí být hlavním cílem.</p>
+<p>O něco výš jsem vám ukázal, jak pomocí funkcí <code>filter</code> a <code>mean</code> vybrat ppostavy, které jsou nadprůměrně vysoké:</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="manipulace-s-daty.html#cb117-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb117-2"><a href="manipulace-s-daty.html#cb117-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb117-3"><a href="manipulace-s-daty.html#cb117-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, height)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["height"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"Darth Vader","2":"202"},{"1":"Owen Lars","2":"178"},{"1":"Biggs Darklighter","2":"183"},{"1":"Obi-Wan Kenobi","2":"182"},{"1":"Anakin Skywalker","2":"188"},{"1":"Wilhuff Tarkin","2":"180"},{"1":"Chewbacca","2":"228"},{"1":"Han Solo","2":"180"},{"1":"Jabba Desilijic Tiure","2":"175"},{"1":"Jek Tono Porkins","2":"180"},{"1":"Boba Fett","2":"183"},{"1":"IG-88","2":"200"},{"1":"Bossk","2":"190"},{"1":"Lando Calrissian","2":"177"},{"1":"Lobot","2":"175"},{"1":"Ackbar","2":"180"},{"1":"Qui-Gon Jinn","2":"193"},{"1":"Nute Gunray","2":"191"},{"1":"Jar Jar Binks","2":"196"},{"1":"Roos Tarpals","2":"224"},{"1":"Rugor Nass","2":"206"},{"1":"Ric Olié","2":"183"},{"1":"Quarsh Panaka","2":"183"},{"1":"Darth Maul","2":"175"},{"1":"Bib Fortuna","2":"180"},{"1":"Ayla Secura","2":"178"},{"1":"Mace Windu","2":"188"},{"1":"Ki-Adi-Mundi","2":"198"},{"1":"Kit Fisto","2":"196"},{"1":"Adi Gallia","2":"184"},{"1":"Saesee Tiin","2":"188"},{"1":"Yarael Poof","2":"264"},{"1":"Plo Koon","2":"188"},{"1":"Mas Amedda","2":"196"},{"1":"Gregar Typho","2":"185"},{"1":"Cliegg Lars","2":"183"},{"1":"Poggle the Lesser","2":"183"},{"1":"Dooku","2":"193"},{"1":"Bail Prestor Organa","2":"191"},{"1":"Jango Fett","2":"183"},{"1":"Dexter Jettster","2":"198"},{"1":"Lama Su","2":"229"},{"1":"Taun We","2":"213"},{"1":"Wat Tambor","2":"193"},{"1":"San Hill","2":"191"},{"1":"Shaak Ti","2":"178"},{"1":"Grievous","2":"216"},{"1":"Tarfful","2":"234"},{"1":"Raymus Antilles","2":"188"},{"1":"Sly Moore","2":"178"},{"1":"Tion Medon","2":"206"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Co kdych ale chtěl vybrat jen ty postavy, které jsou nadprůměrně vysoké jen v rámci svého druhu? Použiju <code>group_by</code> a pro přehlednost výsledek ještě setřídím.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="manipulace-s-daty.html#cb118-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb118-2"><a href="manipulace-s-daty.html#cb118-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
+<span id="cb118-3"><a href="manipulace-s-daty.html#cb118-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb118-4"><a href="manipulace-s-daty.html#cb118-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, species, height) <span class="sc">|&gt;</span> </span>
+<span id="cb118-5"><a href="manipulace-s-daty.html#cb118-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(species, <span class="fu">desc</span>(height))</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["species"],"name":[2],"type":["chr"],"align":["left"]},{"label":["height"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"IG-88","2":"Droid","3":"200"},{"1":"C-3PO","2":"Droid","3":"167"},{"1":"Roos Tarpals","2":"Gungan","3":"224"},{"1":"Darth Vader","2":"Human","3":"202"},{"1":"Qui-Gon Jinn","2":"Human","3":"193"},{"1":"Dooku","2":"Human","3":"193"},{"1":"Bail Prestor Organa","2":"Human","3":"191"},{"1":"Anakin Skywalker","2":"Human","3":"188"},{"1":"Mace Windu","2":"Human","3":"188"},{"1":"Raymus Antilles","2":"Human","3":"188"},{"1":"Gregar Typho","2":"Human","3":"185"},{"1":"Biggs Darklighter","2":"Human","3":"183"},{"1":"Boba Fett","2":"Human","3":"183"},{"1":"Cliegg Lars","2":"Human","3":"183"},{"1":"Jango Fett","2":"Human","3":"183"},{"1":"Obi-Wan Kenobi","2":"Human","3":"182"},{"1":"Wilhuff Tarkin","2":"Human","3":"180"},{"1":"Han Solo","2":"Human","3":"180"},{"1":"Jek Tono Porkins","2":"Human","3":"180"},{"1":"Owen Lars","2":"Human","3":"178"},{"1":"Lando Calrissian","2":"Human","3":"177"},{"1":"Lama Su","2":"Kaminoan","3":"229"},{"1":"Luminara Unduli","2":"Mirialan","3":"170"},{"1":"Bib Fortuna","2":"Twi'lek","3":"180"},{"1":"Tarfful","2":"Wookiee","3":"234"},{"1":"Darth Maul","2":"Zabrak","3":"175"},{"1":"Ric Olié","2":"NA","3":"183"},{"1":"Quarsh Panaka","2":"NA","3":"183"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Funkce <code>group_by</code> jde výborně dohromady i s funkcemi <code>slice_xxx</code>. Např. bych chtěl vidět z každého druhu jen nejvyšší postavu:</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="manipulace-s-daty.html#cb119-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb119-2"><a href="manipulace-s-daty.html#cb119-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
+<span id="cb119-3"><a href="manipulace-s-daty.html#cb119-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(height) <span class="sc">|&gt;</span> </span>
+<span id="cb119-4"><a href="manipulace-s-daty.html#cb119-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, name, height)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["species"],"name":[1],"type":["chr"],"align":["left"]},{"label":["name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["height"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"Aleena","2":"Ratts Tyerell","3":"79"},{"1":"Besalisk","2":"Dexter Jettster","3":"198"},{"1":"Cerean","2":"Ki-Adi-Mundi","3":"198"},{"1":"Clawdite","2":"Zam Wesell","3":"168"},{"1":"Droid","2":"IG-88","3":"200"},{"1":"Dug","2":"Sebulba","3":"112"},{"1":"Ewok","2":"Wicket Systri Warrick","3":"88"},{"1":"Geonosian","2":"Poggle the Lesser","3":"183"},{"1":"Gungan","2":"Roos Tarpals","3":"224"},{"1":"Human","2":"Darth Vader","3":"202"},{"1":"Hutt","2":"Jabba Desilijic Tiure","3":"175"},{"1":"Chagrian","2":"Mas Amedda","3":"196"},{"1":"Iktotchi","2":"Saesee Tiin","3":"188"},{"1":"Kaleesh","2":"Grievous","3":"216"},{"1":"Kaminoan","2":"Lama Su","3":"229"},{"1":"Kel Dor","2":"Plo Koon","3":"188"},{"1":"Mirialan","2":"Luminara Unduli","3":"170"},{"1":"Mon Calamari","2":"Ackbar","3":"180"},{"1":"Muun","2":"San Hill","3":"191"},{"1":"Nautolan","2":"Kit Fisto","3":"196"},{"1":"Neimodian","2":"Nute Gunray","3":"191"},{"1":"Pau'an","2":"Tion Medon","3":"206"},{"1":"Quermian","2":"Yarael Poof","3":"264"},{"1":"Rodian","2":"Greedo","3":"173"},{"1":"Skakoan","2":"Wat Tambor","3":"193"},{"1":"Sullustan","2":"Nien Nunb","3":"160"},{"1":"Tholothian","2":"Adi Gallia","3":"184"},{"1":"Togruta","2":"Shaak Ti","3":"178"},{"1":"Toong","2":"Ben Quadinaros","3":"163"},{"1":"Toydarian","2":"Watto","3":"137"},{"1":"Trandoshan","2":"Bossk","3":"190"},{"1":"Twi'lek","2":"Bib Fortuna","3":"180"},{"1":"Vulptereen","2":"Dud Bolt","3":"94"},{"1":"Wookiee","2":"Tarfful","3":"234"},{"1":"Xexto","2":"Gasgano","3":"122"},{"1":"Yoda's species","2":"Yoda","3":"66"},{"1":"Zabrak","2":"Darth Maul","3":"175"},{"1":"NA","2":"Ric Olié","3":"183"},{"1":"NA","2":"Quarsh Panaka","3":"183"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>A konečně jde <code>group_by</code> kombinovat i s <code>mutate</code> – do předešléhho výstupu doplním, z kolika zástupců svého druhu je daný exemplár nejvyšší:</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="manipulace-s-daty.html#cb120-1" aria-hidden="true" tabindex="-1"></a>my_starwars <span class="sc">|&gt;</span> </span>
+<span id="cb120-2"><a href="manipulace-s-daty.html#cb120-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
+<span id="cb120-3"><a href="manipulace-s-daty.html#cb120-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">out_of =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb120-4"><a href="manipulace-s-daty.html#cb120-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(height) <span class="sc">|&gt;</span> </span>
+<span id="cb120-5"><a href="manipulace-s-daty.html#cb120-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(species, name, <span class="at">tallest =</span> height, out_of)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["species"],"name":[1],"type":["chr"],"align":["left"]},{"label":["name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["tallest"],"name":[3],"type":["int"],"align":["right"]},{"label":["out_of"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"Aleena","2":"Ratts Tyerell","3":"79","4":"1"},{"1":"Besalisk","2":"Dexter Jettster","3":"198","4":"1"},{"1":"Cerean","2":"Ki-Adi-Mundi","3":"198","4":"1"},{"1":"Clawdite","2":"Zam Wesell","3":"168","4":"1"},{"1":"Droid","2":"IG-88","3":"200","4":"6"},{"1":"Dug","2":"Sebulba","3":"112","4":"1"},{"1":"Ewok","2":"Wicket Systri Warrick","3":"88","4":"1"},{"1":"Geonosian","2":"Poggle the Lesser","3":"183","4":"1"},{"1":"Gungan","2":"Roos Tarpals","3":"224","4":"3"},{"1":"Human","2":"Darth Vader","3":"202","4":"35"},{"1":"Hutt","2":"Jabba Desilijic Tiure","3":"175","4":"1"},{"1":"Chagrian","2":"Mas Amedda","3":"196","4":"1"},{"1":"Iktotchi","2":"Saesee Tiin","3":"188","4":"1"},{"1":"Kaleesh","2":"Grievous","3":"216","4":"1"},{"1":"Kaminoan","2":"Lama Su","3":"229","4":"2"},{"1":"Kel Dor","2":"Plo Koon","3":"188","4":"1"},{"1":"Mirialan","2":"Luminara Unduli","3":"170","4":"2"},{"1":"Mon Calamari","2":"Ackbar","3":"180","4":"1"},{"1":"Muun","2":"San Hill","3":"191","4":"1"},{"1":"Nautolan","2":"Kit Fisto","3":"196","4":"1"},{"1":"Neimodian","2":"Nute Gunray","3":"191","4":"1"},{"1":"Pau'an","2":"Tion Medon","3":"206","4":"1"},{"1":"Quermian","2":"Yarael Poof","3":"264","4":"1"},{"1":"Rodian","2":"Greedo","3":"173","4":"1"},{"1":"Skakoan","2":"Wat Tambor","3":"193","4":"1"},{"1":"Sullustan","2":"Nien Nunb","3":"160","4":"1"},{"1":"Tholothian","2":"Adi Gallia","3":"184","4":"1"},{"1":"Togruta","2":"Shaak Ti","3":"178","4":"1"},{"1":"Toong","2":"Ben Quadinaros","3":"163","4":"1"},{"1":"Toydarian","2":"Watto","3":"137","4":"1"},{"1":"Trandoshan","2":"Bossk","3":"190","4":"1"},{"1":"Twi'lek","2":"Bib Fortuna","3":"180","4":"2"},{"1":"Vulptereen","2":"Dud Bolt","3":"94","4":"1"},{"1":"Wookiee","2":"Tarfful","3":"234","4":"2"},{"1":"Xexto","2":"Gasgano","3":"122","4":"1"},{"1":"Yoda's species","2":"Yoda","3":"66","4":"1"},{"1":"Zabrak","2":"Darth Maul","3":"175","4":"2"},{"1":"NA","2":"Ric Olié","3":"183","4":"4"},{"1":"NA","2":"Quarsh Panaka","3":"183","4":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Všiměte si, že jsem musel dát <code>mutate</code> ještě před <code>slice_max</code>, protože po něm by funkce <code>n()</code> vracela už jen 1. A ukázal jsem vám také, jak pomocí funkce <code>select</code> přejmenovat sloupec (což jde i samostatnou funkcí <code>rename</code>, ale tady je to jednodušší takhle).</p>
+</div>
+</div>
+<div id="takák-s-dalšími-funkcemi" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> Takák s dalšími funkcemi<a href="manipulace-s-daty.html#takák-s-dalšími-funkcemi" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Vzal jsem to všechno jen z rychlíku, ve skutečnosti je těch možností mnohem víc. Pefektní tahák najdete v RStudiu v menu <em>Help</em> -&gt; <em>Cheat Sheets</em> -&gt; <em>Data Transformation with dplyr</em>, případně zde je <a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">on-line verze</a>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="jak-dostat-data-do-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="grafy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

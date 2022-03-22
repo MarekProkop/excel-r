@@ -4,7 +4,7 @@ Nebudu vám tajit, že se způsob práce v R se od Excelu na první pohled dost
 
 ## Excel vs. R
 
-Když budete chtít v Excelu se číst dvě čísla ve dvou různých buňkách, nejprve je do těch buněk napíšete. Např. číslo 10 do buňky A1 a číslo 20 do buňky B1. Do buňky C1 pak můžete dát vzorec `=A1+B1`, který čísla sečte.
+Když chcete v Excelu sečíst dvě čísla ve dvou různých buňkách, nejprve je do těch buněk napíšete. Např. číslo 10 do buňky A1 a číslo 20 do buňky B1. Do buňky C1 pak můžete dát vzorec `=A1+B1`, který čísla sečte.
 
 V R to uděláte podobně jen musíte napsat kód, který „buňky" (v R se jim říká objekty) založí a pak sečte. Ten kód může vypadat třeba takhle:
 
@@ -38,7 +38,7 @@ Ve skutečnosti je to o dost pestřejší. Můžete jedním „vzorcem" (v R se
 
 ## Tři způsoby práce s R
 
-S R jde pracovat mnoha různými způsoby. Já nejčastěji používám tři:
+S R jde pracovat více různými způsoby. Já nejčastěji používám tři:
 
 1.  Interaktivní práce v konsoli.
 2.  Polointeraktivní práce se skriptem.
@@ -84,11 +84,11 @@ Oproti jiným programovacím jazykům je tu pár zvláštností:
 -   Běžné objekty R jsou ve skutečnosti vektory. V jiných programovacích jazycích tomu obvykle odpovídá jednorozměrné pole. V praxi to znamená, že v číselném objektu nemusí být jen jedno číslo, ale může jich tam být moc. V našem příkladu jich je sto.
 -   R s vektory automaticky i počítá. K vektoru pěti čísel tedy můžete přičíst jedno číslo (ve skutečnosti vektor s jedním číslem) a ono se automaticky přičte ke všem pěti.
 
-Kde se nám tam těch sto čísel vzalo? Získali jsme je funkcemi rnorm a round.
+Kde se vám tam těch sto čísel vzalo? Získali jste je funkcemi `rnorm` a `round`.
 
 ### Funkce
 
-Poučka praví, že když to existuje, je to objekt, a když to něco dělá, je to funkce. Můžete to brát i tak, že funkce je všechno, co má za svým jménem kulaté závorky. V závorkách mohou být tzv. parametry (někdy se jim říká argumenty; je to totéž), čili vstupní data, která chcete funkci předat. Funkce tyto parametry nějak zpracuje a vrátí výsledek. Vlastně úplně stejně, jako funkce v Excelu.
+Poučka praví: když to existuje, je to objekt, a když to něco dělá, je to funkce. Můžete to brát i tak, že funkce je všechno, co má za svým jménem kulaté závorky. V závorkách mohou být tzv. parametry (někdy se jim říká argumenty; je to totéž), čili vstupní data, která chcete funkci předat. Funkce tyto parametry zpracuje a vrátí výsledek. Vlastně úplně stejně, jako funkce v Excelu.
 
 U názvů objektů i funkcí záleží na velikosti písmen. `Cena` je něco jiného než `cena`, tak pozor na to.
 
@@ -102,7 +102,7 @@ rnorm(n = 100, mean = 1000, sd = 200)
 
 Klidně si ho zadejte párkrát do konzole s různými parametry, abyste viděli, jak se mění výsledek.
 
-\`round\`\` je funkce, která zaokrouhluje. První parametr je číselný vektor, který se má zaokrouhlit, a druhý parametr digits určuje, na kolik desetinných míst se má zaokrouhlit. Následující příkaz tedy zaokrouhlí číslo 1.145 na dvě desetinná místa:
+`round` je funkce, která zaokrouhluje. První parametr je číselný vektor, který se má zaokrouhlit, a druhý parametr digits určuje, na kolik desetinných míst se má zaokrouhlit. Následující příkaz tedy zaokrouhlí číslo 1.145 na dvě desetinná místa:
 
 ```{r}
 round(1.145, digits = 2)
@@ -198,7 +198,7 @@ Nezapomeňte si ale celý skript uložit pod nějakým vhodným jménem (třeba 
 
 ### Úprava skriptu
 
-Hlavní výhoda skriptu spočívá v tom, že jde snadno upravit a pak celý znovu spustit. Vyzkoušejte si to. Hned v prvním řádku změňte `rnorm` za `runif` a odstraňte této funkci parametry `mean` a `sd`, takže zbude jen `n`.
+Hlavní výhoda skriptu spočívá v tom, že jde snadno upravit a pak celý znovu spustit. Vyzkoušejte si to. Hned v prvním řádku změňte `rnorm` za `runif` a odstraňte této funkci parametry `mean` a `sd`, takže zbude jen:.
 
 ```{r}
 cena <- round(runif(n = 100), digits = 2)
@@ -251,9 +251,9 @@ Jdou udělat i číslované body, které se automaticky očíslují podle pořa
 1. Poslední bod.
 ```
 
-Jak vidíte, docela dobře se píše a dobře se i čte, i když není převedený (vyrenderovaný) do HTML. Ale když se převede, je to výsledek docela hezký:
+Jak vidíte, docela dobře se píše a dobře se i čte, i když není převedený (vyrenderovaný) do HTML. Ale když se převede, je výsledek docela hezký:
 
-![Příklad převedeného Mardownu](img/markdown-01.png)
+![Příklad převedeného Markdownu](img/markdown-01.png)
 
 #### R Markdown
 
@@ -281,7 +281,7 @@ sum(cena)
 Pokud blok spustíte zelenou šipečkou na jeho pravém horním okraji nebo klávesovou zkratkou Ctrl+Shift+Enter, provede se a zobrazí výstup přímo pod sebou.
 ````
 
-Výsledek bude vypadt jako na předešlém obrázku. Nyní můžete podle instrukcí vykonat jediný blok kódu, který tam zatím máte, a pod blkoem se vám zobrazí součet ceny.
+Výsledek bude vypadt jako na předešlém obrázku. Nyní můžete podle instrukcí vykonat jediný blok kódu, který tam zatím máte, a pod blokem se vám zobrazí součet ceny.
 
 A můžete i celý soubor převést do HTML a prohládnout si ho v celé kráse. Uděláte to příkazem *Preview* z toolbaru nad editorem, ale před tím ještě musíte soubor uložit, třeba pod jménem `prvni-notebook`. Ke jménu se automaticky připojí přípona Rmd.
 
@@ -289,9 +289,9 @@ Celý výsledek se zobrazí v panelu *Viewer* vpravo:
 
 ![Náhled vykresleného R Mardownu](img/rmarkdown-02.png)
 
-Už jste pochopili, v čem jsem napsal tenhle článek? Ano, v RStudiu v R Markdownu :-)
+Už jste pochopili, v čem jsem napsal tuhle knížku? Ano, v RStudiu v R Markdownu :-)
 
-Ze všech tří způsobů používání R (konzole, skripty, R Markdown) používám R Markdown pro běžné analýzy nejčastěji. Píšu si v něm postup, eRkový kód i poučení z výsledků. Když se pak později k analýze vrátím, třeba proto, že chci pro jiného klienta udělat nějakou podobnou, krásně vidím, jak jsem postupoval a co a proč jsem udělal. Už tohle je pro mě obrovská výhoda oproti excelové tabulce, ve které se už po pár týdnech nevyznám a musím znovu pracně zkoumat, co tam je, proč to tam a jak to vlastně funguje.
+Ze všech tří způsobů používání R (konzole, skripty, R Markdown) používám R Markdown pro běžné analýzy nejčastěji. Píšu si v něm postup, eRkový kód i poučení z výsledků. Když se pak později k analýze vrátím, třeba proto, že chci pro jiného klienta udělat podobnou, krásně vidím, jak jsem postupoval a co a proč jsem udělal. Už tohle je pro mě obrovská výhoda oproti excelové tabulce, ve které se už po pár týdnech nevyznám a musím znovu pracně zkoumat, co tam je, proč to tam a jak to vlastně funguje.
 
 A totéž doporučuji i vám: klidně pro teď zapoměňte, že nějaká konzole a skripty vůbec existují a používejte na všechno R Markdown.
 
@@ -329,9 +329,9 @@ Pokud si je nechcete pamatovat, všechny mají i své tlačítko buď na toolba
 
 ### Vektory
 
-Zatímco v Excelu máte v jedné buňce jedno číslo (nebo jeden text, jedno datum apod.), objekt základního typu (číslo, text, logická hodnota) v R je vždy vektor. To znamená, že obsahuje uspořádanou řadu hodnot daného typu. Vektor může mít délku 1, pak obsahuje jen jednu hodnotu, ale taky třeba milion, a pak obsahhuje milion hodnot.
+Zatímco v Excelu máte v jedné buňce jedno číslo (nebo jeden text, jedno datum apod.), objekt základního typu (číslo, text, logická hodnota) v R je vždy vektor. To znamená, že obsahuje uspořádanou řadu hodnot daného typu. Vektor může mít délku 1, pak obsahuje jen jednu hodnotu, ale taky třeba milion, a pak obsahuje milion hodnot.
 
-S vektory počítají i běžné operace. Když k vektoru s deseti čísly přičtete jiný vektor s deseti čísly, bude výsledek opat vektor s deseti čísly, ve kterém se sečte první s prvním, druhé s druhým atd. Pokud ale k vektoru s deseti čísly přičtete vektor s jedním číslem, dojde k tzv. recyklaci druhého vektoru, což znamená, že se číslo z druhého vektoru postupně přičte ke všem číslům prvního wektoru.
+S vektory počítají i běžné operace. Když k vektoru s deseti čísly přičtete jiný vektor s deseti čísly, bude výsledek opět vektor s deseti čísly, ve kterém se sečte první s prvním, druhé s druhým atd. Pokud ale k vektoru s deseti čísly přičtete vektor s jedním číslem, dojde k tzv. recyklaci druhého vektoru, což znamená, že se číslo z druhého vektoru postupně přičte ke všem číslům prvního wektoru.
 
 Ukážu to raději na příkladu (funkce `c` tvoří vektory):
 
@@ -353,7 +353,7 @@ Vidíte, že poslední příklad sice upozorní na možnou chybu, ale provede se
 c(10, 20, 30, 40) + c(1, 2)
 ```
 
-Zde na chybo neupozorní, protože se druhý vektor zrecykluje přesně dvakrát.
+Zde na chybu neupozorní, protože se druhý vektor zrecykluje přesně dvakrát.
 
 ### Funkce
 

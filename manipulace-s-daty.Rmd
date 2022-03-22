@@ -1,0 +1,398 @@
+# Manipulace s daty
+
+V této kapitole vám ukážu, jak jde s daty v R manipulovat. Daty myslím jednu či více tabulek uložených v objektech třídy *data frame* a manipulací myslím zejména:
+
+- výběr sloupců,
+- filtrování neboli výběr řádků,
+- řazení řádků,
+- odvozování nových sloupců,
+- seskupování řádků a agregaci,
+- spojování více tabulek.
+
+K tomu všemu používám zásadně balíčky z ekosystému *tidyverse*, konkrétně *dplyr* a *tidyr*. Vy si ale konkrétní balíčky nemusíte pamatovat, protože stačí, když na začátku deklarujete celou *tidyverse*.
+
+```{r}
+library(tidyverse)
+```
+
+Balík *tidyverse* mj. obsahuje i vzorový dataset *starwars*, na kterém většinu postupů ukážu. Nemusíte tedy nikde shánět a importovat jiná data. Pokud si vše vyzkoušíte i na nějakých vlastních datech, bude to jedině dobře.
+
+## Průzkum dat a výběr sloupců
+
+Před dalším zpracováním je dobré si data pořádně prohlédnout a ujasnit si, co přesně popisují, jaké datové typy mají jednotlivé sloupce, zda jsou konzistentní, nejsou v nich chyby, něco nechybí atd.
+
+Nejprve si asi data frame zobrazíte, což můžete udělat několika způsoby. V R Markdownu ho většinou stačí vypsat názvem a tabulkou lze pak interaktivně listovat. To ale nefunguje na konzoli a ani výstup do finálního dokumentu není nejlepší.
+
+```{r}
+starwars
+```
+
+Lešpí tedy asi bude funkce `View`, která otevře tabulkové zobrazení. Vyzkoušejte si to.
+
+```{r eval=FALSE}
+View(starwars)
+```
+
+Kromě prostého zobrazení tabulky, můžete zkusit pár dalších funkcí, které vám toho o datech řeknou víc nebo přehledněji. Já mám rád funkci `glimpse`, protože hezky ukazuje názvy všech sloupců, jejich datové typy (třídy) a náhled několika prvních hodnot.
+
+```{r}
+glimpse(starwars)
+```
+
+Všimněte si, že poslední tři sloupce jsou třídy *list*. To znamená, že v každé buňce je uložen celý seznam více hodnot. Moc dobře se s tím nepracuje, v praxi na to asi hned tak nenarazíte, tak raději tyhle sloupce odstraníme.
+
+Jak? Tím, že vybereme všechny ostatní funkcí `select` a výsledek uložíme do vlastního objektu.
+
+```{r}
+my_starwars <- select(starwars, name:species)
+```
+
+K funkci `select` se ještě za chvíli vrátím. Teď zkuste znovu `glimps` a všimněte si, že tři poslední sloupce zmizely.
+
+```{r}
+glimpse(my_starwars)
+```
+
+Občas ještě používám funkci `summary`, která u číselných sloupců (resp. obecně vektorů) ukáže jednoduchou statistiku -- minimum, první kvartil, median, průměr, třetí kvartil, maximum a počet prázdných hodnot.
+
+```{r}
+summary(my_starwars)
+```
+
+### Prázdné hodnoty
+
+R rozlišuje prázdné (nedefinované, neznámé) hodnoty a označuje je hodnotou `NA`. Pozor, `NA` není ani nula, ani prázdný řetězec. Je to indikátor, že danou hodnotu neznáme, nebo neexistuje. Proto s `NA` nejde počítat.
+
+```{r}
+NA + 10
+```
+
+```{r}
+sum(c(10, 20, NA, 30))
+```
+
+Všechny tyto a podobné operace vrací NA. A protože to je někdy dost nepraktické, jde to v určitých situacích obejít. Např. součet nebo průměr můžete vypočítat takto:
+
+```{r}
+sum(c(10, 20, NA, 30), na.rm = TRUE)
+```
+
+```{r}
+mean(c(10, 20, NA, 30), na.rm = TRUE)
+```
+
+Existují i funkce, kterými můžete řádky s `NA` z dataframu úplně odstranit
+
+```{r}
+drop_na(my_starwars)
+```
+
+nebo nahradit nějakou jinou hodnotou.
+
+## Výběr sloupců
+
+Už jsem ukázal, že výběr sloupců provedete funkcí `select`. Ta má jako první parametr dataframe a za ním nasleduje seznam sloupců, který můžete napsat několika způsoby. Většinou je nejjednodušší sloupce vyjmenovat a oddělit čárkou:
+
+```{r}
+select(my_starwars, name, hair_color, eye_color)
+```
+
+Můžete použít i souvislý rozsah sloupců oddělený dvojtečkou:
+
+```{r}
+select(my_starwars, hair_color:eye_color)
+```
+
+Případně oba způsoby zkombinovat:
+
+```{r}
+select(my_starwars, name, hair_color:eye_color)
+```
+
+Těch způsobů je ale mnohem víc a všechny je najdete v nápovědě:
+
+```{r eval=FALSE}
+?dplyr_tidy_select
+```
+
+### Funkcionální princip
+
+Podstatné je, že funkce `select` ani žádná jiná nikdy nemění objekt, se kterým pracuje (zde dataframe *my_starwars*). R je tzv. funkcionální jazyk, což znamená, že všechny funkce nějak zpracují parametry, vrátí výsledek jako nový objekt (který si můžete i nemusíte uložit), ale parametry nikdy nezmění.
+
+Mimochodem, jazyk vzorců Excelu je taky funkcionální -- funkce v něm taky něco vrátí, ale parametry nezmění.
+
+### Pipes (trubky, fajfky)
+
+Představte si, že chcete na objekt (zde dataframe) aplikovat nějakou funkci, a na výsledek, který dostanete, chcete aplikovat další funkci. Stejně jako v Excelu to jde udělat vnořováním funkcí:
+
+```{r}
+glimpse(select(my_starwars, name, hair_color))
+```
+
+Jenže vnořování mnoha funkcí do sebe v Excelu všichni nenávidíme. Jde tím sice udělat úžasné věci, ale je to příšerně nepřehledné a náchylné k chybám. Zápis totiž začíná tím, co se má udělat jako poslední, a to, co se má udělat jako první, je utopené někde uprostřed. Peklo.
+
+Proto má R operátor *pipe*, se kterým předešlý výraz přepíšu takhle:
+
+```{r}
+my_starwars |> select(name, hair_color) |> glimpse()
+```
+
+případně ještě přehledněji:
+
+```{r}
+my_starwars |> 
+  select(name, hair_color) |> 
+  glimpse()
+```
+
+Operátor *pipe* (`|>`) vždy vezme výsledek výrazu vlevo a použije ho jako první parametr funkce vpravo. Celé se to tedy píše i čte přesně v pořadí zpracování: vezmu objekt `my_starwars` na něj aplikuji funkci `select` a na výsledek aplikuji funkci `glimpse`.
+
+#### Starší pipe
+
+Skoro ve všech návodech a dokumentaci k R najdete jiný operátor *pipe*: `%>%`. Dřív totiž R operátor *pipe* nemělo a nahrazoval se operátorem z knihovny *magrittr*. Teď už ale R má nativní operátor `|>` a já ho mám radši. Pro vás je důležité, že `%>%` a `|>` je v principu totéž a skoro vždy se to chová stejně.
+
+
+## Filtrování neboli výběr řádků
+
+### Funkce `filter`
+
+Pokud nechcete zobrazit či dále zpracovat všechny řádky dataframu, vyberete si jen některé. Nějčastěji se na to používá funkce `filter`. Tohle je její nejjednodušší podoba:
+
+```{r}
+my_starwars |> 
+  filter(hair_color == "blond")
+```
+
+Jako parametr jsem napsal logickou podmínkou, že se hodnota ve sloupci `hair_color` musí rovnat `blond`. Podmínky ale mohu i kombinovat, a pak musí být oddělené čárkou.
+
+```{r}
+my_starwars |> 
+  filter(
+    hair_color == "brown",
+    eye_color == "blue"
+  ) |> 
+  select(name, hair_color, eye_color)
+```
+
+Na čísla fungují běžné srovnávací operátory `>` (větší), `>=` (větší nebo rovno), `<` (menší), `<=` (menší nebo rovno).
+
+```{r}
+my_starwars |> 
+  filter(height > 220) |> 
+  select(name, height)
+```
+
+V podmínkách ale můžete používat i různé funkce. Chcete třeba najít všechny postavy, které jsou vyšší než průměr?
+
+```{r filter-mean}
+my_starwars |> 
+  filter(height > mean(height, na.rm = TRUE)) |> 
+  select(name, height)
+```
+
+Nebo všechny, jejichž výška je neznámá?
+
+```{r}
+my_starwars |> 
+  filter(is.na(height)) |> 
+  select(name, height)
+```
+
+### Další funkce pro výběr řádků
+
+Někdy chcete omezit počet řádků jinak než logickou podmínkou. Např. chcete vrátit jen prvních pět:
+
+```{r}
+my_starwars |> 
+  slice_head(n = 5) |> 
+  select(name)
+```
+
+nebo poslední 3:
+
+```{r}
+my_starwars |> 
+  slice_tail(n = 3) |> 
+  select(name)
+```
+
+nebo 3 nejvyšší:
+
+```{r}
+my_starwars |> 
+  slice_max(order_by = height, n = 3) |> 
+  select(name, height)
+```
+
+nebo 5 % nejvyšších:
+
+```{r}
+my_starwars |> 
+  slice_max(order_by = height, prop = 0.05) |> 
+  select(name, height)
+```
+
+## Řazení řádků
+
+Řádky se řadí funkcí `arrange`, ve které se jako parametry uvedou sloupce, podle kterých se má řadit, oddělené čárkou.
+
+```{r}
+my_starwars |> 
+  arrange(species, name) |> 
+  select(species, name)
+```
+
+Jde řadit i sestupně pomocí funkce `desc`.
+
+```{r}
+my_starwars |> 
+  arrange(species, desc(height)) |> 
+  select(species, name, height)
+```
+
+
+## Odvozování nových sloupců
+
+Funkcí `mutate` jde vypočítat hodnoty sloupců, ať už nových, nebo stávajících. V příkladu spočítám BMI z váhy dělené výškou v metrech na druhou a před jméno doplním slovo „tlouštík“, pokud má daná postava nadvahu.
+
+```{r}
+my_starwars |> 
+  select(name:mass) |> 
+  mutate(
+    bmi = mass / (height / 100) ** 2,
+    name = paste0(if_else(bmi > 30, "tlouštík ", ""), name)
+  )
+```
+
+K tomu pár vysvětlení:
+
+- Operátor `**` umocňuje.
+- Funkce `paste0` spojuje víc textových řetězců do jednoho. Bez 0 na konci mezi ně dá mezeru případně jiný oddělovač dle parametru.
+- funkce `if_else` funguje stejně jako `IF` v Excelu -- podle podmínky v první parametru vrátí buď druhý, nebo třetí parametr.
+- Zvykněte si, že data frame je vlastně seznam vektorů, které odpovídají sloupcům. Výraz `height / 100` tedy vydělí celý vektor, tj. postupně jednotlivé jeho hodnoty, číslem 100. Výpočet tedy neprobíhá po řádcích, nýbrž po sloupcích.
+
+Potřebujete-li složitější větvení, jde funkce `if_else` vnořovat do sebe, ale není to moc přehledné. Lepší je funkce `case_when`, která se používá takhle:
+
+```{r}
+my_starwars |> 
+  select(name:mass) |> 
+  mutate(
+    bmi = round(mass / (height / 100) ** 2),
+    postava = case_when(
+      bmi < 25 ~ "hubeňour",
+      bmi >= 25 & bmi <= 30 ~ "akorát",
+      bmi > 30 ~ "tlouštík"
+    )
+  )
+```
+
+
+## Seskupování řádků a agregace
+
+### funkce `sumarise`
+
+Začnu prostou agregací. Slouží k ní funkce `summarise` a používá se skoro stejně, jako funkce `mutate`. Jen je určená pro agregační funkce (počet, součet, průměr apod.) a z výsledku vynechá všechny sloupce, které se neagregují nebo neslouží jako seskupovací klíče (viz dále).
+
+Řekněme, že chci vědět, kolik postav v datasetu je a jakou mají průměrnou výšku.
+
+```{r}
+my_starwars |> 
+  summarise(
+    n = n(),
+    height = mean(height, na.rm = TRUE)
+  )
+```
+
+Všimněte si, že funkce `n()` vrátí počet řádků dataframu. Šlo by s ní spočítat třeba počet planet? Nešlo. Na to slouží funkce `n_distinct`, která spočítá počet unikátních hodnot vektoru.
+
+```{r}
+my_starwars |> 
+  summarise(
+    n_homes = n_distinct(homeworld),
+    n_species = n_distinct(species)
+  )
+```
+
+### Funkce `group_by`
+
+V reálné praxi potřebujete agregovat celý dataset do jednoho řádku málokdy. Častější jsou agregace podle nějakých skupin. K seskupení slouží funkce `group_by` a vypadá takhle:
+
+```{r}
+my_starwars |> 
+  group_by(species) |> 
+  summarise(
+    n = n(),
+    height = mean(height, na.rm = TRUE)
+  )
+```
+jde kombinovat i víc seskupovacích klíčů:
+
+```{r}
+my_starwars |> 
+  group_by(species, homeworld) |> 
+  summarise(
+    n = n(),
+    height = mean(height, na.rm = TRUE)
+  )
+```
+
+### Funkce `count`
+
+Protože se položky podle nějakého klíče počítají velmi často, existuje zkratka. Místo toho, abyste psali:
+
+```{r}
+my_starwars |> 
+  group_by(species) |> 
+  summarise(n = n())
+```
+
+můžete zvolit kratší zápis a výsledek rovnou sestupně setřídit:
+
+```{r}
+my_starwars |> 
+  count(species, sort = TRUE)
+```
+
+### Kombinace `group_by` s dalšími funkcemi pro manipulaci dat
+
+Funkce `group_by` nemusí sloužit jen k agregaci. Respektive k agregaci slouží skoro vždycky, ale ta nemusí být hlavním cílem.
+
+O něco výš jsem vám ukázal, jak pomocí funkcí `filter` a `mean` vybrat ppostavy, které jsou nadprůměrně vysoké:
+
+```{r ref.label='filter-mean'}
+```
+
+Co kdych ale chtěl vybrat jen ty postavy, které jsou nadprůměrně vysoké jen v rámci svého druhu? Použiju `group_by` a pro přehlednost výsledek ještě setřídím.
+
+```{r}
+my_starwars |> 
+  group_by(species) |> 
+  filter(height > mean(height, na.rm = TRUE)) |> 
+  select(name, species, height) |> 
+  arrange(species, desc(height))
+```
+
+Funkce `group_by` jde výborně dohromady i s funkcemi `slice_xxx`. Např. bych chtěl vidět z každého druhu jen nejvyšší postavu:
+
+```{r}
+my_starwars |> 
+  group_by(species) |> 
+  slice_max(height) |> 
+  select(species, name, height)
+```
+A konečně jde `group_by` kombinovat i s `mutate` -- do předešléhho výstupu doplním, z kolika zástupců svého druhu je daný exemplár nejvyšší:
+
+```{r}
+my_starwars |> 
+  group_by(species) |> 
+  mutate(out_of = n()) |> 
+  slice_max(height) |> 
+  select(species, name, tallest = height, out_of)
+```
+
+Všiměte si, že jsem musel dát `mutate` ještě před `slice_max`, protože po něm by funkce `n()` vracela už jen 1. A ukázal jsem vám také, jak pomocí funkce `select` přejmenovat sloupec (což jde i samostatnou funkcí `rename`, ale tady je to jednodušší takhle).
+
+
+## Takák s dalšími funkcemi
+
+Vzal jsem to všechno jen z rychlíku, ve skutečnosti je těch možností mnohem víc. Pefektní tahák najdete v RStudiu v menu *Help* -> *Cheat Sheets* -> *Data Transformation with dplyr*, případně zde je [on-line verze](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).

@@ -56,7 +56,7 @@ Na další *New Project*.
 
 ![Volba typu projektu](img/rstudio-project-02.png)
 
-A nakonec zadejte název složky, ve které se má projekt vytvořit. Může to být výchozí (domovská) složka pro R (~/R) nebo jakákoli jiná, kterou si vytvoříte jako nadřízenou složku pro podložky eRkových projektů. Třeba u mě to je `c:/dev/R` (pro moje projekty), nebo `c:/dev/R/clients` (pro klientské projekty).
+A nakonec zadejte název složky, ve které se má projekt vytvořit. Může to být výchozí (domovská) složka pro R (`~/R`) nebo jakákoli jiná, kterou si vytvoříte jako nadřízenou složku pro podložky eRkových projektů. Třeba u mě to je `c:/dev/R` (pro moje projekty), nebo `c:/dev/R/clients` (pro klientské projekty).
 
 ![Volba složky projektu](img/rstudio-project-03.png)
 
@@ -67,9 +67,9 @@ V RStudiu se nejčastěji pracuje v tzv. projektech. Jde to sice i bez nich, a
 K projektům ještě pár doporučení a vysvětlení:
 
 - V některých situacích vám zjednoduší život, když budete projekty pojmenovávat podobně jako webová URL, tj. jen písmeny malé anglické abecedy, čísly, pomlčkami a tečkami. Nutné to ale není.
-- Po standardní instalaci vám na Windows (jinde to může být jiné) ve složce Dokumenty vznikne podsložka R, kterou pak RStudio (i samotné R) označuje aliasem ~/R. Projekty ale můžete zakládat i jinde.
+- Po standardní instalaci vám na Windows (jinde to může být jiné) ve složce Dokumenty vznikne podsložka R, kterou pak RStudio (i samotné R) označuje aliasem `~/R`. Projekty ale můžete zakládat i jinde.
 - Ať už si projekt založíte kdekoli, doporučuji si pro všechny projekty zvolit jedinou zastřešující složku, protože v různých kontextech se vám pak zobrazí jen název projektu, a pokud byste na více místech měli stejně pojmenované projekty, pletlo by vás to.
-- Pokud máte nebo až budete mít zprovozněný Git, objeví se vám při volbě složky i volba *Create a git repository*. Vždycky ji zapínejte. Pro první pokusy ale Git nepotřebujete.
+- Pokud máte nebo až budete mít zprovozněný Git, objeví se vám při volbě složky i volba *Create a git repository*. Vždycky ji zapínejte. Pro první pokusy ale Git nepotřebujete a já se mu v této knížce věnovat nebudu.
 
 ## Nastavení RStudia
 

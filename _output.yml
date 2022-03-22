@@ -1,6 +1,7 @@
 bookdown::gitbook:
   css: css/style.css
   split_by: rmd
+  df_print: paged
   config:
     toc:
       before: <li><a href="./">Od Excelu k R</a></li>
