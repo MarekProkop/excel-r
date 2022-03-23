@@ -68,7 +68,7 @@ Příkazem jste totiž vytvořili v prostředí R (environment) nový objekt `c
 cena
 ```
 
-což pak na konsoli vypadá nějak takhle:
+což pak na konsoli vypadá nějak takhle (čísla jsou náhodná, takže nesedí s předešlým výsledkem):
 
 ![Výsledek příkazu cena](img/rstudio-console-03.png)
 
@@ -82,7 +82,7 @@ Oproti jiným programovacím jazykům je tu pár zvláštností:
 
 -   Do objektů se hodnoty přiřazují operátorem `<-`. Ten můžete vložit i klávesovou zkratkou <kbd>Alt</kbd>+<kbd>-</kbd> (Alt pomlčka).
 -   Běžné objekty R jsou ve skutečnosti vektory. V jiných programovacích jazycích tomu obvykle odpovídá jednorozměrné pole. V praxi to znamená, že v číselném objektu nemusí být jen jedno číslo, ale může jich tam být moc. V našem příkladu jich je sto.
--   R s vektory automaticky i počítá. K vektoru pěti čísel tedy můžete přičíst jedno číslo (ve skutečnosti vektor s jedním číslem) a ono se automaticky přičte ke všem pěti.
+-   R s vektory automaticky i počítá. K vektoru pěti čísel tedy můžete přičíst jedno číslo (ve skutečnosti vektor s jedním číslem) a ono se automaticky přičte ke všem pěti. Později na to ukážu další příklady.
 
 Kde se vám tam těch sto čísel vzalo? Získali jste je funkcemi `rnorm` a `round`.
 
@@ -108,7 +108,7 @@ Klidně si ho zadejte párkrát do konzole s různými parametry, abyste viděl
 round(1.145, digits = 2)
 ```
 
-První parametr funkce `round` se jmenuje `x`, ale první parametr funkce se často píše bez jména, protože jeho pořadí nejde poplést. Každopádně ale může napsat volání funkce i takto a výsledk bude stejný:
+První parametr funkce `round` se jmenuje `x`, ale první parametr funkce se často píše bez jména, protože jeho pořadí nejde poplést. Každopádně ale může napsat volání funkce i takto a výsledek bude stejný:
 
 ```{r}
 round(x = 1.145, digits = 2)
@@ -219,7 +219,7 @@ Funkce `rnorm` totiž vybírá náhodná čísla z normálního rozložení (**
 Skripty jsou praktické, ale mají dvě nevýhody:
 
 -   Když nechcete provést celý skript najednou, špatně se v nich hledá část, kterou chcete spustit.
--   Výstup není moc přehledný. Textový výstup se ne moc hezky zobrazí v konzoli, grafy na panelu *Plots*.
+-   Výstup není moc přehledný a je rozdělený na víc míst: textový výstup se ne moc hezky zobrazí v konzoli a grafy na panelu *Plots*.
 
 Obě tyto nevýhody odstraňuje R Markdown.
 

@@ -157,12 +157,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-r"><i class="fa fa-check"></i><b>2.2</b> Instalace R<span></span></a></li>
 <li class="chapter" data-level="2.3" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-rstudia"><i class="fa fa-check"></i><b>2.3</b> Instalace RStudia<span></span></a></li>
 <li class="chapter" data-level="2.4" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#pokud-už-r-a-rstudio-máte-a-trochu-znáte"><i class="fa fa-check"></i><b>2.4</b> Pokud už R a RStudio máte (a trochu znáte)<span></span></a></li>
-<li class="chapter" data-level="2.5" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#založte-si-cvičný-projekt"><i class="fa fa-check"></i><b>2.5</b> Založte si cvičný projekt<span></span></a>
+<li class="chapter" data-level="2.5" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#nastavení-rstudia"><i class="fa fa-check"></i><b>2.5</b> Nastavení RStudia<span></span></a></li>
+<li class="chapter" data-level="2.6" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-balíčků"><i class="fa fa-check"></i><b>2.6</b> Instalace balíčků<span></span></a></li>
+<li class="chapter" data-level="2.7" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#projekty"><i class="fa fa-check"></i><b>2.7</b> Projekty<span></span></a>
 <ul>
-<li class="chapter" data-level="2.5.1" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#co-jsou-projekty"><i class="fa fa-check"></i><b>2.5.1</b> Co jsou projekty<span></span></a></li>
+<li class="chapter" data-level="2.7.1" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#založte-si-cvičný-projekt"><i class="fa fa-check"></i><b>2.7.1</b> Založte si cvičný projekt<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#nastavení-rstudia"><i class="fa fa-check"></i><b>2.6</b> Nastavení RStudia<span></span></a></li>
-<li class="chapter" data-level="2.7" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-balíčků"><i class="fa fa-check"></i><b>2.7</b> Instalace balíčků<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="prvni-kroky.html"><a href="prvni-kroky.html"><i class="fa fa-check"></i><b>3</b> První kroky v R a RStudiu<span></span></a>
 <ul>
@@ -282,19 +282,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.2</span> Instalace R<a href="instalace-a-nastaveni.html#instalace-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Stáhněte a nainstalujte si zkompilovanou verzi R pro svůj operační sytém z <a href="https://cloud.r-project.org/" class="uri">https://cloud.r-project.org/</a>. Žádná past by tam být neměla, postupujte podle instrukcí na webu a v instalátoru.</p>
 <p>Když po instalaci R spustíte, mělo by vypadat nějak takhle:</p>
-<div class="figure">
-<img src="img/r-01.png" alt="" />
-<p class="caption">Základní R po spuštění</p>
-</div>
+<p><img src="img/r-01.png" alt="Základní R po spuštění" /></p>
 <p>Okno zavřete a to je všechno. Odtěď můžete na základní R zapomenout.</p>
 </div>
 <div id="instalace-rstudia" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Instalace RStudia<a href="instalace-a-nastaveni.html#instalace-rstudia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Stáhněte a nainstalujte si RStudio Desktop z <a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a>. I to by mělo jít bez problémů a spuštěné RStudio pak bude vypadat nějak takto:</p>
-<div class="figure">
-<img src="img/rstudio-01.png" alt="" />
-<p class="caption">RStudio po prvním spuštění</p>
-</div>
+<p><img src="img/rstudio-01.png" alt="RStudio po prvním spuštění" /></p>
 </div>
 <div id="pokud-už-r-a-rstudio-máte-a-trochu-znáte" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> Pokud už R a RStudio máte (a trochu znáte)<a href="instalace-a-nastaveni.html#pokud-už-r-a-rstudio-máte-a-trochu-znáte" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -305,27 +299,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="instalace-a-nastaveni.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>, <span class="at">checkBuilt =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Pokud byste měli starou verzi RStudia, jde ho normálně přeinstalovat.</p>
 </div>
-<div id="založte-si-cvičný-projekt" class="section level2 hasAnchor" number="2.5">
-<h2><span class="header-section-number">2.5</span> Založte si cvičný projekt<a href="instalace-a-nastaveni.html#založte-si-cvičný-projekt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="nastavení-rstudia" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Nastavení RStudia<a href="instalace-a-nastaveni.html#nastavení-rstudia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R i RStudio je ve výchozím stavu nastaveno v zásadě dobře. Změňte prosím jen dvě věci.</p>
+<p>Z menu <em>Tools</em> vyberte příkaz <em>Global Options…</em> (úplně na konci) a v následujícím dialogu vypněte volbu <em>Restore .RData into workspace at startup</em> a volbu <em>Save workspace to .RData on exit</em> nastavte na <em>Never</em>. Tím zaručíte, že RStudio nastartuje vždy „čisté“, bez objektů z předešlé práce, které jsou častou příčinou chyb.</p>
+<p><img src="img/rstudio-options-01.png" alt="RStudio: Options - General" /></p>
+<p>A pak na panelu <em>Code</em> zapněte volbu <em>Use native pipe operator</em>. To sice není nutné, ale vše se pak bude chovat stejně, jako v mých ukázkách.</p>
+<p><img src="img/rstudio-options-02.png" alt="RStudio: Options - Code" /></p>
+</div>
+<div id="instalace-balíčků" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> Instalace balíčků<a href="instalace-a-nastaveni.html#instalace-balíčků" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Základní R je jenom jazykové jádro s nezbytnými příkazy a funkcemi. Jeho funkčnost rozšiřují tzv. balíčky (packages), kterým se v jiných jazycích často říká knihovny. Balíčky je potřeba jednak nainstalovat (jednorázově) a jednak připojit před konkrétní prací, ke které je potřebujete (vysvětlím později).</p>
+<p>V RStudiu Desktop už jsou některé balíčky předinstalované a ještě víc jich je v cloudovém RStudio, ale pro jistotu vám ukážu, jak nainstalujete ty, které budete potřebovat pro celý tenhle seriál.</p>
+<p>Z menu <em>Tools</em> zvolte příkaz <em>Install Packages…</em>. Objeví se tento dialog:</p>
+<p><img src="img/install-packages-01.png" alt="Dialog Install Packages" /></p>
+<p>Nechte v něm předvyplněné volby a do prázdného políčka vložte tento seznam balíčků:</p>
+<pre><code>janitor, knitr, lubridate, rmarkdown, readxl, rvest, tidyverse</code></pre>
+<p>Alternativně jde balíčky instalovat funkcí <code>install.packages()</code>, kterou zavoláte třeba z konsole (vysvětlím za chvíli). To pak vypadá takhle:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="instalace-a-nastaveni.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;janitor&quot;</span>, <span class="st">&quot;knitr&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;rmarkdown&quot;</span>, <span class="st">&quot;readxl&quot;</span>, <span class="st">&quot;rvest&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>))</span></code></pre></div>
+<p>Oba způsoby balíčky zároveň aktualizují, což se občas hodí.</p>
+</div>
+<div id="projekty" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> Projekty<a href="instalace-a-nastaveni.html#projekty" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>V RStudiu se nejčastěji pracuje v tzv. projektech. Jde to sice i bez nich, ale projekty jsou praktické, protože si pamatují různá nastavení, poslední otevřené soubory, historii příkazů apod. Na vašem počítači jeden projekt vždy odpovídá jedné složce (s případnými podsložkami), do které si RStudio uloží projektový soubor <code>nazev-projektu.Rproj</code>. Tímto souborem jde pak projekt otevřít např. z Průzkumníka Windows.</p>
+<div id="založte-si-cvičný-projekt" class="section level3 hasAnchor" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> Založte si cvičný projekt<a href="instalace-a-nastaveni.html#založte-si-cvičný-projekt" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Tohle fakt hned teď udělejte. Je to důležité.</p>
 <p>Po spuštění RStudia zvolte příkaz <em>New Project…</em> z menu <em>File</em>, nebo z roletky projektů vpravo nahoře. Na další obrazovce zvolte <em>New Directory</em>.</p>
-<div class="figure">
-<img src="img/rstudio-project-01.png" alt="" />
-<p class="caption">Dialog Create Project</p>
-</div>
+<p><img src="img/rstudio-project-01.png" alt="Dialog Create Project" /></p>
 <p>Na další <em>New Project</em>.</p>
-<div class="figure">
-<img src="img/rstudio-project-02.png" alt="" />
-<p class="caption">Volba typu projektu</p>
-</div>
+<p><img src="img/rstudio-project-02.png" alt="Volba typu projektu" /></p>
 <p>A nakonec zadejte název složky, ve které se má projekt vytvořit. Může to být výchozí (domovská) složka pro R (<code>~/R</code>) nebo jakákoli jiná, kterou si vytvoříte jako nadřízenou složku pro podložky eRkových projektů. Třeba u mě to je <code>c:/dev/R</code> (pro moje projekty), nebo <code>c:/dev/R/clients</code> (pro klientské projekty).</p>
-<div class="figure">
-<img src="img/rstudio-project-03.png" alt="" />
-<p class="caption">Volba složky projektu</p>
-</div>
-<div id="co-jsou-projekty" class="section level3 hasAnchor" number="2.5.1">
-<h3><span class="header-section-number">2.5.1</span> Co jsou projekty<a href="instalace-a-nastaveni.html#co-jsou-projekty" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>V RStudiu se nejčastěji pracuje v tzv. projektech. Jde to sice i bez nich, ale projekty jsou praktické, protože si pamatují různá nastavení, poslední otevřené soubory, historii příkazů apod. Na vašem počítači jeden projekt vždy odpovídá jedné složce (s případnými podsložkami), do které si RStudio uloží projektový soubor <code>nazev-projektu.Rproj</code>. Tímto souborem jde pak projekt otevřít např. z Průzkumníka Windows.</p>
+<p><img src="img/rstudio-project-03.png" alt="Volba složky projektu" /></p>
 <p>K projektům ještě pár doporučení a vysvětlení:</p>
 <ul>
 <li>V některých situacích vám zjednoduší život, když budete projekty pojmenovávat podobně jako webová URL, tj. jen písmeny malé anglické abecedy, čísly, pomlčkami a tečkami. Nutné to ale není.</li>
@@ -333,37 +338,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Ať už si projekt založíte kdekoli, doporučuji si pro všechny projekty zvolit jedinou zastřešující složku, protože v různých kontextech se vám pak zobrazí jen název projektu, a pokud byste na více místech měli stejně pojmenované projekty, pletlo by vás to.</li>
 <li>Pokud máte nebo až budete mít zprovozněný Git, objeví se vám při volbě složky i volba <em>Create a git repository</em>. Vždycky ji zapínejte. Pro první pokusy ale Git nepotřebujete a já se mu v této knížce věnovat nebudu.</li>
 </ul>
-</div>
-</div>
-<div id="nastavení-rstudia" class="section level2 hasAnchor" number="2.6">
-<h2><span class="header-section-number">2.6</span> Nastavení RStudia<a href="instalace-a-nastaveni.html#nastavení-rstudia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>R i RStudio je ve výchozím stavu nastaveno v zásadě dobře. Změňte prosím jen dvě věci.</p>
-<p>Z menu <em>Tools</em> vyberte příkaz <em>Global Options…</em> (úplně na konci) a v následujícím dialogu vypněte volbu <em>Restore .RData into workspace at startup</em> a volbu <em>Save workspace to .RData on exit</em> nastavte na <em>Never</em>.</p>
-<div class="figure">
-<img src="img/rstudio-options-01.png" alt="" />
-<p class="caption">RStudio: Options - General</p>
-</div>
-<p>A pak na panelu <em>Code</em> zapněte volbu <em>Use native pipe operator</em>. To sice není nutné, ale vše se pak bude chovat stejně, jako v mých ukázkách.</p>
-<div class="figure">
-<img src="img/rstudio-options-02.png" alt="" />
-<p class="caption">RStudio: Options - Code</p>
-</div>
-</div>
-<div id="instalace-balíčků" class="section level2 hasAnchor" number="2.7">
-<h2><span class="header-section-number">2.7</span> Instalace balíčků<a href="instalace-a-nastaveni.html#instalace-balíčků" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Základní R je jenom jazykové jádro s nezbytnými příkazy a funkcemi. Jeho funkčnost rozšiřují tzv. balíčky (packages), kterým se v jiných jazycích často říká knihovny. Balíčky je potřeba jednak nainstalovat (jednorázově) a jednak připojit před konkrétní prací, ke které je potřebujete (vysvětlím později).</p>
-<p>V RStudiu Desktop už jsou některé balíčky předinstalované a ještě víc jich je v cloudovém RStudio, ale pro jistotu vám ukážu, jak nainstalujete ty, které budete potřebovat pro celý tenhle seriál.</p>
-<p>Z menu <em>Tools</em> zvolte příkaz <em>Install Packages…</em>. Objeví se tento dialog:</p>
-<div class="figure">
-<img src="img/install-packages-01.png" alt="" />
-<p class="caption">Dialog Install Packages</p>
-</div>
-<p>Nechte v něm předvyplněné volby a do prázdného políčka vložte tento seznam balíčků:</p>
-<pre><code>janitor, knitr, lubridate, rmarkdown, readxl, rvest, tidyverse</code></pre>
-<p>Alternativně jde balíčky instalovat funkcí <code>install.packages()</code>, kterou zavoláte třeba z konsole (vysvětlím za chvíli). To pak vypadá takhle:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="instalace-a-nastaveni.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;janitor&quot;</span>, <span class="st">&quot;knitr&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;rmarkdown&quot;</span>, <span class="st">&quot;readxl&quot;</span>, <span class="st">&quot;rvest&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>))</span></code></pre></div>
-<p>Oba způsoby balíčky zároveň aktualizují, což se občas hodí.</p>
 
+</div>
 </div>
 </div>
             </section>

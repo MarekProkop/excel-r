@@ -157,12 +157,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-r"><i class="fa fa-check"></i><b>2.2</b> Instalace R<span></span></a></li>
 <li class="chapter" data-level="2.3" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-rstudia"><i class="fa fa-check"></i><b>2.3</b> Instalace RStudia<span></span></a></li>
 <li class="chapter" data-level="2.4" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#pokud-už-r-a-rstudio-máte-a-trochu-znáte"><i class="fa fa-check"></i><b>2.4</b> Pokud už R a RStudio máte (a trochu znáte)<span></span></a></li>
-<li class="chapter" data-level="2.5" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#založte-si-cvičný-projekt"><i class="fa fa-check"></i><b>2.5</b> Založte si cvičný projekt<span></span></a>
+<li class="chapter" data-level="2.5" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#nastavení-rstudia"><i class="fa fa-check"></i><b>2.5</b> Nastavení RStudia<span></span></a></li>
+<li class="chapter" data-level="2.6" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-balíčků"><i class="fa fa-check"></i><b>2.6</b> Instalace balíčků<span></span></a></li>
+<li class="chapter" data-level="2.7" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#projekty"><i class="fa fa-check"></i><b>2.7</b> Projekty<span></span></a>
 <ul>
-<li class="chapter" data-level="2.5.1" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#co-jsou-projekty"><i class="fa fa-check"></i><b>2.5.1</b> Co jsou projekty<span></span></a></li>
+<li class="chapter" data-level="2.7.1" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#založte-si-cvičný-projekt"><i class="fa fa-check"></i><b>2.7.1</b> Založte si cvičný projekt<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#nastavení-rstudia"><i class="fa fa-check"></i><b>2.6</b> Nastavení RStudia<span></span></a></li>
-<li class="chapter" data-level="2.7" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-balíčků"><i class="fa fa-check"></i><b>2.7</b> Instalace balíčků<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="prvni-kroky.html"><a href="prvni-kroky.html"><i class="fa fa-check"></i><b>3</b> První kroky v R a RStudiu<span></span></a>
 <ul>
@@ -271,13 +271,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Od Excelu k R</h1>
 <p class="author"><em>Marek Prokop</em></p>
-<p class="date"><em>22.3.2022</em></p>
+<p class="date"><em>23.3.2022</em></p>
 </div>
 <div id="o-knize" class="section level1 unnumbered hasAnchor">
 <h1>O knize<a href="index.html#o-knize" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Tuto knihu či spíše sérii článků a návodů jsem napsal především pro své klienty, které učím využívat R v marketingu. Pokud k nim patříte, mám radost, že jste knížku otevřeli a chcete se pustit do studia. Až spolu budeme analyzovat klíčová slova, výsledky SEO nebo chování vašich zákazníků, využijete vše, co se zde naučíte.</p>
 <p>Ale třeba mými klienty nejste. Nevadí. Když už jsem knihu napsal, byla by škoda, kdyby nesloužila i vám. Základy, které zde vykládám, se vám budou hodit skoro v každém oboru, na který se R chystáte aplikovat.</p>
-<p>Ukážu vám věci, které asi běžně děláte v Excelu a v R jdou udělat hodně podobně. A naučím vás i věci, které taky děláte v Excelu, ale v R jdou udělat o dost lépe. Už tím na tom vyděláte, pokud se do toho se mnou pustíte. A někdy později, až budete mít základy v malíčku, vám třeba ukážu i to, co dělám v R jako markeťák a Excel by mi na to rozhodně nestačil.</p>
+<p>Ukážu vám věci, které asi běžně děláte v Excelu a v R jdou udělat hodně podobně. A naučím vás i věci, které taky děláte v Excelu, ale v R jdou udělat o dost lépe. Už jen to se vám nejspíš vyplatí. A někdy později, až budete mít základy v malíčku, vám třeba ukážu i to, co dělám v R jako markeťák a Excel by mi na to rozhodně nestačil.</p>
 <div id="čeho-chci-spolu-s-vámi-dosáhnout" class="section level2 unnumbered hasAnchor">
 <h2>Čeho chci spolu s vámi dosáhnout<a href="index.html#čeho-chci-spolu-s-vámi-dosáhnout" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Mám jednoduchý cíl: předpokládám, že umíte docela slušně Excel nebo jiný spreadsheet, třeba Google Sheets. Nepředpokládám, že umíte cokoli jiného, např. programovat. Z toho jsem při psaní vycházel a snažím se toho důsledně držet. Výklad by tedy měl být srozumitelný i neajťákům a programátoři nebo kodéři se u něj mohou nudit.</p>

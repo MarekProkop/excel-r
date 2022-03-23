@@ -44,44 +44,18 @@ update.packages(ask = FALSE, checkBuilt = TRUE)
 
 Pokud byste měli starou verzi RStudia, jde ho normálně přeinstalovat.
 
-## Založte si cvičný projekt
-
-Tohle fakt hned teď udělejte. Je to důležité.
-
-Po spuštění RStudia zvolte příkaz *New Project…* z menu *File*, nebo z roletky projektů vpravo nahoře. Na další obrazovce zvolte *New Directory*.
-
-![Dialog Create Project](img/rstudio-project-01.png)
-
-Na další *New Project*.
-
-![Volba typu projektu](img/rstudio-project-02.png)
-
-A nakonec zadejte název složky, ve které se má projekt vytvořit. Může to být výchozí (domovská) složka pro R (`~/R`) nebo jakákoli jiná, kterou si vytvoříte jako nadřízenou složku pro podložky eRkových projektů. Třeba u mě to je `c:/dev/R` (pro moje projekty), nebo `c:/dev/R/clients` (pro klientské projekty).
-
-![Volba složky projektu](img/rstudio-project-03.png)
-
-### Co jsou projekty
-
-V RStudiu se nejčastěji pracuje v tzv. projektech. Jde to sice i bez nich, ale projekty jsou praktické, protože si pamatují různá nastavení, poslední otevřené soubory, historii příkazů apod. Na vašem počítači jeden projekt vždy odpovídá jedné složce (s případnými podsložkami), do které si RStudio uloží projektový soubor `nazev-projektu.Rproj`. Tímto souborem jde pak projekt otevřít např. z Průzkumníka Windows.
-
-K projektům ještě pár doporučení a vysvětlení:
-
-- V některých situacích vám zjednoduší život, když budete projekty pojmenovávat podobně jako webová URL, tj. jen písmeny malé anglické abecedy, čísly, pomlčkami a tečkami. Nutné to ale není.
-- Po standardní instalaci vám na Windows (jinde to může být jiné) ve složce Dokumenty vznikne podsložka R, kterou pak RStudio (i samotné R) označuje aliasem `~/R`. Projekty ale můžete zakládat i jinde.
-- Ať už si projekt založíte kdekoli, doporučuji si pro všechny projekty zvolit jedinou zastřešující složku, protože v různých kontextech se vám pak zobrazí jen název projektu, a pokud byste na více místech měli stejně pojmenované projekty, pletlo by vás to.
-- Pokud máte nebo až budete mít zprovozněný Git, objeví se vám při volbě složky i volba *Create a git repository*. Vždycky ji zapínejte. Pro první pokusy ale Git nepotřebujete a já se mu v této knížce věnovat nebudu.
-
 ## Nastavení RStudia
 
 R i RStudio je ve výchozím stavu nastaveno v zásadě dobře. Změňte prosím jen dvě věci.
 
-Z menu *Tools* vyberte příkaz *Global Options…* (úplně na konci) a v následujícím dialogu vypněte volbu *Restore .RData into workspace at startup* a volbu *Save workspace to .RData on exit* nastavte na *Never*.
+Z menu *Tools* vyberte příkaz *Global Options…* (úplně na konci) a v následujícím dialogu vypněte volbu *Restore .RData into workspace at startup* a volbu *Save workspace to .RData on exit* nastavte na *Never*. Tím zaručíte, že RStudio nastartuje vždy „čisté“, bez objektů z předešlé práce, které jsou častou příčinou chyb.
 
 ![RStudio: Options - General](img/rstudio-options-01.png)
 
 A pak na panelu *Code* zapněte volbu *Use native pipe operator*. To sice není nutné, ale vše se pak bude chovat stejně, jako v mých ukázkách.
 
 ![RStudio: Options - Code](img/rstudio-options-02.png)
+
 
 ## Instalace balíčků
 
@@ -106,3 +80,32 @@ install.packages(c("janitor", "knitr", "lubridate", "rmarkdown", "readxl", "rves
 ```
 
 Oba způsoby balíčky zároveň aktualizují, což se občas hodí.
+
+## Projekty
+
+V RStudiu se nejčastěji pracuje v tzv. projektech. Jde to sice i bez nich, ale projekty jsou praktické, protože si pamatují různá nastavení, poslední otevřené soubory, historii příkazů apod. Na vašem počítači jeden projekt vždy odpovídá jedné složce (s případnými podsložkami), do které si RStudio uloží projektový soubor `nazev-projektu.Rproj`. Tímto souborem jde pak projekt otevřít např. z Průzkumníka Windows.
+
+### Založte si cvičný projekt
+
+Tohle fakt hned teď udělejte. Je to důležité.
+
+Po spuštění RStudia zvolte příkaz *New Project…* z menu *File*, nebo z roletky projektů vpravo nahoře. Na další obrazovce zvolte *New Directory*.
+
+![Dialog Create Project](img/rstudio-project-01.png)
+
+Na další *New Project*.
+
+![Volba typu projektu](img/rstudio-project-02.png)
+
+A nakonec zadejte název složky, ve které se má projekt vytvořit. Může to být výchozí (domovská) složka pro R (`~/R`) nebo jakákoli jiná, kterou si vytvoříte jako nadřízenou složku pro podložky eRkových projektů. Třeba u mě to je `c:/dev/R` (pro moje projekty), nebo `c:/dev/R/clients` (pro klientské projekty).
+
+![Volba složky projektu](img/rstudio-project-03.png)
+
+K projektům ještě pár doporučení a vysvětlení:
+
+- V některých situacích vám zjednoduší život, když budete projekty pojmenovávat podobně jako webová URL, tj. jen písmeny malé anglické abecedy, čísly, pomlčkami a tečkami. Nutné to ale není.
+- Po standardní instalaci vám na Windows (jinde to může být jiné) ve složce Dokumenty vznikne podsložka R, kterou pak RStudio (i samotné R) označuje aliasem `~/R`. Projekty ale můžete zakládat i jinde.
+- Ať už si projekt založíte kdekoli, doporučuji si pro všechny projekty zvolit jedinou zastřešující složku, protože v různých kontextech se vám pak zobrazí jen název projektu, a pokud byste na více místech měli stejně pojmenované projekty, pletlo by vás to.
+- Pokud máte nebo až budete mít zprovozněný Git, objeví se vám při volbě složky i volba *Create a git repository*. Vždycky ji zapínejte. Pro první pokusy ale Git nepotřebujete a já se mu v této knížce věnovat nebudu.
+
+

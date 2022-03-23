@@ -17,7 +17,7 @@ Tuto knihu či spíše sérii článků a návodů jsem napsal především pro
 
 Ale třeba mými klienty nejste. Nevadí. Když už jsem knihu napsal, byla by škoda, kdyby nesloužila i vám. Základy, které zde vykládám, se vám budou hodit skoro v každém oboru, na který se R chystáte aplikovat.
 
-Ukážu vám věci, které asi běžně děláte v Excelu a v R jdou udělat hodně podobně. A naučím vás i věci, které taky děláte v Excelu, ale v R jdou udělat o dost lépe. Už tím na tom vyděláte, pokud se do toho se mnou pustíte. A někdy později, až budete mít základy v malíčku, vám třeba ukážu i to, co dělám v R jako markeťák a Excel by mi na to rozhodně nestačil.
+Ukážu vám věci, které asi běžně děláte v Excelu a v R jdou udělat hodně podobně. A naučím vás i věci, které taky děláte v Excelu, ale v R jdou udělat o dost lépe. Už jen to se vám nejspíš vyplatí. A někdy později, až budete mít základy v malíčku, vám třeba ukážu i to, co dělám v R jako markeťák a Excel by mi na to rozhodně nestačil.
 
 ## Čeho chci spolu s vámi dosáhnout {-}
 

@@ -125,13 +125,13 @@ sample_df <- edit(sample_df)
 
 ## Chci si jen rychle něco vyzkoušet
 
-V základním R i v některých balíčcích je docela dost vzorových data setů již zabudovaných. Slouží jako příklady pro demonstraci některých postupů a můžete si s nimi zkusit hrát. Často se třeba něco ukazuje na data setu _iris_, který obsahuje vlastnosti několika druhů kosatců.
+V základním R i v některých balíčcích je docela dost vzorových data setů již zabudovaných. Slouží jako příklady pro demonstraci některých postupů a můžete si s nimi zkusit hrát. Často se třeba něco ukazuje na datasetu _iris_, který obsahuje vlastnosti několika druhů kosatců.
 
 ```{r}
 iris
 ```
 
-A v _tidyverse_ ze zabudovaný i krásný data set postav ze Star Wars.
+A v _tidyverse_ ze zabudovaný i krásný dataset postav ze Star Wars.
 
 ```{r}
 starwars

@@ -1,4 +1,5 @@
 bookdown::gitbook:
+  fig_caption: no
   css: css/style.css
   split_by: rmd
   df_print: paged

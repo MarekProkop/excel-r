@@ -19,7 +19,7 @@ Balík *tidyverse* mj. obsahuje i vzorový dataset *starwars*, na kterém vět�
 
 ## Průzkum dat a výběr sloupců
 
-Před dalším zpracováním je dobré si data pořádně prohlédnout a ujasnit si, co přesně popisují, jaké datové typy mají jednotlivé sloupce, zda jsou konzistentní, nejsou v nich chyby, něco nechybí atd.
+Před dalším zpracováním je dobré si data pořádně prohlédnout a ujasnit si, co přesně popisují, jaké datové typy mají jednotlivé sloupce, zda jsou konzistentní, nejsou v nich chyby, něco neschází atd.
 
 Nejprve si asi data frame zobrazíte, což můžete udělat několika způsoby. V R Markdownu ho většinou stačí vypsat názvem a tabulkou lze pak interaktivně listovat. To ale nefunguje na konzoli a ani výstup do finálního dokumentu není nejlepší.
 
@@ -81,17 +81,17 @@ sum(c(10, 20, NA, 30), na.rm = TRUE)
 mean(c(10, 20, NA, 30), na.rm = TRUE)
 ```
 
-Existují i funkce, kterými můžete řádky s `NA` z dataframu úplně odstranit
+Existují i funkce, kterými můžete řádky s `NA` z data framu úplně odstranit
 
 ```{r}
 drop_na(my_starwars)
 ```
 
-nebo nahradit nějakou jinou hodnotou.
+nebo nahradit jinou hodnotou funkcí `replace_na`.
 
 ## Výběr sloupců
 
-Už jsem ukázal, že výběr sloupců provedete funkcí `select`. Ta má jako první parametr dataframe a za ním následuje seznam sloupců, který můžete napsat několika způsoby. Většinou je nejjednodušší sloupce vyjmenovat a oddělit čárkou:
+Už jsem ukázal, že výběr sloupců provedete funkcí `select`. Ta má jako první parametr data frame a za ním následuje seznam sloupců, který můžete napsat několika způsoby. Většinou je nejjednodušší sloupce vyjmenovat a oddělit čárkou:
 
 ```{r}
 select(my_starwars, name, hair_color, eye_color)
@@ -117,13 +117,13 @@ Těch způsobů je ale mnohem víc a všechny je najdete v nápovědě:
 
 ### Funkcionální princip
 
-Podstatné je, že funkce `select` ani žádná jiná nikdy nemění objekt, se kterým pracuje (zde dataframe *my_starwars*). R je tzv. funkcionální jazyk, což znamená, že všechny funkce nějak zpracují parametry, vrátí výsledek jako nový objekt (který si můžete i nemusíte uložit), ale parametry nikdy nezmění.
+Podstatné je, že funkce `select` ani žádná jiná nikdy nemění objekt, se kterým pracuje (zde data frame *my_starwars*). R je tzv. funkcionální jazyk, což znamená, že všechny funkce nějak zpracují parametry, vrátí výsledek jako nový objekt (který si můžete i nemusíte uložit), ale parametry nikdy nezmění.
 
 Mimochodem, jazyk vzorců Excelu je taky funkcionální -- funkce v něm taky něco vrátí, ale parametry nezmění.
 
 ### Pipes (trubky, fajfky)
 
-Představte si, že chcete na objekt (zde dataframe) aplikovat nějakou funkci, a na výsledek, který dostanete, chcete aplikovat další funkci. Stejně jako v Excelu to jde udělat vnořováním funkcí:
+Představte si, že chcete na objekt (zde data frame) aplikovat nějakou funkci, a na výsledek, který dostanete, chcete aplikovat další funkci. Stejně jako v Excelu to jde udělat vnořováním funkcí:
 
 ```{r}
 glimpse(select(my_starwars, name, hair_color))
@@ -147,6 +147,33 @@ my_starwars |>
 
 Operátor *pipe* (`|>`) vždy vezme výsledek výrazu vlevo a použije ho jako první parametr funkce vpravo. Celé se to tedy píše i čte přesně v pořadí zpracování: vezmu objekt `my_starwars` na něj aplikuji funkci `select` a na výsledek aplikuji funkci `glimpse`.
 
+Pro porovnání obecně oba způsoby zápisu:
+
+```{r eval=FALSE}
+# Zápis s pipes
+objekt |> 
+  prvni_funkce(druhy_parametr_prvni_funkce, treti_parametr_prvni_funkce) |> 
+  druha_funkce(druhy_parametr_druhe_funkce) |> 
+  treti_funkce(druhy_parametr_treti_funkce) |> 
+  ctvrta_funkce() |> 
+  pata_funkce(druhy_parametr_pate_funkce)
+
+# Zápis s vnořenými funkcemi
+pata_funkce(
+  ctvrta_funkce(
+    treti_funkce(
+      druha_funkce(
+        prvni_funkce(
+          objekt, druhy_parametr_prvni_funkce, treti_parametr_prvni_funkce
+        ), druhy_parametr_druhe_funkce
+      ), druhy_parametr_treti_funkce
+    )
+  ), druhy_parametr_pate funkce
+)
+```
+
+Kdyby se jednalo o skutečné funkce, oba zápisy by dělaly totéž, ale první je výrazně přehlednější a lépe se píše.
+
 #### Starší pipe
 
 Skoro ve všech návodech a dokumentaci k R najdete jiný operátor *pipe*: `%>%`. Dřív totiž R operátor *pipe* nemělo a nahrazoval se operátorem z knihovny *magrittr*. Teď už ale R má nativní operátor `|>` a já ho mám radši. Pro vás je důležité, že `%>%` a `|>` je v principu totéž a skoro vždy se to chová stejně.
@@ -156,14 +183,14 @@ Skoro ve všech návodech a dokumentaci k R najdete jiný operátor *pipe*: `%
 
 ### Funkce `filter`
 
-Pokud nechcete zobrazit či dále zpracovat všechny řádky dataframu, vyberete si jen některé. Nějčastěji se na to používá funkce `filter`. Tohle je její nejjednodušší podoba:
+Pokud nechcete zobrazit či dále zpracovat všechny řádky data framu, vyberete si jen některé. Nějčastěji se na to používá funkce `filter`. Tohle je její nejjednodušší podoba:
 
 ```{r}
 my_starwars |> 
   filter(hair_color == "blond")
 ```
 
-Jako parametr jsem napsal logickou podmínkou, že se hodnota ve sloupci `hair_color` musí rovnat `blond`. Podmínky ale mohu i kombinovat, a pak musí být oddělené čárkou.
+Jako parametr jsem napsal logickou podmínku, že se hodnota ve sloupci `hair_color` musí rovnat `blond`. Podmínky ale mohu i kombinovat, a pak musí být oddělené čárkou.
 
 ```{r}
 my_starwars |> 
@@ -303,7 +330,7 @@ my_starwars |>
   )
 ```
 
-Všimněte si, že funkce `n()` vrátí počet řádků dataframu. Šlo by s ní spočítat třeba počet planet? Nešlo. Na to slouží funkce `n_distinct`, která spočítá počet unikátních hodnot vektoru.
+Všimněte si, že funkce `n()` vrátí počet řádků data framu. Šlo by s ní spočítat třeba počet planet? Nešlo. Na to slouží funkce `n_distinct`, která spočítá počet unikátních hodnot vektoru.
 
 ```{r}
 my_starwars |> 

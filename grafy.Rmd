@@ -4,7 +4,7 @@ Grafy a vizualizace jdou dělat v R mnoha způsoby. Něco je už v základní
 
 Upřímně, *ggplot2* je dost komplikovaný, umí toho strašně moc a mě se nechce to všechno podrobně vysvětlovat. Vlastně by to ani nebylo v souladu se záměrem knížky, protože vás mám naučit hlavně to, co jde i v Excelu. A Excel, pokud jde o grafy, umí jen pár procent toho co *ggplot2*.
 
-Takže spíš než teoretický výklad, vám ukážu několik nejtypičtějších příkladů. Nebudu je podrobně vysvětlovat, takže buď je jenom podle svých potřeb opisujte (i s tím si vystačíte dost dlouho), nebo si *ggplot2* důkladněji nastudujte z jiných zdrojů.
+Takže spíš než teoretický výklad vám ukážu několik nejtypičtějších příkladů. Nebudu je podrobně vysvětlovat, takže buď je jenom podle svých potřeb opisujte (i s tím si vystačíte dost dlouho), nebo si *ggplot2* důkladněji nastudujte z jiných zdrojů.
 
 Připojím knihovnu (ve skutečnosti není třeba, je už v *tidyverse*) a dáme se do toho.
 
@@ -116,7 +116,7 @@ starwars |>
 
 ## Čarový graf a timeline
 
-Čárový graf se nejčastěji používá na vývoj něčeho v čase, takže si na demonstraci půjčím dateset `economics`, který je k balíčku *ggplot2* přibalený. Obsahuje mj. populaci USA v tisících za jednotlivé měsíce od července 1967 do dubna 2015.
+Čárový graf se nejčastěji používá na vývoj něčeho v čase, takže si na demonstraci půjčím dataset `economics`, který je k balíčku *ggplot2* přibalený. Obsahuje mj. populaci USA v tisících za jednotlivé měsíce od července 1967 do dubna 2015.
 
 Z těchto údajů vykreslený graf vypadá takhle:
 

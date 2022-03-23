@@ -9,10 +9,10 @@ cloud-nebo-instalace
 instalace-r
 instalace-rstudia
 pokud-už-r-a-rstudio-máte-a-trochu-znáte
-založte-si-cvičný-projekt
-co-jsou-projekty
 nastavení-rstudia
 instalace-balíčků
+projekty
+založte-si-cvičný-projekt
 první-kroky-v-r-a-rstudiu
 excel-vs.-r
 tři-způsoby-práce-s-r
