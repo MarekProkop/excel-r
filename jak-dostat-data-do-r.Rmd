@@ -56,7 +56,7 @@ sample_df
 
 ### Funkce tibble
 
-Já raději používám funkce z ekosystému _tidyverse_, ve kterém funkci _data.frame_ nahrazuje funkce _tibble_. Používá se úplně stejně, ale místo objektu třídy _data frame_ vytvoří objekt třídy _tibble_, který je s data framem plně kompatibilní, ale o něco hezčeji se vypisuje na konsoli.
+Já raději používám funkce z ekosystému _tidyverse_, ve kterém funkci _data.frame_ nahrazuje funkce _tibble_. Používá se úplně stejně, ale místo objektu třídy _data frame_ vytvoří objekt třídy _tibble_, který je s data framem plně kompatibilní, ale o něco hezčeji se vypisuje na konzoli.
 
 Příkaz s touto funkcí pak vypadá takto:
 
@@ -111,7 +111,7 @@ Inu, skoro stejně. V Excelu něco píšete, pak máte už hotový výsledek a�
 
 1. Pokud máte postup uložený ve skriptu, opravíte ho a znovu pusíte skript.
 2. Pokud máte postup v souboru _rmarkdown_ (.Rmd), opravíte ho a znovu spustíte jen opravený blok.
-3. Pokud jste postup napsali jen do konzole, vrátité se k němu v historii (v konsoli šipka nahoru, případně panel _History_ v RStudiu), opravíte a znovu provedete.
+3. Pokud jste postup napsali jen do konzole, vrátité se k němu v historii (v konzoli šipka nahoru, případně panel _History_ v RStudiu), opravíte a znovu provedete.
 
 ### Funkce edit
 

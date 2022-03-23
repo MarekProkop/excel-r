@@ -168,7 +168,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#excel-vs.-r"><i class="fa fa-check"></i><b>3.1</b> Excel vs. R<span></span></a></li>
 <li class="chapter" data-level="3.2" data-path="prvni-kroky.html"><a href="prvni-kroky.html#tři-způsoby-práce-s-r"><i class="fa fa-check"></i><b>3.2</b> Tři způsoby práce s R<span></span></a></li>
-<li class="chapter" data-level="3.3" data-path="prvni-kroky.html"><a href="prvni-kroky.html#interaktivní-práce-s-konsolí"><i class="fa fa-check"></i><b>3.3</b> Interaktivní práce s konsolí<span></span></a>
+<li class="chapter" data-level="3.3" data-path="prvni-kroky.html"><a href="prvni-kroky.html#interaktivní-práce-s-konzolí"><i class="fa fa-check"></i><b>3.3</b> Interaktivní práce s konzolí<span></span></a>
 <ul>
 <li class="chapter" data-level="3.3.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#objekty-proměnné"><i class="fa fa-check"></i><b>3.3.1</b> Objekty (proměnné)<span></span></a></li>
 <li class="chapter" data-level="3.3.2" data-path="prvni-kroky.html"><a href="prvni-kroky.html#funkce"><i class="fa fa-check"></i><b>3.3.2</b> Funkce<span></span></a></li>
@@ -283,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Stáhněte a nainstalujte si zkompilovanou verzi R pro svůj operační sytém z <a href="https://cloud.r-project.org/" class="uri">https://cloud.r-project.org/</a>. Žádná past by tam být neměla, postupujte podle instrukcí na webu a v instalátoru.</p>
 <p>Když po instalaci R spustíte, mělo by vypadat nějak takhle:</p>
 <p><img src="img/r-01.png" alt="Základní R po spuštění" /></p>
-<p>Okno zavřete a to je všechno. Odtěď můžete na základní R zapomenout.</p>
+<p>Okno zavřete a to je všechno. Odteď můžete na základní R zapomenout.</p>
 </div>
 <div id="instalace-rstudia" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Instalace RStudia<a href="instalace-a-nastaveni.html#instalace-rstudia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -292,7 +292,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="pokud-už-r-a-rstudio-máte-a-trochu-znáte" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> Pokud už R a RStudio máte (a trochu znáte)<a href="instalace-a-nastaveni.html#pokud-už-r-a-rstudio-máte-a-trochu-znáte" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Pro jistotu si zkontrolujte verzi RStudia i R. Verzi R vám řekne konsole při spuštění a kdykoli později ji zjistíte příkazem:</p>
+<p>Pro jistotu si zkontrolujte verzi RStudia i R. Verzi R vám řekne konzole při spuštění a kdykoli později ji zjistíte příkazem:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="instalace-a-nastaveni.html#cb1-1" aria-hidden="true" tabindex="-1"></a>R.version.string</span></code></pre></div>
 <pre><code>## [1] &quot;R version 4.1.2 (2021-11-01)&quot;</code></pre>
 <p>Poslední verze (zjistíte <a href="https://www.r-project.org/">na webu R</a>) je nejlepší, ale když budete o pár desetinek pozadu, nic vážného se nestane. On je upgrade R malinko opruz, takže ho nechcete dělat zbytečně. Rozhodně si ale aktualizujte nainstalované balíčky, protože to jde snadno příkazem:</p>
@@ -309,13 +309,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="instalace-balíčků" class="section level2 hasAnchor" number="2.6">
 <h2><span class="header-section-number">2.6</span> Instalace balíčků<a href="instalace-a-nastaveni.html#instalace-balíčků" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Základní R je jenom jazykové jádro s nezbytnými příkazy a funkcemi. Jeho funkčnost rozšiřují tzv. balíčky (packages), kterým se v jiných jazycích často říká knihovny. Balíčky je potřeba jednak nainstalovat (jednorázově) a jednak připojit před konkrétní prací, ke které je potřebujete (vysvětlím později).</p>
+<p>Základní R je jenom jazykové jádro s nezbytnými příkazy a funkcemi. Jeho funkčnost rozšiřují tzv. balíčky (packages), kterým se v jiných programovacích jazycích často říká knihovny. Balíčky je potřeba jednak nainstalovat (jednorázově) a jednak připojit před konkrétní prací, ke které je potřebujete (vysvětlím později).</p>
 <p>V RStudiu Desktop už jsou některé balíčky předinstalované a ještě víc jich je v cloudovém RStudio, ale pro jistotu vám ukážu, jak nainstalujete ty, které budete potřebovat pro celý tenhle seriál.</p>
 <p>Z menu <em>Tools</em> zvolte příkaz <em>Install Packages…</em>. Objeví se tento dialog:</p>
 <p><img src="img/install-packages-01.png" alt="Dialog Install Packages" /></p>
 <p>Nechte v něm předvyplněné volby a do prázdného políčka vložte tento seznam balíčků:</p>
 <pre><code>janitor, knitr, lubridate, rmarkdown, readxl, rvest, tidyverse</code></pre>
-<p>Alternativně jde balíčky instalovat funkcí <code>install.packages()</code>, kterou zavoláte třeba z konsole (vysvětlím za chvíli). To pak vypadá takhle:</p>
+<p>Alternativně jde balíčky instalovat funkcí <code>install.packages()</code>, kterou zavoláte třeba z konzole (vysvětlím za chvíli). To pak vypadá takhle:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="instalace-a-nastaveni.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;janitor&quot;</span>, <span class="st">&quot;knitr&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;rmarkdown&quot;</span>, <span class="st">&quot;readxl&quot;</span>, <span class="st">&quot;rvest&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>))</span></code></pre></div>
 <p>Oba způsoby balíčky zároveň aktualizují, což se občas hodí.</p>
 </div>

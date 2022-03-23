@@ -6,9 +6,9 @@ Je to dáno nároky mé práce, vyšší efektivitou a taky tím, že mě R ví
 
 ## Co je R a RStudio
 
-R je programovací jazyk (to zní strašně, co?) navržený pro statistiku. Tradičně se používá pro zpracování dat z medicinských či vědeckých výzkumů, ale čím dál častěji po něm sahají i datoví analytici z byznysu. Zároveň je to interaktivní prostředí vhodné pro rychlé ad hoc výpočty a také je to ekosystém desitek tisíc knihoven (říká se jim balíčky), které pomáhají řešít nejrůznější úkoly snad ze všech oborů lidské činnosti.
+R je programovací jazyk (to zní strašně, co?) navržený pro statistiku. Tradičně se používá pro zpracování dat z medicinských či vědeckých výzkumů, ale čím dál častěji po něm sahají i datoví analytici z byznysu. Zároveň je to interaktivní prostředí vhodné pro rychlé ad hoc výpočty a také je to ekosystém desítek tisíc knihoven (říká se jim balíčky), které pomáhají řešit nejrůznější úkoly snad ze všech oborů lidské činnosti.
 
-Samotné R už ale používá málokdo. Většina uživatelů pracuje v RStudiu, což je integrované vývojové prostředí (IDE), které umožňuje mnohem pohodlnější a efektivnější práci než základní prostředí R.
+Samotné R už ale používá málokdo. Většina uživatelů pracuje v RStudiu, což je integrované vývojové prostředí (IDE, Integrated Development Environment), které umožňuje mnohem pohodlnější a efektivnější práci než základní prostředí R.
 
 Podstatné je, že R (i RStudio) vymýšleli a pořád ještě vymýšlejí statistici, vědci, analytici, nikoli programátoři. Obecně je proto bližší spíš neprogramátorům, např. tím, že má přímo v sobě zabudovanou velmi podrobnou a snadno dostupnou nápovědu. Ve většině programovacích jazycích se programuje, ale R se spíš používá. Jako Excel :-)
 

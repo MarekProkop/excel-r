@@ -168,7 +168,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#excel-vs.-r"><i class="fa fa-check"></i><b>3.1</b> Excel vs. R<span></span></a></li>
 <li class="chapter" data-level="3.2" data-path="prvni-kroky.html"><a href="prvni-kroky.html#tři-způsoby-práce-s-r"><i class="fa fa-check"></i><b>3.2</b> Tři způsoby práce s R<span></span></a></li>
-<li class="chapter" data-level="3.3" data-path="prvni-kroky.html"><a href="prvni-kroky.html#interaktivní-práce-s-konsolí"><i class="fa fa-check"></i><b>3.3</b> Interaktivní práce s konsolí<span></span></a>
+<li class="chapter" data-level="3.3" data-path="prvni-kroky.html"><a href="prvni-kroky.html#interaktivní-práce-s-konzolí"><i class="fa fa-check"></i><b>3.3</b> Interaktivní práce s konzolí<span></span></a>
 <ul>
 <li class="chapter" data-level="3.3.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#objekty-proměnné"><i class="fa fa-check"></i><b>3.3.1</b> Objekty (proměnné)<span></span></a></li>
 <li class="chapter" data-level="3.3.2" data-path="prvni-kroky.html"><a href="prvni-kroky.html#funkce"><i class="fa fa-check"></i><b>3.3.2</b> Funkce<span></span></a></li>
@@ -295,35 +295,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.2</span> Tři způsoby práce s R<a href="prvni-kroky.html#tři-způsoby-práce-s-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>S R jde pracovat více různými způsoby. Já nejčastěji používám tři:</p>
 <ol style="list-style-type: decimal">
-<li>Interaktivní práce v konsoli.</li>
+<li>Interaktivní práce v konzoli.</li>
 <li>Polointeraktivní práce se skriptem.</li>
 <li>Interaktivní, poloautomatická či zcela automatická tvorba dokumentu v R Markdownu.</li>
 </ol>
 <p>Všechny tři ukážu na jednoduchém příkladu: představte si, že jste dnes ve svém obchodě vydali 100 účtenek. Teď se chcete rychle dozvědět, kolik dělá celková tržba a jaká byla typická útrata jednoho zákazníka.</p>
 </div>
-<div id="interaktivní-práce-s-konsolí" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Interaktivní práce s konsolí<a href="prvni-kroky.html#interaktivní-práce-s-konsolí" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Vaše RStudio vypadá nějak takhle a konsole je ta velká plocha vlevo. Psát budete za zobáček úplně vlevo (jinam ani nejde umístit kursor), každý řádek vždy odentrujete a konsole vám většinou nějak odpoví.</p>
+<div id="interaktivní-práce-s-konzolí" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Interaktivní práce s konzolí<a href="prvni-kroky.html#interaktivní-práce-s-konzolí" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Vaše RStudio vypadá nějak takhle a konzole je ta velká plocha vlevo. Psát budete za zobáček úplně vlevo (jinam ani nejde umístit kursor), každý řádek vždy odentrujete a konzole vám většinou nějak odpoví.</p>
 <p><img src="img/rstudio-console-01.png" alt="RStudio: Console" /></p>
-<p>Nejprve si vygenerujte účtenky. Budou sice trochu falešné, ale to nevadí. Do konsole napište:</p>
+<p>Nejprve si vygenerujte účtenky. Budou sice trochu falešné, ale to nevadí. Do konzole napište:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="prvni-kroky.html#cb13-1" aria-hidden="true" tabindex="-1"></a>cena <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">1000</span>, <span class="at">sd =</span> <span class="dv">200</span>), <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p>Odentrujte a nic se nestane. Vlastně stane. Pokud se podíváte doprava na záložku <em>Environment</em>, uvidíte tam tohle:</p>
 <p><img src="img/rstudio-console-02.png" alt="RStudio: Výsledek přiřazení" /></p>
 <p>Příkazem jste totiž vytvořili v prostředí R (environment) nový objekt <code>cena</code> a uložili jste do něj sto (skoro) náhodných čísel. Na všechny se můžete podívat příkazem:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="prvni-kroky.html#cb14-1" aria-hidden="true" tabindex="-1"></a>cena</span></code></pre></div>
-<pre><code>##   [1]  905.75  945.16  937.06  995.61  900.50  898.35 1094.71 1036.28 1204.08
-##  [10] 1008.67  778.81 1263.05 1155.60 1064.91  878.44 1135.79  893.96 1149.20
-##  [19]  914.46  775.74 1092.16 1051.80 1100.57 1018.85 1180.26  624.85  916.65
-##  [28]  823.61 1097.68 1276.96 1062.18 1090.75  923.47  915.74 1423.99  966.59
-##  [37] 1293.23  969.50 1199.78 1047.91  813.85 1122.25  946.92 1287.90 1166.51
-##  [46]  793.62 1080.10  713.90 1518.90  603.98  983.10  792.77  789.39 1023.54
-##  [55] 1098.96  700.33  939.75  869.32  724.91 1072.73 1139.98  765.22 1153.22
-##  [64]  773.97  973.19 1483.70 1081.34 1107.00 1136.05  821.73  985.57  764.00
-##  [73] 1231.81  859.90  824.81  890.92 1052.11 1138.20 1599.40 1101.71  903.94
-##  [82] 1075.76  877.21 1043.73  745.40  937.99  851.71  867.23 1032.09 1309.29
-##  [91] 1018.41 1190.79  789.70  948.23  719.15  723.69 1022.20 1055.94  669.47
-## [100] 1036.37</code></pre>
-<p>což pak na konsoli vypadá nějak takhle:</p>
+<pre><code>##   [1] 1192.91 1336.66 1129.60  999.93 1061.21 1079.01 1082.84 1061.25 1050.25
+##  [10] 1102.11  976.00 1129.18  929.62  969.20  669.88 1185.60  889.34 1118.03
+##  [19] 1027.13 1013.83 1207.58  815.21  939.28  742.46 1175.93  823.99  899.08
+##  [28] 1009.27  887.78 1075.80 1497.99 1037.15  822.84  964.17 1019.52 1036.80
+##  [37] 1146.55  848.43  933.55 1262.80 1023.04  834.32 1050.54 1019.97 1021.74
+##  [46]  862.88  684.70  787.28 1224.11  775.44  536.40 1082.98 1523.28 1083.43
+##  [55]  749.47 1404.93  991.73 1046.51  877.21 1075.09  642.69 1085.83 1139.60
+##  [64] 1176.34 1060.12  752.97 1171.24  973.71  943.52  686.26 1311.70 1136.43
+##  [73]  919.63  865.55  887.45  961.61  969.95 1301.22 1059.71  914.50 1044.18
+##  [82] 1192.86  566.30 1318.26  958.60  877.51  769.36  612.09  854.46 1072.88
+##  [91] 1164.46 1043.64  984.26 1118.03 1498.43  825.80  706.51 1130.28 1227.33
+## [100] 1065.61</code></pre>
+<p>což pak na konzoli vypadá nějak takhle (čísla jsou náhodná, takže nesedí s předešlým výsledkem):</p>
 <p><img src="img/rstudio-console-03.png" alt="Výsledek příkazu cena" /></p>
 <p>Teď vám to ale musím vysvětlit trochu podrobněji.</p>
 <div id="objekty-proměnné" class="section level3 hasAnchor" number="3.3.1">
@@ -344,21 +344,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>rnorm</code> je funkce, která vrací (skoro) náhodná čísla. Skoro jsem dal do závorky, protože vrácená čísla jsou náhodná v rámci normálního rozdělení (to je ta slavná Gaussova křivka), jehož podobu určíte parametry <code>mean</code> (průměr) a <code>sd</code> (směrodatná odchylka neboli standard deviation). Parametrem <code>n</code> navíc musíte určit, kolik těch čísel vlastně chcete.</p>
 <p>Následující příkaz tedy vrátí vektor sta náhodných čísel z normální rozdělení s průměrem 1000 a směrodatnou odchylkou 200.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="prvni-kroky.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">1000</span>, <span class="at">sd =</span> <span class="dv">200</span>)</span></code></pre></div>
-<pre><code>##   [1] 1038.1564  965.6331 1063.3813 1007.7508 1032.4321 1383.0094 1067.1953
-##   [8]  805.3382  581.9905 1200.7124  912.6972  513.9380  994.4892  961.1868
-##  [15]  986.6261  768.0172  908.4539 1090.1937  735.3103 1974.7743 1342.1655
-##  [22]  991.9569  877.6877 1052.5115  572.3285 1309.5514 1250.5743  730.2405
-##  [29]  989.5846 1241.7978 1078.5247 1160.4769 1166.7832 1146.9113 1078.4686
-##  [36]  867.4929  907.4126 1320.1556  782.5120  979.9685 1311.6005  653.3569
-##  [43] 1358.8651 1008.0771 1320.2879  942.2743 1217.7596  973.4276  944.1345
-##  [50]  926.1385  920.7046  997.7242  849.0782  808.6247  897.9954 1003.2587
-##  [57] 1309.1496  636.6261  994.1462  848.1446  896.3274  918.6182  765.1938
-##  [64]  734.8151 1075.1892  851.9519 1069.6977  794.3381 1235.1494 1097.3407
-##  [71] 1030.2953 1166.6217  859.1580 1327.6470 1209.5028 1398.5279 1492.7389
-##  [78]  916.1234 1332.3824  812.7160 1087.3410 1488.6041  737.6528  959.0035
-##  [85]  958.8220  941.3670 1089.8587 1109.5956 1216.3907  723.6204 1190.4720
-##  [92]  857.5228 1077.3992  818.7378 1039.1254  950.7856  735.4822  957.8003
-##  [99]  925.9356  848.1193</code></pre>
+<pre><code>##   [1]  643.9221 1436.3253  861.9220 1042.5561  786.3985 1362.9542  894.5745
+##   [8]  990.5447  838.6096  685.3028  661.5935 1404.8185 1136.6118  742.6172
+##  [15]  872.4876 1215.0976  874.6315  878.1965  782.6808  739.0871  755.7036
+##  [22] 1161.2694 1004.0381 1060.1288  878.1182 1115.5333 1543.5414 1233.6901
+##  [29] 1073.0029  649.8753 1099.0808 1043.1082  978.9193 1116.2026  768.0417
+##  [36] 1049.1075 1169.5412 1020.5787 1145.7282 1275.9213  806.9611 1263.9605
+##  [43] 1173.0585 1005.8094 1430.6157 1317.2765  906.6554  793.1767 1146.6988
+##  [50] 1047.0265 1142.0793  919.6268 1350.2776  984.6874 1191.4964  417.8822
+##  [57] 1206.3708 1235.4778  814.9976 1022.4988  850.3175  967.4146 1045.4229
+##  [64] 1021.7009 1133.1782  825.9952 1101.1331  887.0891  833.5795  765.0546
+##  [71]  903.2892 1126.0373 1114.5164 1286.1233  829.7042 1402.5967  748.4159
+##  [78]  932.1490 1148.7453 1147.1009 1056.3325  949.5446  722.4255 1024.7979
+##  [85] 1030.5230 1431.4948  956.6471  790.5507 1348.7001 1559.1839 1140.5087
+##  [92] 1085.3612  822.1655  897.4019 1061.3012 1321.0826 1206.1891 1053.8015
+##  [99] 1121.4875 1475.8438</code></pre>
 <p>Klidně si ho zadejte párkrát do konzole s různými parametry, abyste viděli, jak se mění výsledek.</p>
 <p><code>round</code> je funkce, která zaokrouhluje. První parametr je číselný vektor, který se má zaokrouhlit, a druhý parametr digits určuje, na kolik desetinných míst se má zaokrouhlit. Následující příkaz tedy zaokrouhlí číslo 1.145 na dvě desetinná místa:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="prvni-kroky.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">1.145</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
@@ -368,34 +368,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] 1.15</code></pre>
 <p>A teď už asi chápete – funkce <code>rnorm</code> vrátí sto čísel s hodně desetinnými čísly, a proto jste její výsledek ještě poslali funkci <code>round</code>, která celý vektor (tj. všech sto čísel) zaokrouhlila na dvě desetinná místa. V jiném programovacím jazyce byste na to potřebovali dost složité výpočty v cyklech, v R stačí tohle:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="prvni-kroky.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">1000</span>, <span class="at">sd =</span> <span class="dv">200</span>), <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>##   [1] 1166.99  846.01 1062.08 1318.98  900.77 1109.95  974.49  910.30 1325.10
-##  [10]  824.95 1196.82  949.21  782.48  919.09 1024.16 1081.87  671.76 1045.35
-##  [19]  836.72  953.54  902.22 1283.62 1329.66  883.99 1049.42  966.57  836.14
-##  [28]  940.44  812.62  977.58  915.74  995.75 1046.78  934.60  786.68 1411.52
-##  [37]  509.72 1275.09 1334.35  874.56 1043.59  771.01 1012.40 1053.05  902.83
-##  [46]  770.40 1397.59 1134.43  898.92  573.68 1079.21  638.58  960.50 1009.84
-##  [55]  977.65 1254.42 1084.04  734.51 1307.45 1342.63 1491.38  833.91  931.95
-##  [64]  756.87 1312.67  923.12 1116.60  843.53  738.09 1115.58  889.52  845.03
-##  [73] 1064.35  883.47 1093.08 1029.60 1130.69  860.80 1079.14 1110.43  870.58
-##  [82]  993.05 1014.01 1184.37  933.78  589.19 1080.77  946.07 1266.71  884.11
-##  [91] 1312.76 1055.90  823.24  544.85 1218.51 1172.59 1016.07  760.98 1013.55
-## [100]  839.50</code></pre>
+<pre><code>##   [1] 1069.22  967.03 1096.69  846.34 1000.78  855.76 1049.18  919.92  938.58
+##  [10] 1039.85 1072.73  921.00 1346.51 1077.22  726.08  996.87 1119.55 1199.88
+##  [19] 1156.81  946.15 1168.67 1338.92  946.38  936.18 1206.14 1104.43 1078.16
+##  [28] 1251.81  886.66 1114.28  924.37 1089.68  829.20  673.88  927.57 1066.08
+##  [37]  700.04  661.00 1454.26 1234.21  792.55 1305.93 1002.95  634.93 1260.93
+##  [46]  821.63 1014.31 1218.38 1297.60 1066.23  910.67  644.82  797.31  674.26
+##  [55] 1033.43 1337.25  871.41  834.85  723.90 1127.36 1075.93 1166.73 1473.80
+##  [64]  836.27 1208.91 1079.88  997.22 1001.93  804.34 1022.18  747.56  901.71
+##  [73]  802.82 1227.92  668.11  861.41 1110.34 1143.55 1071.61 1094.99  678.03
+##  [82] 1243.38 1073.96  660.08 1017.74 1281.71  981.21  831.66  878.88 1226.97
+##  [91]  806.68  784.75  790.77  887.84 1220.64  733.92 1201.58  973.45  732.01
+## [100]  926.40</code></pre>
 <p>Mimochodem, všimli jste si v předešlých příkladech těch čísel v hranatých závorkách? Protože se v příkladech vypisují jako výsledky vektory (všechny základní, tzv. atomické typy jsou v R vektory), R vám těmi čísly v hranatých závorkách říká, na jaké pozici ve vektoru daná hodnota je.</p>
 <p>A hranaté závorky jdou i použít pro adresování konkrétního prvku vektoru. Třeba tohle zobrazí z vytvořeného vektoru <code>cena</code> jenom pátý prvek:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="prvni-kroky.html#cb24-1" aria-hidden="true" tabindex="-1"></a>cena[<span class="dv">5</span>]</span></code></pre></div>
-<pre><code>## [1] 900.5</code></pre>
+<pre><code>## [1] 1061.21</code></pre>
 <p>a tohle pátý až desátý:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="prvni-kroky.html#cb26-1" aria-hidden="true" tabindex="-1"></a>cena[<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
-<pre><code>## [1]  900.50  898.35 1094.71 1036.28 1204.08 1008.67</code></pre>
+<pre><code>## [1] 1061.21 1079.01 1082.84 1061.25 1050.25 1102.11</code></pre>
 <p>Chtěli jsme ještě účtenky sečíst, že? Je to hračka:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="prvni-kroky.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(cena)</span></code></pre></div>
-<pre><code>## [1] 99757.52</code></pre>
+<pre><code>## [1] 100795.7</code></pre>
 <p>Zajímá vás, kolik dělá celková tržba bez DPH?</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="prvni-kroky.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(cena <span class="sc">/</span> <span class="dv">121</span> <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>## [1] 82444.23</code></pre>
+<pre><code>## [1] 83302.22</code></pre>
 <p>případně:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="prvni-kroky.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(cena) <span class="sc">/</span> <span class="dv">121</span> <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div>
-<pre><code>## [1] 82444.23</code></pre>
+<pre><code>## [1] 83302.22</code></pre>
 <p>Obojí by vám mělo dát stejný výsledek. V prvním případě se ale nejprve vydělí každý jednotlivý prvek vektoru a pak se celý vektor sečte, kdežto v druhém případě se celý vektor nejprve sečte a pak teprve vydělí.</p>
 <p>Zajímá vás rozložení ceny zobrazené v histogramu?</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="prvni-kroky.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(cena)</span></code></pre></div>
@@ -409,7 +409,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="img/rstudio-napoveda-01.png" alt="Nápověda při psaní názvu funkce" /></p>
 <p>Pokud máte funkci napsanou i se závorkami, <kbd>Ctrl</kbd>+<kbd>Space</kbd> vám napoví možné parametry.</p>
 <p><img src="img/rstudio-napoveda-02.png" alt="Nápověda při psaní názvu funkce" /></p>
-<p>Můžete též na konzoli zadat příkaz příkaz tvořený otazníkem a názvem funkce, např. <code>?rnorm</code>, a pak se vám otevře kompletní nápověda na panelu <em>Help</em> vpravo.</p>
+<p>Můžete též na konzoli zadat příkaz tvořený otazníkem a názvem funkce, např. <code>?rnorm</code>, a pak se vám otevře kompletní nápověda na panelu <em>Help</em> vpravo.</p>
 <p><img src="img/rstudio-napoveda-03.png" alt="Nápověda při psaní názvu funkce" /></p>
 <p>A konečně můžete s kurzorem na názvu funkce stisknout <kbd>F1</kbd> a dostanete opět kompletní nápovědu v panelu <em>Help</em>.</p>
 <p>Při práci s R tedy nemusíte skoro googlit. Stačí si pamatovat alespoň přibližné názvy funkcí.</p>
@@ -417,10 +417,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="práce-se-skripty" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Práce se skripty<a href="prvni-kroky.html#práce-se-skripty" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Práce v konsoli je sice flexibilní, ale na víc než pár příkazů dost nepraktická. Když uděláte chybu, můžete se sice šipkami nahoru a dolů pohybovat po historii příkazů a opravovat je, ale není to ono. Chyby se mnohem lépe opravují ve skriptech.</p>
-<p>Z menu <em>File → New File</em> vyberte <em>R Script</em> a vlevo nahoře se vám otevře editor skriptů. Do něj si vložte všechny příkazy, které jste předtím zadali postupně do konsole. Nemusíte to ale dělat ručně – podívejte se vpravo na záložku History a vida, jsou tam, že? Vyberte ty správné a tlačítkem To Source je přesuňte do skriptu. Okno RStudia by pak mělo vypadat nějak takto:</p>
+<p>Práce v konzoli je sice flexibilní, ale na víc než pár příkazů dost nepraktická. Když uděláte chybu, můžete se sice šipkami nahoru a dolů pohybovat po historii příkazů a opravovat je, ale není to ono. Chyby se mnohem lépe opravují ve skriptech.</p>
+<p>Z menu <em>File → New File</em> vyberte <em>R Script</em> a vlevo nahoře se vám otevře editor skriptů. Do něj si vložte všechny příkazy, které jste předtím zadali postupně do konzole. Nemusíte to ale dělat ručně – podívejte se vpravo na záložku History a vida, jsou tam, že? Vyberte ty správné a tlačítkem To Source je přesuňte do skriptu. Okno RStudia by pak mělo vypadat nějak takto:</p>
 <p><img src="img/rstudio-script-01.png" alt="Skript v RStudiu" /></p>
-<p>Když nyní na kterémkoli řádku stisknete <kbd>Ctrl</kbd>+<kbd>Enter</kbd>, celý řádek se vykoná stejně, jako kdybyste ho zadali na konzoli. Můžete i klávesou Shift vybrat víc řádků a pak se po <kbd>Ctrl</kbd>+<kbd>Enter</kbd> vykonají všechny. A konečně můžete tlačítkem <em>Source</em> nad editorem vykonat celý skript. Po vykonání celého skriptu by mělo okno RStudia vypadat nějak takto:</p>
+<p>Když nyní na kterémkoli řádku stisknete <kbd>Ctrl</kbd>+<kbd>Enter</kbd>, celý řádek se vykoná stejně, jako kdybyste ho zadali na konzoli. Můžete i klávesou Shift vybrat víc řádků a pak se po <kbd>Ctrl</kbd>+<kbd>Enter</kbd> vykonají všechny. A konečně můžete tlačítkem <em>Source</em> z toolbaru nad editorem vykonat celý skript. Po vykonání celého skriptu by mělo okno RStudia vypadat nějak takto:</p>
 <p><img src="img/rstudio-script-02.png" alt="RStudio po vykonání celého skriptu" /></p>
 <p>Nezapomeňte si ale celý skript uložit pod nějakým vhodným jménem (třeba <code>prvni-skript</code>). Měl by se vám uložit do složky projektu a ke jménu se automaticky připojí přípona R.</p>
 <div id="úprava-skriptu" class="section level3 hasAnchor" number="3.4.1">
@@ -565,7 +565,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>Pokud si je nechcete pamatovat, všechny mají i své tlačítko buď na toolbaru nad editorem, nebo přímo v pravém horním rohu každého bloku kódu. Funkce tlačítka se vám zobrazí po najetí myši.</p>
+<p>Pokud si je nechcete pamatovat, všechny mají i své tlačítko buď na toolbaru nad editorem, nebo přímo v pravém horním rohu každého bloku kódu. Funkce tlačítek se vám zobrazí po najetí myši.</p>
 </div>
 <div id="vektory" class="section level3 hasAnchor" number="3.6.2">
 <h3><span class="header-section-number">3.6.2</span> Vektory<a href="prvni-kroky.html#vektory" class="anchor-section" aria-label="Anchor link to header"></a></h3>

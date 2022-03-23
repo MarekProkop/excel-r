@@ -40,19 +40,19 @@ Ve skutečnosti je to o dost pestřejší. Můžete jedním „vzorcem" (v R se
 
 S R jde pracovat více různými způsoby. Já nejčastěji používám tři:
 
-1.  Interaktivní práce v konsoli.
+1.  Interaktivní práce v konzoli.
 2.  Polointeraktivní práce se skriptem.
 3.  Interaktivní, poloautomatická či zcela automatická tvorba dokumentu v R Markdownu.
 
 Všechny tři ukážu na jednoduchém příkladu: představte si, že jste dnes ve svém obchodě vydali 100 účtenek. Teď se chcete rychle dozvědět, kolik dělá celková tržba a jaká byla typická útrata jednoho zákazníka.
 
-## Interaktivní práce s konsolí
+## Interaktivní práce s konzolí
 
-Vaše RStudio vypadá nějak takhle a konsole je ta velká plocha vlevo. Psát budete za zobáček úplně vlevo (jinam ani nejde umístit kursor), každý řádek vždy odentrujete a konsole vám většinou nějak odpoví.
+Vaše RStudio vypadá nějak takhle a konzole je ta velká plocha vlevo. Psát budete za zobáček úplně vlevo (jinam ani nejde umístit kursor), každý řádek vždy odentrujete a konzole vám většinou nějak odpoví.
 
 ![RStudio: Console](img/rstudio-console-01.png)
 
-Nejprve si vygenerujte účtenky. Budou sice trochu falešné, ale to nevadí. Do konsole napište:
+Nejprve si vygenerujte účtenky. Budou sice trochu falešné, ale to nevadí. Do konzole napište:
 
 ```{r}
 cena <- round(rnorm(n = 100, mean = 1000, sd = 200), digits = 2)
@@ -68,7 +68,7 @@ Příkazem jste totiž vytvořili v prostředí R (environment) nový objekt `c
 cena
 ```
 
-což pak na konsoli vypadá nějak takhle (čísla jsou náhodná, takže nesedí s předešlým výsledkem):
+což pak na konzoli vypadá nějak takhle (čísla jsou náhodná, takže nesedí s předešlým výsledkem):
 
 ![Výsledek příkazu cena](img/rstudio-console-03.png)
 
@@ -174,7 +174,7 @@ Pokud máte funkci napsanou i se závorkami, <kbd>Ctrl</kbd>+<kbd>Space</kbd> v
 
 ![Nápověda při psaní názvu funkce](img/rstudio-napoveda-02.png)
 
-Můžete též na konzoli zadat příkaz příkaz tvořený otazníkem a názvem funkce, např. `?rnorm`, a pak se vám otevře kompletní nápověda na panelu *Help* vpravo.
+Můžete též na konzoli zadat příkaz tvořený otazníkem a názvem funkce, např. `?rnorm`, a pak se vám otevře kompletní nápověda na panelu *Help* vpravo.
 
 ![Nápověda při psaní názvu funkce](img/rstudio-napoveda-03.png)
 
@@ -184,13 +184,13 @@ Při práci s R tedy nemusíte skoro googlit. Stačí si pamatovat alespoň př
 
 ## Práce se skripty
 
-Práce v konsoli je sice flexibilní, ale na víc než pár příkazů dost nepraktická. Když uděláte chybu, můžete se sice šipkami nahoru a dolů pohybovat po historii příkazů a opravovat je, ale není to ono. Chyby se mnohem lépe opravují ve skriptech.
+Práce v konzoli je sice flexibilní, ale na víc než pár příkazů dost nepraktická. Když uděláte chybu, můžete se sice šipkami nahoru a dolů pohybovat po historii příkazů a opravovat je, ale není to ono. Chyby se mnohem lépe opravují ve skriptech.
 
-Z menu *File → New File* vyberte *R Script* a vlevo nahoře se vám otevře editor skriptů. Do něj si vložte všechny příkazy, které jste předtím zadali postupně do konsole. Nemusíte to ale dělat ručně -- podívejte se vpravo na záložku History a vida, jsou tam, že? Vyberte ty správné a tlačítkem To Source je přesuňte do skriptu. Okno RStudia by pak mělo vypadat nějak takto:
+Z menu *File → New File* vyberte *R Script* a vlevo nahoře se vám otevře editor skriptů. Do něj si vložte všechny příkazy, které jste předtím zadali postupně do konzole. Nemusíte to ale dělat ručně -- podívejte se vpravo na záložku History a vida, jsou tam, že? Vyberte ty správné a tlačítkem To Source je přesuňte do skriptu. Okno RStudia by pak mělo vypadat nějak takto:
 
 ![Skript v RStudiu](img/rstudio-script-01.png)
 
-Když nyní na kterémkoli řádku stisknete <kbd>Ctrl</kbd>+<kbd>Enter</kbd>, celý řádek se vykoná stejně, jako kdybyste ho zadali na konzoli. Můžete i klávesou Shift vybrat víc řádků a pak se po <kbd>Ctrl</kbd>+<kbd>Enter</kbd> vykonají všechny. A konečně můžete tlačítkem *Source* nad editorem vykonat celý skript. Po vykonání celého skriptu by mělo okno RStudia vypadat nějak takto:
+Když nyní na kterémkoli řádku stisknete <kbd>Ctrl</kbd>+<kbd>Enter</kbd>, celý řádek se vykoná stejně, jako kdybyste ho zadali na konzoli. Můžete i klávesou Shift vybrat víc řádků a pak se po <kbd>Ctrl</kbd>+<kbd>Enter</kbd> vykonají všechny. A konečně můžete tlačítkem *Source* z toolbaru nad editorem vykonat celý skript. Po vykonání celého skriptu by mělo okno RStudia vypadat nějak takto:
 
 ![RStudio po vykonání celého skriptu](img/rstudio-script-02.png)
 
@@ -325,7 +325,7 @@ tibble::tribble(
   knitr::kable()
 ```
 
-Pokud si je nechcete pamatovat, všechny mají i své tlačítko buď na toolbaru nad editorem, nebo přímo v pravém horním rohu každého bloku kódu. Funkce tlačítka se vám zobrazí po najetí myši.
+Pokud si je nechcete pamatovat, všechny mají i své tlačítko buď na toolbaru nad editorem, nebo přímo v pravém horním rohu každého bloku kódu. Funkce tlačítek se vám zobrazí po najetí myši.
 
 ### Vektory
 

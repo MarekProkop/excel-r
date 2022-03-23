@@ -20,7 +20,7 @@ Když po instalaci R spustíte, mělo by vypadat nějak takhle:
 
 ![Základní R po spuštění](img/r-01.png)
 
-Okno zavřete a to je všechno. Odtěď můžete na základní R zapomenout.
+Okno zavřete a to je všechno. Odteď můžete na základní R zapomenout.
 
 ## Instalace RStudia
 
@@ -30,7 +30,7 @@ Stáhněte a nainstalujte si RStudio Desktop z <https://www.rstudio.com/product
 
 ## Pokud už R a RStudio máte (a trochu znáte)
 
-Pro jistotu si zkontrolujte verzi RStudia i R. Verzi R vám řekne konsole při spuštění a kdykoli později ji zjistíte příkazem:
+Pro jistotu si zkontrolujte verzi RStudia i R. Verzi R vám řekne konzole při spuštění a kdykoli později ji zjistíte příkazem:
 
 ```{r}
 R.version.string
@@ -59,7 +59,7 @@ A pak na panelu *Code* zapněte volbu *Use native pipe operator*. To sice není 
 
 ## Instalace balíčků
 
-Základní R je jenom jazykové jádro s nezbytnými příkazy a funkcemi. Jeho funkčnost rozšiřují tzv. balíčky (packages), kterým se v jiných jazycích často říká knihovny. Balíčky je potřeba jednak nainstalovat (jednorázově) a jednak připojit před konkrétní prací, ke které je potřebujete (vysvětlím později).
+Základní R je jenom jazykové jádro s nezbytnými příkazy a funkcemi. Jeho funkčnost rozšiřují tzv. balíčky (packages), kterým se v jiných programovacích jazycích často říká knihovny. Balíčky je potřeba jednak nainstalovat (jednorázově) a jednak připojit před konkrétní prací, ke které je potřebujete (vysvětlím později).
 
 V RStudiu Desktop už jsou některé balíčky předinstalované a ještě víc jich je v cloudovém RStudio, ale pro jistotu vám ukážu, jak nainstalujete ty, které budete potřebovat pro celý tenhle seriál.
 
@@ -73,7 +73,7 @@ Nechte v něm předvyplněné volby a do prázdného políčka vložte tento s
 janitor, knitr, lubridate, rmarkdown, readxl, rvest, tidyverse
 ```
 
-Alternativně jde balíčky instalovat funkcí `install.packages()`, kterou zavoláte třeba z konsole (vysvětlím za chvíli). To pak vypadá takhle:
+Alternativně jde balíčky instalovat funkcí `install.packages()`, kterou zavoláte třeba z konzole (vysvětlím za chvíli). To pak vypadá takhle:
 
 ```{r eval=FALSE}
 install.packages(c("janitor", "knitr", "lubridate", "rmarkdown", "readxl", "rvest", "tidyverse"))

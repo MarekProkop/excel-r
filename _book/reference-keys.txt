@@ -16,7 +16,7 @@ založte-si-cvičný-projekt
 první-kroky-v-r-a-rstudiu
 excel-vs.-r
 tři-způsoby-práce-s-r
-interaktivní-práce-s-konsolí
+interaktivní-práce-s-konzolí
 objekty-proměnné
 funkce
 integrovaná-nápověda
