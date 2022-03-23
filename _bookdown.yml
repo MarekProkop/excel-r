@@ -6,3 +6,4 @@ rmd_files:
   - "jak-dostat-data-do-r.Rmd"
   - "manipulace-s-daty.Rmd"
   - "grafy.Rmd"
+  - "priklady.Rmd"

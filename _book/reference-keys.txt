@@ -73,3 +73,16 @@ sloupečky
 boxplot
 koláčový-graf
 tahák
+souvislé-příklady
+poznámky-z-porady
+které-balíčky-budu-potřebovat
+načtení-textu
+převod-na-data
+podrobný-výklad-postupu
+součet-hodin-a-ceny
+roční-rozpočet-freelancera
+které-balíčky-budou-potřeba
+kurzovní-lístek
+plán-výdajů
+plán-příjmů
+spojený-plán-příjmů-a-výdajů

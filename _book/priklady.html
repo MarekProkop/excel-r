@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 Souvislé příklady | Od Excelu k R</title>
+  <meta name="description" content="Rychlokurz R pro začátečníky, kteří zatím používali Excel nebo Google Sheets." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 Souvislé příklady | Od Excelu k R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Rychlokurz R pro začátečníky, kteří zatím používali Excel nebo Google Sheets." />
+  <meta name="github-repo" content="MarekProkop/excel-r" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Souvislé příklady | Od Excelu k R" />
+  
+  <meta name="twitter:description" content="Rychlokurz R pro začátečníky, kteří zatím používali Excel nebo Google Sheets." />
+  
+
+<meta name="author" content="Marek Prokop" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="grafy.html"/>
+
+<script src="libs/header-attrs-2.13/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Od Excelu k R</a></li>
+<li class="divider"></li>
+<li><a href="index.html#o-knize">O knize<span></span></a>
+<ul>
+<li><a href="index.html#čeho-chci-spolu-s-vámi-dosáhnout">Čeho chci spolu s vámi dosáhnout<span></span></a></li>
+<li><a href="index.html#zpětná-vazba">Zpětná vazba<span></span></a></li>
+<li><a href="index.html#o-autorovi">O autorovi<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="proc-r.html"><a href="proc-r.html"><i class="fa fa-check"></i><b>1</b> Proč jsem vyměnil Excel za R<span></span></a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="proc-r.html"><a href="proc-r.html#co-je-r-a-rstudio"><i class="fa fa-check"></i><b>1.1</b> Co je R a RStudio<span></span></a></li>
+<li class="chapter" data-level="1.2" data-path="proc-r.html"><a href="proc-r.html#pro-koho-je-r-vhodné"><i class="fa fa-check"></i><b>1.2</b> Pro koho je R vhodné<span></span></a></li>
+<li class="chapter" data-level="1.3" data-path="proc-r.html"><a href="proc-r.html#kdo-by-se-do-r-rozhodně-neměl-pouštět"><i class="fa fa-check"></i><b>1.3</b> Kdo by se do R rozhodně neměl pouštět<span></span></a></li>
+<li class="chapter" data-level="1.4" data-path="proc-r.html"><a href="proc-r.html#co-vám-r-ve-srovnání-s-excelem-přinese"><i class="fa fa-check"></i><b>1.4</b> Co vám R ve srovnání s Excelem přinese<span></span></a></li>
+<li class="chapter" data-level="1.5" data-path="proc-r.html"><a href="proc-r.html#proč-zrovna-r-a-ne-třeba-python"><i class="fa fa-check"></i><b>1.5</b> Proč zrovna R a ne třeba Python<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html"><i class="fa fa-check"></i><b>2</b> Instalace a nastavení<span></span></a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#cloud-nebo-instalace"><i class="fa fa-check"></i><b>2.1</b> Cloud nebo instalace<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-r"><i class="fa fa-check"></i><b>2.2</b> Instalace R<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-rstudia"><i class="fa fa-check"></i><b>2.3</b> Instalace RStudia<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#pokud-už-r-a-rstudio-máte-a-trochu-znáte"><i class="fa fa-check"></i><b>2.4</b> Pokud už R a RStudio máte (a trochu znáte)<span></span></a></li>
+<li class="chapter" data-level="2.5" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#nastavení-rstudia"><i class="fa fa-check"></i><b>2.5</b> Nastavení RStudia<span></span></a></li>
+<li class="chapter" data-level="2.6" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#instalace-balíčků"><i class="fa fa-check"></i><b>2.6</b> Instalace balíčků<span></span></a></li>
+<li class="chapter" data-level="2.7" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#projekty"><i class="fa fa-check"></i><b>2.7</b> Projekty<span></span></a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="instalace-a-nastaveni.html"><a href="instalace-a-nastaveni.html#založte-si-cvičný-projekt"><i class="fa fa-check"></i><b>2.7.1</b> Založte si cvičný projekt<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="prvni-kroky.html"><a href="prvni-kroky.html"><i class="fa fa-check"></i><b>3</b> První kroky v R a RStudiu<span></span></a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#excel-vs.-r"><i class="fa fa-check"></i><b>3.1</b> Excel vs. R<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="prvni-kroky.html"><a href="prvni-kroky.html#tři-způsoby-práce-s-r"><i class="fa fa-check"></i><b>3.2</b> Tři způsoby práce s R<span></span></a></li>
+<li class="chapter" data-level="3.3" data-path="prvni-kroky.html"><a href="prvni-kroky.html#interaktivní-práce-s-konzolí"><i class="fa fa-check"></i><b>3.3</b> Interaktivní práce s konzolí<span></span></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#objekty-proměnné"><i class="fa fa-check"></i><b>3.3.1</b> Objekty (proměnné)<span></span></a></li>
+<li class="chapter" data-level="3.3.2" data-path="prvni-kroky.html"><a href="prvni-kroky.html#funkce"><i class="fa fa-check"></i><b>3.3.2</b> Funkce<span></span></a></li>
+<li class="chapter" data-level="3.3.3" data-path="prvni-kroky.html"><a href="prvni-kroky.html#integrovaná-nápověda"><i class="fa fa-check"></i><b>3.3.3</b> Integrovaná nápověda<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="prvni-kroky.html"><a href="prvni-kroky.html#práce-se-skripty"><i class="fa fa-check"></i><b>3.4</b> Práce se skripty<span></span></a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#úprava-skriptu"><i class="fa fa-check"></i><b>3.4.1</b> Úprava skriptu<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="prvni-kroky.html"><a href="prvni-kroky.html#r-markdown"><i class="fa fa-check"></i><b>3.5</b> R Markdown<span></span></a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#co-je-r-markdown"><i class="fa fa-check"></i><b>3.5.1</b> Co je R Markdown<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="prvni-kroky.html"><a href="prvni-kroky.html#z-téhle-kapitoly-si-pamatujte"><i class="fa fa-check"></i><b>3.6</b> Z téhle kapitoly si pamatujte<span></span></a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="prvni-kroky.html"><a href="prvni-kroky.html#r-markdown-2"><i class="fa fa-check"></i><b>3.6.1</b> R Markdown<span></span></a></li>
+<li class="chapter" data-level="3.6.2" data-path="prvni-kroky.html"><a href="prvni-kroky.html#vektory"><i class="fa fa-check"></i><b>3.6.2</b> Vektory<span></span></a></li>
+<li class="chapter" data-level="3.6.3" data-path="prvni-kroky.html"><a href="prvni-kroky.html#funkce-1"><i class="fa fa-check"></i><b>3.6.3</b> Funkce<span></span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html"><i class="fa fa-check"></i><b>4</b> Jak dostat data do R<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#co-myslím-daty"><i class="fa fa-check"></i><b>4.1</b> Co myslím daty<span></span></a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#data-frame"><i class="fa fa-check"></i><b>4.1.1</b> Data frame<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#ruční-vstup-dat"><i class="fa fa-check"></i><b>4.2</b> Ruční vstup dat<span></span></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-data.frame"><i class="fa fa-check"></i><b>4.2.1</b> Funkce data.frame<span></span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-tibble"><i class="fa fa-check"></i><b>4.2.2</b> Funkce tibble<span></span></a></li>
+<li class="chapter" data-level="4.2.3" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-tribble"><i class="fa fa-check"></i><b>4.2.3</b> Funkce tribble<span></span></a></li>
+<li class="chapter" data-level="4.2.4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#co-když-chci-něco-opravit"><i class="fa fa-check"></i><b>4.2.4</b> Co když chci něco opravit?<span></span></a></li>
+<li class="chapter" data-level="4.2.5" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-edit"><i class="fa fa-check"></i><b>4.2.5</b> Funkce edit<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#chci-si-jen-rychle-něco-vyzkoušet"><i class="fa fa-check"></i><b>4.3</b> Chci si jen rychle něco vyzkoušet<span></span></a></li>
+<li class="chapter" data-level="4.4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#práce-s-csv-soubory"><i class="fa fa-check"></i><b>4.4</b> Práce s CSV soubory<span></span></a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-write_csv"><i class="fa fa-check"></i><b>4.4.1</b> Funkce write_csv<span></span></a></li>
+<li class="chapter" data-level="4.4.2" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#funkce-read_csv"><i class="fa fa-check"></i><b>4.4.2</b> Funkce read_csv<span></span></a></li>
+<li class="chapter" data-level="4.4.3" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#interaktivní-import-dat-v-rstudiu"><i class="fa fa-check"></i><b>4.4.3</b> Interaktivní import dat v Rstudiu<span></span></a></li>
+<li class="chapter" data-level="4.4.4" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#načtení-csv-z-webu"><i class="fa fa-check"></i><b>4.4.4</b> Načtení CSV z webu<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#data-na-webové-stránce"><i class="fa fa-check"></i><b>4.5</b> Data na webové stránce<span></span></a></li>
+<li class="chapter" data-level="4.6" data-path="jak-dostat-data-do-r.html"><a href="jak-dostat-data-do-r.html#data-z-jiných-zdrojů"><i class="fa fa-check"></i><b>4.6</b> Data z jiných zdrojů<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html"><i class="fa fa-check"></i><b>5</b> Manipulace s daty<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#průzkum-dat-a-výběr-sloupců"><i class="fa fa-check"></i><b>5.1</b> Průzkum dat a výběr sloupců<span></span></a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#prázdné-hodnoty"><i class="fa fa-check"></i><b>5.1.1</b> Prázdné hodnoty<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#výběr-sloupců"><i class="fa fa-check"></i><b>5.2</b> Výběr sloupců<span></span></a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#funkcionální-princip"><i class="fa fa-check"></i><b>5.2.1</b> Funkcionální princip<span></span></a></li>
+<li class="chapter" data-level="5.2.2" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#pipes-trubky-fajfky"><i class="fa fa-check"></i><b>5.2.2</b> Pipes (trubky, fajfky)<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#filtrování-neboli-výběr-řádků"><i class="fa fa-check"></i><b>5.3</b> Filtrování neboli výběr řádků<span></span></a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#funkce-filter"><i class="fa fa-check"></i><b>5.3.1</b> Funkce <code>filter</code><span></span></a></li>
+<li class="chapter" data-level="5.3.2" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#další-funkce-pro-výběr-řádků"><i class="fa fa-check"></i><b>5.3.2</b> Další funkce pro výběr řádků<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#řazení-řádků"><i class="fa fa-check"></i><b>5.4</b> Řazení řádků<span></span></a></li>
+<li class="chapter" data-level="5.5" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#odvozování-nových-sloupců"><i class="fa fa-check"></i><b>5.5</b> Odvozování nových sloupců<span></span></a></li>
+<li class="chapter" data-level="5.6" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#seskupování-řádků-a-agregace"><i class="fa fa-check"></i><b>5.6</b> Seskupování řádků a agregace<span></span></a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#funkce-sumarise"><i class="fa fa-check"></i><b>5.6.1</b> funkce <code>sumarise</code><span></span></a></li>
+<li class="chapter" data-level="5.6.2" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#funkce-group_by"><i class="fa fa-check"></i><b>5.6.2</b> Funkce <code>group_by</code><span></span></a></li>
+<li class="chapter" data-level="5.6.3" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#funkce-count"><i class="fa fa-check"></i><b>5.6.3</b> Funkce <code>count</code><span></span></a></li>
+<li class="chapter" data-level="5.6.4" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#kombinace-group_by-s-dalšími-funkcemi-pro-manipulaci-dat"><i class="fa fa-check"></i><b>5.6.4</b> Kombinace <code>group_by</code> s dalšími funkcemi pro manipulaci dat<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="manipulace-s-daty.html"><a href="manipulace-s-daty.html#tahák-s-dalšími-funkcemi"><i class="fa fa-check"></i><b>5.7</b> Tahák s dalšími funkcemi<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="grafy.html"><a href="grafy.html"><i class="fa fa-check"></i><b>6</b> Grafy a vizualizace<span></span></a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="grafy.html"><a href="grafy.html#histogram"><i class="fa fa-check"></i><b>6.1</b> Histogram<span></span></a></li>
+<li class="chapter" data-level="6.2" data-path="grafy.html"><a href="grafy.html#scatter-plot-neboli-bodový-graf"><i class="fa fa-check"></i><b>6.2</b> Scatter plot neboli bodový graf<span></span></a></li>
+<li class="chapter" data-level="6.3" data-path="grafy.html"><a href="grafy.html#sloupečky"><i class="fa fa-check"></i><b>6.3</b> Sloupečky<span></span></a></li>
+<li class="chapter" data-level="6.4" data-path="grafy.html"><a href="grafy.html#čarový-graf-a-timeline"><i class="fa fa-check"></i><b>6.4</b> Čarový graf a timeline<span></span></a></li>
+<li class="chapter" data-level="6.5" data-path="grafy.html"><a href="grafy.html#boxplot"><i class="fa fa-check"></i><b>6.5</b> Boxplot<span></span></a></li>
+<li class="chapter" data-level="6.6" data-path="grafy.html"><a href="grafy.html#koláčový-graf"><i class="fa fa-check"></i><b>6.6</b> Koláčový graf<span></span></a></li>
+<li class="chapter" data-level="6.7" data-path="grafy.html"><a href="grafy.html#tahák"><i class="fa fa-check"></i><b>6.7</b> Tahák<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="priklady.html"><a href="priklady.html"><i class="fa fa-check"></i><b>7</b> Souvislé příklady<span></span></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="priklady.html"><a href="priklady.html#poznámky-z-porady"><i class="fa fa-check"></i><b>7.1</b> Poznámky z porady<span></span></a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="priklady.html"><a href="priklady.html#které-balíčky-budu-potřebovat"><i class="fa fa-check"></i><b>7.1.1</b> Které balíčky budu potřebovat<span></span></a></li>
+<li class="chapter" data-level="7.1.2" data-path="priklady.html"><a href="priklady.html#načtení-textu"><i class="fa fa-check"></i><b>7.1.2</b> Načtení textu<span></span></a></li>
+<li class="chapter" data-level="7.1.3" data-path="priklady.html"><a href="priklady.html#převod-na-data"><i class="fa fa-check"></i><b>7.1.3</b> Převod na data<span></span></a></li>
+<li class="chapter" data-level="7.1.4" data-path="priklady.html"><a href="priklady.html#součet-hodin-a-ceny"><i class="fa fa-check"></i><b>7.1.4</b> Součet hodin a ceny<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="priklady.html"><a href="priklady.html#roční-rozpočet-freelancera"><i class="fa fa-check"></i><b>7.2</b> Roční rozpočet freelancera<span></span></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="priklady.html"><a href="priklady.html#které-balíčky-budou-potřeba"><i class="fa fa-check"></i><b>7.2.1</b> Které balíčky budou potřeba<span></span></a></li>
+<li class="chapter" data-level="7.2.2" data-path="priklady.html"><a href="priklady.html#kurzovní-lístek"><i class="fa fa-check"></i><b>7.2.2</b> Kurzovní lístek<span></span></a></li>
+<li class="chapter" data-level="7.2.3" data-path="priklady.html"><a href="priklady.html#plán-výdajů"><i class="fa fa-check"></i><b>7.2.3</b> Plán výdajů<span></span></a></li>
+<li class="chapter" data-level="7.2.4" data-path="priklady.html"><a href="priklady.html#plán-příjmů"><i class="fa fa-check"></i><b>7.2.4</b> Plán příjmů<span></span></a></li>
+<li class="chapter" data-level="7.2.5" data-path="priklady.html"><a href="priklady.html#spojený-plán-příjmů-a-výdajů"><i class="fa fa-check"></i><b>7.2.5</b> Spojený plán příjmů a výdajů<span></span></a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Od Excelu k R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="souvislé-příklady" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">7</span> Souvislé příklady<a href="priklady.html#souvislé-příklady" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Gratuluju, dostali jste se až do poslední kapitoly, kde vám ukážu pár souvislých příkladů propojujících látku celé knihy.</p>
+<div id="poznámky-z-porady" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Poznámky z porady<a href="priklady.html#poznámky-z-porady" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Na schůzce s klientem jsem si do <a href="https://keep.google.com/">Keepu</a> v telefonu poznamenal úkoly, které mám udělat. Ke každému úkolu jsem si napsal odhad náročnosti v hodinách a požadovaný termín. Vypadá to nějak takhle:</p>
+<pre><code>- Rychlá analýza UX a designu: 8 hodin, T 1.3.
+- Klíčovka čeština: 16 hodin, T 15. 3.
+- Klíčovka angličtina: 8 hodin, T 15. 3.
+- Návrh obsahové strategie: 8 hodin, T 20.3.
+- Příprava workshopu pro tým: 2 hodiny, T 1.4.</code></pre>
+<p>Teď chci ocenit jednotlivé úkoly hodinovou sazbou a sečíst celkový čas i cenu. S tak malým seznamem to nejrychleji udělám ručně, ale kdyby byl delší, můžu si práci usnadnit spreadsheetem nebo R. Vybral jsem si R :-)</p>
+<div id="které-balíčky-budu-potřebovat" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Které balíčky budu potřebovat<a href="priklady.html#které-balíčky-budu-potřebovat" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Kromě <em>tidyverse</em> ještě <em>lubridate</em>, což je chytrý balíček na práci s časovými údaji – datum, čas, doba, časový interval apod.</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="priklady.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb147-2"><a href="priklady.html#cb147-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div>
+</div>
+<div id="načtení-textu" class="section level3 hasAnchor" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> Načtení textu<a href="priklady.html#načtení-textu" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Text si zkopíruju z Keepu a načtu ho do proměnné <code>input</code> funkcí <code>read_lines</code>, která vrátí znakový vektor jednotlivých řádků. Parametr <code>skip</code> říká, že se má přeskočit první (prázdný) řádek, parametr <code>locale</code> určuje kódování znaků a je potřeba jen ve Windows. Na Macu nebo Linuxu ho tam nedávejte.</p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="priklady.html#cb148-1" aria-hidden="true" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">&quot;</span></span>
+<span id="cb148-2"><a href="priklady.html#cb148-2" aria-hidden="true" tabindex="-1"></a><span class="st">  - Rychlá analýza UX a designu: 8 hodin, T 1.3.</span></span>
+<span id="cb148-3"><a href="priklady.html#cb148-3" aria-hidden="true" tabindex="-1"></a><span class="st">  - Klíčovka čeština: 16 hodin, T 15. 3.</span></span>
+<span id="cb148-4"><a href="priklady.html#cb148-4" aria-hidden="true" tabindex="-1"></a><span class="st">  - Klíčovka angličtina: 8 hodin, T 15. 3.</span></span>
+<span id="cb148-5"><a href="priklady.html#cb148-5" aria-hidden="true" tabindex="-1"></a><span class="st">  - Návrh obsahové strategie: 8 hodin, T 20.3.</span></span>
+<span id="cb148-6"><a href="priklady.html#cb148-6" aria-hidden="true" tabindex="-1"></a><span class="st">  - Příprava workshopu pro tým: 2 hodiny, T 1.4.</span></span>
+<span id="cb148-7"><a href="priklady.html#cb148-7" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span>, <span class="at">skip =</span> <span class="dv">1</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">&quot;Windows-1250&quot;</span>))</span></code></pre></div>
+<p>Zkontroluju si, jestli se řádky podařilo správně načíst:</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="priklady.html#cb149-1" aria-hidden="true" tabindex="-1"></a>input</span></code></pre></div>
+<pre><code>## [1] &quot;  - Rychlá analýza UX a designu: 8 hodin, T 1.3.&quot;
+## [2] &quot;  - Klíčovka čeština: 16 hodin, T 15. 3.&quot;        
+## [3] &quot;  - Klíčovka angličtina: 8 hodin, T 15. 3.&quot;      
+## [4] &quot;  - Návrh obsahové strategie: 8 hodin, T 20.3.&quot;  
+## [5] &quot;  - Příprava workshopu pro tým: 2 hodiny, T 1.4.&quot;</code></pre>
+<p>Podařilo, takže mohu vytvořit data frame.</p>
+</div>
+<div id="převod-na-data" class="section level3 hasAnchor" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> Převod na data<a href="priklady.html#převod-na-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Vytvořím data frame a v něm řádky rozdělím na samostatné proměnné (sloupce). Pak přidám hodinovou sazbu a dopočítám cenu. Nejprve ukážu celý postup a pak ho vysvětlím.</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="priklady.html#cb151-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> </span>
+<span id="cb151-2"><a href="priklady.html#cb151-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(input) <span class="sc">|&gt;</span></span>
+<span id="cb151-3"><a href="priklady.html#cb151-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract</span>(</span>
+<span id="cb151-4"><a href="priklady.html#cb151-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="dv">1</span>,</span>
+<span id="cb151-5"><a href="priklady.html#cb151-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;task&quot;</span>, <span class="st">&quot;hours&quot;</span>, <span class="st">&quot;day&quot;</span>, <span class="st">&quot;month&quot;</span>),</span>
+<span id="cb151-6"><a href="priklady.html#cb151-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">regex =</span> <span class="st">&quot; - ([^:]+): ([0-9]+).+T ([0-9]+).+([0-9]+)&quot;</span>,</span>
+<span id="cb151-7"><a href="priklady.html#cb151-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">convert =</span> <span class="cn">TRUE</span></span>
+<span id="cb151-8"><a href="priklady.html#cb151-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb151-9"><a href="priklady.html#cb151-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb151-10"><a href="priklady.html#cb151-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">deadline =</span> <span class="fu">make_date</span>(<span class="fu">year</span>(<span class="fu">today</span>()), month, day),</span>
+<span id="cb151-11"><a href="priklady.html#cb151-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">rate =</span> <span class="dv">2500</span>,</span>
+<span id="cb151-12"><a href="priklady.html#cb151-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">price =</span> hours <span class="sc">*</span> rate</span>
+<span id="cb151-13"><a href="priklady.html#cb151-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb151-14"><a href="priklady.html#cb151-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(task, hours, price, deadline)</span></code></pre></div>
+<p>Povedlo se?</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="priklady.html#cb152-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["task"],"name":[1],"type":["chr"],"align":["left"]},{"label":["hours"],"name":[2],"type":["int"],"align":["right"]},{"label":["price"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["deadline"],"name":[4],"type":["date"],"align":["right"]}],"data":[{"1":"Rychlá analýza UX a designu","2":"8","3":"20000","4":"2022-03-01"},{"1":"Klíčovka čeština","2":"16","3":"40000","4":"2022-03-15"},{"1":"Klíčovka angličtina","2":"8","3":"20000","4":"2022-03-15"},{"1":"Návrh obsahové strategie","2":"8","3":"20000","4":"2022-03-20"},{"1":"Příprava workshopu pro tým","2":"2","3":"5000","4":"2022-04-01"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div id="podrobný-výklad-postupu" class="section level4 hasAnchor" number="7.1.3.1">
+<h4><span class="header-section-number">7.1.3.1</span> Podrobný výklad postupu<a href="priklady.html#podrobný-výklad-postupu" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Pokud je vám až sem všechno jasné, tohle přeskočte. Pro ostatní popíšu postup vyvoření data framu podrobněji.</p>
+<p>Nejprve jsem vytvořil data frame s jedním sloupcem obsahujícím řádky původního vstupního textu. Posloužila mi funkce <code>data.frame</code> ze základního R.</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="priklady.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(input)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["input"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"- Rychlá analýza UX a designu: 8 hodin, T 1.3."},{"1":"- Klíčovka čeština: 16 hodin, T 15. 3."},{"1":"- Klíčovka angličtina: 8 hodin, T 15. 3."},{"1":"- Návrh obsahové strategie: 8 hodin, T 20.3."},{"1":"- Příprava workshopu pro tým: 2 hodiny, T 1.4."}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Pomocí funkce <code>extract</code> z balíčku <em>tidyr</em> (součást <em>tidyverse</em>) jsem jednotlivé řádky rozdělil na víc sloupců. Použil jsem k tomu tyto parametry:</p>
+<ul>
+<li><code>col</code>: říká, který sloupec bude vstupní; zde jen pořadovým číslem, ale jde i názvem či jinak.</li>
+<li><code>into</code>: znakovým vektorem udává názvy nových sloupců, které funce vytvoří.</li>
+<li><code>regex</code>: <a href="https://cran.r-project.org/web/packages/stringr/vignettes/regular-expressions.html">regulární výraz</a>, který určuje obsah nových sloupců pomocí skupin v kulatých závorkách.</li>
+<li><code>convert</code>: hodnota TRUE říká, že se mají číselné hodnoty převést z řetězce na čísla.</li>
+</ul>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="priklady.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(input) <span class="sc">|&gt;</span></span>
+<span id="cb154-2"><a href="priklady.html#cb154-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract</span>(</span>
+<span id="cb154-3"><a href="priklady.html#cb154-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="dv">1</span>,</span>
+<span id="cb154-4"><a href="priklady.html#cb154-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;task&quot;</span>, <span class="st">&quot;hours&quot;</span>, <span class="st">&quot;day&quot;</span>, <span class="st">&quot;month&quot;</span>),</span>
+<span id="cb154-5"><a href="priklady.html#cb154-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">regex =</span> <span class="st">&quot; - ([^:]+): ([0-9]+).+T ([0-9]+).+([0-9]+)&quot;</span>,</span>
+<span id="cb154-6"><a href="priklady.html#cb154-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">convert =</span> <span class="cn">TRUE</span></span>
+<span id="cb154-7"><a href="priklady.html#cb154-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["task"],"name":[1],"type":["chr"],"align":["left"]},{"label":["hours"],"name":[2],"type":["int"],"align":["right"]},{"label":["day"],"name":[3],"type":["int"],"align":["right"]},{"label":["month"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"Rychlá analýza UX a designu","2":"8","3":"1","4":"3"},{"1":"Klíčovka čeština","2":"16","3":"15","4":"3"},{"1":"Klíčovka angličtina","2":"8","3":"15","4":"3"},{"1":"Návrh obsahové strategie","2":"8","3":"20","4":"3"},{"1":"Příprava workshopu pro tým","2":"2","3":"1","4":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Pomocí funkce <code>mutate</code> z balíčku <em>dplyr</em> (součást <em>tidyverse</em>) jsem přidal tři další vypočítané sloupce <code>deadline</code>, <code>rate</code> a <code>price</code>. Pro <code>deadline</code> jsem použil funkci <code>make_date</code> z baličku <em>lubridate</em>, která jako parametry chce rok (ten jsem vzal jako rok z dnešního data: <code>year(today())</code>), měsíc a den. Ostatní je asi jasné.</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="priklady.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(input) <span class="sc">|&gt;</span></span>
+<span id="cb155-2"><a href="priklady.html#cb155-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract</span>(</span>
+<span id="cb155-3"><a href="priklady.html#cb155-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="dv">1</span>,</span>
+<span id="cb155-4"><a href="priklady.html#cb155-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;task&quot;</span>, <span class="st">&quot;hours&quot;</span>, <span class="st">&quot;day&quot;</span>, <span class="st">&quot;month&quot;</span>),</span>
+<span id="cb155-5"><a href="priklady.html#cb155-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">regex =</span> <span class="st">&quot; - ([^:]+): ([0-9]+).+T ([0-9]+).+([0-9]+)&quot;</span>,</span>
+<span id="cb155-6"><a href="priklady.html#cb155-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">convert =</span> <span class="cn">TRUE</span></span>
+<span id="cb155-7"><a href="priklady.html#cb155-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb155-8"><a href="priklady.html#cb155-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb155-9"><a href="priklady.html#cb155-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">deadline =</span> <span class="fu">make_date</span>(<span class="fu">year</span>(<span class="fu">today</span>()), month, day),</span>
+<span id="cb155-10"><a href="priklady.html#cb155-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">rate =</span> <span class="dv">2500</span>,</span>
+<span id="cb155-11"><a href="priklady.html#cb155-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">price =</span> hours <span class="sc">*</span> rate</span>
+<span id="cb155-12"><a href="priklady.html#cb155-12" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["task"],"name":[1],"type":["chr"],"align":["left"]},{"label":["hours"],"name":[2],"type":["int"],"align":["right"]},{"label":["day"],"name":[3],"type":["int"],"align":["right"]},{"label":["month"],"name":[4],"type":["int"],"align":["right"]},{"label":["deadline"],"name":[5],"type":["date"],"align":["right"]},{"label":["rate"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["price"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"Rychlá analýza UX a designu","2":"8","3":"1","4":"3","5":"2022-03-01","6":"2500","7":"20000"},{"1":"Klíčovka čeština","2":"16","3":"15","4":"3","5":"2022-03-15","6":"2500","7":"40000"},{"1":"Klíčovka angličtina","2":"8","3":"15","4":"3","5":"2022-03-15","6":"2500","7":"20000"},{"1":"Návrh obsahové strategie","2":"8","3":"20","4":"3","5":"2022-03-20","6":"2500","7":"20000"},{"1":"Příprava workshopu pro tým","2":"2","3":"1","4":"4","5":"2022-04-01","6":"2500","7":"5000"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Funkcí <code>select</code> už jen vyberu sloupce, které chci skutečně zařadit do výsledného data framu.</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="priklady.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(input) <span class="sc">|&gt;</span></span>
+<span id="cb156-2"><a href="priklady.html#cb156-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract</span>(</span>
+<span id="cb156-3"><a href="priklady.html#cb156-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="dv">1</span>,</span>
+<span id="cb156-4"><a href="priklady.html#cb156-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;task&quot;</span>, <span class="st">&quot;hours&quot;</span>, <span class="st">&quot;day&quot;</span>, <span class="st">&quot;month&quot;</span>),</span>
+<span id="cb156-5"><a href="priklady.html#cb156-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">regex =</span> <span class="st">&quot; - ([^:]+): ([0-9]+).+T ([0-9]+).+([0-9]+)&quot;</span>,</span>
+<span id="cb156-6"><a href="priklady.html#cb156-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">convert =</span> <span class="cn">TRUE</span></span>
+<span id="cb156-7"><a href="priklady.html#cb156-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb156-8"><a href="priklady.html#cb156-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb156-9"><a href="priklady.html#cb156-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">deadline =</span> <span class="fu">make_date</span>(<span class="fu">year</span>(<span class="fu">today</span>()), month, day),</span>
+<span id="cb156-10"><a href="priklady.html#cb156-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">rate =</span> <span class="dv">2500</span>,</span>
+<span id="cb156-11"><a href="priklady.html#cb156-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">price =</span> hours <span class="sc">*</span> rate</span>
+<span id="cb156-12"><a href="priklady.html#cb156-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb156-13"><a href="priklady.html#cb156-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(task, hours, price, deadline)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["task"],"name":[1],"type":["chr"],"align":["left"]},{"label":["hours"],"name":[2],"type":["int"],"align":["right"]},{"label":["price"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["deadline"],"name":[4],"type":["date"],"align":["right"]}],"data":[{"1":"Rychlá analýza UX a designu","2":"8","3":"20000","4":"2022-03-01"},{"1":"Klíčovka čeština","2":"16","3":"40000","4":"2022-03-15"},{"1":"Klíčovka angličtina","2":"8","3":"20000","4":"2022-03-15"},{"1":"Návrh obsahové strategie","2":"8","3":"20000","4":"2022-03-20"},{"1":"Příprava workshopu pro tým","2":"2","3":"5000","4":"2022-04-01"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>A nakonec celý výsledek na prvním řádku uložím do proměnné <code>df</code>.</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="priklady.html#cb157-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> </span>
+<span id="cb157-2"><a href="priklady.html#cb157-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(input) <span class="sc">|&gt;</span></span>
+<span id="cb157-3"><a href="priklady.html#cb157-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract</span>(</span>
+<span id="cb157-4"><a href="priklady.html#cb157-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="dv">1</span>,</span>
+<span id="cb157-5"><a href="priklady.html#cb157-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">into =</span> <span class="fu">c</span>(<span class="st">&quot;task&quot;</span>, <span class="st">&quot;hours&quot;</span>, <span class="st">&quot;day&quot;</span>, <span class="st">&quot;month&quot;</span>),</span>
+<span id="cb157-6"><a href="priklady.html#cb157-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">regex =</span> <span class="st">&quot; - ([^:]+): ([0-9]+).+T ([0-9]+).+([0-9]+)&quot;</span>,</span>
+<span id="cb157-7"><a href="priklady.html#cb157-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">convert =</span> <span class="cn">TRUE</span></span>
+<span id="cb157-8"><a href="priklady.html#cb157-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb157-9"><a href="priklady.html#cb157-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb157-10"><a href="priklady.html#cb157-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">deadline =</span> <span class="fu">make_date</span>(<span class="fu">year</span>(<span class="fu">today</span>()), month, day),</span>
+<span id="cb157-11"><a href="priklady.html#cb157-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">rate =</span> <span class="dv">2500</span>,</span>
+<span id="cb157-12"><a href="priklady.html#cb157-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">price =</span> hours <span class="sc">*</span> rate</span>
+<span id="cb157-13"><a href="priklady.html#cb157-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb157-14"><a href="priklady.html#cb157-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(task, hours, price, deadline)</span></code></pre></div>
+</div>
+</div>
+<div id="součet-hodin-a-ceny" class="section level3 hasAnchor" number="7.1.4">
+<h3><span class="header-section-number">7.1.4</span> Součet hodin a ceny<a href="priklady.html#součet-hodin-a-ceny" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Zbývá sečíst hodiny a cenu a hodiny přepočítat na člověkodny (sloupec md).</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="priklady.html#cb158-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<span id="cb158-2"><a href="priklady.html#cb158-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb158-3"><a href="priklady.html#cb158-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">md =</span> <span class="fu">sum</span>(hours) <span class="sc">/</span> <span class="dv">8</span>,</span>
+<span id="cb158-4"><a href="priklady.html#cb158-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">price =</span> <span class="fu">sum</span>(price)</span>
+<span id="cb158-5"><a href="priklady.html#cb158-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["md"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["price"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"5.25","2":"105000"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="roční-rozpočet-freelancera" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Roční rozpočet freelancera<a href="priklady.html#roční-rozpočet-freelancera" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Pracujete na volné noze, klientům fakturujete vždy na konci měsíce odpracované hodiny jednotnou hodinovou sazbou, máte nějaké opakující se výdaje, z nichž některé jsou v cizí měně, a jste plátci DPH. Chcete si sestavit roční finanční plán.</p>
+<div id="které-balíčky-budou-potřeba" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Které balíčky budou potřeba<a href="priklady.html#které-balíčky-budou-potřeba" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Kromě již známých <em>tidyverse</em> a <em>lubridate</em> to bude <em>priceR</em>, který umí načíst měnové kurzy.</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="priklady.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb159-2"><a href="priklady.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb159-3"><a href="priklady.html#cb159-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(priceR)</span></code></pre></div>
+</div>
+<div id="kurzovní-lístek" class="section level3 hasAnchor" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> Kurzovní lístek<a href="priklady.html#kurzovní-lístek" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Protože budu mít ve výdajích zahraniční měny, stáhnu si nejprve aktuální kurzy CZK funkcí <code>exchange_rate_latest</code> z balíčku <em>priceR</em>. Výsledný kurzový lístek si uložím do objektu <code>exchange_rates</code> a již známou funkcí <code>glimpse</code> se podívám, jak vypadá.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="priklady.html#cb160-1" aria-hidden="true" tabindex="-1"></a>exchange_rates <span class="ot">&lt;-</span> <span class="fu">exchange_rate_latest</span>(<span class="st">&quot;CZK&quot;</span>)</span></code></pre></div>
+<pre><code>## Daily CZK exchange rate as at end of day 2022-03-23 GMT</code></pre>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="priklady.html#cb162-1" aria-hidden="true" tabindex="-1"></a>exchange_rates <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code></pre></div>
+<pre><code>## Rows: 169
+## Columns: 2
+## $ currency                 &lt;fct&gt; AED, AFN, ALL, AMD, ANG, AOA, ARS, AUD, AWG, ~
+## $ one_czk_is_equivalent_to &lt;dbl&gt; 0.164233, 3.912788, 4.947853, 21.783579, 0.08~</code></pre>
+</div>
+<div id="plán-výdajů" class="section level3 hasAnchor" number="7.2.3">
+<h3><span class="header-section-number">7.2.3</span> Plán výdajů<a href="priklady.html#plán-výdajů" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Všechny výdaje si sepíšu do přehledné tabulky s těmito sloupci:</p>
+<ul>
+<li><em>name</em> – název položky,</li>
+<li><em>cost</em> – částka bez DPH,</li>
+<li><em>cur</em> – měna,</li>
+<li><em>vatr</em> – sazba DPH,</li>
+<li><em>period</em> – za jaké období se výdaj opakuje; může být ‘month’ (měsíc), ‘quarter’ (čtvrtletí), nebo ‘year’ (rok),</li>
+<li><em>month</em> – číslo měsíce v roce, ve kterém poprvé zaplatím,</li>
+<li><em>day</em> – číslo dne v měsíci, ve kterém zaplatím.</li>
+</ul>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="priklady.html#cb164-1" aria-hidden="true" tabindex="-1"></a>costs <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb164-2"><a href="priklady.html#cb164-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>name,              <span class="sc">~</span>cost,  <span class="sc">~</span>cur, <span class="sc">~</span>vatr, <span class="sc">~</span>period,  <span class="sc">~</span>month, <span class="sc">~</span>day,</span>
+<span id="cb164-3"><a href="priklady.html#cb164-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Účetnictví&quot;</span>,     <span class="fl">9300.00</span>, <span class="st">&quot;CZK&quot;</span>,     <span class="dv">0</span>, <span class="st">&quot;quarter&quot;</span>,     <span class="dv">1</span>,   <span class="dv">25</span>,</span>
+<span id="cb164-4"><a href="priklady.html#cb164-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;O2&quot;</span>,             <span class="fl">1650.31</span>, <span class="st">&quot;CZK&quot;</span>,    <span class="dv">21</span>, <span class="st">&quot;month&quot;</span>,       <span class="dv">1</span>,    <span class="dv">1</span>,</span>
+<span id="cb164-5"><a href="priklady.html#cb164-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;T-Mobile&quot;</span>,        <span class="fl">948.35</span>, <span class="st">&quot;CZK&quot;</span>,    <span class="dv">21</span>, <span class="st">&quot;month&quot;</span>,       <span class="dv">1</span>,   <span class="dv">10</span>,</span>
+<span id="cb164-6"><a href="priklady.html#cb164-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Toggl&quot;</span>,            <span class="fl">10.00</span>, <span class="st">&quot;USD&quot;</span>,     <span class="dv">0</span>, <span class="st">&quot;month&quot;</span>,       <span class="dv">1</span>,    <span class="dv">6</span>,</span>
+<span id="cb164-7"><a href="priklady.html#cb164-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Fakturoid&quot;</span>,      <span class="fl">5280.00</span>, <span class="st">&quot;CZK&quot;</span>,    <span class="dv">21</span>, <span class="st">&quot;year&quot;</span>,        <span class="dv">3</span>,    <span class="dv">1</span>,</span>
+<span id="cb164-8"><a href="priklady.html#cb164-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Basecamp&quot;</span>,         <span class="fl">12.00</span>, <span class="st">&quot;USD&quot;</span>,     <span class="dv">0</span>, <span class="st">&quot;month&quot;</span>,       <span class="dv">1</span>,   <span class="dv">19</span>,</span>
+<span id="cb164-9"><a href="priklady.html#cb164-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Screaming Frog&quot;</span>,  <span class="fl">149.00</span>, <span class="st">&quot;GBP&quot;</span>,     <span class="dv">0</span>, <span class="st">&quot;year&quot;</span>,        <span class="dv">1</span>,   <span class="dv">20</span></span>
+<span id="cb164-10"><a href="priklady.html#cb164-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb164-11"><a href="priklady.html#cb164-11" aria-hidden="true" tabindex="-1"></a>costs</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["cost"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["cur"],"name":[3],"type":["chr"],"align":["left"]},{"label":["vatr"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["period"],"name":[5],"type":["chr"],"align":["left"]},{"label":["month"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["day"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"Účetnictví","2":"9300.00","3":"CZK","4":"0","5":"quarter","6":"1","7":"25"},{"1":"O2","2":"1650.31","3":"CZK","4":"21","5":"month","6":"1","7":"1"},{"1":"T-Mobile","2":"948.35","3":"CZK","4":"21","5":"month","6":"1","7":"10"},{"1":"Toggl","2":"10.00","3":"USD","4":"0","5":"month","6":"1","7":"6"},{"1":"Fakturoid","2":"5280.00","3":"CZK","4":"21","5":"year","6":"3","7":"1"},{"1":"Basecamp","2":"12.00","3":"USD","4":"0","5":"month","6":"1","7":"19"},{"1":"Screaming Frog","2":"149.00","3":"GBP","4":"0","5":"year","6":"1","7":"20"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Z tabulky <code>costs</code> si nyní vygeneruji tabulku <code>cost_by_date</code>, která bude v daném roce obsahovat jedlivé výdaje v den, kdy je zaplatím.</p>
+<p>Postupně provedu tyto kroky:</p>
+<ol style="list-style-type: decimal">
+<li>Do objektu <code>year</code> si uložím rok, pro který chci plán spočítat.</li>
+<li>Funkcí <code>left_join</code> spojím tabulku nákladů s odpovídajícími kurzy z kurzovního lístku (je to dost podobné excelovské funkci <code>VLOOKUP</code> resp. <code>SVYHLEDAT</code>).</li>
+<li>Protože má kurz v kurzovním lístku strašně dlouhé jméno, přejmenuju ho funkcí <code>rename</code> na kratší.</li>
+<li>Pomocí <code>mutate</code> spočítám cenu v českých korunách a DPH.</li>
+<li>Pomocí <code>mutate</code> vytvořím sloupec <code>date</code>, který bude na každém řádku obsahovat celou posloupnost dat plateb jako seznam (<code>list</code>).</li>
+<li>Funkcí <code>unnest_longer</code> tyto seznamy dat plateb rozložím na samostatné řádky.</li>
+<li>A nakonec už jen funkcí <code>select</code> vyberu sloupce, které chci zahrnout do výsledku.</li>
+</ol>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="priklady.html#cb165-1" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="dv">2022</span></span>
+<span id="cb165-2"><a href="priklady.html#cb165-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-3"><a href="priklady.html#cb165-3" aria-hidden="true" tabindex="-1"></a>costs_by_date <span class="ot">&lt;-</span> costs <span class="sc">|&gt;</span> </span>
+<span id="cb165-4"><a href="priklady.html#cb165-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(exchange_rates, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;cur&quot;</span> <span class="ot">=</span> <span class="st">&quot;currency&quot;</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb165-5"><a href="priklady.html#cb165-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">ex_rate =</span> <span class="fu">last_col</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb165-6"><a href="priklady.html#cb165-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb165-7"><a href="priklady.html#cb165-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">cost_czk =</span> <span class="fu">round</span>(cost <span class="sc">/</span> ex_rate, <span class="dv">2</span>),</span>
+<span id="cb165-8"><a href="priklady.html#cb165-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">vat =</span> <span class="fu">round</span>(cost_czk <span class="sc">*</span> (vatr <span class="sc">/</span> <span class="dv">100</span>), <span class="dv">2</span>)</span>
+<span id="cb165-9"><a href="priklady.html#cb165-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb165-10"><a href="priklady.html#cb165-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb165-11"><a href="priklady.html#cb165-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb165-12"><a href="priklady.html#cb165-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">date =</span> <span class="fu">list</span>(<span class="fu">seq</span>(<span class="fu">make_date</span>(year, month, day), <span class="fu">make_date</span>(year, <span class="dv">12</span>, <span class="dv">31</span>), <span class="at">by =</span> period))</span>
+<span id="cb165-13"><a href="priklady.html#cb165-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb165-14"><a href="priklady.html#cb165-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb165-15"><a href="priklady.html#cb165-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_longer</span>(date) <span class="sc">|&gt;</span> </span>
+<span id="cb165-16"><a href="priklady.html#cb165-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(date, name, cost_czk, vat)</span>
+<span id="cb165-17"><a href="priklady.html#cb165-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-18"><a href="priklady.html#cb165-18" aria-hidden="true" tabindex="-1"></a>costs_by_date</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["date"],"name":[1],"type":["date"],"align":["right"]},{"label":["name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["cost_czk"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["vat"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"2022-01-25","2":"Účetnictví","3":"9300.00","4":"0.00"},{"1":"2022-04-25","2":"Účetnictví","3":"9300.00","4":"0.00"},{"1":"2022-07-25","2":"Účetnictví","3":"9300.00","4":"0.00"},{"1":"2022-10-25","2":"Účetnictví","3":"9300.00","4":"0.00"},{"1":"2022-01-01","2":"O2","3":"1650.31","4":"346.57"},{"1":"2022-02-01","2":"O2","3":"1650.31","4":"346.57"},{"1":"2022-03-01","2":"O2","3":"1650.31","4":"346.57"},{"1":"2022-04-01","2":"O2","3":"1650.31","4":"346.57"},{"1":"2022-05-01","2":"O2","3":"1650.31","4":"346.57"},{"1":"2022-06-01","2":"O2","3":"1650.31","4":"346.57"},{"1":"2022-07-01","2":"O2","3":"1650.31","4":"346.57"},{"1":"2022-08-01","2":"O2","3":"1650.31","4":"346.57"},{"1":"2022-09-01","2":"O2","3":"1650.31","4":"346.57"},{"1":"2022-10-01","2":"O2","3":"1650.31","4":"346.57"},{"1":"2022-11-01","2":"O2","3":"1650.31","4":"346.57"},{"1":"2022-12-01","2":"O2","3":"1650.31","4":"346.57"},{"1":"2022-01-10","2":"T-Mobile","3":"948.35","4":"199.15"},{"1":"2022-02-10","2":"T-Mobile","3":"948.35","4":"199.15"},{"1":"2022-03-10","2":"T-Mobile","3":"948.35","4":"199.15"},{"1":"2022-04-10","2":"T-Mobile","3":"948.35","4":"199.15"},{"1":"2022-05-10","2":"T-Mobile","3":"948.35","4":"199.15"},{"1":"2022-06-10","2":"T-Mobile","3":"948.35","4":"199.15"},{"1":"2022-07-10","2":"T-Mobile","3":"948.35","4":"199.15"},{"1":"2022-08-10","2":"T-Mobile","3":"948.35","4":"199.15"},{"1":"2022-09-10","2":"T-Mobile","3":"948.35","4":"199.15"},{"1":"2022-10-10","2":"T-Mobile","3":"948.35","4":"199.15"},{"1":"2022-11-10","2":"T-Mobile","3":"948.35","4":"199.15"},{"1":"2022-12-10","2":"T-Mobile","3":"948.35","4":"199.15"},{"1":"2022-01-06","2":"Toggl","3":"223.56","4":"0.00"},{"1":"2022-02-06","2":"Toggl","3":"223.56","4":"0.00"},{"1":"2022-03-06","2":"Toggl","3":"223.56","4":"0.00"},{"1":"2022-04-06","2":"Toggl","3":"223.56","4":"0.00"},{"1":"2022-05-06","2":"Toggl","3":"223.56","4":"0.00"},{"1":"2022-06-06","2":"Toggl","3":"223.56","4":"0.00"},{"1":"2022-07-06","2":"Toggl","3":"223.56","4":"0.00"},{"1":"2022-08-06","2":"Toggl","3":"223.56","4":"0.00"},{"1":"2022-09-06","2":"Toggl","3":"223.56","4":"0.00"},{"1":"2022-10-06","2":"Toggl","3":"223.56","4":"0.00"},{"1":"2022-11-06","2":"Toggl","3":"223.56","4":"0.00"},{"1":"2022-12-06","2":"Toggl","3":"223.56","4":"0.00"},{"1":"2022-03-01","2":"Fakturoid","3":"5280.00","4":"1108.80"},{"1":"2022-01-19","2":"Basecamp","3":"268.27","4":"0.00"},{"1":"2022-02-19","2":"Basecamp","3":"268.27","4":"0.00"},{"1":"2022-03-19","2":"Basecamp","3":"268.27","4":"0.00"},{"1":"2022-04-19","2":"Basecamp","3":"268.27","4":"0.00"},{"1":"2022-05-19","2":"Basecamp","3":"268.27","4":"0.00"},{"1":"2022-06-19","2":"Basecamp","3":"268.27","4":"0.00"},{"1":"2022-07-19","2":"Basecamp","3":"268.27","4":"0.00"},{"1":"2022-08-19","2":"Basecamp","3":"268.27","4":"0.00"},{"1":"2022-09-19","2":"Basecamp","3":"268.27","4":"0.00"},{"1":"2022-10-19","2":"Basecamp","3":"268.27","4":"0.00"},{"1":"2022-11-19","2":"Basecamp","3":"268.27","4":"0.00"},{"1":"2022-12-19","2":"Basecamp","3":"268.27","4":"0.00"},{"1":"2022-01-20","2":"Screaming Frog","3":"4423.86","4":"0.00"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="plán-příjmů" class="section level3 hasAnchor" number="7.2.4">
+<h3><span class="header-section-number">7.2.4</span> Plán příjmů<a href="priklady.html#plán-příjmů" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Nyní vytvořím tabulku odhadovaných výnosů <code>revenue_by_date</code>. Bude se jednat o měsíční příjmy, které dostanu v růměru okolo 15. dne následujícího měsíce. Vypočítají se z odhadu fakturovaných hodin vynásobených hodinovou saznou. Počet fakturovaných hodin bude náhodně fluktuovat +/- 5 hodin okolo průměru. DPH je 21 %.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="priklady.html#cb166-1" aria-hidden="true" tabindex="-1"></a>average_hours <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb166-2"><a href="priklady.html#cb166-2" aria-hidden="true" tabindex="-1"></a>hourly_rate <span class="ot">&lt;-</span> <span class="dv">800</span></span>
+<span id="cb166-3"><a href="priklady.html#cb166-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb166-4"><a href="priklady.html#cb166-4" aria-hidden="true" tabindex="-1"></a>revenue_by_date <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb166-5"><a href="priklady.html#cb166-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">date =</span> <span class="fu">seq</span>(<span class="fu">make_date</span>(year, <span class="dv">1</span>, <span class="dv">15</span>), <span class="at">length =</span> <span class="dv">12</span>, <span class="at">by =</span> <span class="st">&quot;month&quot;</span>),</span>
+<span id="cb166-6"><a href="priklady.html#cb166-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">revenue =</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">12</span>, average_hours <span class="sc">-</span> <span class="dv">5</span>, average_hours <span class="sc">+</span> <span class="dv">5</span>)) <span class="sc">*</span> hourly_rate,</span>
+<span id="cb166-7"><a href="priklady.html#cb166-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">vat =</span>  revenue <span class="sc">*</span> <span class="fl">0.21</span></span>
+<span id="cb166-8"><a href="priklady.html#cb166-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb166-9"><a href="priklady.html#cb166-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb166-10"><a href="priklady.html#cb166-10" aria-hidden="true" tabindex="-1"></a>revenue_by_date</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["date"],"name":[1],"type":["date"],"align":["right"]},{"label":["revenue"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["vat"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"2022-01-15","2":"78400","3":"16464"},{"1":"2022-02-15","2":"83200","3":"17472"},{"1":"2022-03-15","2":"79200","3":"16632"},{"1":"2022-04-15","2":"80800","3":"16968"},{"1":"2022-05-15","2":"77600","3":"16296"},{"1":"2022-06-15","2":"80000","3":"16800"},{"1":"2022-07-15","2":"83200","3":"17472"},{"1":"2022-08-15","2":"80800","3":"16968"},{"1":"2022-09-15","2":"78400","3":"16464"},{"1":"2022-10-15","2":"80000","3":"16800"},{"1":"2022-11-15","2":"83200","3":"17472"},{"1":"2022-12-15","2":"83200","3":"17472"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="spojený-plán-příjmů-a-výdajů" class="section level3 hasAnchor" number="7.2.5">
+<h3><span class="header-section-number">7.2.5</span> Spojený plán příjmů a výdajů<a href="priklady.html#spojený-plán-příjmů-a-výdajů" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Zbývá spočítat cash flow a hezky ho zobrazit. Postup už podrobně vysvětlovat nebudu. Jakmile uvidíte funkci, kterou neznáte, dejte si na ni kurzor, zmáčkněte <kbd>F1</kbd> a vše potřebné se dozvíte z nápovědy.</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="priklady.html#cb167-1" aria-hidden="true" tabindex="-1"></a>costs_by_date <span class="sc">|&gt;</span> </span>
+<span id="cb167-2"><a href="priklady.html#cb167-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb167-3"><a href="priklady.html#cb167-3" aria-hidden="true" tabindex="-1"></a>    date,</span>
+<span id="cb167-4"><a href="priklady.html#cb167-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cash_flow =</span> <span class="sc">-</span>(cost_czk <span class="sc">+</span> vat)</span>
+<span id="cb167-5"><a href="priklady.html#cb167-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb167-6"><a href="priklady.html#cb167-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(</span>
+<span id="cb167-7"><a href="priklady.html#cb167-7" aria-hidden="true" tabindex="-1"></a>    revenue_by_date <span class="sc">|&gt;</span> </span>
+<span id="cb167-8"><a href="priklady.html#cb167-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">transmute</span>(</span>
+<span id="cb167-9"><a href="priklady.html#cb167-9" aria-hidden="true" tabindex="-1"></a>        date,</span>
+<span id="cb167-10"><a href="priklady.html#cb167-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">cash_flow =</span> revenue <span class="sc">+</span> vat</span>
+<span id="cb167-11"><a href="priklady.html#cb167-11" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb167-12"><a href="priklady.html#cb167-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb167-13"><a href="priklady.html#cb167-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date) <span class="sc">|&gt;</span> </span>
+<span id="cb167-14"><a href="priklady.html#cb167-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">cash_flow =</span> <span class="fu">sum</span>(cash_flow)) <span class="sc">|&gt;</span> </span>
+<span id="cb167-15"><a href="priklady.html#cb167-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> <span class="fu">cumsum</span>(cash_flow))) <span class="sc">+</span> </span>
+<span id="cb167-16"><a href="priklady.html#cb167-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb167-17"><a href="priklady.html#cb167-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
+<span id="cb167-18"><a href="priklady.html#cb167-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">&quot;month&quot;</span>, <span class="at">date_labels =</span> <span class="st">&quot;%b&quot;</span>) <span class="sc">+</span></span>
+<span id="cb167-19"><a href="priklady.html#cb167-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;datum&quot;</span>, <span class="at">y =</span> <span class="st">&quot;zůstatek Kč&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
+<p>Má to jednu vadu, že? Nejsou tam odvody DPH. Tak ještě jednou a pro jistotu to rozdělím do dvou kroků, ať to jde lépe zkontrolovat.</p>
+<p>Nejpreve tabulka cash flow podle dní:</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="priklady.html#cb168-1" aria-hidden="true" tabindex="-1"></a>cash_flow_by_date <span class="ot">&lt;-</span> costs_by_date <span class="sc">|&gt;</span> </span>
+<span id="cb168-2"><a href="priklady.html#cb168-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb168-3"><a href="priklady.html#cb168-3" aria-hidden="true" tabindex="-1"></a>    date,</span>
+<span id="cb168-4"><a href="priklady.html#cb168-4" aria-hidden="true" tabindex="-1"></a>    name,</span>
+<span id="cb168-5"><a href="priklady.html#cb168-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">cash_flow =</span> <span class="sc">-</span>(cost_czk <span class="sc">+</span> vat)</span>
+<span id="cb168-6"><a href="priklady.html#cb168-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb168-7"><a href="priklady.html#cb168-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(</span>
+<span id="cb168-8"><a href="priklady.html#cb168-8" aria-hidden="true" tabindex="-1"></a>    revenue_by_date <span class="sc">|&gt;</span> </span>
+<span id="cb168-9"><a href="priklady.html#cb168-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">transmute</span>(</span>
+<span id="cb168-10"><a href="priklady.html#cb168-10" aria-hidden="true" tabindex="-1"></a>        date,</span>
+<span id="cb168-11"><a href="priklady.html#cb168-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">&quot;příjem&quot;</span>,</span>
+<span id="cb168-12"><a href="priklady.html#cb168-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">cash_flow =</span> revenue <span class="sc">+</span> vat</span>
+<span id="cb168-13"><a href="priklady.html#cb168-13" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb168-14"><a href="priklady.html#cb168-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb168-15"><a href="priklady.html#cb168-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb168-16"><a href="priklady.html#cb168-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Zde přidám DPH na vstupu</span></span>
+<span id="cb168-17"><a href="priklady.html#cb168-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb168-18"><a href="priklady.html#cb168-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(</span>
+<span id="cb168-19"><a href="priklady.html#cb168-19" aria-hidden="true" tabindex="-1"></a>    costs_by_date <span class="sc">|&gt;</span> </span>
+<span id="cb168-20"><a href="priklady.html#cb168-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(</span>
+<span id="cb168-21"><a href="priklady.html#cb168-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">date =</span> <span class="fu">quarter</span>(date, <span class="at">type =</span> <span class="st">&quot;date_last&quot;</span>) <span class="sc">+</span> <span class="dv">25</span>,</span>
+<span id="cb168-22"><a href="priklady.html#cb168-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">&quot;DPH na vstupu&quot;</span></span>
+<span id="cb168-23"><a href="priklady.html#cb168-23" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">|&gt;</span> </span>
+<span id="cb168-24"><a href="priklady.html#cb168-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">cash_flow =</span> <span class="fu">sum</span>(vat))</span>
+<span id="cb168-25"><a href="priklady.html#cb168-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb168-26"><a href="priklady.html#cb168-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb168-27"><a href="priklady.html#cb168-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Zde přidám DPH na výstupu</span></span>
+<span id="cb168-28"><a href="priklady.html#cb168-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb168-29"><a href="priklady.html#cb168-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_rows</span>(</span>
+<span id="cb168-30"><a href="priklady.html#cb168-30" aria-hidden="true" tabindex="-1"></a>    revenue_by_date <span class="sc">|&gt;</span> </span>
+<span id="cb168-31"><a href="priklady.html#cb168-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(</span>
+<span id="cb168-32"><a href="priklady.html#cb168-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">date =</span> <span class="fu">quarter</span>(date, <span class="at">type =</span> <span class="st">&quot;date_last&quot;</span>) <span class="sc">+</span> <span class="dv">25</span>,</span>
+<span id="cb168-33"><a href="priklady.html#cb168-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">&quot;DPH na výstupu&quot;</span></span>
+<span id="cb168-34"><a href="priklady.html#cb168-34" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">|&gt;</span> </span>
+<span id="cb168-35"><a href="priklady.html#cb168-35" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">cash_flow =</span> <span class="sc">-</span><span class="fu">sum</span>(vat))</span>
+<span id="cb168-36"><a href="priklady.html#cb168-36" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;date&#39;. You can override using the
+## `.groups` argument.
+## `summarise()` has grouped output by &#39;date&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="priklady.html#cb170-1" aria-hidden="true" tabindex="-1"></a>cash_flow_by_date</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["date"],"name":[1],"type":["date"],"align":["right"]},{"label":["name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["cash_flow"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"2022-01-25","2":"Účetnictví","3":"-9300.00"},{"1":"2022-04-25","2":"Účetnictví","3":"-9300.00"},{"1":"2022-07-25","2":"Účetnictví","3":"-9300.00"},{"1":"2022-10-25","2":"Účetnictví","3":"-9300.00"},{"1":"2022-01-01","2":"O2","3":"-1996.88"},{"1":"2022-02-01","2":"O2","3":"-1996.88"},{"1":"2022-03-01","2":"O2","3":"-1996.88"},{"1":"2022-04-01","2":"O2","3":"-1996.88"},{"1":"2022-05-01","2":"O2","3":"-1996.88"},{"1":"2022-06-01","2":"O2","3":"-1996.88"},{"1":"2022-07-01","2":"O2","3":"-1996.88"},{"1":"2022-08-01","2":"O2","3":"-1996.88"},{"1":"2022-09-01","2":"O2","3":"-1996.88"},{"1":"2022-10-01","2":"O2","3":"-1996.88"},{"1":"2022-11-01","2":"O2","3":"-1996.88"},{"1":"2022-12-01","2":"O2","3":"-1996.88"},{"1":"2022-01-10","2":"T-Mobile","3":"-1147.50"},{"1":"2022-02-10","2":"T-Mobile","3":"-1147.50"},{"1":"2022-03-10","2":"T-Mobile","3":"-1147.50"},{"1":"2022-04-10","2":"T-Mobile","3":"-1147.50"},{"1":"2022-05-10","2":"T-Mobile","3":"-1147.50"},{"1":"2022-06-10","2":"T-Mobile","3":"-1147.50"},{"1":"2022-07-10","2":"T-Mobile","3":"-1147.50"},{"1":"2022-08-10","2":"T-Mobile","3":"-1147.50"},{"1":"2022-09-10","2":"T-Mobile","3":"-1147.50"},{"1":"2022-10-10","2":"T-Mobile","3":"-1147.50"},{"1":"2022-11-10","2":"T-Mobile","3":"-1147.50"},{"1":"2022-12-10","2":"T-Mobile","3":"-1147.50"},{"1":"2022-01-06","2":"Toggl","3":"-223.56"},{"1":"2022-02-06","2":"Toggl","3":"-223.56"},{"1":"2022-03-06","2":"Toggl","3":"-223.56"},{"1":"2022-04-06","2":"Toggl","3":"-223.56"},{"1":"2022-05-06","2":"Toggl","3":"-223.56"},{"1":"2022-06-06","2":"Toggl","3":"-223.56"},{"1":"2022-07-06","2":"Toggl","3":"-223.56"},{"1":"2022-08-06","2":"Toggl","3":"-223.56"},{"1":"2022-09-06","2":"Toggl","3":"-223.56"},{"1":"2022-10-06","2":"Toggl","3":"-223.56"},{"1":"2022-11-06","2":"Toggl","3":"-223.56"},{"1":"2022-12-06","2":"Toggl","3":"-223.56"},{"1":"2022-03-01","2":"Fakturoid","3":"-6388.80"},{"1":"2022-01-19","2":"Basecamp","3":"-268.27"},{"1":"2022-02-19","2":"Basecamp","3":"-268.27"},{"1":"2022-03-19","2":"Basecamp","3":"-268.27"},{"1":"2022-04-19","2":"Basecamp","3":"-268.27"},{"1":"2022-05-19","2":"Basecamp","3":"-268.27"},{"1":"2022-06-19","2":"Basecamp","3":"-268.27"},{"1":"2022-07-19","2":"Basecamp","3":"-268.27"},{"1":"2022-08-19","2":"Basecamp","3":"-268.27"},{"1":"2022-09-19","2":"Basecamp","3":"-268.27"},{"1":"2022-10-19","2":"Basecamp","3":"-268.27"},{"1":"2022-11-19","2":"Basecamp","3":"-268.27"},{"1":"2022-12-19","2":"Basecamp","3":"-268.27"},{"1":"2022-01-20","2":"Screaming Frog","3":"-4423.86"},{"1":"2022-01-15","2":"příjem","3":"94864.00"},{"1":"2022-02-15","2":"příjem","3":"100672.00"},{"1":"2022-03-15","2":"příjem","3":"95832.00"},{"1":"2022-04-15","2":"příjem","3":"97768.00"},{"1":"2022-05-15","2":"příjem","3":"93896.00"},{"1":"2022-06-15","2":"příjem","3":"96800.00"},{"1":"2022-07-15","2":"příjem","3":"100672.00"},{"1":"2022-08-15","2":"příjem","3":"97768.00"},{"1":"2022-09-15","2":"příjem","3":"94864.00"},{"1":"2022-10-15","2":"příjem","3":"96800.00"},{"1":"2022-11-15","2":"příjem","3":"100672.00"},{"1":"2022-12-15","2":"příjem","3":"100672.00"},{"1":"2022-04-25","2":"DPH na vstupu","3":"2745.96"},{"1":"2022-07-25","2":"DPH na vstupu","3":"1637.16"},{"1":"2022-10-25","2":"DPH na vstupu","3":"1637.16"},{"1":"2023-01-25","2":"DPH na vstupu","3":"1637.16"},{"1":"2022-04-25","2":"DPH na výstupu","3":"-50568.00"},{"1":"2022-07-25","2":"DPH na výstupu","3":"-50064.00"},{"1":"2022-10-25","2":"DPH na výstupu","3":"-50904.00"},{"1":"2023-01-25","2":"DPH na výstupu","3":"-51744.00"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>A nakonec graf:</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="priklady.html#cb171-1" aria-hidden="true" tabindex="-1"></a>cash_flow_by_date <span class="sc">|&gt;</span> </span>
+<span id="cb171-2"><a href="priklady.html#cb171-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(date) <span class="sc">|&gt;</span> </span>
+<span id="cb171-3"><a href="priklady.html#cb171-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">cash_flow =</span> <span class="fu">sum</span>(cash_flow)) <span class="sc">|&gt;</span> </span>
+<span id="cb171-4"><a href="priklady.html#cb171-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> <span class="fu">cumsum</span>(cash_flow))) <span class="sc">+</span> </span>
+<span id="cb171-5"><a href="priklady.html#cb171-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb171-6"><a href="priklady.html#cb171-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
+<span id="cb171-7"><a href="priklady.html#cb171-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_breaks =</span> <span class="st">&quot;month&quot;</span>, <span class="at">date_labels =</span> <span class="st">&quot;%b&quot;</span>) <span class="sc">+</span></span>
+<span id="cb171-8"><a href="priklady.html#cb171-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;datum&quot;</span>, <span class="at">y =</span> <span class="st">&quot;zůstatek Kč&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
+<p>A to je všechno :-)</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="grafy.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

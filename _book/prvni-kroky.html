@@ -251,6 +251,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.6" data-path="grafy.html"><a href="grafy.html#koláčový-graf"><i class="fa fa-check"></i><b>6.6</b> Koláčový graf<span></span></a></li>
 <li class="chapter" data-level="6.7" data-path="grafy.html"><a href="grafy.html#tahák"><i class="fa fa-check"></i><b>6.7</b> Tahák<span></span></a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="priklady.html"><a href="priklady.html"><i class="fa fa-check"></i><b>7</b> Souvislé příklady<span></span></a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="priklady.html"><a href="priklady.html#poznámky-z-porady"><i class="fa fa-check"></i><b>7.1</b> Poznámky z porady<span></span></a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="priklady.html"><a href="priklady.html#které-balíčky-budu-potřebovat"><i class="fa fa-check"></i><b>7.1.1</b> Které balíčky budu potřebovat<span></span></a></li>
+<li class="chapter" data-level="7.1.2" data-path="priklady.html"><a href="priklady.html#načtení-textu"><i class="fa fa-check"></i><b>7.1.2</b> Načtení textu<span></span></a></li>
+<li class="chapter" data-level="7.1.3" data-path="priklady.html"><a href="priklady.html#převod-na-data"><i class="fa fa-check"></i><b>7.1.3</b> Převod na data<span></span></a></li>
+<li class="chapter" data-level="7.1.4" data-path="priklady.html"><a href="priklady.html#součet-hodin-a-ceny"><i class="fa fa-check"></i><b>7.1.4</b> Součet hodin a ceny<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="priklady.html"><a href="priklady.html#roční-rozpočet-freelancera"><i class="fa fa-check"></i><b>7.2</b> Roční rozpočet freelancera<span></span></a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="priklady.html"><a href="priklady.html#které-balíčky-budou-potřeba"><i class="fa fa-check"></i><b>7.2.1</b> Které balíčky budou potřeba<span></span></a></li>
+<li class="chapter" data-level="7.2.2" data-path="priklady.html"><a href="priklady.html#kurzovní-lístek"><i class="fa fa-check"></i><b>7.2.2</b> Kurzovní lístek<span></span></a></li>
+<li class="chapter" data-level="7.2.3" data-path="priklady.html"><a href="priklady.html#plán-výdajů"><i class="fa fa-check"></i><b>7.2.3</b> Plán výdajů<span></span></a></li>
+<li class="chapter" data-level="7.2.4" data-path="priklady.html"><a href="priklady.html#plán-příjmů"><i class="fa fa-check"></i><b>7.2.4</b> Plán příjmů<span></span></a></li>
+<li class="chapter" data-level="7.2.5" data-path="priklady.html"><a href="priklady.html#spojený-plán-příjmů-a-výdajů"><i class="fa fa-check"></i><b>7.2.5</b> Spojený plán příjmů a výdajů<span></span></a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -311,18 +329,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="img/rstudio-console-02.png" alt="RStudio: Výsledek přiřazení" /></p>
 <p>Příkazem jste totiž vytvořili v prostředí R (environment) nový objekt <code>cena</code> a uložili jste do něj sto (skoro) náhodných čísel. Na všechny se můžete podívat příkazem:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="prvni-kroky.html#cb14-1" aria-hidden="true" tabindex="-1"></a>cena</span></code></pre></div>
-<pre><code>##   [1] 1192.91 1336.66 1129.60  999.93 1061.21 1079.01 1082.84 1061.25 1050.25
-##  [10] 1102.11  976.00 1129.18  929.62  969.20  669.88 1185.60  889.34 1118.03
-##  [19] 1027.13 1013.83 1207.58  815.21  939.28  742.46 1175.93  823.99  899.08
-##  [28] 1009.27  887.78 1075.80 1497.99 1037.15  822.84  964.17 1019.52 1036.80
-##  [37] 1146.55  848.43  933.55 1262.80 1023.04  834.32 1050.54 1019.97 1021.74
-##  [46]  862.88  684.70  787.28 1224.11  775.44  536.40 1082.98 1523.28 1083.43
-##  [55]  749.47 1404.93  991.73 1046.51  877.21 1075.09  642.69 1085.83 1139.60
-##  [64] 1176.34 1060.12  752.97 1171.24  973.71  943.52  686.26 1311.70 1136.43
-##  [73]  919.63  865.55  887.45  961.61  969.95 1301.22 1059.71  914.50 1044.18
-##  [82] 1192.86  566.30 1318.26  958.60  877.51  769.36  612.09  854.46 1072.88
-##  [91] 1164.46 1043.64  984.26 1118.03 1498.43  825.80  706.51 1130.28 1227.33
-## [100] 1065.61</code></pre>
+<pre><code>##   [1]  688.77 1205.57  741.18 1332.38 1154.13  948.13  863.62  889.33  836.45
+##  [10] 1056.58  701.50 1296.93  586.04 1275.06  943.79 1033.43 1230.39 1091.92
+##  [19] 1158.91 1585.69  963.62 1180.68  924.14 1277.10  723.85 1182.44  789.05
+##  [28]  634.82 1167.93 1213.14  890.03  895.95  765.42 1010.84 1198.87 1330.39
+##  [37] 1424.93 1082.46 1064.44  701.32  795.54  989.79  931.91  980.13 1303.26
+##  [46] 1137.92 1008.92  858.66  866.07 1164.63 1014.92 1216.75  821.53  926.08
+##  [55] 1259.93 1146.28 1022.44  977.55  994.87 1160.82 1329.59  987.34 1094.62
+##  [64] 1320.50 1046.27 1099.94  923.20  940.52  929.05 1000.89 1119.74 1335.07
+##  [73] 1030.79  745.90  825.59  861.45  961.43  806.78  793.51 1013.79  413.66
+##  [82]  924.32  663.87 1021.28  963.46 1233.37 1323.24 1296.55  915.64  984.33
+##  [91] 1287.93  887.73  957.28  852.10 1040.69 1281.80 1001.17 1174.19  926.36
+## [100] 1188.50</code></pre>
 <p>což pak na konzoli vypadá nějak takhle (čísla jsou náhodná, takže nesedí s předešlým výsledkem):</p>
 <p><img src="img/rstudio-console-03.png" alt="Výsledek příkazu cena" /></p>
 <p>Teď vám to ale musím vysvětlit trochu podrobněji.</p>
@@ -344,21 +362,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>rnorm</code> je funkce, která vrací (skoro) náhodná čísla. Skoro jsem dal do závorky, protože vrácená čísla jsou náhodná v rámci normálního rozdělení (to je ta slavná Gaussova křivka), jehož podobu určíte parametry <code>mean</code> (průměr) a <code>sd</code> (směrodatná odchylka neboli standard deviation). Parametrem <code>n</code> navíc musíte určit, kolik těch čísel vlastně chcete.</p>
 <p>Následující příkaz tedy vrátí vektor sta náhodných čísel z normální rozdělení s průměrem 1000 a směrodatnou odchylkou 200.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="prvni-kroky.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">1000</span>, <span class="at">sd =</span> <span class="dv">200</span>)</span></code></pre></div>
-<pre><code>##   [1]  643.9221 1436.3253  861.9220 1042.5561  786.3985 1362.9542  894.5745
-##   [8]  990.5447  838.6096  685.3028  661.5935 1404.8185 1136.6118  742.6172
-##  [15]  872.4876 1215.0976  874.6315  878.1965  782.6808  739.0871  755.7036
-##  [22] 1161.2694 1004.0381 1060.1288  878.1182 1115.5333 1543.5414 1233.6901
-##  [29] 1073.0029  649.8753 1099.0808 1043.1082  978.9193 1116.2026  768.0417
-##  [36] 1049.1075 1169.5412 1020.5787 1145.7282 1275.9213  806.9611 1263.9605
-##  [43] 1173.0585 1005.8094 1430.6157 1317.2765  906.6554  793.1767 1146.6988
-##  [50] 1047.0265 1142.0793  919.6268 1350.2776  984.6874 1191.4964  417.8822
-##  [57] 1206.3708 1235.4778  814.9976 1022.4988  850.3175  967.4146 1045.4229
-##  [64] 1021.7009 1133.1782  825.9952 1101.1331  887.0891  833.5795  765.0546
-##  [71]  903.2892 1126.0373 1114.5164 1286.1233  829.7042 1402.5967  748.4159
-##  [78]  932.1490 1148.7453 1147.1009 1056.3325  949.5446  722.4255 1024.7979
-##  [85] 1030.5230 1431.4948  956.6471  790.5507 1348.7001 1559.1839 1140.5087
-##  [92] 1085.3612  822.1655  897.4019 1061.3012 1321.0826 1206.1891 1053.8015
-##  [99] 1121.4875 1475.8438</code></pre>
+<pre><code>##   [1]  785.1943 1092.5294 1085.3105 1065.9372 1294.2232 1360.1143 1183.1812
+##   [8] 1151.2926 1198.5287 1234.2598  556.8081 1043.6851 1179.8413 1006.5881
+##  [15]  904.5179 1132.5282  824.9848 1119.9211 1186.6150  908.9033 1025.8386
+##  [22] 1230.6572 1007.8941  871.0348 1103.0498  781.9570  960.5322  993.6834
+##  [29]  980.8714  689.1369 1027.4078  784.5558  621.0193 1122.2014  876.7331
+##  [36]  846.3522 1240.0831 1004.1383  818.3215 1043.4466 1103.5674  927.1693
+##  [43] 1136.9460  766.7515 1459.5735  755.2102  703.9755  554.1379  941.3366
+##  [50]  977.7566 1276.3508  900.7140 1045.9020 1096.7947  986.2789  740.7909
+##  [57]  843.4925 1202.8383  980.5341 1219.3499 1124.6529  953.2380 1184.6097
+##  [64]  810.4928  840.1269 1255.6511  749.9765  818.1418 1018.9476  682.1029
+##  [71] 1114.5354 1006.4272 1288.5808  975.7176 1120.0301 1272.3447 1222.7010
+##  [78] 1026.5863 1119.8405 1021.9558  634.2960  947.1479  931.1660 1052.9766
+##  [85]  965.2614  542.4482  829.3160  943.8976  911.2266 1313.7218 1453.6388
+##  [92] 1192.2085 1181.0919 1150.2816  995.9598 1086.9875 1035.5833 1429.6961
+##  [99] 1150.4300  845.8009</code></pre>
 <p>Klidně si ho zadejte párkrát do konzole s různými parametry, abyste viděli, jak se mění výsledek.</p>
 <p><code>round</code> je funkce, která zaokrouhluje. První parametr je číselný vektor, který se má zaokrouhlit, a druhý parametr digits určuje, na kolik desetinných míst se má zaokrouhlit. Následující příkaz tedy zaokrouhlí číslo 1.145 na dvě desetinná místa:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="prvni-kroky.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">1.145</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
@@ -368,34 +386,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] 1.15</code></pre>
 <p>A teď už asi chápete – funkce <code>rnorm</code> vrátí sto čísel s hodně desetinnými čísly, a proto jste její výsledek ještě poslali funkci <code>round</code>, která celý vektor (tj. všech sto čísel) zaokrouhlila na dvě desetinná místa. V jiném programovacím jazyce byste na to potřebovali dost složité výpočty v cyklech, v R stačí tohle:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="prvni-kroky.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">1000</span>, <span class="at">sd =</span> <span class="dv">200</span>), <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>##   [1] 1069.22  967.03 1096.69  846.34 1000.78  855.76 1049.18  919.92  938.58
-##  [10] 1039.85 1072.73  921.00 1346.51 1077.22  726.08  996.87 1119.55 1199.88
-##  [19] 1156.81  946.15 1168.67 1338.92  946.38  936.18 1206.14 1104.43 1078.16
-##  [28] 1251.81  886.66 1114.28  924.37 1089.68  829.20  673.88  927.57 1066.08
-##  [37]  700.04  661.00 1454.26 1234.21  792.55 1305.93 1002.95  634.93 1260.93
-##  [46]  821.63 1014.31 1218.38 1297.60 1066.23  910.67  644.82  797.31  674.26
-##  [55] 1033.43 1337.25  871.41  834.85  723.90 1127.36 1075.93 1166.73 1473.80
-##  [64]  836.27 1208.91 1079.88  997.22 1001.93  804.34 1022.18  747.56  901.71
-##  [73]  802.82 1227.92  668.11  861.41 1110.34 1143.55 1071.61 1094.99  678.03
-##  [82] 1243.38 1073.96  660.08 1017.74 1281.71  981.21  831.66  878.88 1226.97
-##  [91]  806.68  784.75  790.77  887.84 1220.64  733.92 1201.58  973.45  732.01
-## [100]  926.40</code></pre>
+<pre><code>##   [1] 1074.50  888.91  875.72  795.40  783.93 1023.79  593.53 1071.37  819.18
+##  [10] 1130.22  692.67 1081.16 1221.09  879.91 1044.03 1105.50 1122.22  945.76
+##  [19]  876.07  946.73 1100.80  659.03 1016.14  862.76  987.51  828.03 1185.63
+##  [28]  926.56 1177.07 1126.07  655.06 1101.63 1013.78 1308.23  938.08  854.72
+##  [37] 1186.84  960.12 1167.97  922.75  850.70  441.71  745.36  902.51  685.44
+##  [46]  891.54  795.63 1250.43  863.20  812.00  866.62  835.25  866.74 1064.57
+##  [55] 1034.27  939.91  954.82  931.36  897.25  819.51 1035.06  876.94  848.00
+##  [64] 1070.36  801.08  896.17  985.26 1116.71  528.26  989.72  966.23  627.17
+##  [73]  836.41 1326.07 1378.82  997.48 1229.41  884.89  813.94 1190.06  878.37
+##  [82] 1135.07  963.03  936.15 1079.56  927.07  944.95 1196.99  969.92 1367.13
+##  [91]  775.57  992.28 1552.20  876.98  826.15  902.10 1417.74  799.26  785.35
+## [100] 1058.33</code></pre>
 <p>Mimochodem, všimli jste si v předešlých příkladech těch čísel v hranatých závorkách? Protože se v příkladech vypisují jako výsledky vektory (všechny základní, tzv. atomické typy jsou v R vektory), R vám těmi čísly v hranatých závorkách říká, na jaké pozici ve vektoru daná hodnota je.</p>
 <p>A hranaté závorky jdou i použít pro adresování konkrétního prvku vektoru. Třeba tohle zobrazí z vytvořeného vektoru <code>cena</code> jenom pátý prvek:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="prvni-kroky.html#cb24-1" aria-hidden="true" tabindex="-1"></a>cena[<span class="dv">5</span>]</span></code></pre></div>
-<pre><code>## [1] 1061.21</code></pre>
+<pre><code>## [1] 1154.13</code></pre>
 <p>a tohle pátý až desátý:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="prvni-kroky.html#cb26-1" aria-hidden="true" tabindex="-1"></a>cena[<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
-<pre><code>## [1] 1061.21 1079.01 1082.84 1061.25 1050.25 1102.11</code></pre>
+<pre><code>## [1] 1154.13  948.13  863.62  889.33  836.45 1056.58</code></pre>
 <p>Chtěli jsme ještě účtenky sečíst, že? Je to hračka:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="prvni-kroky.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(cena)</span></code></pre></div>
-<pre><code>## [1] 100795.7</code></pre>
+<pre><code>## [1] 102122.7</code></pre>
 <p>Zajímá vás, kolik dělá celková tržba bez DPH?</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="prvni-kroky.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(cena <span class="sc">/</span> <span class="dv">121</span> <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div>
-<pre><code>## [1] 83302.22</code></pre>
+<pre><code>## [1] 84398.89</code></pre>
 <p>případně:</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="prvni-kroky.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(cena) <span class="sc">/</span> <span class="dv">121</span> <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div>
-<pre><code>## [1] 83302.22</code></pre>
+<pre><code>## [1] 84398.89</code></pre>
 <p>Obojí by vám mělo dát stejný výsledek. V prvním případě se ale nejprve vydělí každý jednotlivý prvek vektoru a pak se celý vektor sečte, kdežto v druhém případě se celý vektor nejprve sečte a pak teprve vydělí.</p>
 <p>Zajímá vás rozložení ceny zobrazené v histogramu?</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="prvni-kroky.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(cena)</span></code></pre></div>
