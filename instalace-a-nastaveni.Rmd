@@ -24,7 +24,7 @@ Okno zavřete a to je všechno. Odteď můžete na základní R zapomenout.
 
 ## Instalace RStudia
 
-Stáhněte a nainstalujte si RStudio Desktop z <https://www.rstudio.com/products/rstudio/download/>. I to by mělo jít bez problémů a spuštěné RStudio pak bude vypadat nějak takto:
+Stáhněte a nainstalujte si RStudio Desktop Free z <https://www.rstudio.com/products/rstudio/download/>. I to by mělo jít bez problémů a spuštěné RStudio pak bude vypadat nějak takto:
 
 ![RStudio po prvním spuštění](img/rstudio-01.png)
 

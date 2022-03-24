@@ -77,7 +77,7 @@ df
 
 #### Podrobný výklad postupu
 
-Pokud je vám až sem všechno jasné, tohle přeskočte. Pro ostatní popíšu postup vyvoření data framu podrobněji.
+Pokud je vám až sem všechno jasné, tohle přeskočte. Pro ostatní popíšu postup vytvoření data framu podrobněji.
 
 Nejprve jsem vytvořil data frame s jedním sloupcem obsahujícím řádky původního vstupního textu. Posloužila mi funkce `data.frame` ze základního R.
 
@@ -159,7 +159,7 @@ df <-
 
 ### Součet hodin a ceny
 
-Zbývá sečíst hodiny a cenu a hodiny přepočítat na člověkodny (sloupec md).
+Zbývá sečíst cenu a převést hodiny na člověkodny (sloupec md).
 
 ```{r}
 df |> 
@@ -218,7 +218,7 @@ costs <- tribble(
 costs
 ```
 
-Z tabulky `costs` si nyní vygeneruji tabulku `cost_by_date`, která bude v daném roce obsahovat jedlivé výdaje v den, kdy je zaplatím.
+Z tabulky `costs` si nyní vygeneruji tabulku `cost_by_date`, která bude v daném roce obsahovat jednotlivé výdaje v den, kdy je zaplatím.
 
 Postupně provedu tyto kroky:
 
@@ -253,7 +253,7 @@ costs_by_date
 
 ### Plán příjmů
 
-Nyní vytvořím tabulku odhadovaných výnosů `revenue_by_date`. Bude se jednat o měsíční příjmy, které dostanu v růměru okolo 15. dne následujícího měsíce. Vypočítají se z odhadu fakturovaných hodin vynásobených hodinovou saznou. Počet fakturovaných hodin bude náhodně fluktuovat +/- 5 hodin okolo průměru. DPH je 21 %.
+Nyní vytvořím tabulku odhadovaných výnosů `revenue_by_date`. Bude se jednat o měsíční příjmy, které dostanu v průměru okolo 15. dne následujícího měsíce. Vypočítají se z odhadu fakturovaných hodin vynásobených hodinovou sazbou. Počet fakturovaných hodin bude náhodně fluktuovat +/- 5 hodin okolo průměru. DPH je 21 %.
 
 ```{r revenue_by_date}
 average_hours <- 100
@@ -296,7 +296,7 @@ costs_by_date |>
 
 Má to jednu vadu, že? Nejsou tam odvody DPH. Tak ještě jednou a pro jistotu to rozdělím do dvou kroků, ať to jde lépe zkontrolovat.
 
-Nejpreve tabulka cash flow podle dní:
+Nejprve tabulka cash flow podle dní:
 
 ```{r}
 cash_flow_by_date <- costs_by_date |> 

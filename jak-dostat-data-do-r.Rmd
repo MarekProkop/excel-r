@@ -75,7 +75,7 @@ Povšimněte si, že abych mohl funkci _tibble_ použít, musím nejdřív nač�
 
 ### Funkce tribble
 
-Oba výše popsané způsoby zadávání dat do data framu mají jednu nevýhodu: data zapisujete po sloupcích, ačkoli je většinou přirozenější je psát po řádcích. Tuto nevýhodu řeší funkce _tribble_, které je taktéž součástí ekosystému _tidyverse_.
+Oba výše popsané způsoby zadávání dat do data framu mají jednu nevýhodu: data zapisujete po sloupcích, ačkoli je většinou přirozenější je psát po řádcích. Tuto nevýhodu řeší funkce _tribble_, která je taktéž součástí ekosystému _tidyverse_.
 
 Používá se takto:
 
@@ -109,7 +109,7 @@ To je všechno moc hezké, říkáte si, ale v Excelu mohu nejen ručně zadat 
 
 Inu, skoro stejně. V Excelu něco píšete, pak máte už hotový výsledek a ten opravíte. V R nepíšete rovnou výsledek, nýbrž postup, jak výsledek vytvořit. Opravíte tedy postup, znovu ho spustíte a získáte opravený výsledek. Vypadá to o trochu složitěji, ale ve skutečnosti je to o dost lepší, protože informace o postupu zůstane zaznamenaná.
 
-1. Pokud máte postup uložený ve skriptu, opravíte ho a znovu pusíte skript.
+1. Pokud máte postup uložený ve skriptu, opravíte ho a znovu pustíte skript.
 2. Pokud máte postup v souboru _rmarkdown_ (.Rmd), opravíte ho a znovu spustíte jen opravený blok.
 3. Pokud jste postup napsali jen do konzole, vrátité se k němu v historii (v konzoli šipka nahoru, případně panel _History_ v RStudiu), opravíte a znovu provedete.
 
@@ -189,7 +189,7 @@ animals
 Co přesně jsem udělal?
 
 - Protože dataset odděluje sloupce středníky a ne čárkami, použil jsem místo funkce _read_csv_ obecnější funkci _read_delim_, která umožňuje oddělovač nastavit parametrem `delim`.
-- V parametru `col_types` jsem funkcí _cols_ určil, které sloupce nechci importovat (`col_skip`) a sloupci k_prohlídce jsem nastavil logický typ (v původních datech je hodnota 0 a 1).
+- V parametru `col_types` jsem funkcí _cols_ určil, které sloupce nechci importovat (`col_skip`) a sloupci k_prohlidce jsem nastavil logický typ (v původních datech je hodnota 0 a 1).
 - Parametrem `trim_ws` jsem určil, že se mají odstranit nevýznamné mezery na začátku a konci hodnot.
 
 ## Data na webové stránce

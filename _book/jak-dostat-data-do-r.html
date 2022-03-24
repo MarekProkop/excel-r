@@ -379,7 +379,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="funkce-tribble" class="section level3 hasAnchor" number="4.2.3">
 <h3><span class="header-section-number">4.2.3</span> Funkce tribble<a href="jak-dostat-data-do-r.html#funkce-tribble" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Oba výše popsané způsoby zadávání dat do data framu mají jednu nevýhodu: data zapisujete po sloupcích, ačkoli je většinou přirozenější je psát po řádcích. Tuto nevýhodu řeší funkce <em>tribble</em>, které je taktéž součástí ekosystému <em>tidyverse</em>.</p>
+<p>Oba výše popsané způsoby zadávání dat do data framu mají jednu nevýhodu: data zapisujete po sloupcích, ačkoli je většinou přirozenější je psát po řádcích. Tuto nevýhodu řeší funkce <em>tribble</em>, která je taktéž součástí ekosystému <em>tidyverse</em>.</p>
 <p>Používá se takto:</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="jak-dostat-data-do-r.html#cb53-1" aria-hidden="true" tabindex="-1"></a>sample_df <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
 <span id="cb53-2"><a href="jak-dostat-data-do-r.html#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>produkt, <span class="sc">~</span>jednotka, <span class="sc">~</span>cena, <span class="sc">~</span>skladem,</span>
@@ -403,7 +403,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To je všechno moc hezké, říkáte si, ale v Excelu mohu nejen ručně zadat data, ale i kdykoli cokoli dodatečně opravit. Jak to udělám v R?</p>
 <p>Inu, skoro stejně. V Excelu něco píšete, pak máte už hotový výsledek a ten opravíte. V R nepíšete rovnou výsledek, nýbrž postup, jak výsledek vytvořit. Opravíte tedy postup, znovu ho spustíte a získáte opravený výsledek. Vypadá to o trochu složitěji, ale ve skutečnosti je to o dost lepší, protože informace o postupu zůstane zaznamenaná.</p>
 <ol style="list-style-type: decimal">
-<li>Pokud máte postup uložený ve skriptu, opravíte ho a znovu pusíte skript.</li>
+<li>Pokud máte postup uložený ve skriptu, opravíte ho a znovu pustíte skript.</li>
 <li>Pokud máte postup v souboru <em>rmarkdown</em> (.Rmd), opravíte ho a znovu spustíte jen opravený blok.</li>
 <li>Pokud jste postup napsali jen do konzole, vrátité se k němu v historii (v konzoli šipka nahoru, případně panel <em>History</em> v RStudiu), opravíte a znovu provedete.</li>
 </ol>
@@ -487,7 +487,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Co přesně jsem udělal?</p>
 <ul>
 <li>Protože dataset odděluje sloupce středníky a ne čárkami, použil jsem místo funkce <em>read_csv</em> obecnější funkci <em>read_delim</em>, která umožňuje oddělovač nastavit parametrem <code>delim</code>.</li>
-<li>V parametru <code>col_types</code> jsem funkcí <em>cols</em> určil, které sloupce nechci importovat (<code>col_skip</code>) a sloupci k_prohlídce jsem nastavil logický typ (v původních datech je hodnota 0 a 1).</li>
+<li>V parametru <code>col_types</code> jsem funkcí <em>cols</em> určil, které sloupce nechci importovat (<code>col_skip</code>) a sloupci k_prohlidce jsem nastavil logický typ (v původních datech je hodnota 0 a 1).</li>
 <li>Parametrem <code>trim_ws</code> jsem určil, že se mají odstranit nevýznamné mezery na začátku a konci hodnot.</li>
 </ul>
 </div>
