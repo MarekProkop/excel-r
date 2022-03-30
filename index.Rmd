@@ -1,8 +1,8 @@
 --- 
 title: "Od Excelu k R"
 description: Rychlokurz R pro začátečníky, kteří zatím používali Excel nebo Google Sheets.
-author: "Marek Prokop"
-date: "`r format(Sys.Date(), '%x')`"
+author: "Marek Prokop, [PROKOP software s.r.o.](https://www.prokopsw.cz/cs/)"
+date: "1. vydání: 24. 3. 2022, poslední aktualizace: `r format(Sys.Date(), '%x')`"
 site: bookdown::bookdown_site
 documentclass: book
 # url: your book url like https://bookdown.org/yihui/bookdown
@@ -30,6 +30,8 @@ Na kapitoly pohlížejte jako na navazující lekce. Procházejte je jednu za dr
 ## Zpětná vazba {-}
 
 Budu moc rád, když mě upozorníte na chyby a nedostatky. Něco vám nefunguje, nebo jste něco nepochopili a šlo by to vysvětlit lépe? Napište mi prosím. Ideálně jako [issue na Githubu](https://github.com/MarekProkop/excel-r/issues), nebo e-mailem na [mprokop@prokopsw.cz](mailto:mprokop@prokopsw.cz). Děkuju!
+
+Mimochodem, napsat mi můžete i v případě, že potřebujete s R pomoci ve firmě a za pomoc mi chcete něco zaplatit. Živím se mj. mentoringem firemních týmů zaměřených na digitální marketing nebo webovou analytiku.
 
 ## O autorovi {-}
 
